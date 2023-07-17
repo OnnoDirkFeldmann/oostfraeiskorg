@@ -28,6 +28,11 @@
         "virtualPath": "Views/Default.dothtml",
         "defaultValues": {}
       },
+      "admin": {
+        "url": "admin",
+        "virtualPath": "Views/admin.dothtml",
+        "defaultValues": {}
+      },
       "_dotvvm_diagnostics_compilation": {
         "url": "_dotvvm/diagnostics/compilation",
         "virtualPath": "embedded://DotVVM.Framework/Diagnostics/CompilationPage.dothtml",

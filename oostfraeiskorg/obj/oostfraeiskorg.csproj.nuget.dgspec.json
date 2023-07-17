@@ -1,15 +1,15 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Neronno\\Source\\Repos\\oostfraeiskorg\\oostfraeiskorg\\oostfraeiskorg.csproj": {}
+    "C:\\Users\\Neronno\\source\\repos\\oostfraeiskorg\\oostfraeiskorg\\oostfraeiskorg.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Neronno\\Source\\Repos\\oostfraeiskorg\\oostfraeiskorg\\oostfraeiskorg.csproj": {
+    "C:\\Users\\Neronno\\source\\repos\\oostfraeiskorg\\oostfraeiskorg\\oostfraeiskorg.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Neronno\\Source\\Repos\\oostfraeiskorg\\oostfraeiskorg\\oostfraeiskorg.csproj",
+        "projectUniqueName": "C:\\Users\\Neronno\\source\\repos\\oostfraeiskorg\\oostfraeiskorg\\oostfraeiskorg.csproj",
         "projectName": "oostfraeiskorg",
-        "projectPath": "C:\\Users\\Neronno\\Source\\Repos\\oostfraeiskorg\\oostfraeiskorg\\oostfraeiskorg.csproj",
+        "projectPath": "C:\\Users\\Neronno\\source\\repos\\oostfraeiskorg\\oostfraeiskorg\\oostfraeiskorg.csproj",
         "packagesPath": "C:\\Users\\Neronno\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\Neronno\\source\\repos\\oostfraeiskorg\\oostfraeiskorg\\obj\\",
         "projectStyle": "PackageReference",
@@ -51,6 +51,14 @@
             "DotVVM.HotReload.AspNetCore": {
               "target": "Package",
               "version": "[4.1.0, )"
+            },
+            "Microsoft.Data.Sqlite.Core": {
+              "target": "Package",
+              "version": "[7.0.9, )"
+            },
+            "Microsoft.EntityFrameworkCore.Sqlite": {
+              "target": "Package",
+              "version": "[7.0.9, )"
             },
             "Microsoft.Web.LibraryManager.Build": {
               "target": "Package",
