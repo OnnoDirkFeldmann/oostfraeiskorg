@@ -1,6 +1,26 @@
 {
   "Files": [
     {
+      "Id": "C:\\Users\\Neronno\\source\\repos\\oostfraeiskorg\\oostfraeiskorg\\wwwroot\\Resources\\Images\\Thumbs.db",
+      "PackagePath": "staticwebassets\\Resources\\Images\\Thumbs.db"
+    },
+    {
+      "Id": "C:\\Users\\Neronno\\source\\repos\\oostfraeiskorg\\oostfraeiskorg\\wwwroot\\Resources\\Images\\favicon.ico",
+      "PackagePath": "staticwebassets\\Resources\\Images\\favicon.ico"
+    },
+    {
+      "Id": "C:\\Users\\Neronno\\source\\repos\\oostfraeiskorg\\oostfraeiskorg\\wwwroot\\Resources\\Images\\info.png",
+      "PackagePath": "staticwebassets\\Resources\\Images\\info.png"
+    },
+    {
+      "Id": "C:\\Users\\Neronno\\source\\repos\\oostfraeiskorg\\oostfraeiskorg\\wwwroot\\Resources\\Images\\logo.png",
+      "PackagePath": "staticwebassets\\Resources\\Images\\logo.png"
+    },
+    {
+      "Id": "C:\\Users\\Neronno\\source\\repos\\oostfraeiskorg\\oostfraeiskorg\\wwwroot\\Resources\\Images\\sound.png",
+      "PackagePath": "staticwebassets\\Resources\\Images\\sound.png"
+    },
+    {
       "Id": "C:\\Users\\Neronno\\source\\repos\\oostfraeiskorg\\oostfraeiskorg\\wwwroot\\Resources\\Images\\text.svg",
       "PackagePath": "staticwebassets\\Resources\\Images\\text.svg"
     },
