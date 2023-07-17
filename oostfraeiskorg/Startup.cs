@@ -6,6 +6,7 @@ using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 using DotVVM.Framework.Hosting;
 using DotVVM.Framework.Routing;
+using Microsoft.AspNetCore.Rewrite;
 
 namespace oostfraeiskorg
 {
@@ -53,7 +54,15 @@ namespace oostfraeiskorg
             // use DotVVM
             var dotvvmConfiguration = app.UseDotVVM<DotvvmStartup>(env.ContentRootPath);
             dotvvmConfiguration.AssertConfigurationIsValid();
-            
+
+            //default files
+            app.UseDefaultFiles();
+
+            // rewrite rules
+            var rewrite = new RewriteOptions();
+            rewrite.AddRewrite(".aspx", ".dothtml", false);
+            app.UseRewriter(rewrite);
+
             // use static files
             app.UseStaticFiles(new StaticFileOptions
             {

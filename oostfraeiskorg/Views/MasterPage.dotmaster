@@ -130,18 +130,25 @@
             <div class="btn-group d-flex justify-content-center" role="group" aria-label="...">
 
                 <!---!!!Sprachauswahl!!!-->
+                <select class="form-select btn btn-secondary bg-primary flex-grow-1">
+                    <option selected>DE>FRS</option>
+                    <option value="DE>FRS">DE>FRS</option>
+                    <option value="FRS>DE">FRS>DE</option>
+                    <option value="EN>FRS">EN>FRS</option>
+                    <option value="FRS>EN">FRS>EN</option>
+                </select>
 
             </div>
             <div class="input-group">
                 <dot:Button ID="btn_keyboard" runat="server" CssClass="btn btn-primary" Text="⌨" OnClick="btn_keyboard_Click" />
                 <dot:TextBox ID="txt_search" class="form-control" text="" placeholder="Gib ein deutsches Wort ein"></dot:TextBox>
-                <dot:Button ID="btn_search" runat="server" class="btn btn-secondary bg-primary" OnClick="btn_search_Click" Text="Suche" />
+                <dot:Button ID="btn_search" runat="server" class="btn btn-secondary bg-primary" Click="{command: Search()}" Text="Suche" />
                 <button type="button" class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <span class="sr-only"></span>
                 </button>
                 <div class="dropdown-menu">
-                    <dot:Button ID="btn_like" runat="server" class="dropdown-item" OnClick="btn_like_Click" Text="Unscharfe Suche" />
-                    <dot:Button ID="btn_exact" runat="server" class="dropdown-item" OnClick="btn_exact_Click" Text="Exakte Suche" />
+                    <dot:Button ID="btn_like" runat="server" class="dropdown-item" Click="{command: SearchLike()}" Text="Unscharfe Suche" />
+                    <dot:Button ID="btn_exact" runat="server" class="dropdown-item" Click="{command: SearchExact()}" Text="Exakte Suche" />
                 </div>
             </div>
             <div class="accordion" id="symbolparent">

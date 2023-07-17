@@ -14,6 +14,7 @@ namespace oostfraeiskorg
             ConfigureRoutes(config, applicationPath);
             ConfigureControls(config, applicationPath);
             ConfigureResources(config, applicationPath);
+            
         }
 
         private void ConfigureRoutes(DotvvmConfiguration config, string applicationPath)
