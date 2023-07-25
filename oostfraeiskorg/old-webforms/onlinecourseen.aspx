@@ -1,0 +1,189 @@
+﻿<%@ Page Title="" Language="C#" MasterPageFile="respmaster.master" AutoEventWireup="true" CodeBehind="onlinecourseen.aspx.cs" Inherits="WFDOT.onlinecourseen" %>
+
+<asp:Content runat="server" ContentPlaceHolderID="ContentPlaceHolder1">
+    <html xmlns="https://www.w3.org/1999/xhtml">
+    <body>
+        <div class="container mw-100">
+            <div class="innercontainer mw-100">
+                <div class="text-right">
+                    <a class="btn btn-primary" href="../onlinecourse.aspx" role="button">Deutsche Version</a>
+                </div>
+                <div class="row justify-content-center w-100">
+                    <div class="col-sm-8 justify-content-center">
+                        <div class="row">
+                            <h2 class="text-center">Ōstfräisk Onlainkurs</h2>
+                            <br />
+                            <p>
+                                This online course consists of four lessons, each with a central theme. Find below
+                                an overview of these four lessons with all learning objectives and grammatical topics. Every
+                                Lesson ends with a short story or song. On a separate page you will find one
+                                Explanation of the vowel system and spelling.
+                            </p>
+                        </div>
+                        <br />
+                        <br />
+                        <h4>Lesson 1 - Introduce</h4>
+                        <br />
+                        <div class="row text-left">
+                            <table class="table-responsive-sm">
+                                <tr>
+                                    <th scope="row" class="align-top">goals:</th>
+                                    <td class="align-top">
+                                        <ul>
+                                            <li>greeting and farewell</li>
+                                            <li>introduce someone else</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row" class="align-top">grammar:</th>
+                                    <td class="align-top">
+                                        <ul>
+                                            <li>capitalization</li>
+                                            <li>the regular verbs</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row" class="align-top">media:</th>
+                                    <td class="align-top">
+                                        <ul>
+                                            <li>D'r was insent 'n oel wīfminsk</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <br />
+                        <a class="btn btn-primary" href="/lessons/lesson1en.aspx">to lesson 1</a>
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <h4>lesson 2 - family</h4>
+                        <br />
+                        <div class="row text-left">
+                            <table class="table-responsive-sm">
+                                <tr>
+                                    <th scope="row" class="align-top">goals:</th>
+                                    <td class="align-top">
+                                        <ul>
+                                            <li>briefly introduce yourself</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row" class="align-top">grammar:</th>
+                                    <td class="align-top">
+                                        <ul>
+                                            <li>numbers up to 100</li>
+                                            <li>auxiliary verbs</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row" class="align-top">media:</th>
+                                    <td class="align-top">
+                                        <ul>
+                                            <li>Mīn lütje latêrn</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <br />
+                        <a class="btn btn-primary" href="/lessons/lesson2en.aspx">to lesson 2</a>
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <h4>lesson 3 - leisure time</h4>
+                        <br />
+                        <div class="row text-left">
+                            <table class="table-responsive-sm">
+                                <tr>
+                                    <th scope="row" class="align-top">goals:</th>
+                                    <td class="align-top">
+                                        <ul>
+                                            <li>use small talk in everyday life</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row" class="align-top">grammar:</th>
+                                    <td class="align-top">
+                                        <ul>
+                                            <li>constructions with down</li>
+                                            <li>names</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row" class="align-top">media:</th>
+                                    <td class="align-top">
+                                        <ul>
+                                            <li>Nōrder wind un süen</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <br />
+                        <a class="btn btn-primary" href="/lessons/lesson3en.aspx">to lesson 3</a>
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <h4>lesson 4 - personal description</h4>
+                        <br />
+                        <div class="row text-left">
+                            <table class="table-responsive-sm">
+                                <tr>
+                                    <th scope="row" class="align-top">goals:</th>
+                                    <td class="align-top">
+                                        <ul>
+                                            <li>describe a person</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row" class="align-top">grammar:</th>
+                                    <td class="align-top">
+                                        <ul>
+                                            <li>comparison of adjectives</li>
+                                            <li>adjective inflection with super length</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row" class="align-top">media:</th>
+                                    <td class="align-top">
+                                        <ul>
+                                            <li>Interfräisk läid</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <br />
+                        <a class="btn btn-primary" href="/lessons/lesson4en.aspx">to lesson 4</a>
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <h4>vowel system and spelling</h4>
+                        <br />
+                        <p>Explanation of the East Frisian vowel system and East Frisian spelling.</p>
+                        <br />
+                        <a class="btn btn-primary" href="/lessons/vocalsystemen.aspx">on the vowel system and spelling</a>
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+    </html>
+</asp:Content>
