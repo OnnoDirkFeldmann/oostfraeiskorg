@@ -1,0 +1,35 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="links.aspx.cs" Inherits="WFDOT.links" MasterPageFile="respmaster.master" %>
+
+<asp:Content runat="server" ContentPlaceHolderID="ContentPlaceHolder1">
+    <html xmlns="https://www.w3.org/1999/xhtml">
+    <body>
+        <div class="container">
+            <h2>Linksammlung</h2>
+
+            <br />
+            <h3>Links:</h3>
+            <p>
+                <br />
+                - <a href="https://www.youtube.com/@fraeiskkaast">fräiskkāst</a> (ostfriesischer Podcast)<br />
+                <br />
+                - <a href="https://www.youtube.com/channel/UCpYXj2xWtLBnu1IvYZY1ErQ">EDU Fräisk</a> (ostfriesischer YouTube Kanal)<br />
+                <br />
+                - <a href="https://www.jungfraeiske-maeinskup.frl">Jungfräiske Mäinskup</a> (ostfriesischer Verein für Sprache und Kultur)<br />
+                <br />
+                - <a href="https://www.xn--saterfriesisches-wrterbuch-tvc.de">Saterfriesisches Wörterbuch</a> (osterlauwersfriesischer Dialekt des Saterlandes)<br />
+                <br />
+                - <a href="https://seeltersk-kursus.oostfraeisk.org">Saterfriesischer Sprachkurs</a> (Sprachkurs von Pyt Kramer)<br />
+                <br />
+                - <a href="https://friisk.org">friisk.org</a> (Wörterbuch diverser nordfriesischer Dialekte)<br />
+                <br />
+                - <a href="https://learnfrisian.com">learnfrisian</a> (Website mit verschiedenen friesischen Sprachkursen)<br />
+                <br />
+                - <a href="https://frysker.nl/">Frysker</a> (westfriesisches Wörterbuch)<br />
+                <br />
+                <br />
+                <br />
+            </p>
+        </div>
+    </body>
+    </html>
+</asp:Content>

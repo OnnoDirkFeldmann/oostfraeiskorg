@@ -17,4 +17,7 @@
     <PackageReference Include="Microsoft.Web.LibraryManager.Build" Version="2.1.175" />
 
   </ItemGroup>
+  <ItemGroup>
+    <None Include="old-webforms\Views\web.config" />
+  </ItemGroup>
 </Project>

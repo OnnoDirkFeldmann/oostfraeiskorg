@@ -1,0 +1,112 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="instructions.aspx.cs" Inherits="WFDOT.instructions" MasterPageFile="respmaster.master" %>
+
+<asp:Content runat="server" ContentPlaceHolderID="ContentPlaceHolder1">
+    <html xmlns="https://www.w3.org/1999/xhtml">
+    <body>
+        <div class="container">
+            <h2>Benutzerhinweise</h2>
+            <br />
+            <font size="4">
+                <h5>Suchfunktion:</h5>
+                -Bei einer scharfen Suche, über den Button "Suche", wird eine Volltext-Suche gestartet, die jeden Datensatz erfasst der das eingegebene Wort enthält.<br />
+                Beispiel: Der Suchbegriff "Haus" findet nur Datensätze die "Haus" als einzelnes Wort enthalten aber nicht "Haustür" oder "Gotteshaus".<br />
+                <br />
+                -Bei einer unscharfen Suche, über den Button "Unscharfe Suche", welche über den Pfeil neben dem Button "Suche" erreichbar ist, wird eine Suche gestartet, die jeden Datensatz erfasst, der die angegebene Zeichenfolge enthält.<br />
+                Beispiel: Der Suchbegriff "Haus" alle Datensätze mit "Haus", also auch "Haustür", "Vorderhaus" oder "geogr.: Tannenhausen".<br />
+                <br />
+                -Die Groß- oder Kleinschreibung wird bei der Suche nicht beachtet.<br />
+                <br />
+                -Die Suchwörter müssen in ihrer Grundform eingegeben werden, das heißt in nicht-flektierter Form.<br />
+                Beispiel: "sprach" muss als "sprechen" oder "Häuser" muss als "Haus" eingegeben werden.<br />
+                <br />
+                <h5>Die Suchergebnisse:</h5>
+                -Die Suchergebnisse sind alphabetisch sortiert. Die Reihenfolge sagt also nichts über die Güte der Ergebnisse aus. Der gesuchte Datensatz kann also nur durch genaues Studieren der Datensätze aus den Suchergebnisse hervorgehen. Häufige Kleinwörter wie zum Beispiel Artikel oder Personalpronomen sollten im Grammatikbuch "Ōstfräisk Tóóllēr" nachgeschlagen werden.<br />
+                <br />
+                -Die Suchergebnisse enthalten die ostfriesischen Standardformen. Dialektformen sind duch "dialektal:" gekennzeichent.<br />
+                Beispiel: "ârft [dialektal: ârt (östliches Ostfriesland)]".<br />
+                Eine Dialektform taucht ausschließlich im Eintrag des Stammwortes auf.<br />
+                Beispiel: "ârt" taucht nur im Eintrag "ârft" auf aber nicht im Eintrag "dopârft". Die Nebenform "dopârt" dieses Eintrages ist also aus dem Eintrag des Stammwortes "ârft" abzuleiten.<br />
+                <br />
+                -Dialektformen im Plural, in der Komparation oder in der Konjugation tauchen ausschließlich im Eintrag des Stammwortes auf.<br />
+                Beispiel: Die Konjugationsform "ging" taucht nur im Eintrag des Stammwortes "góón" auf, nicht aber im Eintrag "fergóón". Die Nebenform "ferging" zum Standard "fergung" ist aus dem Stammwort abzuleiten.<br />
+                Ausnahme bilden die Konjugationsformen des östlichen Ostfrieslands, da diese Dialektformen in einem großen Gebiet vorkommen.
+                <br />
+                -Das Standardostfriesische standardisiert auf die Lautung des au-Dialektes, welcher das altfriesische lange ō als au-Diphthong realisiert und im Herzen Ostfrieslands von der Krummhörn über Aurich bis Uplengen gesprochen wird.
+                Im Wörterbuch sind nur die Standardformen, jedoch keine ableitbaren Dialektformen aufgeführt. Ableitbaren Dialektformen sind über folgende Tabellen ableitbar:<br />
+                <br />
+                <br />
+                <table class="table">
+                    <caption>Fuß; gut; Kuh; zu</caption>
+                    <tr>
+                        <th scope="col"></th>
+                        <th scope="col">Standard</th>
+                        <th scope="col">Leer; Rheiderland; Westoverledingen</th>
+                        <th scope="col">Jümme; Moormerland; Ostoverledingen</th>
+                        <th scope="col">Harlingerland; Jeverland; Norderland</th>
+                    </tr>
+                    <tr>
+                        <th scope="row">Lautung</th>
+                        <td>au</td>
+                        <td>eau</td>
+                        <td>öy</td>
+                        <td>ou</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Beispiel</th>
+                        <td>faut; gaud; kau; tau</td>
+                        <td>feaut; geaud; keau; teau</td>
+                        <td>föyt; göyd; köy; töy</td>
+                        <td>fout; goud; kou; tou</td>
+                    </tr>
+                </table>
+                <br />
+                <br />
+                <table class="table">
+                    <caption>Beere; drei; Landwirtschaft</caption>
+                    <tr>
+                        <th scope="col"></th>
+                        <th scope="col">Standard</th>
+                        <th scope="col">Leer; Rheiderland; Westoverledingen</th>
+                    </tr>
+                    <tr>
+                        <th scope="row">Lautung</th>
+                        <td>äj</td>
+                        <td>iäj</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Beispiel</th>
+                        <td>bäj; dräj; burkeräj</td>
+                        <td>biäj; driäj; burkeriäj</td>
+                    </tr>
+                </table>
+                <br />
+                <br />
+                -Ist eine Dialektform nicht ableitbar, so wird sie mit aufgeführt. Dies gilt vor allem für die Lautverschiebungen ai/āj/âj -> oi/ōj/ôj (Harlingerland, Jeverland) und āu/âu -> ōu/ôu (Harlingerland, Jeverland, Norderland).<br />
+                Beispiel: flaiten [dialektal: floiten (Harlingerland, Jeverland)] oder bāuen [dialektal: bōuen (Harlingerland, Jeverland, Norderland)]<br />
+                <br />
+                -Eine stark abweichende Nebenform ist alleinstehend in den Suchergebnissen aufgeführt und verweißt auf die standardostfriesische Form. 
+                Der Kommentar des Eintrags enthält die geografische Verbreitung. Ist keine Verbreitung angegeben, so handelt es sich um eine freie Variante die im ganzen Sprachgebiet genutzt wird.<br />
+                Beispiel: besmóóer => bäep.<br />
+                <br />
+                -Synonyme Bedeutungen eines Datensatzes sind mit einem Kommata, verschiedene Bedeutungen mit einem Semikolon voneinander getrennt.<br />
+                Beispiel: höeğt - Höhe; Anhöhe, Erhebung, Hügel.<br />
+                Aus diesem Grund wurde auf sämtliche Kommasetzungen in den Beispielen verzichtet.<br />
+                <br />
+                -Sind zwei Wörter im Schriftbild homonyn, aber in Wortart, Genus, Plural, Flexion oder Etymologie treten, treten sie als zwei Datensätze auf.<br />
+                Beispiel: wêr (Wetter) und wêr (Hammel) unterscheiden sich im Genus und in der Etymologie und sind daher in zwei separaten Datensätzen gelistet.<br />
+                <br />
+                -In den Suchergebnissen können über einen Klick auf den Button "Details", Zusatzinformationen zum jeweiligen Datensatz ausgegeben werden.<br />
+                Diese enthalten zum Beispiel Angaben zur Flexion, Etymologie oder Volkstümlichem eines Wortes.<br />
+                <br />
+                <h5>Der Details-Dialog:</h5>
+                -Der Details-Dialog ist eine Sammlung von Zusatzinformationen.<br />
+                <br />
+                -Die Konjugationsformen der Verben enthalten, sofern zwei Formen möglich sind als erstes die westliche Form/Vollform und als zweites die östliche Form/Kurzform.<br />
+                Beispiel: prōt'de/prôt (Vollform/Kurzform) oder frat/frēt (westliches Ostfriesland/östliches Ostfriesland).<br />
+            </font>
+            <br />
+            <br />
+        </div>
+    </body>
+    </html>
+</asp:Content>
