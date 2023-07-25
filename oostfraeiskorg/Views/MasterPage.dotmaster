@@ -130,13 +130,15 @@
             <div class="btn-group d-flex justify-content-center" role="group" aria-label="...">
 
                 <!---!!!Sprachauswahl!!!-->
-                <select class="form-select btn btn-secondary bg-primary flex-grow-1">
+                <!--<select class="form-select btn btn-secondary bg-primary flex-grow-1">
                     <option selected>DE>FRS</option>
                     <option value="DE>FRS">DE>FRS</option>
                     <option value="FRS>DE">FRS>DE</option>
                     <option value="EN>FRS">EN>FRS</option>
                     <option value="FRS>EN">FRS>EN</option>
-                </select>
+                </select>-->
+
+                <dot:ListBox Size="0" DataSource="{value: Languages}" SelectedValue="{value: SelectedLanguage}" class="dropdown btn btn-secondary bg-primary flex-grow-1"/>
 
             </div>
             <div class="input-group">
