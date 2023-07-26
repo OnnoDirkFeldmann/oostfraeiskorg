@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\progr\\Source\\Repos\\oostfraeiskorg\\oostfraeiskorg\\oostfraeiskorg.csproj": {}
+    "C:\\Users\\progr\\source\\repos\\oostfraeiskorg\\oostfraeiskorg\\oostfraeiskorg.csproj": {}
   },
   "projects": {
-    "C:\\Users\\progr\\Source\\Repos\\oostfraeiskorg\\oostfraeiskorg\\oostfraeiskorg.csproj": {
+    "C:\\Users\\progr\\source\\repos\\oostfraeiskorg\\oostfraeiskorg\\oostfraeiskorg.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\progr\\Source\\Repos\\oostfraeiskorg\\oostfraeiskorg\\oostfraeiskorg.csproj",
+        "projectUniqueName": "C:\\Users\\progr\\source\\repos\\oostfraeiskorg\\oostfraeiskorg\\oostfraeiskorg.csproj",
         "projectName": "oostfraeiskorg",
-        "projectPath": "C:\\Users\\progr\\Source\\Repos\\oostfraeiskorg\\oostfraeiskorg\\oostfraeiskorg.csproj",
+        "projectPath": "C:\\Users\\progr\\source\\repos\\oostfraeiskorg\\oostfraeiskorg\\oostfraeiskorg.csproj",
         "packagesPath": "C:\\Users\\progr\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\progr\\Source\\Repos\\oostfraeiskorg\\oostfraeiskorg\\obj\\",
+        "outputPath": "C:\\Users\\progr\\source\\repos\\oostfraeiskorg\\oostfraeiskorg\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

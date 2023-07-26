@@ -123,22 +123,14 @@
             <!--Suchleiste-->
             <div class="btn-group d-flex justify-content-center" role="group" aria-label="...">
 
-                <!---!!!Sprachauswahl!!!-->
-                <!--<select class="form-select btn btn-secondary bg-primary flex-grow-1">
-                    <option selected>DE>FRS</option>
-                    <option value="DE>FRS">DE>FRS</option>
-                    <option value="FRS>DE">FRS>DE</option>
-                    <option value="EN>FRS">EN>FRS</option>
-                    <option value="FRS>EN">FRS>EN</option>
-                </select>-->
-
+                <!---Sprachauswahl-->
                 <dot:ListBox Size="0" DataSource="{value: Languages}" SelectedValue="{value: SelectedLanguage}" class="dropdown btn btn-secondary bg-primary flex-grow-1"/>
 
             </div>
             <div class="input-group">
                 <dot:Button ID="btn_keyboard" runat="server" class="btn btn-primary" Text="⌨" Click="{command: btn_keyboard_Click()}" />
                 <dot:TextBox ID="txt_search" class="form-control" text="{value: txt_search}" placeholder="Gib ein deutsches Wort ein"></dot:TextBox>
-                <dot:Button ID="btn_search" runat="server" class="btn btn-secondary bg-primary" Click="{command: Search()}" Text="Suche" />
+                <dot:Button ID="btn_search" runat="server" class="btn btn-secondary bg-primary" Click="{command: Search()}" Text="Suche" IsSubmitButton="true" />
                 <button type="button" class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <span class="sr-only"></span>
                 </button>
@@ -149,8 +141,6 @@
             </div>
             <div class="accordion" id="symbolparent">
                 <div class="card">
-
-                    <!---!!!collapse/expand steuern!!!-->
 
                     <div id="symbols" class="{value: lbl_keyboard}" data-parent="#symbolparent">
                         <div class="card-body">
@@ -208,7 +198,7 @@
             <div class="row">
                 <!--Seiteninhalt-->
                 <dot:ContentPlaceHolder ID="MainContent" />
-            </div>
+             </div>
         </div>
         <div class="container">
             <!--Footer-->

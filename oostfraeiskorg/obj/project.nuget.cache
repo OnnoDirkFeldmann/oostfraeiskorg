@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "z2iF62I2qYRhSxOu/NqrKTN2rPn9Na4HxJevmSYJjxaoaS9TLDLqMPw2Dzv0ZfWb/udcbpXyHPievBYFaFC4zQ==",
+  "dgSpecHash": "mGkLcF3MEA6pM7VFsxp9Xgyko0KYUEx0kyiFPrLMhLXb2I8cWQ7mirDHsA99qGcAQsC26xtuPlLzzdLnrEzbNA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\progr\\Source\\Repos\\oostfraeiskorg\\oostfraeiskorg\\oostfraeiskorg.csproj",
+  "projectFilePath": "C:\\Users\\progr\\source\\repos\\oostfraeiskorg\\oostfraeiskorg\\oostfraeiskorg.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\progr\\.nuget\\packages\\ben.demystifier\\0.4.1\\ben.demystifier.0.4.1.nupkg.sha512",
     "C:\\Users\\progr\\.nuget\\packages\\dotvvm\\4.1.0\\dotvvm.4.1.0.nupkg.sha512",
