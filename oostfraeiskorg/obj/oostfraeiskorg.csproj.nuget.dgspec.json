@@ -1,24 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\progr\\source\\repos\\oostfraeiskorg\\oostfraeiskorg\\oostfraeiskorg.csproj": {}
+    "C:\\Users\\Neronno\\source\\repos\\oostfraeiskorg\\oostfraeiskorg\\oostfraeiskorg.csproj": {}
   },
   "projects": {
-    "C:\\Users\\progr\\source\\repos\\oostfraeiskorg\\oostfraeiskorg\\oostfraeiskorg.csproj": {
+    "C:\\Users\\Neronno\\source\\repos\\oostfraeiskorg\\oostfraeiskorg\\oostfraeiskorg.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\progr\\source\\repos\\oostfraeiskorg\\oostfraeiskorg\\oostfraeiskorg.csproj",
+        "projectUniqueName": "C:\\Users\\Neronno\\source\\repos\\oostfraeiskorg\\oostfraeiskorg\\oostfraeiskorg.csproj",
         "projectName": "oostfraeiskorg",
-        "projectPath": "C:\\Users\\progr\\source\\repos\\oostfraeiskorg\\oostfraeiskorg\\oostfraeiskorg.csproj",
-        "packagesPath": "C:\\Users\\progr\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\progr\\source\\repos\\oostfraeiskorg\\oostfraeiskorg\\obj\\",
+        "projectPath": "C:\\Users\\Neronno\\source\\repos\\oostfraeiskorg\\oostfraeiskorg\\oostfraeiskorg.csproj",
+        "packagesPath": "C:\\Users\\Neronno\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Neronno\\source\\repos\\oostfraeiskorg\\oostfraeiskorg\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\progr\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\Neronno\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -26,7 +25,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\sdk\\7.0.306\\Sdks\\Microsoft.NET.Sdk.Web\\library-packs": {},
+          "c:\\Users\\Neronno\\Source\\Repos\\WFDOT\\WFDOT\\NugetPackages": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -85,7 +84,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.306\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
         }
       }
     }
