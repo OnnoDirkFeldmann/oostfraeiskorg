@@ -7,6 +7,8 @@ using static oostfraeiskorg.ViewModels.MasterPageViewModel;
 using System.Collections;
 using System.Linq;
 using System.Data;
+using System;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace WFDOT
 {
@@ -21,7 +23,7 @@ namespace WFDOT
         public static IQueryable<Entry> SearchAndFill(string searchstr, string suchrichtung, string volltextsuche)
         {
             List<Entry> Entries = new List<Entry>();
-       
+
             string originalSearch;
             string cellEastFrisian = "";
             string cellHeaderTranslation = "";
@@ -61,7 +63,7 @@ namespace WFDOT
                 return Entries.AsQueryable();
             }
 
-            var sqlCon = SQLCON.GetConnection("");
+            var sqlCon = SQLCON.GetConnection(oostfraeiskorg.Server.MapPath(""));
             var sqlcmd = new SqliteCommand();
             sqlcmd.Connection = sqlCon;
             var searchstrParamUpper = new SqliteParameter()
@@ -79,7 +81,7 @@ namespace WFDOT
                 Value = searchstr
             };
 
-            switch (suchrichtung)
+            switch (suchrichtung.ToLower())
             {
                 case "de>frs":
                     SearchStrings.DeFrs(volltextsuche, ref searchstr, ref sqlcmd);
@@ -99,6 +101,7 @@ namespace WFDOT
             sqlcmd.Parameters.Add(searchstrParamLower);
             sqlcmd.Parameters.Add(searchstrParam);
             sqlcmd.Prepare();
+            Console.WriteLine(sqlcmd.CommandText);
 
             var reader = sqlcmd.ExecuteReader();
             List<Row> rows = new List<Row>();

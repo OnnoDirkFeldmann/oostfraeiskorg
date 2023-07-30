@@ -6,6 +6,7 @@ using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 using DotVVM.Framework.Routing;
 using Microsoft.AspNetCore.Rewrite;
+using System;
 
 namespace oostfraeiskorg
 {
@@ -74,6 +75,10 @@ namespace oostfraeiskorg
 
                 // register ASP.NET Core MVC and other endpoint routing middlewares
             });
+
+            // setup app's root folders
+            AppDomain.CurrentDomain.SetData("ContentRootPath", env.ContentRootPath);
+            AppDomain.CurrentDomain.SetData("WebRootPath", env.WebRootPath);
         }
     }
 }
