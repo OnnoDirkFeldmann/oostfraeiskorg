@@ -2046,7 +2046,7 @@
     "assemblyDirs": [
       "C:\\Program Files\\dotnet\\shared\\Microsoft.AspNetCore.App\\7.0.9",
       "C:\\Program Files\\dotnet\\shared\\Microsoft.NETCore.App\\7.0.9",
-      "C:\\Users\\progr\\source\\repos\\oostfraeiskorg\\oostfraeiskorg\\bin\\Release\\net7.0"
+      "C:\\Users\\progr\\source\\repos\\oostfraeiskorg\\oostfraeiskorg\\bin\\Debug\\net7.0"
     ],
     "assemblyNames": [
       "DotVVM.Framework, Version=4.1.0.0",
