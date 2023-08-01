@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
+using System.Threading.Tasks;
 using DotVVM.Framework.Controls;
+using DotVVM.Framework.Hosting;
 using DotVVM.Framework.ViewModel;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Data.Sqlite;
@@ -36,21 +39,58 @@ namespace oostfraeiskorg.ViewModels
             set => _txt_search = value;
         }
 
-        private static IQueryable<Entry> GetData()
-        {
-            return new[]
-            {
-                new Entry("fründskup", "Freundschaft"),
-                new Entry("mäinskup", "Gemeinschaft"),
-                new Entry("hôp", "Hoffnung"),
-                new Entry("lauğ", "Dorf")
-            }.AsQueryable();
-        }
-
         public GridViewDataSet<Entry> Entries { get; set; }
+
+        [FromQuery("W")]
+        public string W { get; set; }
+
+        [FromQuery("df")]
+        public string df { get; set; }
+
+        [FromQuery("fts")]
+        public string fts { get; set; }
 
         public MasterPageViewModel() {
             Entries = new GridViewDataSet<Entry>();
+        }
+        public override Task Init()
+        {
+            if (W != null && df != null && fts != null)
+            {
+                Entries = new GridViewDataSet<Entry>();
+
+                //Alte URL-Versionen händeln
+                if (df == "ofrs" || df == "frs")
+                {
+                    df = "frs>de";
+                }
+                if (df == "de")
+                {
+                    df = "de>frs";
+                }
+
+                //Default Sprache
+                if (df != "de>frs" && df != "frs>de" && df != "en>frs" && df != "frs>en")
+                {
+                    df = "de>frs";
+                }
+
+                //Default Search
+                if (fts != "J" && fts != "N" && fts != "X")
+                {
+                    fts = "N";
+                }
+
+                if (W.Contains("%"))
+                {
+                    Context.RedirectToRoute("main");
+                }
+                else
+                {
+                    Entries.LoadFromQueryable(WFDOT.Searcher.SearchAndFill(W, df, fts));
+                }
+            }
+            return base.Init();
         }
 
         public class Entry
@@ -75,17 +115,17 @@ namespace oostfraeiskorg.ViewModels
 
         public void Search()
         {
-            Entries.LoadFromQueryable(WFDOT.Searcher.SearchAndFill(txt_search, SelectedLanguage, "J"));
+            Context.RedirectToRoute("main", query: new { W = txt_search, df = SelectedLanguage.ToLower(), fts = "J" });
         }
 
         public void SearchLike()
         {
-            Entries.LoadFromQueryable(WFDOT.Searcher.SearchAndFill(txt_search, SelectedLanguage, "N"));
+            Context.RedirectToRoute("main", query: new { W = txt_search, df = SelectedLanguage.ToLower(), fts = "N" });
         }
 
         public void SearchExact()
         {
-            Entries.LoadFromQueryable(WFDOT.Searcher.SearchAndFill(txt_search, SelectedLanguage, "X"));
+            Context.RedirectToRoute("main", query: new { W = txt_search, df = SelectedLanguage.ToLower(), fts = "X" });
         }
 
         public void btn_keyboard_Click()

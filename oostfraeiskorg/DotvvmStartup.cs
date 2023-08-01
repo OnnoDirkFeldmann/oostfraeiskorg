@@ -19,7 +19,9 @@ namespace oostfraeiskorg
 
         private void ConfigureRoutes(DotvvmConfiguration config, string applicationPath)
         {
-            config.RouteTable.Add("main", "", "Views/main.dothtml");
+            config.RouteTable.Add("index", "", "Views/main.dothtml", new { W = "", df = "", fts = "" });
+            config.RouteTable.Add("main", "main", "Views/main.dothtml");
+            //config.RouteTable.Add("main2", "main?W={W}&df={df}&fts={fts}", "Views/main.dothtml", new { W = "", df = "", fts = "" });
             config.RouteTable.AutoDiscoverRoutes(new DefaultRouteStrategy(config));    
         }
 
