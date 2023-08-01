@@ -107,6 +107,7 @@ namespace WFDOT
             List<Row> rows = new List<Row>();
             while (reader.Read())
             {
+                Console.WriteLine("Read");
                 Row values = new Row();
                 values.ID = reader.GetInt64("ID");
                 values.Ostfriesisch = reader.GetValue("Ostfriesisch").ToString();

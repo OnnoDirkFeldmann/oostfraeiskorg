@@ -23,8 +23,17 @@
       }
     },
     "routes": {
-      "main": {
+      "index": {
         "url": "",
+        "virtualPath": "Views/main.dothtml",
+        "defaultValues": {
+          "W": "",
+          "df": "",
+          "fts": ""
+        }
+      },
+      "main": {
+        "url": "main",
         "virtualPath": "Views/main.dothtml",
         "defaultValues": {}
       },
