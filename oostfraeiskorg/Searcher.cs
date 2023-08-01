@@ -37,8 +37,8 @@ namespace WFDOT
 
             switch (suchrichtung)
             {
-                case "DE>FRS":
-                case "FRS>DE":
+                case "de>frs":
+                case "frs>de":
                     cellEastFrisian = "Ostfriesisch";
                     cellHeaderTranslation = "Deutsch";
                     NotFound = $"Es sind keine Daten für die Suche '{originalSearch}' gefunden worden";
@@ -46,8 +46,8 @@ namespace WFDOT
                     language = Languages.German;
                     dialectaltrans = "dialektal";
                     break;
-                case "EN>FRS":
-                case "FRS>EN":
+                case "en>frs":
+                case "frs>en":
                     cellEastFrisian = "East Frisian";
                     cellHeaderTranslation = "English";
                     NotFound = $"No data found for '{originalSearch}'";
