@@ -21,8 +21,9 @@ namespace oostfraeiskorg
         {
             config.RouteTable.Add("index", "", "Views/main.dothtml");
             config.RouteTable.Add("main", "main", "Views/main.dothtml");
+            config.RouteTable.Add("main.aspx", "main.aspx", "Views/main.dothtml");
             //config.RouteTable.Add("main.dothtml", "main.dothtml", "Views/main.dothtml");
-            //config.RouteTable.Add("main.aspx", "main.aspx", "Views/main.dothtml");
+            config.RouteTable.Add("grammar.aspx", "grammar.aspx", "Views/main.dothtml");
             config.RouteTable.AutoDiscoverRoutes(new DefaultRouteStrategy(config));    
         }
 
