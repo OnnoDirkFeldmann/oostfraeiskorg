@@ -60,3 +60,8 @@ html, body {
         color: #337ab7;
     }
 
+.table .entry_header {
+    background: #99CCFF;
+    font-weight: bold;
+}
+
