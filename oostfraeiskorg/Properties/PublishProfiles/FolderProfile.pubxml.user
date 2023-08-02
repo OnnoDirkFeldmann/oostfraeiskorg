@@ -4,8 +4,8 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
 -->
 <Project>
   <PropertyGroup>
-    <_PublishTargetUrl>C:\Users\Neronno\source\repos\oostfraeiskorg\oostfraeiskorg\bin\Release\net7.0\publish\</_PublishTargetUrl>
-    <History>True|2023-07-16T18:29:39.3583197Z;True|2023-07-16T20:28:42.1624755+02:00;True|2023-07-16T20:27:29.5039511+02:00;True|2023-07-16T20:19:49.4417835+02:00;</History>
+    <_PublishTargetUrl>C:\Users\progr\source\repos\oostfraeiskorg\oostfraeiskorg\bin\Release\net7.0\publish\</_PublishTargetUrl>
+    <History>True|2023-08-02T18:56:28.5531570Z;True|2023-07-16T20:29:39.3583197+02:00;True|2023-07-16T20:28:42.1624755+02:00;True|2023-07-16T20:27:29.5039511+02:00;True|2023-07-16T20:19:49.4417835+02:00;</History>
     <LastFailureDetails />
   </PropertyGroup>
 </Project>

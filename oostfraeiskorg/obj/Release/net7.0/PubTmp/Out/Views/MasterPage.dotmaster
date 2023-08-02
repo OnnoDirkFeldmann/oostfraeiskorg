@@ -1,18 +1,258 @@
 ﻿@viewModel oostfraeiskorg.ViewModels.MasterPageViewModel, oostfraeiskorg
 <!DOCTYPE html>
+<html xmlns="https://www.w3.org/1999/xhtml" lang="de">
 
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
-<head>
+<head runat="server">
     <meta charset="utf-8" />
-    <title>oostfraeiskorg</title>
     <dot:RequiredResource Name="bootstrap" />
-    <dot:RequiredResource Name="Styles"/>
+    <dot:RequiredResource Name="Styles" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.8, shrink-to-fit=no" />
+    <meta name="description" content="Wörterbuch der ostfriesischen Sprache - Wörter aus dem Ostfriesischen oder ins Ostfriesische übersetzen. Die Sprache der Ostfriesen mit dem Wörterbuch für das ostfriesische Platt als Standardostfriesisch lernen." />
+    <meta name="keywords" content="platt, ostfriesisch, Wörterbuch, Ostfriesland, plattdeutsch, ostfriesisich-deutsch Wörterbuch, deutsch-ostfriesisch-Wörterbuch, elektronisches Wörterbuch, Onlinewörterbuch, Wörterbuch online, ostfriesich online, ōstfräisk, Jungfräiske Mäinskup, JFM, JFM Ostfriesland, Sprache von Ostfriesland, Ostfriesland Platt, Ostfriesisches Platt, ostfriesische Sprache, Regionalsprache, Wörterbuch der ostfriesischen Sprache, Weigelt, Schreibweise, Rechtschreibung, ostfriesische Schreibweise, friesisch schreiben, ostfriesisch lernen" />
+    <meta name="author" content="Onno Dirk Feldmann in Kooperation mit der Jungfräiske Mäinskup e.V." />
+    <meta charset="utf-8" />
+    <title>Ōstfräisk Wōrdenbauk - Ostfriesisches Wörterbuch</title>
+
+    <!--BreadcrumbList-->
+    <script type="application/ld+json">
+        {"@context":"https://schema.org",
+        "@type":"BreadcrumbList",
+        "itemListElement":
+        [
+        {"@type":"ListItem",
+        "position":1,
+        "item":
+        {"@id":"https://oostfraeisk.org",
+        "name":"Ōstfräisk wōrdenbauk - Ostfriesisches Wörterbuch"
+        }},
+        {"@type":"ListItem",
+        "position":2,
+        "item":
+        {"@id":"https://oostfraeisk.org/grammar.aspx",
+        "name":"Grammatik - Ōstfräisk wōrdenbauk - Ostfriesisches Wörterbuch"
+        }},
+        {"@type":"ListItem",
+        "position":3,
+        "item":
+        {"@id":"https://oostfraeisk.org/leerbauk.aspx",
+        "name":"Kursbuch - Ōstfräisk wōrdenbauk - Ostfriesisches Wörterbuch"
+        }},
+        {"@type":"ListItem",
+        "position":4,
+        "item":
+        {"@id":"https://oostfraeisk.org/leerbauk.aspx",
+        "name":"Onlinekurs - Ōstfräisk wōrdenbauk - Ostfriesisches Wörterbuch"
+        }},
+        {"@type":"ListItem",
+        "position":5,
+        "item":
+        {"@id":"https://oostfraeisk.org/downloads.aspx",
+        "name":"Downloads - Ōstfräisk wōrdenbauk - Ostfriesisches Wörterbuch"
+        }},
+        {"@type":"ListItem",
+        "position":6,
+        "item":
+        {"@id":"https://oostfraeisk.org/keyboard.aspx",
+        "name":"Tastatur - Ōstfräisk wōrdenbauk - Ostfriesisches Wörterbuch"
+        }},
+        {"@type":"ListItem",
+        "position":7,
+        "item":
+        {"@id":"https://oostfraeisk.org/about.aspx",
+        "name":"Über - Ōstfräisk wōrdenbauk - Ostfriesisches Wörterbuch"
+        }}
+        ]
+        }
+    </script>
+
+    <!--Icon-->
+    <link rel="icon" href="resources/images/favicon.ico" />
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-PR5J1WSLWM"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-PR5J1WSLWM');
+    </script>
 </head>
-<body>
 
- 	
+<body runat="server">
+    <!--Navigation-->
+    <nav class="navbar navbar-expand-md navbar-dark bg-primary mb-3">
+        <div class="container-fluid">
+            <a href="../main.aspx" class="navbar-brand mr-3">
+                <img src="resources/images/logo.png" alt="WFDOT Logo" width="100" height="100" />
+            </a>
+            <a href="../main.aspx" class="navbar-brand mr-3">
+                <h5>Ōstfräisk Wōrdenbauk</h5>
+                <h5>Ostfriesisches Wörterbuch</h5>
+                <h6><small>Wörterbuch für das ostfriesische Platt</small></h6>
+            </a>
+            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <div class="navbar-nav">
+                    <div class="nav-item dropdown">
+                        <a class="nav-item nav-link dropdown-toggle" href="#" id="navbarDropdownLernen" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Lernen</a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownLernenDrop">
+                            <a class="dropdown-item" href="../grammar.aspx">Grammatik</a>
+                            <a class="dropdown-item" href="../leerbauk.aspx">Kursbuch</a>
+                            <a class="dropdown-item" href="../onlinecourse.aspx">Online-Kurs</a>
+                        </div>
+                    </div>
+                    <div class="nav-item dropdown">
+                        <a class="nav-item nav-link dropdown-toggle" href="#" id="navbarDropdownSupport" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Unterstützen</a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownSupportDrop">
+                            <a class="dropdown-item" href="../donateaword.aspx">Fehlendes Wort spenden</a>
+                            <a class="dropdown-item" href="https://www.paypal.com/donate/?hosted_button_id=KXTTQVB4ZM7ML">Geld spenden</a>
+                            <a class="dropdown-item" href="https://www.jungfraeiske-maeinskup.frl/">Jungfräiske Mäinskup</a>
+                        </div>
+                    </div>
+                    <a href="../keyboard.aspx" class="nav-item nav-link">Tastatur</a>
+                    <a href="../downloads.aspx" class="nav-item nav-link">Downloads</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <form id="form1" runat="server" defaultbutton="btn_search">
+        <div class="container-fluid">
 
-    <dot:ContentPlaceHolder ID="MainContent" />
+            <!--Suchleiste-->
+            <div class="btn-group d-flex justify-content-center" role="group" aria-label="...">
 
+                <!---Sprachauswahl-->
+                <dot:ListBox Size="0" DataSource="{value: Languages}" SelectedValue="{value: SelectedLanguage}" class="dropdown btn btn-secondary bg-primary flex-grow-1"/>
+
+            </div>
+            <div class="input-group">
+                <dot:Button ID="btn_keyboard" runat="server" class="btn btn-primary" Text="⌨" Click="{command: btn_keyboard_Click()}" />
+                <dot:TextBox ID="txt_search" class="form-control" text="{value: txt_search}" placeholder="Gib ein deutsches Wort ein"></dot:TextBox>
+                <dot:Button ID="btn_search" runat="server" class="btn btn-secondary bg-primary" Click="{command: Search()}" Text="Suche" IsSubmitButton="true" />
+                <button type="button" class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="sr-only"></span>
+                </button>
+                <div class="dropdown-menu">
+                    <dot:Button ID="btn_like" runat="server" class="dropdown-item" Click="{command: SearchLike()}" Text="Unscharfe Suche" />
+                    <dot:Button ID="btn_exact" runat="server" class="dropdown-item" Click="{command: SearchExact()}" Text="Exakte Suche" />
+                </div>
+            </div>
+            <div class="accordion" id="symbolparent">
+                <div class="card">
+
+                    <div id="symbols" Style-Display = "none" style="{value: lbl_keyboard ? '' : 'display: none'}" class="expand" data-parent="#symbolparent">
+                        <div class="card-body">
+                            <dot:Button ID="btn_atrema" runat="server" class="btn btn-secondary bg-primary flex-grow-1" Text="ä" Click="{command: btn_symbols_Click('ä')}" />
+                            <dot:Button ID="btn_amacron" runat="server" class="btn btn-secondary bg-primary flex-grow-1" Text="ā" Click="{command: btn_symbols_Click('ā')}" />
+                            <dot:Button ID="btnacirkumflex" runat="server" class="btn btn-secondary bg-primary flex-grow-1" Text="â" Click="{command: btn_symbols_Click('â')}" />
+                            <dot:Button ID="ae" runat="server" class="btn btn-secondary bg-primary flex-grow-1" Text="æ" Click="{command: btn_symbols_Click('æ')}" />
+                            <dot:Button ID="emarcon" runat="server" class="btn btn-secondary bg-primary flex-grow-1" Text="ē" Click="{command: btn_symbols_Click('ē')}" />
+                            <dot:Button ID="ecirkumflex" runat="server" class="btn btn-secondary bg-primary flex-grow-1" Text="ê" Click="{command: btn_symbols_Click('ê')}" />
+                            <dot:Button ID="gbreve" runat="server" class="btn btn-secondary bg-primary flex-grow-1" Text="ğ" Click="{command: btn_symbols_Click('ğ')}" />
+                            <dot:Button ID="imarcon" runat="server" class="btn btn-secondary bg-primary flex-grow-1" Text="ī" Click="{command: btn_symbols_Click('ī')}" />
+                            <dot:Button ID="icirkumflex" runat="server" class="btn btn-secondary bg-primary flex-grow-1" Text="î" Click="{command: btn_symbols_Click('î')}" />
+                            <dot:Button ID="otrema" runat="server" class="btn btn-secondary bg-primary flex-grow-1" Text="ö" Click="{command: btn_symbols_Click('ö')}" />
+                            <dot:Button ID="oacut" runat="server" class="btn btn-secondary bg-primary flex-grow-1" Text="ó" Click="{command: btn_symbols_Click('ó')}" />
+                            <dot:Button ID="omacron" runat="server" class="btn btn-secondary bg-primary flex-grow-1" Text="ō" Click="{command: btn_symbols_Click('ō')}" />
+                            <dot:Button ID="ocirkumflex" runat="server" class="btn btn-secondary bg-primary flex-grow-1" Text="ô" Click="{command: btn_symbols_Click('ô')}" />
+                            <dot:Button ID="utrema" runat="server" class="btn btn-secondary bg-primary flex-grow-1" Text="ü" Click="{command: btn_symbols_Click('ü')}" />
+                            <dot:Button ID="umarcon" runat="server" class="btn btn-secondary bg-primary flex-grow-1" Text="ū" Click="{command: btn_symbols_Click('ū')}" />
+                            <dot:Button ID="ucirkumflex" runat="server" class="btn btn-secondary bg-primary flex-grow-1" Text="û" Click="{command: btn_symbols_Click('û')}" />
+                            <br />
+                            <br />
+                            <dot:Button ID="btnatremagr" runat="server" class="btn btn-secondary bg-primary flex-grow-1" Text="Ä" Click="{command: btn_symbols_Click('Ä')}" />
+                            <dot:Button ID="btn_amacrongr" runat="server" class="btn btn-secondary bg-primary flex-grow-1" Text="Ā" Click="{command: btn_symbols_Click('Ā')}" />
+                            <dot:Button ID="btnacirkumflexgr" runat="server" class="btn btn-secondary bg-primary flex-grow-1" Text="Â" Click="{command: btn_symbols_Click('Â')}" />
+                            <dot:Button ID="aegr" runat="server" class="btn btn-secondary bg-primary flex-grow-1" Text="Æ" Click="{command: btn_symbols_Click('Æ')}" />
+                            <dot:Button ID="emarcongr" runat="server" class="btn btn-secondary bg-primary flex-grow-1" Text="Ē" Click="{command: btn_symbols_Click('Ē')}" />
+                            <dot:Button ID="ecirkumflexgr" runat="server" class="btn btn-secondary bg-primary flex-grow-1" Text="Ê" Click="{command: btn_symbols_Click('Ê')}" />
+                            <dot:Button ID="gbrevegr" runat="server" class="btn btn-secondary bg-primary flex-grow-1" Text="Ğ" Click="{command: btn_symbols_Click('Ğ')}" />
+                            <dot:Button ID="imarcongr" runat="server" class="btn btn-secondary bg-primary flex-grow-1" Text="Ī" Click="{command: btn_symbols_Click('Ī')}" />
+                            <dot:Button ID="icirkumflexgr" runat="server" class="btn btn-secondary bg-primary flex-grow-1" Text="Î" Click="{command: btn_symbols_Click('Î')}" />
+                            <dot:Button ID="otremagr" runat="server" class="btn btn-secondary bg-primary flex-grow-1" Text="Ö" Click="{command: btn_symbols_Click('Ö')}" />
+                            <dot:Button ID="oacutgr" runat="server" class="btn btn-secondary bg-primary flex-grow-1" Text="Ó" Click="{command: btn_symbols_Click('Ó')}" />
+                            <dot:Button ID="omacrongr" runat="server" class="btn btn-secondary bg-primary flex-grow-1" Text="Ō" Click="{command: btn_symbols_Click('Ō')}" />
+                            <dot:Button ID="ocirkumflexgr" runat="server" class="btn btn-secondary bg-primary flex-grow-1" Text="Ô" Click="{command: btn_symbols_Click('Ô')}" />
+                            <dot:Button ID="utremagr" runat="server" class="btn btn-secondary bg-primary flex-grow-1" Text="Ü" Click="{command: btn_symbols_Click('Ü')}" />
+                            <dot:Button ID="umarcongr" runat="server" class="btn btn-secondary bg-primary flex-grow-1" Text="Ū" Click="{command: btn_symbols_Click('Ū')}" />
+                            <dot:Button ID="ucirkumflexgr" runat="server" class="btn btn-secondary bg-primary flex-grow-1" Text="Û" Click="{command: btn_symbols_Click('Û')}" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr />
+
+        <!--Inhaltscontainer-->
+        <div class="container justify-content-center mw-100">
+            <div class="row">
+                <!--Meldungen-->
+                <div class="col"></div>
+
+                <!---!!!Label mit Warnung!!!-->
+
+                <div class="col"></div>
+            </div>
+            <div class="row">
+                <!--Seiteninhalt-->
+                <dot:ContentPlaceHolder ID="MainContent" />
+             </div>
+        </div>
+        <div class="container">
+            <!--Footer-->
+            <footer>
+                <div class="row">
+                    <div class="col-md-6 text-md-start">
+                        <p>oostfraeisk.org 2023</p>
+                    </div>
+                    <div class="col-md-6 text-md-end">
+                        <a href="../instructions.aspx" class="text-dark">Benutzerhinweise</a>
+                        <span class="text-muted mx-2">|</span>
+                        <a href="../links.aspx" class="text-dark">Links</a>
+                        <span class="text-muted mx-2">|</span>
+                        <a href="../about.aspx" class="text-dark">Über</a>
+                        <span class="text-muted mx-2">|</span>
+                        <a href="../dsgvo.aspx" class="text-dark">Datenschutzerklärung</a>
+                    </div>
+                </div>
+            </footer>
+        </div>
+
+        <!--Modales Popupfenster-->
+        <div id="Detailpopup" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="modal-title"></h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Schließen</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Cookie-Anzeige -->
+        <div class="alert text-center cookiealert" role="alert">
+            <div>
+                <span>Diese Webseite verwendet Cookies, um Ihnen ein angenehmeres Surfen zu ermöglichen.</span><br />
+                <span>This website uses cookies to give you a better browsing experience.</span><br />
+            </div>
+            <button type="button" class="btn btn-primary btn-sm acceptcookies">OK</button>
+        </div>
+
+        <!--Script-->
+        <script type="text/javascript" src="https://oostfraeisk.org/js/jquery-3.5.1.min.js"></script>
+        <script type="text/javascript" src="https://oostfraeisk.org/js/popper.min.js"></script>
+        <script type="text/javascript" src="https://oostfraeisk.org/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="https://oostfraeisk.org/js/custom.js"></script>
+        <script type="text/javascript" src="https://oostfraeisk.org/js/cookiealert.js"></script>
+    </form>
 </body>
 </html>
