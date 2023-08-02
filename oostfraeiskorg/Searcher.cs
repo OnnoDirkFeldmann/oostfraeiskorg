@@ -105,9 +105,10 @@ namespace WFDOT
 
             var reader = sqlcmd.ExecuteReader();
             List<Row> rows = new List<Row>();
+            Console.Write("Start reading");
             while (reader.Read())
             {
-                Console.WriteLine("Read");
+                Console.Write(".");
                 Row values = new Row();
                 values.ID = reader.GetInt64("ID");
                 values.Ostfriesisch = reader.GetValue("Ostfriesisch").ToString();
@@ -118,6 +119,7 @@ namespace WFDOT
                 values.Standardform = reader.GetValue("Standardform").ToString();
                 rows.Add(values);
             }
+            Console.Write("Finished");
             reader.Close();
             sqlCon.Close();
 

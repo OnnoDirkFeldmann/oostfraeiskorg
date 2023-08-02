@@ -147,3 +147,9 @@ C:\Users\Neronno\source\repos\oostfraeiskorg\oostfraeiskorg\bin\Release\net7.0\w
 C:\Users\Neronno\source\repos\oostfraeiskorg\oostfraeiskorg\bin\Release\net7.0\wwwroot\Resources\Images\text.svg
 C:\Users\Neronno\source\repos\oostfraeiskorg\oostfraeiskorg\bin\Release\net7.0\wwwroot\Resources\Images\tree.svg
 C:\Users\Neronno\source\repos\oostfraeiskorg\oostfraeiskorg\bin\Release\net7.0\wwwroot\Resources\Images\Thumbs.db
+C:\Users\progr\source\repos\oostfraeiskorg\oostfraeiskorg\bin\Release\net7.0\wwwroot\img\favicon.ico
+C:\Users\progr\source\repos\oostfraeiskorg\oostfraeiskorg\bin\Release\net7.0\wwwroot\img\info.png
+C:\Users\progr\source\repos\oostfraeiskorg\oostfraeiskorg\bin\Release\net7.0\wwwroot\img\logo.png
+C:\Users\progr\source\repos\oostfraeiskorg\oostfraeiskorg\bin\Release\net7.0\wwwroot\img\sound.png
+C:\Users\progr\source\repos\oostfraeiskorg\oostfraeiskorg\bin\Release\net7.0\wwwroot\img\text.svg
+C:\Users\progr\source\repos\oostfraeiskorg\oostfraeiskorg\bin\Release\net7.0\wwwroot\img\tree.svg

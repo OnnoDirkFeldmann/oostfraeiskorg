@@ -1,7 +1,7 @@
 {
   "dotvvmVersion": "4.1.0.0",
   "config": {
-    "applicationPhysicalPath": "C:\\Users\\Neronno\\source\\repos\\oostfraeiskorg\\oostfraeiskorg",
+    "applicationPhysicalPath": "C:\\Users\\progr\\source\\repos\\oostfraeiskorg\\oostfraeiskorg",
     "markup": {
       "controls": [
         {
@@ -30,6 +30,16 @@
       },
       "main": {
         "url": "main",
+        "virtualPath": "Views/main.dothtml",
+        "defaultValues": {}
+      },
+      "main.aspx": {
+        "url": "main.aspx",
+        "virtualPath": "Views/main.dothtml",
+        "defaultValues": {}
+      },
+      "grammar.aspx": {
+        "url": "grammar.aspx",
         "virtualPath": "Views/main.dothtml",
         "defaultValues": {}
       },
@@ -2040,9 +2050,9 @@
   },
   "assemblies": {
     "assemblyDirs": [
-      "C:\\Program Files\\dotnet\\shared\\Microsoft.AspNetCore.App\\7.0.4",
-      "C:\\Program Files\\dotnet\\shared\\Microsoft.NETCore.App\\7.0.4",
-      "C:\\Users\\Neronno\\source\\repos\\oostfraeiskorg\\oostfraeiskorg\\bin\\Debug\\net7.0"
+      "C:\\Program Files\\dotnet\\shared\\Microsoft.AspNetCore.App\\7.0.9",
+      "C:\\Program Files\\dotnet\\shared\\Microsoft.NETCore.App\\7.0.9",
+      "C:\\Users\\progr\\source\\repos\\oostfraeiskorg\\oostfraeiskorg\\bin\\Debug\\net7.0"
     ],
     "assemblyNames": [
       "DotVVM.Framework, Version=4.1.0.0",
