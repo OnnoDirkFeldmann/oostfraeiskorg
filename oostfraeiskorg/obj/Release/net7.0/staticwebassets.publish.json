@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "FKye3+hjVuB6IXj5yAweUix8wXeuI1avvy7UqEQQuHo=",
+  "Hash": "1CQ+Glf1bbepI8Kmlds4J5CXSiby0Ag7M6pbKrNNUEg=",
   "Source": "oostfraeiskorg",
   "BasePath": "_content/oostfraeiskorg",
   "Mode": "Default",
@@ -2361,40 +2361,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\lib\\jquery\\jquery.slim.min.map"
-    },
-    {
-      "Identity": "C:\\Users\\Neronno\\source\\repos\\oostfraeiskorg\\oostfraeiskorg\\wwwroot\\Resources\\Images\\text.svg",
-      "SourceId": "oostfraeiskorg",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Neronno\\source\\repos\\oostfraeiskorg\\oostfraeiskorg\\wwwroot\\",
-      "BasePath": "_content/oostfraeiskorg",
-      "RelativePath": "Resources/Images/text.svg",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\Resources\\Images\\text.svg"
-    },
-    {
-      "Identity": "C:\\Users\\Neronno\\source\\repos\\oostfraeiskorg\\oostfraeiskorg\\wwwroot\\Resources\\Images\\tree.svg",
-      "SourceId": "oostfraeiskorg",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Neronno\\source\\repos\\oostfraeiskorg\\oostfraeiskorg\\wwwroot\\",
-      "BasePath": "_content/oostfraeiskorg",
-      "RelativePath": "Resources/Images/tree.svg",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\Resources\\Images\\tree.svg"
     },
     {
       "Identity": "C:\\Users\\Neronno\\source\\repos\\oostfraeiskorg\\oostfraeiskorg\\wwwroot\\Resources\\style.css",
