@@ -26,14 +26,20 @@
       "index": {
         "url": "",
         "virtualPath": "Views/main.dothtml",
-        "defaultValues": {
-          "W": "",
-          "df": "",
-          "fts": ""
-        }
+        "defaultValues": {}
+      },
+      "main.aspx": {
+        "url": "main.aspx",
+        "virtualPath": "Views/main.dothtml",
+        "defaultValues": {}
       },
       "main": {
-        "url": "main.aspx",
+        "url": "main",
+        "virtualPath": "Views/main.dothtml",
+        "defaultValues": {}
+      },
+      "grammar": {
+        "url": "grammar.aspx",
         "virtualPath": "Views/main.dothtml",
         "defaultValues": {}
       },
