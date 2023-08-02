@@ -25,9 +25,9 @@ namespace oostfraeiskorg.ViewModels
             set => _selectedLanguage = value;
         }
 
-        private string _lbl_keyboard = "collapse";
+        private bool _lbl_keyboard = false;
 
-        public string lbl_keyboard {
+        public bool lbl_keyboard {
             get => _lbl_keyboard;
             set => _lbl_keyboard = value;
         }
@@ -52,6 +52,7 @@ namespace oostfraeiskorg.ViewModels
 
         public MasterPageViewModel() {
             Entries = new GridViewDataSet<Entry>();
+            lbl_keyboard = false;
         }
         public override Task Init()
         {
@@ -130,7 +131,7 @@ namespace oostfraeiskorg.ViewModels
 
         public void btn_keyboard_Click()
         {
-            lbl_keyboard = lbl_keyboard == "collapse" ? "expand" : "collapse";
+            lbl_keyboard = lbl_keyboard ? false : true;
         }
 
         public void btn_symbols_Click(string text)

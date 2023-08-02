@@ -142,7 +142,7 @@
             <div class="accordion" id="symbolparent">
                 <div class="card">
 
-                    <div id="symbols" class="{value: lbl_keyboard}" data-parent="#symbolparent">
+                    <div id="symbols" Style-Display = "none" style="{value: lbl_keyboard ? '' : 'display: none'}" class="expand" data-parent="#symbolparent">
                         <div class="card-body">
                             <dot:Button ID="btn_atrema" runat="server" class="btn btn-secondary bg-primary flex-grow-1" Text="ä" Click="{command: btn_symbols_Click('ä')}" />
                             <dot:Button ID="btn_amacron" runat="server" class="btn btn-secondary bg-primary flex-grow-1" Text="ā" Click="{command: btn_symbols_Click('ā')}" />
