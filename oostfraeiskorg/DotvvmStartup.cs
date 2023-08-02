@@ -50,7 +50,7 @@ namespace oostfraeiskorg
             });
             config.Resources.Register("Styles", new StylesheetResource()
             {
-                Location = new UrlResourceLocation("~/Resources/style.css")
+                Location = new UrlResourceLocation("~/css/style.css")
             });
         }
 

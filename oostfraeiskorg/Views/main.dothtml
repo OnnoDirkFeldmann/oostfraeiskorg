@@ -13,7 +13,7 @@
                         <dot:GridViewTextColumn ValueBinding="{value: Translation}" HeaderText="Deutsch" HeaderCssClass="entry_header"/>
                         <dot:GridViewTemplateColumn HeaderText="" HeaderCssClass="entry_header">
                           <ContentTemplate>
-                            <input class="btn btn_secondary bg-primary" type="image" title="{value: Frisian}" src="/Resources/Images/info.png" />
+                            <input class="btn btn_secondary bg-primary" type="image" title="{value: Frisian}" src="/img/info.png" />
                           </ContentTemplate>
                         </dot:GridViewTemplateColumn>
   
