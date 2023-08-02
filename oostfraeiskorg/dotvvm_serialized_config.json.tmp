@@ -28,13 +28,13 @@
         "virtualPath": "Views/main.dothtml",
         "defaultValues": {}
       },
-      "main.aspx": {
-        "url": "main.aspx",
+      "main": {
+        "url": "main",
         "virtualPath": "Views/main.dothtml",
         "defaultValues": {}
       },
-      "main": {
-        "url": "main",
+      "main.aspx": {
+        "url": "main.aspx",
         "virtualPath": "Views/main.dothtml",
         "defaultValues": {}
       },

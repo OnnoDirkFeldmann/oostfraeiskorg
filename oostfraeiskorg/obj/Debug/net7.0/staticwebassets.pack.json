@@ -1,36 +1,32 @@
 {
   "Files": [
     {
-      "Id": "C:\\Users\\progr\\source\\repos\\oostfraeiskorg\\oostfraeiskorg\\wwwroot\\Resources\\Images\\Thumbs.db",
-      "PackagePath": "staticwebassets\\Resources\\Images\\Thumbs.db"
+      "Id": "C:\\Users\\progr\\source\\repos\\oostfraeiskorg\\oostfraeiskorg\\wwwroot\\css\\style.css",
+      "PackagePath": "staticwebassets\\css\\style.css"
     },
     {
-      "Id": "C:\\Users\\progr\\source\\repos\\oostfraeiskorg\\oostfraeiskorg\\wwwroot\\Resources\\Images\\favicon.ico",
-      "PackagePath": "staticwebassets\\Resources\\Images\\favicon.ico"
+      "Id": "C:\\Users\\progr\\source\\repos\\oostfraeiskorg\\oostfraeiskorg\\wwwroot\\img\\favicon.ico",
+      "PackagePath": "staticwebassets\\img\\favicon.ico"
     },
     {
-      "Id": "C:\\Users\\progr\\source\\repos\\oostfraeiskorg\\oostfraeiskorg\\wwwroot\\Resources\\Images\\info.png",
-      "PackagePath": "staticwebassets\\Resources\\Images\\info.png"
+      "Id": "C:\\Users\\progr\\source\\repos\\oostfraeiskorg\\oostfraeiskorg\\wwwroot\\img\\info.png",
+      "PackagePath": "staticwebassets\\img\\info.png"
     },
     {
-      "Id": "C:\\Users\\progr\\source\\repos\\oostfraeiskorg\\oostfraeiskorg\\wwwroot\\Resources\\Images\\logo.png",
-      "PackagePath": "staticwebassets\\Resources\\Images\\logo.png"
+      "Id": "C:\\Users\\progr\\source\\repos\\oostfraeiskorg\\oostfraeiskorg\\wwwroot\\img\\logo.png",
+      "PackagePath": "staticwebassets\\img\\logo.png"
     },
     {
-      "Id": "C:\\Users\\progr\\source\\repos\\oostfraeiskorg\\oostfraeiskorg\\wwwroot\\Resources\\Images\\sound.png",
-      "PackagePath": "staticwebassets\\Resources\\Images\\sound.png"
+      "Id": "C:\\Users\\progr\\source\\repos\\oostfraeiskorg\\oostfraeiskorg\\wwwroot\\img\\sound.png",
+      "PackagePath": "staticwebassets\\img\\sound.png"
     },
     {
-      "Id": "C:\\Users\\progr\\source\\repos\\oostfraeiskorg\\oostfraeiskorg\\wwwroot\\Resources\\Images\\text.svg",
-      "PackagePath": "staticwebassets\\Resources\\Images\\text.svg"
+      "Id": "C:\\Users\\progr\\source\\repos\\oostfraeiskorg\\oostfraeiskorg\\wwwroot\\img\\text.svg",
+      "PackagePath": "staticwebassets\\img\\text.svg"
     },
     {
-      "Id": "C:\\Users\\progr\\source\\repos\\oostfraeiskorg\\oostfraeiskorg\\wwwroot\\Resources\\Images\\tree.svg",
-      "PackagePath": "staticwebassets\\Resources\\Images\\tree.svg"
-    },
-    {
-      "Id": "C:\\Users\\progr\\source\\repos\\oostfraeiskorg\\oostfraeiskorg\\wwwroot\\Resources\\style.css",
-      "PackagePath": "staticwebassets\\Resources\\style.css"
+      "Id": "C:\\Users\\progr\\source\\repos\\oostfraeiskorg\\oostfraeiskorg\\wwwroot\\img\\tree.svg",
+      "PackagePath": "staticwebassets\\img\\tree.svg"
     },
     {
       "Id": "C:\\Users\\progr\\source\\repos\\oostfraeiskorg\\oostfraeiskorg\\wwwroot\\lib\\bootstrap\\css\\bootstrap-grid.css",
