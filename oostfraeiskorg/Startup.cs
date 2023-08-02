@@ -58,16 +58,8 @@ namespace oostfraeiskorg
             //default files
             app.UseDefaultFiles();
 
-            // rewrite rules
-            var rewrite = new RewriteOptions();
-            rewrite.AddRewrite(".aspx", ".dothtml", false);
-            app.UseRewriter(rewrite);
-
             // use static files
-            app.UseStaticFiles(new StaticFileOptions
-            {
-                FileProvider = new PhysicalFileProvider(env.WebRootPath)
-            });
+            app.UseStaticFiles();
 
             app.UseEndpoints(endpoints => 
             {

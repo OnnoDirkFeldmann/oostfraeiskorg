@@ -1,6 +1,10 @@
 {
   "Version": 1,
+<<<<<<< HEAD
   "Hash": "F0FZW7FgA7U0CjjQRumvneJIDiiks51zo9FVIW9oPxY=",
+=======
+  "Hash": "1CQ+Glf1bbepI8Kmlds4J5CXSiby0Ag7M6pbKrNNUEg=",
+>>>>>>> 7217a613807ac13f451da12ad63f3edd4fd5fa2f
   "Source": "oostfraeiskorg",
   "BasePath": "_content/oostfraeiskorg",
   "Mode": "Default",
@@ -2363,6 +2367,7 @@
       "OriginalItemSpec": "wwwroot\\lib\\jquery\\jquery.slim.min.map"
     },
     {
+<<<<<<< HEAD
       "Identity": "C:\\Users\\progr\\source\\repos\\oostfraeiskorg\\oostfraeiskorg\\wwwroot\\Resources\\Images\\favicon.ico",
       "SourceId": "oostfraeiskorg",
       "SourceType": "Discovered",
@@ -2483,6 +2488,9 @@
     },
     {
       "Identity": "C:\\Users\\progr\\source\\repos\\oostfraeiskorg\\oostfraeiskorg\\wwwroot\\Resources\\style.css",
+=======
+      "Identity": "C:\\Users\\Neronno\\source\\repos\\oostfraeiskorg\\oostfraeiskorg\\wwwroot\\Resources\\style.css",
+>>>>>>> 7217a613807ac13f451da12ad63f3edd4fd5fa2f
       "SourceId": "oostfraeiskorg",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\progr\\source\\repos\\oostfraeiskorg\\oostfraeiskorg\\wwwroot\\",
