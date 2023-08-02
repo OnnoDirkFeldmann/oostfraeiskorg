@@ -213,8 +213,8 @@
         "Styles": {
           "Location": {
             "$type": "DotVVM.Framework.ResourceManagement.UrlResourceLocation, DotVVM.Framework",
-            "Url": "~/Resources/style.css",
-            "DebugUrl": "~/Resources/style.css"
+            "Url": "~/css/style.css",
+            "DebugUrl": "~/css/style.css"
           },
           "MimeType": "text/css"
         }
