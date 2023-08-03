@@ -66,20 +66,6 @@ namespace WFDOT
             var sqlCon = SQLCON.GetConnection(oostfraeiskorg.Server.MapPath(""));
             var sqlcmd = new SqliteCommand();
             sqlcmd.Connection = sqlCon;
-            var searchstrParamUpper = new SqliteParameter()
-            {
-                ParameterName = "@searchstrupper",
-                Value = searchstr.ToUpper()
-            };
-            var searchstrParamLower = new SqliteParameter() {
-                ParameterName = "@searchstrlower",
-                Value = searchstr.ToLower()
-            };
-            var searchstrParam = new SqliteParameter()
-            {
-                ParameterName = "@searchstr",
-                Value = searchstr
-            };
 
             switch (suchrichtung.ToLower())
             {
@@ -96,6 +82,22 @@ namespace WFDOT
                     SearchStrings.FrsEn(volltextsuche, ref searchstr, ref sqlcmd);
                     break;
             }
+
+            var searchstrParamUpper = new SqliteParameter()
+            {
+                ParameterName = "@searchstrupper",
+                Value = searchstr.ToUpper()
+            };
+            var searchstrParamLower = new SqliteParameter()
+            {
+                ParameterName = "@searchstrlower",
+                Value = searchstr.ToLower()
+            };
+            var searchstrParam = new SqliteParameter()
+            {
+                ParameterName = "@searchstr",
+                Value = searchstr
+            };
 
             sqlcmd.Parameters.Add(searchstrParamUpper);
             sqlcmd.Parameters.Add(searchstrParamLower);
