@@ -8,6 +8,12 @@
 	</ItemGroup>
 	<ItemGroup>
 		<None Remove="dotvvm_serialized_config.json.tmp" />
+		<None Remove="WFDOT.db" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Content Include="WFDOT.db">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
 	</ItemGroup>
 	<ItemGroup>
 		<PackageReference Include="DotVVM.AspNetCore" Version="4.1.0" />

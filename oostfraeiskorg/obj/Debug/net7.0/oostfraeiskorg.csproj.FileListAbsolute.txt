@@ -152,3 +152,4 @@ C:\Users\progr\source\repos\oostfraeiskorg\oostfraeiskorg\bin\Debug\net7.0\wwwro
 C:\Users\progr\source\repos\oostfraeiskorg\oostfraeiskorg\bin\Debug\net7.0\wwwroot\img\sound.png
 C:\Users\progr\source\repos\oostfraeiskorg\oostfraeiskorg\bin\Debug\net7.0\wwwroot\img\text.svg
 C:\Users\progr\source\repos\oostfraeiskorg\oostfraeiskorg\bin\Debug\net7.0\wwwroot\img\tree.svg
+C:\Users\Neronno\source\repos\oostfraeiskorg\oostfraeiskorg\bin\Debug\net7.0\WFDOT.db
