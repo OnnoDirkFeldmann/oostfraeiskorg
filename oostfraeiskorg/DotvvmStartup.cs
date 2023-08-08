@@ -47,10 +47,26 @@ namespace oostfraeiskorg
             {
                 Location = new UrlResourceLocation("~/lib/jquery/jquery.min.js")
             });
+            config.Resources.Register("custom", new ScriptResource
+            {
+                Location = new UrlResourceLocation("~/lib/js/custom.js")
+            });
+            config.Resources.Register("popper", new ScriptResource
+            {
+                Location = new UrlResourceLocation("~/lib/js/popper.min.js")
+            });
+            config.Resources.Register("cookiealert", new ScriptResource
+            {
+                Location = new UrlResourceLocation("~/lib/js/cookiealert.js")
+            });
             config.Resources.Register("Styles", new StylesheetResource()
             {
                 Location = new UrlResourceLocation("~/css/style.css")
             });
+            /*config.Resources.Register("module", new ScriptModuleResource(new UrlResourceLocation("~/lib/js/entry.js"))
+            {
+                //Dependencies = new[] { "bootstrap-css", "jquery" }
+            });*/
         }
 
 		public void ConfigureServices(IDotvvmServiceCollection options)

@@ -18,6 +18,8 @@ namespace WFDOT
         {
             public long ID;
             public string Ostfriesisch, Deutsch, Englisch, Artikel, Nebenformen, Standardform;
+            public List<string> a1 = new List<string>();
+            public List<string> b1 = new List<string>();
         }
 
         public static IQueryable<Entry> SearchAndFill(string searchstr, string suchrichtung, string volltextsuche)
@@ -59,7 +61,7 @@ namespace WFDOT
 
             if (originalSearch.Equals(string.Empty))
             {
-                Entries.Add(new Entry("Jī mautent minst äin wōrd ingēven", "", "", NeedInput));
+                Entries.Add(new Entry("Jī mautent minst äin wōrd ingēven", "", "", NeedInput, 0));
                 return Entries.AsQueryable();
             }
 
@@ -107,6 +109,7 @@ namespace WFDOT
 
             var reader = sqlcmd.ExecuteReader();
             List<Row> rows = new List<Row>();
+
             Console.Write("Start reading");
             while (reader.Read())
             {
@@ -119,6 +122,32 @@ namespace WFDOT
                 values.Artikel = reader.GetValue("Artikel").ToString();
                 values.Nebenformen = reader.GetValue("Nebenformen").ToString();
                 values.Standardform = reader.GetValue("Standardform").ToString();
+
+                try
+                {
+                    int i = 1;
+                    while (true)
+                    {
+                        if (!reader.GetValue(i).ToString().Equals(string.Empty) && !reader.GetValue(i).ToString().Equals("-"))
+                        {
+                            if (i != 2)
+                            {
+                                values.a1.Add(reader.GetName(i));
+                                values.b1.Add(reader.GetValue(i).ToString());
+                            }
+                            else
+                            {
+                                values.a1.Add(reader.GetName(i));
+                                values.b1.Add(reader.GetValue(i).ToString());
+                            }
+                        }
+                        i++;
+                    }
+                }
+                catch
+                {
+                }
+
                 rows.Add(values);
             }
             Console.Write("Finished");
@@ -156,7 +185,24 @@ namespace WFDOT
 
             for (int i = 0; i < ids.Count; i++)
             {
-                Entry entry = new Entry(eastFrisianStrings[i], eastFrisianSecondaryForms[i], eastFrisianStandardForms[i], b[i]);
+                Entry entry = new Entry(eastFrisianStrings[i], eastFrisianSecondaryForms[i], eastFrisianStandardForms[i], b[i], ids[i]);
+                if (!ids[i].Equals("0"))
+                {
+                    string body = "";
+                    for (int j = 0; j < rows[i].b1.Count; j++)
+                    {
+                        body += "<tr valign=\"top\"><th valign=\"top\"><p>" + rows[i].a1[j] + ":</p></th><td valign=\"top\"><p>" + rows[i].b1[j] + "</p></td ></tr>";
+                    }
+
+                    body = "<table class=\"table\">" + body + "</table>";
+                    body = body.Replace("'", "&#39;");
+                    body = body.Replace("\"", "&#34;");
+                    body = body.Replace("\r", "");
+                    body = body.Replace("\n", "");
+
+                    entry.popupTitle = "Details";
+                    entry.popupBody = body;
+                }
                 /*resultCellFrisian.Text = eastFrisianStrings[i];
                 resultCellTranslation.Text = b[i];
                 if (ids[i].Equals("0"))
@@ -201,7 +247,7 @@ namespace WFDOT
             }
             if (eastFrisianStrings.Count == 0)
             {
-                Entry entry = new Entry("D'r bünt ğīn dóóten föör d' söyek '" + originalSearch + "' funnen worden", "", "", NotFound);
+                Entry entry = new Entry("D'r bünt ğīn dóóten föör d' söyek '" + originalSearch + "' funnen worden", "", "", NotFound, 0);
                 Entries.Add(entry);
             }
 
