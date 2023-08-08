@@ -97,6 +97,8 @@ namespace oostfraeiskorg.ViewModels
         public class Entry
         {
             public string Frisian { get; set; }
+            public string SecondaryForm { get; set; }
+            public string StandardForm { get; set; }
             public string Translation { get; set; }
 
             public Entry()
@@ -107,9 +109,11 @@ namespace oostfraeiskorg.ViewModels
                 // parameterless constructor
             }
 
-            public Entry(string frisian, string translation)
+            public Entry(string frisian, string secondaryform, string standardform, string translation)
             {
                 Frisian = frisian;
+                SecondaryForm = secondaryform;
+                StandardForm = standardform;
                 Translation = translation;
             }
         }

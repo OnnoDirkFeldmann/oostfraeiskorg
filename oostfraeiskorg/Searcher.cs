@@ -59,7 +59,7 @@ namespace WFDOT
 
             if (originalSearch.Equals(string.Empty))
             {
-                Entries.Add(new Entry("Jī mautent minst äin wōrd ingēven", NeedInput));
+                Entries.Add(new Entry("Jī mautent minst äin wōrd ingēven", "", "", NeedInput));
                 return Entries.AsQueryable();
             }
 
@@ -127,6 +127,8 @@ namespace WFDOT
 
             var ids = new List<long>();
             var eastFrisianStrings = new List<string>();
+            var eastFrisianSecondaryForms = new List<string>();
+            var eastFrisianStandardForms = new List<string>();
             var eastFrisianWords = new List<string>();
             var b = new List<string>();
             foreach (var row in rows)
@@ -134,9 +136,12 @@ namespace WFDOT
                 ids.Add(row.ID);
                 var eastFrisianString = row.Ostfriesisch;
                 eastFrisianString += !row.Artikel.Equals("-") ? $" ({row.Artikel})" : "";
-                eastFrisianString += !row.Nebenformen.Equals("-") ? $"<br/>[{dialectaltrans}: {row.Nebenformen}]" : "";
-                eastFrisianString += !row.Standardform.Equals("-") ? $"<br/>[{row.Standardform}]" : "";
+                var eastFrisianSecondaryForm = !row.Nebenformen.Equals("-") ? $"[{dialectaltrans}: {row.Nebenformen}]" : "";
+                var eastFrisianStandardForm = !row.Standardform.Equals("-") ? $"[{row.Standardform}]" : "";
+
                 eastFrisianStrings.Add(eastFrisianString);
+                eastFrisianSecondaryForms.Add(eastFrisianSecondaryForm);
+                eastFrisianStandardForms.Add(eastFrisianStandardForm);
                 switch (language)
                 {
                     case Languages.German:
@@ -151,7 +156,7 @@ namespace WFDOT
 
             for (int i = 0; i < ids.Count; i++)
             {
-                Entry entry = new Entry(eastFrisianStrings[i], b[i]);
+                Entry entry = new Entry(eastFrisianStrings[i], eastFrisianSecondaryForms[i], eastFrisianStandardForms[i], b[i]);
                 /*resultCellFrisian.Text = eastFrisianStrings[i];
                 resultCellTranslation.Text = b[i];
                 if (ids[i].Equals("0"))
@@ -196,7 +201,7 @@ namespace WFDOT
             }
             if (eastFrisianStrings.Count == 0)
             {
-                Entry entry = new Entry("D'r bünt ğīn dóóten föör d' söyek '" + originalSearch + "' funnen worden", NotFound);
+                Entry entry = new Entry("D'r bünt ğīn dóóten föör d' söyek '" + originalSearch + "' funnen worden", "", "", NotFound);
                 Entries.Add(entry);
             }
 
