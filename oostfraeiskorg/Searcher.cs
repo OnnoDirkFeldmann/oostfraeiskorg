@@ -113,7 +113,6 @@ namespace WFDOT
             Console.Write("Start reading");
             while (reader.Read())
             {
-                Console.Write(".");
                 Row values = new Row();
                 values.ID = reader.GetInt64("ID");
                 values.Ostfriesisch = reader.GetValue("Ostfriesisch").ToString();
@@ -125,8 +124,7 @@ namespace WFDOT
 
                 try
                 {
-                    int i = 1;
-                    while (true)
+                    for (int i = 1; i < reader.FieldCount; i++)
                     {
                         if (!reader.GetValue(i).ToString().Equals(string.Empty) && !reader.GetValue(i).ToString().Equals("-"))
                         {
@@ -141,7 +139,6 @@ namespace WFDOT
                                 values.b1.Add(reader.GetValue(i).ToString());
                             }
                         }
-                        i++;
                     }
                 }
                 catch

@@ -41,7 +41,7 @@ namespace oostfraeiskorg
             config.Resources.Register("bootstrap", new ScriptResource
             {
                 Location = new UrlResourceLocation("~/lib/bootstrap/js/bootstrap.min.js"),
-                Dependencies = new[] { "bootstrap-css" , "jquery" }
+                Dependencies = new[] { "bootstrap-css" , "jquery", "popper" }
             });
             config.Resources.Register("jquery", new ScriptResource
             {
