@@ -9,14 +9,22 @@
             <div class="container justify-content-center">
                 <dot:GridView Style-Display = "none" style="{value: Entries!=null ? '' : 'display: none'}" DataSource="{value: Entries}" class="table table-striped table-responsive-md">
                     <Columns>
-                        <dot:GridViewTextColumn ValueBinding="{value: Frisian}" HeaderText="Ostfriesisch" HeaderCssClass="entry_header"/>
-                        <dot:GridViewTextColumn ValueBinding="{value: Translation}" HeaderText="Deutsch" HeaderCssClass="entry_header"/>
-                        <dot:GridViewTemplateColumn HeaderText="" HeaderCssClass="entry_header">
-                          <ContentTemplate>
-                            <input class="btn btn_secondary bg-primary" type="image" title="{value: Frisian}" src="/img/info.png" />
-                          </ContentTemplate>
+                        <dot:GridViewTemplateColumn HeaderText="Ostfriesisch" HeaderCssClass="entry_header">
+                        <ContentTemplate>
+                            <dot:HtmlLiteral Html="{value: Frisian}" />
+                        </ContentTemplate>
                         </dot:GridViewTemplateColumn>
-  
+                        <dot:GridViewTemplateColumn HeaderText="Deutsch" HeaderCssClass="entry_header">
+                            <ContentTemplate>
+                                <dot:HtmlLiteral Html="{value: Translation}" />
+                            </ContentTemplate>
+                        </dot:GridViewTemplateColumn>
+                        <dot:GridViewTemplateColumn HeaderText="" HeaderCssClass="entry_header">
+                            <ContentTemplate>
+                                <input class="btn btn_secondary bg-primary" type="image" title="{value: Frisian}" src="/img/info.png" />
+                            </ContentTemplate>
+                        </dot:GridViewTemplateColumn>
+
                     </Columns>
                 </dot:GridView>
             </div>
