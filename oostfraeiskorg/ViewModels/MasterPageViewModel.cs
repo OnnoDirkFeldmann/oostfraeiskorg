@@ -15,6 +15,22 @@ namespace oostfraeiskorg.ViewModels
 {
     public class MasterPageViewModel : DotvvmViewModelBase
     {
+        private string _title = "";
+
+        public string title
+        {
+            get => _title;
+            set => _title = value;
+        }
+
+        private string _body = "";
+
+        public string body
+        {
+            get => _body;
+            set => _body = value;
+        }
+
         public List<string> Languages { get => new List<string>() { "DE>FRS", "FRS>DE", "EN>FRS", "FRS>EN" }; }
 
         private string _selectedLanguage = "DE>FRS";
@@ -100,6 +116,9 @@ namespace oostfraeiskorg.ViewModels
             public string SecondaryForm { get; set; }
             public string StandardForm { get; set; }
             public string Translation { get; set; }
+            public long ID { get; set; }
+            public string popupTitle { get; set; }
+            public string popupBody { get; set; }
 
             public Entry()
             {
@@ -109,12 +128,13 @@ namespace oostfraeiskorg.ViewModels
                 // parameterless constructor
             }
 
-            public Entry(string frisian, string secondaryform, string standardform, string translation)
+            public Entry(string frisian, string secondaryform, string standardform, string translation, long id)
             {
                 Frisian = frisian;
                 SecondaryForm = secondaryform;
                 StandardForm = standardform;
                 Translation = translation;
+                ID = id;
             }
         }
 
