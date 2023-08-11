@@ -8,14 +8,14 @@
             <div class="container justify-content-center">
                 <dot:GridView Style-Display="none" style="{value: Entries!=null ? '' : 'display: none'}" DataSource="{value: Entries}" class="table table-striped table-responsive-md">
                     <Columns>
-                        <dot:GridViewTemplateColumn HeaderText="Ostfriesisch" HeaderCssClass="entry_header">
+                        <dot:GridViewTemplateColumn HeaderText="{value: EastFrisianHeader}" HeaderCssClass="entry_header">
                             <ContentTemplate>
                                 <dot:Literal Text="{value: Frisian}" /> <br style="{value: SecondaryForm=='' ? 'display:none' : ''}" />
                                 <dot:Literal Text="{value: SecondaryForm}" /> <br style="{value: StandardForm=='' ? 'display:none' : ''}" />
                                 <dot:Literal Text="{value: StandardForm}" />
                             </ContentTemplate>
                         </dot:GridViewTemplateColumn>
-                        <dot:GridViewTemplateColumn HeaderText="Deutsch" HeaderCssClass="entry_header">
+                        <dot:GridViewTemplateColumn HeaderText="{value: TranslationHeader}" HeaderCssClass="entry_header">
                             <ContentTemplate>
                                 <dot:Literal Text="{value: Translation}" />
                             </ContentTemplate>

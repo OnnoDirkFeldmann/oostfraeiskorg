@@ -23,6 +23,22 @@ namespace oostfraeiskorg.ViewModels
 
         public GridViewDataSet<Entry> Entries { get; set; }
 
+        private string _eastFrisianHeader = "Ostfriesisch";
+
+        public string EastFrisianHeader
+        {
+            get => _eastFrisianHeader;
+            set => _eastFrisianHeader = value;
+        }
+
+        private string _translationHeader = "Deutsch";
+
+        public string TranslationHeader
+        {
+            get => _translationHeader;
+            set => _translationHeader = value;
+        }
+
         public override Task Init()
         {
             if (W != null && df != null && fts != null)
@@ -45,6 +61,8 @@ namespace oostfraeiskorg.ViewModels
                     df = "de>frs";
                 }
 
+                UpdateHeader();
+
                 //Default Search
                 if (fts != "J" && fts != "N" && fts != "X")
                 {
@@ -61,6 +79,20 @@ namespace oostfraeiskorg.ViewModels
                 }
             }
             return base.Init();
+        }
+        
+        public void UpdateHeader()
+        {
+            if (df.Equals("de>frs") || SelectedLanguage.Equals("frs>de"))
+            {
+                EastFrisianHeader = "Ostfriesisch";
+                TranslationHeader = "Deutsch";
+            }
+            else
+            {
+                EastFrisianHeader = "East Frisian";
+                TranslationHeader = "English";
+            }
         }
     }
 }
