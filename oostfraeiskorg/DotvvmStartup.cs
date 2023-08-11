@@ -63,6 +63,10 @@ namespace oostfraeiskorg
             {
                 Location = new UrlResourceLocation("~/css/style.css")
             });
+            config.Resources.Register("Styles", new StylesheetResource()
+            {
+                Location = new UrlResourceLocation("~/css/style.css")
+            });
             /*config.Resources.Register("module", new ScriptModuleResource(new UrlResourceLocation("~/lib/js/entry.js"))
             {
                 //Dependencies = new[] { "bootstrap-css", "jquery" }
