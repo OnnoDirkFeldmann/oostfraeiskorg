@@ -9,6 +9,9 @@ using System.Linq;
 using System.Data;
 using System;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using oostfraeiskorg;
+using System.Data.SqlTypes;
+using System.Reflection.PortableExecutable;
 
 namespace WFDOT
 {
@@ -182,86 +185,88 @@ namespace WFDOT
 
             for (int i = 0; i < ids.Count; i++)
             {
-                Entry entry = new Entry(eastFrisianStrings[i], eastFrisianSecondaryForms[i], eastFrisianStandardForms[i], b[i], ids[i]);
-                if (!ids[i].Equals("0"))
-                {
-                    string body = "";
-                    for (int j = 0; j < rows[i].b1.Count; j++)
-                    {
-                        body += "<tr valign=\"top\"><th valign=\"top\"><p>" + rows[i].a1[j] + ":</p></th><td valign=\"top\"><p>" + rows[i].b1[j] + "</p></td ></tr>";
-                    }
+                if (ids[i].Equals("0")) continue;
 
-                    body = "<table class=\"table\">" + body + "</table>";
-                    body = body.Replace("'", "&#39;");
-                    body = body.Replace("\"", "&#34;");
-                    body = body.Replace("\r", "");
-                    body = body.Replace("\n", "");
+                var entry = new Entry(eastFrisianStrings[i], eastFrisianSecondaryForms[i], eastFrisianStandardForms[i], b[i], ids[i]);
 
-                    entry.popupTitle = "Details";
-                    entry.popupBody = body;
-                }
-                /*resultCellFrisian.Text = eastFrisianStrings[i];
-                resultCellTranslation.Text = b[i];
-                if (ids[i].Equals("0"))
-                {
-                    resultCellFrisian.Font.Italic = true;
-                    resultCellFrisian.BackColor = ColorTranslator.FromHtml("#99CCFF");
-                    resultCellTranslation.Font.Italic = true;
-                    resultCellTranslation.BackColor = ColorTranslator.FromHtml("#99CCFF");
-                    resultCellInfo.Text = "";
-                    resultCellInfo.BackColor = ColorTranslator.FromHtml("#99CCFF");
-                }
-                else
-                {
-                    var bud = new DetailButton
-                    {
-                        CssClass = "btn btn_secondary bg-primary",
-                        ImageUrl = "/img/info.png"
-                    };
-                    bud.Click += new ImageClickEventHandler(page.showPopup);
-                    bud.wordid = ids[i];
-                    bud.ToolTip = eastFrisianWords[i];
-                    resultCellInfo.Controls.Add(bud);
+                entry.popupTitle = "Details";
+                entry.popupBody = GetPopUpBody(ids[i]);
 
-                    string mp3 = $"{page.Server.MapPath(" / ")}rec/{eastFrisianWords[i]}.mp3";
-                    if (File.Exists(mp3))
-                    {
-                        var bus = new CustomImageButton
-                        {
-                            CssClass = "btn btn_secondary bg-primary",
-                            ImageUrl = "/img/sound.png"
-                        };
-                        bus.Click += new ImageClickEventHandler(page.soundButton);
-                        bus.word = eastFrisianWords[i];
-                        bus.ToolTip = eastFrisianWords[i];
-                        resultCellInfo.Controls.Add(bus);
-                    }
-                }
-                resultRow.Cells.Add(resultCellFrisian);
-                resultRow.Cells.Add(resultCellTranslation);
-                resultRow.Cells.Add(resultCellInfo);*/
+
                 Entries.Add(entry);
             }
+
             if (eastFrisianStrings.Count == 0)
             {
                 Entry entry = new Entry("D'r bünt ğīn dóóten föör d' söyek '" + originalSearch + "' funnen worden", "", "", NotFound, 0);
                 Entries.Add(entry);
             }
 
-            /*switch (suchrichtung)
-            {
-                case "de>frs":
-                case "frs>de":
-                    page.Master.Page.Title = $"Suche nach {originalSearch}({page.df}) - Ōstfräisk wōrdenbauk - Ostfriesisches Wörterbuch";
-                    page.Master.Page.MetaDescription = $"Übersetzung für {originalSearch}({page.df}) auf Ostfriesisch - Wörterbuch der ostfriesischen Sprache";
-                    break;
-                case "en>frs":
-                case "frs>en":
-                    page.Master.Page.Title = $"Searched for {originalSearch}({page.df}) - Ōstfräisk wōrdenbauk - East Frisian Dictionary";
-                    page.Master.Page.MetaDescription = $"Translation for {originalSearch}({page.df}) into East Frisian - Dictionary of the East Frisian Language";
-                    break;
-            }*/
             return Entries.AsQueryable();
+        }
+
+        public static string GetPopUpBody(long wordId)
+        {
+            string body = "";
+
+            var sqlCon = SQLCON.GetConnection(oostfraeiskorg.Server.MapPath(""));
+            var sqlCommand = new SqliteCommand();
+            sqlCommand.Connection = sqlCon;
+            sqlCommand.CommandText = "SELECT * FROM WB Where ID ='" + wordId + "'";
+            var reader = sqlCommand.ExecuteReader();
+
+            List<string> titles = new List<string>();
+            List<string> data = new List<string>();
+            while (reader.Read())
+            {
+                try
+                {
+                    int i = 1;
+                    while (true)
+                    {
+                        if (i != 2)
+                        {
+                            titles.Add(reader.GetName(i));
+                            data.Add(reader.GetValue(i).ToString());
+                        }
+                        else
+                        {
+                            titles.Add(reader.GetName(i));
+                            data.Add(reader.GetValue(i).ToString());
+                        }
+                        i++;
+                    }
+                }
+                catch
+                {
+                }
+            }
+            reader.Close();
+            sqlCon.Close();
+
+            List<string> notEmptyTitles = new List<string>();
+            List<string> notEmptyData = new List<string>();
+            for (int a = 0; a < data.Count; a++)
+            {
+                if (!data[a].Equals(string.Empty) && !data[a].Equals("-"))
+                {
+                    notEmptyTitles.Add(titles[a]);
+                    notEmptyData.Add(data[a]);
+                }
+            }
+
+            for (int a = 0; a < notEmptyData.Count; a++)
+            {
+                body += "<tr valign=\"top\"><th valign=\"top\"><p>" + notEmptyTitles[a] + ":</p></th><td valign=\"top\"><p>" + notEmptyData[a] + "</p></td ></tr>";
+            }
+
+            body = "<table class=\"table\">" + body + "</table>";
+            body = body.Replace("'", "&#39;");
+            body = body.Replace("\"", "&#34;");
+            body = body.Replace("\r", "");
+            body = body.Replace("\n", "");
+
+            return body;
         }
     }
 }

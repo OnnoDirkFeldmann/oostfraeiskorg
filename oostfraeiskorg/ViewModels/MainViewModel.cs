@@ -1,8 +1,6 @@
 ﻿using Microsoft.Data.Sqlite;
 using System.Collections.Generic;
-using System;
 using WFDOT;
-using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace oostfraeiskorg.ViewModels
 {
