@@ -1,6 +1,6 @@
-﻿using Microsoft.Data.Sqlite;
-using System.Collections.Generic;
-using WFDOT;
+﻿using DotVVM.Framework.Controls;
+using System.Threading.Tasks;
+using DotVVM.Framework.ViewModel;
 
 namespace oostfraeiskorg.ViewModels
 {
@@ -9,82 +9,58 @@ namespace oostfraeiskorg.ViewModels
 
         public MainViewModel()
 		{
-		}
-
-        public void showPopup(long wordid)
-        {
-            title = "Details";
-            body = "";
-
-            var sqlCon = SQLCON.GetConnection(oostfraeiskorg.Server.MapPath(""));
-            var sqlcmd = new SqliteCommand();
-            sqlcmd.Connection = sqlCon;
-
-            sqlcmd.CommandText = "SELECT * FROM WB Where ID = @wordid";
-
-            var wordidParam = new SqliteParameter()
-            {
-                ParameterName = "@wordid",
-                Value = wordid
-            };
-
-            sqlcmd.Parameters.Add(wordidParam);
-            sqlcmd.Prepare();
-            SqliteDataReader reader = sqlcmd.ExecuteReader();
-
-            List<string> a1 = new List<string>();
-            List<string> b1 = new List<string>();
-            while (reader.Read())
-            {
-                try
-                {
-                    int i = 1;
-                    while (true)
-                    {
-                        if (i != 2)
-                        {
-                            a1.Add(reader.GetName(i));
-                            b1.Add(reader.GetValue(i).ToString());
-                        }
-                        else
-                        {
-                            a1.Add(reader.GetName(i));
-                            b1.Add(reader.GetValue(i).ToString());
-                        }
-                        i++;
-                    }
-                }
-                catch
-                {
-                }
-            }
-            reader.Close();
-            sqlCon.Close();
-
-            List<string> a2 = new List<string>();
-            List<string> b2 = new List<string>();
-            int y = 0;
-            for (int i = 0; i < b1.Count; i++)
-            {
-                if (!b1[i].Equals(string.Empty) && !b1[i].Equals("-"))
-                {
-                    a2.Add(a1[i]);
-                    b2.Add(b1[i]);
-                    y++;
-                }
-            }
-
-            for (int i = 0; i < b2.Count; i++)
-            {
-                body += "<tr valign=\"top\"><th valign=\"top\"><p>" + a2[i] + ":</p></th><td valign=\"top\"><p>" + b2[i] + "</p></td ></tr>";
-            }
-
-            body = "<table class=\"table\">" + body + "</table>";
-            body = body.Replace("'", "&#39;");
-            body = body.Replace("\"", "&#34;");
-            body = body.Replace("\r", "");
-            body = body.Replace("\n", "");
+            Entries = new GridViewDataSet<Entry>();
         }
 
+        [FromQuery("W")]
+        public string W { get; set; }
+
+        [FromQuery("df")]
+        public string df { get; set; }
+
+        [FromQuery("fts")]
+        public string fts { get; set; }
+
+        public GridViewDataSet<Entry> Entries { get; set; }
+
+        public override Task Init()
+        {
+            if (W != null && df != null && fts != null)
+            {
+                Entries = new GridViewDataSet<Entry>();
+
+                //Alte URL-Versionen händeln
+                if (df == "ofrs" || df == "frs")
+                {
+                    df = "frs>de";
+                }
+                if (df == "de")
+                {
+                    df = "de>frs";
+                }
+
+                //Default Sprache
+                if (df != "de>frs" && df != "frs>de" && df != "en>frs" && df != "frs>en")
+                {
+                    df = "de>frs";
+                }
+
+                //Default Search
+                if (fts != "J" && fts != "N" && fts != "X")
+                {
+                    fts = "N";
+                }
+
+                if (W.Contains("%"))
+                {
+                    Context.RedirectToRoute("main");
+                }
+                else
+                {
+                    Entries.LoadFromQueryable(WFDOT.Searcher.SearchAndFill(W, df, fts));
+                }
+            }
+            return base.Init();
+        }
     }
 }
