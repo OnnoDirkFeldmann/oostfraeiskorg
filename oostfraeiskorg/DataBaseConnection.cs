@@ -4,7 +4,7 @@ using System;
 
 namespace WFDOT
 {
-    public class SQLCON
+    public class DataBaseConnection
     {
         public static SqliteConnection GetConnection(string startpath)
         {

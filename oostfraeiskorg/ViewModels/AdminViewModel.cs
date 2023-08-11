@@ -3,22 +3,11 @@ using System.IO;
 using WFDOT;
 using Microsoft.Data.Sqlite;
 using DotVVM.Framework.ViewModel;
-using Microsoft.AspNetCore.Http;
-using System.Web;
 
 namespace oostfraeiskorg.ViewModels
 {
     public class AdminViewModel : MasterPageViewModel
     {
-        public List<string> Languages { get => new List<string>() { "DE>FRS", "FRS>DE", "EN>FRS", "FRS>EN" }; }
-
-        private string _selectedLanguage = "DE>FRS";
-
-        public string SelectedLanguage
-        {
-            get => _selectedLanguage;
-            set => _selectedLanguage = value;
-        }
 
         [Bind(Direction.Both)]
         public string Message { get; set; }
@@ -55,7 +44,7 @@ namespace oostfraeiskorg.ViewModels
             }
 
             //Datenbankeiträge
-            var sqlCon = SQLCON.GetConnection("");
+            var sqlCon = DataBaseConnection.GetConnection("");
             SqliteCommand sqlcmd = new SqliteCommand();
             sqlcmd.Connection = sqlCon;
             sqlcmd.CommandText = "SELECT Ostfriesisch FROM WB ORDER BY Ostfriesisch ASC";

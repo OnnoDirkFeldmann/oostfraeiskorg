@@ -68,7 +68,7 @@ namespace WFDOT
                 return Entries.AsQueryable();
             }
 
-            var sqlCon = SQLCON.GetConnection(oostfraeiskorg.Server.MapPath(""));
+            var sqlCon = DataBaseConnection.GetConnection(oostfraeiskorg.Server.MapPath(""));
             var sqlcmd = new SqliteCommand();
             sqlcmd.Connection = sqlCon;
 
@@ -208,7 +208,7 @@ namespace WFDOT
         {
             string body = "";
 
-            var sqlCon = SQLCON.GetConnection(oostfraeiskorg.Server.MapPath(""));
+            var sqlCon = DataBaseConnection.GetConnection(oostfraeiskorg.Server.MapPath(""));
             var sqlCommand = new SqliteCommand();
             sqlCommand.Connection = sqlCon;
             sqlCommand.CommandText = "SELECT * FROM WB Where ID ='" + wordId + "'";
