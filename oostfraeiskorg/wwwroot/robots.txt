@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://oostfraeisk.org/sitemapfixed.xml
+Sitemap: https://oostfraeisk.org/sitemapdynamic1.xml
+Sitemap: https://oostfraeisk.org/sitemapdynamic2.xml
+Sitemap: https://oostfraeisk.org/sitemapdynamic3.xml
+Sitemap: https://oostfraeisk.org/sitemapdynamic4.xml
