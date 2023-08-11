@@ -192,7 +192,6 @@ namespace WFDOT
                 entry.popupTitle = "Details";
                 entry.popupBody = GetPopUpBody(ids[i]);
 
-
                 Entries.Add(entry);
             }
 
