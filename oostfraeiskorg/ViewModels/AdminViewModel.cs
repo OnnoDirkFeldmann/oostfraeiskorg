@@ -25,17 +25,17 @@ namespace oostfraeiskorg.ViewModels
             ls_sitemap_fixed = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>";
             ls_sitemap_fixed += "<urlset xmlns=\"https://www.sitemaps.org/schemas/sitemap/0.9\">";
             ls_sitemap_fixed += "<url><loc>https://oostfraeisk.org/</loc><changefreq>always</changefreq><priority>0.8</priority></url>";
-            ls_sitemap_fixed += "<url><loc>https://oostfraeisk.org/main.aspx</loc><changefreq>always</changefreq></url>";
-            ls_sitemap_fixed += "<url><loc>https://oostfraeisk.org/grammar.aspx</loc><changefreq>always</changefreq></url>";
-            ls_sitemap_fixed += "<url><loc>https://oostfraeisk.org/leerbauk.aspx</loc><changefreq>always</changefreq></url>";
-            ls_sitemap_fixed += "<url><loc>https://oostfraeisk.org/onlinecourse.aspx</loc><changefreq>always</changefreq></url>";
-            ls_sitemap_fixed += "<url><loc>https://oostfraeisk.org/keyboard.aspx</loc><changefreq>always</changefreq></url>";
-            ls_sitemap_fixed += "<url><loc>https://oostfraeisk.org/downloads.aspx</loc><changefreq>always</changefreq></url>";
-            ls_sitemap_fixed += "<url><loc>https://oostfraeisk.org/about.aspx</loc><changefreq>always</changefreq></url>";
-            ls_sitemap_fixed += "<url><loc>https://oostfraeisk.org/dsgvo.aspx</loc><changefreq>always</changefreq></url>";
-            ls_sitemap_fixed += "<url><loc>https://oostfraeisk.org/links.aspx</loc><changefreq>always</changefreq></url>";
-            ls_sitemap_fixed += "<url><loc>https://oostfraeisk.org/instructions.aspx</loc><changefreq>always</changefreq></url>";
-            ls_sitemap_fixed += "<url><loc>https://oostfraeisk.org/donateaword.aspx</loc><changefreq>always</changefreq></url>";
+            ls_sitemap_fixed += "<url><loc>https://oostfraeisk.org/main</loc><changefreq>always</changefreq></url>";
+            ls_sitemap_fixed += "<url><loc>https://oostfraeisk.org/grammar</loc><changefreq>always</changefreq></url>";
+            ls_sitemap_fixed += "<url><loc>https://oostfraeisk.org/coursebook</loc><changefreq>always</changefreq></url>";
+            ls_sitemap_fixed += "<url><loc>https://oostfraeisk.org/onlinecourse</loc><changefreq>always</changefreq></url>";
+            ls_sitemap_fixed += "<url><loc>https://oostfraeisk.org/keyboard</loc><changefreq>always</changefreq></url>";
+            ls_sitemap_fixed += "<url><loc>https://oostfraeisk.org/downloads</loc><changefreq>always</changefreq></url>";
+            ls_sitemap_fixed += "<url><loc>https://oostfraeisk.org/about</loc><changefreq>always</changefreq></url>";
+            ls_sitemap_fixed += "<url><loc>https://oostfraeisk.org/dsgvo</loc><changefreq>always</changefreq></url>";
+            ls_sitemap_fixed += "<url><loc>https://oostfraeisk.org/links</loc><changefreq>always</changefreq></url>";
+            ls_sitemap_fixed += "<url><loc>https://oostfraeisk.org/instructions</loc><changefreq>always</changefreq></url>";
+            ls_sitemap_fixed += "<url><loc>https://oostfraeisk.org/donateaword</loc><changefreq>always</changefreq></url>";
             ls_sitemap_fixed += "</urlset>";
             var sitemap_fixed = "sitemapfixed.xml";
             using (StreamWriter writer = new StreamWriter(sitemap_fixed, false))
@@ -67,7 +67,7 @@ namespace oostfraeiskorg.ViewModels
                     ls_sitemap_dynamic = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>";
                     ls_sitemap_dynamic += "<urlset xmlns=\"https://www.sitemaps.org/schemas/sitemap/0.9\">";
                 }
-                ls_sitemap_dynamic += "<url><loc>https://oostfraeisk.org/main.aspx?W=" + entrys[i].Replace("'", "&apos;").Replace("\"", "&quot;").Replace(">", "&gt;").Replace("<", "&lt;") + "&amp;df=frs>de&amp;fts=J</loc><changefreq>always</changefreq></url>";
+                ls_sitemap_dynamic += "<url><loc>https://oostfraeisk.org/main?W=" + entrys[i].Replace("'", "&apos;").Replace("\"", "&quot;").Replace(">", "&gt;").Replace("<", "&lt;") + "&amp;df=frs>de&amp;fts=J</loc><changefreq>always</changefreq></url>";
                 if ((i == entrys.Count - 1 || i % entryCount == 0) && i != 0)
                 {
                     ls_sitemap_dynamic += "</urlset>";

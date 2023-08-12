@@ -27,6 +27,14 @@ namespace oostfraeiskorg
             config.RouteTable.Add("admin.aspx", "admin.aspx", "Views/admin.dothtml");
             config.RouteTable.Add("admin.dothtml", "admin.dothtml", "Views/admin.dothtml");
 
+            config.RouteTable.Add("coursebook", "coursebook", "Views/coursebook.dothtml");
+            config.RouteTable.Add("coursebook.aspx", "coursebook.aspx", "Views/coursebook.dothtml");
+            config.RouteTable.Add("coursebook.dothtml", "coursebook.dothtml", "Views/coursebook.dothtml");
+
+            config.RouteTable.Add("downloads", "downloads", "Views/downloads.dothtml");
+            config.RouteTable.Add("downloads.aspx", "downloads.aspx", "Views/downloads.dothtml");
+            config.RouteTable.Add("downloads.dothtml", "downloads.dothtml", "Views/downloads.dothtml");
+
             config.RouteTable.Add("dsgvo", "dsgvo", "Views/dsgvo.dothtml");
             config.RouteTable.Add("dsgvo.aspx", "dsgvo.aspx", "Views/dsgvo.dothtml");
             config.RouteTable.Add("dsgvo.dothtml", "dsgvo.dothtml", "Views/dsgvo.dothtml");
@@ -34,6 +42,10 @@ namespace oostfraeiskorg
             config.RouteTable.Add("grammar", "grammar", "Views/grammar.dothtml");
             config.RouteTable.Add("grammar.aspx", "grammar.aspx", "Views/grammar.dothtml");
             config.RouteTable.Add("grammar.dothtml", "grammar.dothtml", "Views/grammar.dothtml");
+
+            config.RouteTable.Add("leerbauk", "leerbauk", "Views/coursebook.dothtml");
+            config.RouteTable.Add("leerbauk.aspx", "leerbauk.aspx", "Views/coursebook.dothtml");
+            config.RouteTable.Add("leerbauk.dothtml", "leerbauk.dothtml", "Views/coursebook.dothtml");
 
             config.RouteTable.Add("links", "links", "Views/links.dothtml");
             config.RouteTable.Add("links.aspx", "links.aspx", "Views/links.dothtml");
