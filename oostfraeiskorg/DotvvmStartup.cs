@@ -124,20 +124,38 @@ namespace oostfraeiskorg
             // register custom resources and adjust paths to the built-in resources
             config.Resources.Register("bootstrap-css", new StylesheetResource
             {
-                Location = new UrlResourceLocation("~/lib/bootstrap/css/bootstrap.min.css")
+                Location = new UrlResourceLocation("~/css/bootstrap.min.css")
             });
+            config.Resources.Register("cookiealert-css", new StylesheetResource
+            {
+                Location = new UrlResourceLocation("~/css/cookiealert.css")
+            });
+            config.Resources.Register("custom-css", new StylesheetResource
+            {
+                Location = new UrlResourceLocation("~/css/custom.css")
+            });
+            config.Resources.Register("font-awesome-css", new StylesheetResource
+            {
+                Location = new UrlResourceLocation("~/css/font-awesome.min.css")
+            });
+            config.Resources.Register("Styles", new StylesheetResource()
+            {
+                Location = new UrlResourceLocation("~/css/style.css")
+            });
+
             config.Resources.Register("bootstrap", new ScriptResource
             {
-                Location = new UrlResourceLocation("~/lib/bootstrap/js/bootstrap.min.js"),
+                Location = new UrlResourceLocation("~/lib/js/bootstrap.min.js"),
                 Dependencies = new[] { "bootstrap-css" , "jquery", "popper" }
             });
             config.Resources.Register("jquery", new ScriptResource
             {
-                Location = new UrlResourceLocation("~/lib/jquery/jquery.min.js")
+                Location = new UrlResourceLocation("~/lib/js/jquery-3.5.1.min.js")
             });
             config.Resources.Register("custom", new ScriptResource
             {
-                Location = new UrlResourceLocation("~/lib/js/custom.js")
+                Location = new UrlResourceLocation("~/lib/js/custom.js"),
+                Dependencies = new[] { "custom-css" }
             });
             config.Resources.Register("popper", new ScriptResource
             {
@@ -145,19 +163,12 @@ namespace oostfraeiskorg
             });
             config.Resources.Register("cookiealert", new ScriptResource
             {
-                Location = new UrlResourceLocation("~/lib/js/cookiealert.js")
+                Location = new UrlResourceLocation("~/lib/js/cookiealert.js"),
+                Dependencies = new[] { "cookiealert-css" }
             });
-            config.Resources.Register("Styles", new StylesheetResource()
-            {
-                Location = new UrlResourceLocation("~/css/style.css")
-            });
-            config.Resources.Register("Styles", new StylesheetResource()
-            {
-                Location = new UrlResourceLocation("~/css/style.css")
-            });
+
             config.Resources.Register("module", new ScriptModuleResource(new UrlResourceLocation("~/lib/js/entry.js"))
             {
-                //Dependencies = new[] { "bootstrap-css", "jquery" }
             });
         }
 
