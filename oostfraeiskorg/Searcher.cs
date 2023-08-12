@@ -30,8 +30,6 @@ namespace WFDOT
             List<Entry> Entries = new List<Entry>();
 
             string originalSearch;
-            string cellEastFrisian = "";
-            string cellHeaderTranslation = "";
             string NotFound = "";
             string NeedInput = "";
             var language = Languages.German;
@@ -44,8 +42,6 @@ namespace WFDOT
             {
                 case "de>frs":
                 case "frs>de":
-                    cellEastFrisian = "Ostfriesisch";
-                    cellHeaderTranslation = "Deutsch";
                     NotFound = $"Es sind keine Daten für die Suche '{originalSearch}' gefunden worden";
                     NeedInput = "Sie müssen mindestens ein Wort eingeben";
                     language = Languages.German;
@@ -53,8 +49,6 @@ namespace WFDOT
                     break;
                 case "en>frs":
                 case "frs>en":
-                    cellEastFrisian = "East Frisian";
-                    cellHeaderTranslation = "English";
                     NotFound = $"No data found for '{originalSearch}'";
                     NeedInput = "you have to enter at least one word";
                     language = Languages.English;
@@ -185,9 +179,17 @@ namespace WFDOT
 
             for (int i = 0; i < ids.Count; i++)
             {
-                if (ids[i].Equals("0")) continue;
-
                 var entry = new Entry(eastFrisianStrings[i], eastFrisianSecondaryForms[i], eastFrisianStandardForms[i], b[i], ids[i]);
+
+                if (!ids[i].Equals("0"))
+                {
+                    string mp3 = $"{oostfraeiskorg.Server.MapPath("")}/wwwroot/rec/{eastFrisianWords[i]}.mp3";
+                    if (File.Exists(mp3))
+                    {
+                        entry.SoundFile = true;
+                        entry.MP3 = eastFrisianWords[i];
+                    }
+                }
 
                 Entries.Add(entry);
             }
