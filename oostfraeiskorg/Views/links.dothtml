@@ -1,0 +1,37 @@
+﻿@viewModel oostfraeiskorg.ViewModels.LinksViewModel, oostfraeiskorg
+@masterPage Views/MasterPage.dotmaster
+
+<dot:Content ContentPlaceHolderID="MainContent">
+    <div class="container-fluid justify-content-center">
+        <div class="container justify-content-center">
+            <div class="container">
+                <h2>Linksammlung</h2>
+
+                <br />
+                <h3>Links:</h3>
+                <p>
+                    <br />
+                    - <a href="https://www.youtube.com/@fraeiskkaast">fräiskkāst</a> (ostfriesischer Podcast)<br />
+                    <br />
+                    - <a href="https://www.youtube.com/channel/UCpYXj2xWtLBnu1IvYZY1ErQ">EDU Fräisk</a> (ostfriesischer YouTube Kanal)<br />
+                    <br />
+                    - <a href="https://www.jungfraeiske-maeinskup.frl">Jungfräiske Mäinskup</a> (ostfriesischer Verein für Sprache und Kultur)<br />
+                    <br />
+                    - <a href="https://www.xn--saterfriesisches-wrterbuch-tvc.de">Saterfriesisches Wörterbuch</a> (osterlauwersfriesischer Dialekt des Saterlandes)<br />
+                    <br />
+                    - <a href="https://seeltersk-kursus.oostfraeisk.org">Saterfriesischer Sprachkurs</a> (Sprachkurs von Pyt Kramer)<br />
+                    <br />
+                    - <a href="https://friisk.org">friisk.org</a> (Wörterbuch diverser nordfriesischer Dialekte)<br />
+                    <br />
+                    - <a href="https://learnfrisian.com">learnfrisian</a> (Website mit verschiedenen friesischen Sprachkursen)<br />
+                    <br />
+                    - <a href="https://frysker.nl/">Frysker</a> (westfriesisches Wörterbuch)<br />
+                    <br />
+                    <br />
+                    <br />
+                </p>
+            </div>
+        </div>
+    </div>
+</dot:Content>
+

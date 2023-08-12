@@ -10,31 +10,38 @@ namespace oostfraeiskorg
         // For more information about this class, visit https://dotvvm.com/docs/tutorials/basics-project-structure
         public void Configure(DotvvmConfiguration config, string applicationPath)
         {
-
             ConfigureRoutes(config, applicationPath);
             ConfigureControls(config, applicationPath);
             ConfigureResources(config, applicationPath);
-            
         }
 
         private void ConfigureRoutes(DotvvmConfiguration config, string applicationPath)
         {
             config.RouteTable.Add("index", "", "Views/main.dothtml");
-            config.RouteTable.Add("main", "main", "Views/main.dothtml");
-            config.RouteTable.Add("main.aspx", "main.aspx", "Views/main.dothtml");
-            config.RouteTable.Add("main.dothtml", "main.dothtml", "Views/main.dothtml");
 
             config.RouteTable.Add("about", "about", "Views/about.dothtml");
             config.RouteTable.Add("about.aspx", "about.aspx", "Views/about.dothtml");
             config.RouteTable.Add("about.dothtml", "about.dothtml", "Views/about.dothtml");
 
-            config.RouteTable.Add("grammar", "grammar", "Views/grammar.dothtml");
-            config.RouteTable.Add("grammar.aspx", "grammar.aspx", "Views/grammar.dothtml");
-            config.RouteTable.Add("grammar.dothtml", "grammar.dothtml", "Views/grammar.dothtml");
+            config.RouteTable.Add("admin", "admin", "Views/admin.dothtml");
+            config.RouteTable.Add("admin.aspx", "admin.aspx", "Views/admin.dothtml");
+            config.RouteTable.Add("admin.dothtml", "admin.dothtml", "Views/admin.dothtml");
 
             config.RouteTable.Add("dsgvo", "dsgvo", "Views/dsgvo.dothtml");
             config.RouteTable.Add("dsgvo.aspx", "dsgvo.aspx", "Views/dsgvo.dothtml");
             config.RouteTable.Add("dsgvo.dothtml", "dsgvo.dothtml", "Views/dsgvo.dothtml");
+
+            config.RouteTable.Add("grammar", "grammar", "Views/grammar.dothtml");
+            config.RouteTable.Add("grammar.aspx", "grammar.aspx", "Views/grammar.dothtml");
+            config.RouteTable.Add("grammar.dothtml", "grammar.dothtml", "Views/grammar.dothtml");
+
+            config.RouteTable.Add("links", "links", "Views/links.dothtml");
+            config.RouteTable.Add("links.aspx", "links.aspx", "Views/links.dothtml");
+            config.RouteTable.Add("links.dothtml", "links.dothtml", "Views/links.dothtml");
+
+            config.RouteTable.Add("main", "main", "Views/main.dothtml");
+            config.RouteTable.Add("main.aspx", "main.aspx", "Views/main.dothtml");
+            config.RouteTable.Add("main.dothtml", "main.dothtml", "Views/main.dothtml");
 
             config.RouteTable.AutoDiscoverRoutes(new DefaultRouteStrategy(config));    
         }
