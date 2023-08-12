@@ -32,8 +32,11 @@
                         </dot:GridViewTemplateColumn>
                         <dot:GridViewTemplateColumn HeaderText="" HeaderCssClass="entry_header">
                             <ContentTemplate>
-                                <dot:Button ButtonTagName="button" Visible="{value: ID!=0}" class="btn btn_secondary bg-primary" title="{value: Frisian}" Click="{staticCommand: _js.InvokeAsync<string>("GetPopupInfo", ID)}">
-                                    <img src="/img/info.png" />
+                                <dot:Button ButtonTagName="button" Visible="{value: ID!=0}" class="btn btn_secondary bg-primary" title="{value: Frisian}" Click="{staticCommand: _js.InvokeAsync<long>("GetPopupInfo", ID)}">
+                                    <img src="/img/info.png">
+                                </dot:Button>
+                                <dot:Button ButtonTagName="button" Visible="{value: SoundFile}" class="btn btn_secondary bg-primary" title="{value: Frisian}" Click="{staticCommand: _js.InvokeAsync<string>("PlayWbSound", "/rec/" + MP3 + ".mp3")}">
+                                    <img src="/img/sound.png" />
                                 </dot:Button>
                             </ContentTemplate>
                         </dot:GridViewTemplateColumn>

@@ -8,18 +8,9 @@ class App {
         // place the initialization code here
     }
 
-    test() {
-
-    }
-
     PlayWbSound(soundfile) {
         var sound = new Audio(soundfile);
         sound.play();
-    }
-
-    CreatePopup(id) {
-        //GetPopupInfo(id);
-        return false;
     }
 
     ShowPopup(title, body) {
