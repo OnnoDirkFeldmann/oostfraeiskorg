@@ -1,16 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DotVVM.Framework.ViewModel;
-using DotVVM.Framework.Hosting;
+﻿using System.Threading.Tasks;
 
 namespace oostfraeiskorg.ViewModels.lessons
 {
     public class VocalsystemenViewModel : oostfraeiskorg.ViewModels.MasterPageViewModel
     {
-        
+        public override Task Init()
+        {
+            MasterPageTitle = "vocalsystem - Ōstfräisk Wōrdenbauk - East Frisian Dictionary";
+            MasterPageDescription = "vocalsystem - Dictionary of the East Frisian language - translate words from East Frisian or into East Frisian. Learn the language of the East Frisians as Standard East Frisian with the Dictionary for East Frisian Platt.";
+            MasterPageKeywords += ", vocalsystem, eastfrisian language, eastfrisian, ōstfräisk, course, course of eastfrisian language";
+            return base.Init();
+        }
     }
 }
 

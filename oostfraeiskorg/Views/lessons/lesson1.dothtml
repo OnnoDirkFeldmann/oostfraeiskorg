@@ -213,10 +213,10 @@
             <div class="row justify-content-center w-100">
                 <div class="col-sm-8 justify-content-center text-left">
                     <div class="text-left">
-                        <a class="btn btn-primary" href="../onlinecourse.aspx" role="button">Kursübersicht</a>
+                        <a class="btn btn-primary" href="onlinecourse" role="button">Kursübersicht</a>
                     </div>
                     <div class="text-right">
-                        <a class="btn btn-primary" href="..~/onlinecourse/lesson2.aspx" role="button">Leks 2</a>
+                        <a class="btn btn-primary" href="lesson2" role="button">Leks 2</a>
                     </div>
                 </div>
             </div>

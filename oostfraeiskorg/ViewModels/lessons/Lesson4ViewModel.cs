@@ -1,16 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DotVVM.Framework.ViewModel;
-using DotVVM.Framework.Hosting;
+﻿using System.Threading.Tasks;
 
 namespace oostfraeiskorg.ViewModels.lessons
 {
     public class Lesson4ViewModel : oostfraeiskorg.ViewModels.MasterPageViewModel
     {
-        
+        public override Task Init()
+        {
+            MasterPageTitle = "Lektion 4 - Ōstfräisk Wōrdenbauk - Ostfriesisches Wörterbuch";
+            MasterPageDescription = "Lektion 4 - Wörterbuch der ostfriesischen Sprache - Wörter aus dem Ostfriesischen oder ins Ostfriesische übersetzen. Die Sprache der Ostfriesen mit dem Wörterbuch für das ostfriesische Platt als Standardostfriesisch lernen.";
+            MasterPageKeywords += ", Lektion 4, ostfriesische Sprache, ostfriesisch, ōstfräisk, Kurs, Kurs der ostfriesischen Sprache";
+            return base.Init();
+        }
     }
 }
 
