@@ -67,10 +67,10 @@ namespace oostfraeiskorg
             {
                 Location = new UrlResourceLocation("~/css/style.css")
             });
-            /*config.Resources.Register("module", new ScriptModuleResource(new UrlResourceLocation("~/lib/js/entry.js"))
+            config.Resources.Register("module", new ScriptModuleResource(new UrlResourceLocation("~/lib/js/entry.js"))
             {
                 //Dependencies = new[] { "bootstrap-css", "jquery" }
-            });*/
+            });
         }
 
 		public void ConfigureServices(IDotvvmServiceCollection options)

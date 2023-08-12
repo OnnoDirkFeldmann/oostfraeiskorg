@@ -7,8 +7,6 @@
         public string StandardForm { get; set; }
         public string Translation { get; set; }
         public long ID { get; set; }
-        public string popupTitle { get; set; }
-        public string popupBody { get; set; }
 
         public Entry()
         {
