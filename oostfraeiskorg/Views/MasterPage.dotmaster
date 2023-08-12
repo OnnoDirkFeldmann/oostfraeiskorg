@@ -205,9 +205,7 @@
             <div class="row">
                 <!--Meldungen-->
                 <div class="col"></div>
-
-                <!---!!!Label mit Warnung!!!-->
-
+                <div class="alert alert-primary col-8" Visible="{value: AlertVisible}">{{value: AlertText}}</div>
                 <div class="col"></div>
             </div>
             <div class="row">
