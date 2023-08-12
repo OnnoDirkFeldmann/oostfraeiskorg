@@ -1,13 +1,4 @@
-export default context => {
-
-    return {
-        sum(number1, number2) {
-            return number1 + number2;
-        }
-    }
-}
-
-/*export default (contextApp) => new App(contextApp);
+export default (contextApp) => new App(contextApp);
 
 class App {
     constructor(context) {
@@ -38,11 +29,16 @@ class App {
         $("#Detailpopup .modal-body").html(body);
     }
 
-    GetPopupInfo(id) {
-        ShowPopup("", "");
-        // call the named command in the page
-        this.context.namedCommands["showPopup"](id);
-        // do something after the data was refreshed
+    async GetPopupInfo(id) {
+        try {
+            await this.context.namedCommands["SetWordID"](id);
+            await this.context.namedCommands["GetPopUpBody"]();
+            this.context.namedCommands["ShowPopupWithBody"]();
+
+        } catch (err) {
+            // handle error states
+            dotvvm.patchState({ ErrorMessage: "The popup generation failed!" });
+        }
     }
 
-}*/
+}

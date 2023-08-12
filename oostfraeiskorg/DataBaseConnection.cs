@@ -11,7 +11,6 @@ namespace WFDOT
             SqliteConnection connection = new SqliteConnection();
             string dataSource = startpath + @"/WFDOT.db";
             connection.ConnectionString = $"Data Source={dataSource}; Pooling=False;";
-            Console.WriteLine(connection.ConnectionString);
             connection.Open();
             return connection;
         }

@@ -39,6 +39,22 @@ namespace oostfraeiskorg.ViewModels
             set => _translationHeader = value;
         }
 
+        private string _PopUpBody = "";
+
+        public string PopUpBody
+        {
+            get => _PopUpBody;
+            set => _PopUpBody = value;
+        }
+
+        private long _wordid;
+
+        public long wordid
+        {
+            get => _wordid;
+            set => _wordid = value;
+        }
+
         public override Task Init()
         {
             if (W != null && df != null && fts != null)
@@ -93,6 +109,11 @@ namespace oostfraeiskorg.ViewModels
                 EastFrisianHeader = "East Frisian";
                 TranslationHeader = "English";
             }
+        }
+
+        public void GetPopUpBody()
+        {
+            PopUpBody = WFDOT.Searcher.GetPopUpBody(wordid);
         }
     }
 }

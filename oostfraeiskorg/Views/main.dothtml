@@ -1,11 +1,21 @@
 ﻿@viewModel oostfraeiskorg.ViewModels.MainViewModel, oostfraeiskorg
 @masterPage Views/MasterPage.dotmaster
+@js module
 <dot:Content ContentPlaceHolderID="MainContent">
+    <dot:NamedCommand Name="GetPopUpBody"
+                      Command="{command: _root.GetPopUpBody()}" />
+    <dot:NamedCommand Name="SetWordID"
+                      Command="{staticCommand: (int id) => _root.wordid = id}" />
+    <dot:NamedCommand Name="ShowPopupWithBody"
+                      Command="{staticCommand: _js.Invoke<string>("ShowPopup",  "Details", PopUpBody)}" />
+
+
     <div class="content">
         <!-- Such-Resultat -->
         <div class="container-fluid justify-content-center">
 
             <div class="container justify-content-center">
+
                 <dot:GridView Style-Display="none" style="{value: Entries!=null ? '' : 'display: none'}" DataSource="{value: Entries}" class="table table-striped table-responsive-md">
                     <Columns>
                         <dot:GridViewTemplateColumn HeaderText="{value: EastFrisianHeader}" HeaderCssClass="entry_header">
@@ -22,7 +32,9 @@
                         </dot:GridViewTemplateColumn>
                         <dot:GridViewTemplateColumn HeaderText="" HeaderCssClass="entry_header">
                             <ContentTemplate>
-                                <image style="{value: ID!=0 ? '' : 'display: none'}" class="btn btn_secondary bg-primary" title="{value: Frisian}" src="/img/info.png" onclick="{ value: 'ShowPopup("' + popupTitle + '","' + popupBody + '",);'}" />
+                                <dot:Button ButtonTagName="button" Visible="{value: ID!=0}" class="btn btn_secondary bg-primary" title="{value: Frisian}" Click="{staticCommand: _js.InvokeAsync<string>("GetPopupInfo", ID)}">
+                                    <img src="/img/info.png" />
+                                </dot:Button>
                             </ContentTemplate>
                         </dot:GridViewTemplateColumn>
 

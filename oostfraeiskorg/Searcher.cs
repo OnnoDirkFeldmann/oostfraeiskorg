@@ -189,9 +189,6 @@ namespace WFDOT
 
                 var entry = new Entry(eastFrisianStrings[i], eastFrisianSecondaryForms[i], eastFrisianStandardForms[i], b[i], ids[i]);
 
-                entry.popupTitle = "Details";
-                entry.popupBody = GetPopUpBody(ids[i]);
-
                 Entries.Add(entry);
             }
 
