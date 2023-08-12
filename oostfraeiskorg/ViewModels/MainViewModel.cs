@@ -1,6 +1,7 @@
 ﻿using DotVVM.Framework.Controls;
 using System.Threading.Tasks;
 using DotVVM.Framework.ViewModel;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace oostfraeiskorg.ViewModels
 {
@@ -92,6 +93,20 @@ namespace oostfraeiskorg.ViewModels
                 else
                 {
                     Entries.LoadFromQueryable(WFDOT.Searcher.SearchAndFill(W, df, fts));
+                }
+
+                switch (df)
+                {
+                    case "de>frs":
+                    case "frs>de":
+                       MasterPageTitle = $"Suche nach {W}({df}) - Ōstfräisk wōrdenbauk - Ostfriesisches Wörterbuch";
+                       MasterPageDescription = $"Übersetzung für {W}({df}) auf Ostfriesisch - Wörterbuch der ostfriesischen Sprache";
+                        break;
+                    case "en>frs":
+                    case "frs>en":
+                        MasterPageTitle = $"Searched for {W}({df})) - Ōstfräisk wōrdenbauk - East Frisian Dictionary";
+                        MasterPageDescription = $"Translation for {W}({df})) into East Frisian - Dictionary of the East Frisian Language";
+                        break;
                 }
             }
             return base.Init();
