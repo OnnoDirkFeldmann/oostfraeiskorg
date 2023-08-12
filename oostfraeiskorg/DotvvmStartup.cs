@@ -31,6 +31,10 @@ namespace oostfraeiskorg
             config.RouteTable.Add("coursebook.aspx", "coursebook.aspx", "Views/coursebook.dothtml");
             config.RouteTable.Add("coursebook.dothtml", "coursebook.dothtml", "Views/coursebook.dothtml");
 
+            config.RouteTable.Add("donateaword", "donateaword", "Views/donateaword.dothtml");
+            config.RouteTable.Add("donateaword.aspx", "donateaword.aspx", "Views/donateaword.dothtml");
+            config.RouteTable.Add("donateaword.dothtml", "donateaword.dothtml", "Views/donateaword.dothtml");
+
             config.RouteTable.Add("downloads", "downloads", "Views/downloads.dothtml");
             config.RouteTable.Add("downloads.aspx", "downloads.aspx", "Views/downloads.dothtml");
             config.RouteTable.Add("downloads.dothtml", "downloads.dothtml", "Views/downloads.dothtml");
