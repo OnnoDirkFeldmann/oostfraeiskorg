@@ -37,15 +37,15 @@ namespace oostfraeiskorg.ViewModels
             ls_sitemap_fixed += "<url><loc>https://oostfraeisk.org/instructions</loc><changefreq>always</changefreq></url>";
             ls_sitemap_fixed += "<url><loc>https://oostfraeisk.org/donateaword</loc><changefreq>always</changefreq></url>";
             ls_sitemap_fixed += "</urlset>";
-            var sitemap_fixed = "sitemapfixed.xml";
+            var sitemap_fixed = "wwwroot\\sitemapfixed.xml";
             using (StreamWriter writer = new StreamWriter(sitemap_fixed, false))
             {
                 writer.WriteLine(ls_sitemap_fixed);
             }
 
             //Datenbankeiträge
-            var sqlCon = DataBaseConnection.GetConnection("");
-            SqliteCommand sqlcmd = new SqliteCommand();
+            var sqlCon = DataBaseConnection.GetConnection(oostfraeiskorg.Server.MapPath(""));
+            var sqlcmd = new SqliteCommand();
             sqlcmd.Connection = sqlCon;
             sqlcmd.CommandText = "SELECT Ostfriesisch FROM WB ORDER BY Ostfriesisch ASC";
             SqliteDataReader reader = sqlcmd.ExecuteReader();
@@ -71,7 +71,7 @@ namespace oostfraeiskorg.ViewModels
                 if ((i == entrys.Count - 1 || i % entryCount == 0) && i != 0)
                 {
                     ls_sitemap_dynamic += "</urlset>";
-                    string sitemapxml_dynamic = $"sitemapdynamic{index}.xml";
+                    string sitemapxml_dynamic = $"wwwroot\\sitemapdynamic{index}.xml";
                     using (StreamWriter writer = new StreamWriter(sitemapxml_dynamic, false))
                     {
                         writer.WriteLine(ls_sitemap_dynamic);
