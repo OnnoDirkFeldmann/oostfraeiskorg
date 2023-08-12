@@ -1,0 +1,39 @@
+﻿@viewModel oostfraeiskorg.ViewModels.DonateawordViewModel, oostfraeiskorg
+@masterPage Views/MasterPage.dotmaster
+
+<dot:Content ContentPlaceHolderID="MainContent">
+    <div class="container-fluid justify-content-center">
+        <div class="container justify-content-center">
+            <div class="container">
+                <h2>Fehlendes Wort spenden</h2>
+                <h4>
+                    Hier können Sie uns ostfriesische Wörter oder Phrasen mitteilen, die noch nicht in unserem Online-Wörterbuch zu finden sind.
+                    Wir werden Ihre Mitteilung prüfen und gegebenenfalls in unser Wörterbuch aufnehmen.
+                </h4>
+                <span>Wort/Phrase</span>
+                <dot:TextBox class="form-control" Text="{value: DonatedWordWord}"/>
+                <span>Deutsche Übersetzung</span>
+                <dot:TextBox class="form-control" Text="{value: DonatedWordGermanTranslation}" />
+                <span>Gegend in der das Wort gebraucht wird</span>
+                <dot:TextBox class="form-control" Text="{value: DonatedWordPlace}" />
+                <span>Name, Vorname (optional)</span>
+                <dot:TextBox class="form-control" Text="{value: DonatedWordName}" />
+                <span>Geburtsjahr (optional)</span>
+                <dot:TextBox class="form-control" Text="{value: DonatedWordBirth}" />
+                <span>Wohnort (optional)</span>
+                <dot:TextBox class="form-control" Text="{value: DonatedWordHome}" />
+                <span>Emailadresse zur Kontaktaufnahme (optional)</span>
+                <dot:TextBox class="form-control" Text="{value: DonatedWordEmail}" />
+                <span>Sonstiges (optional)</span>
+                <dot:TextBox class="form-control" Text="{value: DonatedWordOther}" />
+                <br />
+                <div class="float-right">
+                    <dot:Button ID="btnSubmit" class="btn btn-secondary bg-primary" Click="{command: DonateWord()}" Text="Wort spenden" />
+                </div>
+                <br />
+                <br />
+            </div>
+        </div>
+    </div>
+</dot:Content>
+

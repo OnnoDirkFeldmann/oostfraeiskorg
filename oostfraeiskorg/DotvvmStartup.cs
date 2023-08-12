@@ -43,6 +43,10 @@ namespace oostfraeiskorg
             config.RouteTable.Add("grammar.aspx", "grammar.aspx", "Views/grammar.dothtml");
             config.RouteTable.Add("grammar.dothtml", "grammar.dothtml", "Views/grammar.dothtml");
 
+            config.RouteTable.Add("keyboard", "keyboard", "Views/keyboard.dothtml");
+            config.RouteTable.Add("keyboard.aspx", "keyboard.aspx", "Views/keyboard.dothtml");
+            config.RouteTable.Add("keyboard.dothtml", "keyboard.dothtml", "Views/keyboard.dothtml");
+
             config.RouteTable.Add("leerbauk", "leerbauk", "Views/coursebook.dothtml");
             config.RouteTable.Add("leerbauk.aspx", "leerbauk.aspx", "Views/coursebook.dothtml");
             config.RouteTable.Add("leerbauk.dothtml", "leerbauk.dothtml", "Views/coursebook.dothtml");

@@ -12,49 +12,20 @@ namespace oostfraeiskorg.ViewModels
 
         public List<string> Languages { get => new List<string>() { "DE>FRS", "FRS>DE", "EN>FRS", "FRS>EN" }; }
 
-        private string _selectedLanguage = "DE>FRS";
+        public string SelectedLanguage { get; set; } = "DE>FRS";
 
-        public string SelectedLanguage
-        {
-            get => _selectedLanguage;
-            set => _selectedLanguage = value;
-        }
+        public bool ShowKeyboard { get; set; } = false;
 
-        private bool _showKeyboard = false;
+        public string SearchText { get; set; } = "";
+        public string MasterPageTitle { get; set; } = "Ōstfräisk Wōrdenbauk - Ostfriesisches Wörterbuch";
 
-        public bool ShowKeyboard
-        {
-            get => _showKeyboard;
-            set => _showKeyboard = value;
-        }
+        public string MasterPageDescription { get; set; } = "Wörterbuch der ostfriesischen Sprache - Wörter aus dem Ostfriesischen oder ins Ostfriesische übersetzen. Die Sprache der Ostfriesen mit dem Wörterbuch für das ostfriesische Platt als Standardostfriesisch lernen.";
 
-        private string _searchText = "";
-        public string SearchText
-        {
-            get => _searchText;
-            set => _searchText = value;
-        }
+        public string MasterPageKeywords { get; set; } = "platt, ostfriesisch, Wörterbuch, Ostfriesland, plattdeutsch, ostfriesisich-deutsch Wörterbuch, deutsch-ostfriesisch-Wörterbuch, elektronisches Wörterbuch, Onlinewörterbuch, Wörterbuch online, ostfriesich online, ōstfräisk, Jungfräiske Mäinskup, JFM, JFM Ostfriesland, Sprache von Ostfriesland, Ostfriesland Platt, Ostfriesisches Platt, ostfriesische Sprache, Regionalsprache, Wörterbuch der ostfriesischen Sprache, Weigelt, Schreibweise, Rechtschreibung, ostfriesische Schreibweise, friesisch schreiben, ostfriesisch lernen";
 
-        private string _masterPageTitle = "Ōstfräisk Wōrdenbauk - Ostfriesisches Wörterbuch";
-        public string MasterPageTitle
-        {
-            get => _masterPageTitle;
-            set => _masterPageTitle = value;
-        }
+        public string AlertText { get; set; } = "";
 
-        private string _masterPageDescription = "Wörterbuch der ostfriesischen Sprache - Wörter aus dem Ostfriesischen oder ins Ostfriesische übersetzen. Die Sprache der Ostfriesen mit dem Wörterbuch für das ostfriesische Platt als Standardostfriesisch lernen.";
-        public string MasterPageDescription
-        {
-            get => _masterPageDescription;
-            set => _masterPageDescription = value;
-        }
-
-        private string _masterPageKeywords = "platt, ostfriesisch, Wörterbuch, Ostfriesland, plattdeutsch, ostfriesisich-deutsch Wörterbuch, deutsch-ostfriesisch-Wörterbuch, elektronisches Wörterbuch, Onlinewörterbuch, Wörterbuch online, ostfriesich online, ōstfräisk, Jungfräiske Mäinskup, JFM, JFM Ostfriesland, Sprache von Ostfriesland, Ostfriesland Platt, Ostfriesisches Platt, ostfriesische Sprache, Regionalsprache, Wörterbuch der ostfriesischen Sprache, Weigelt, Schreibweise, Rechtschreibung, ostfriesische Schreibweise, friesisch schreiben, ostfriesisch lernen";
-        public string MasterPageKeywords
-        {
-            get => _masterPageKeywords;
-            set => _masterPageKeywords = value;
-        }
+        public bool AlertVisible { get; set; }
 
         #region methods
 
