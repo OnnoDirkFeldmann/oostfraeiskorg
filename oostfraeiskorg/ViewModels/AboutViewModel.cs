@@ -31,7 +31,7 @@ namespace oostfraeiskorg.ViewModels
         {
             MasterPageTitle = "Über - Ōstfräisk Wōrdenbauk - Ostfriesisches Wörterbuch";
             MasterPageDescription = "Über - Wörterbuch der ostfriesischen Sprache - Wörter aus dem Ostfriesischen oder ins Ostfriesische übersetzen. Die Sprache der Ostfriesen mit dem Wörterbuch für das ostfriesische Platt als Standardostfriesisch lernen.";
-            MasterPageKeywords += "über, about, jungfräiske mäinskup, jfm, ostfriesische Sprache, ostfriesisch, ōstfräisk, links";
+            MasterPageKeywords += ", über, about, jungfräiske mäinskup, jfm, ostfriesische Sprache, ostfriesisch, ōstfräisk, links";
             return base.Init();
         }
 

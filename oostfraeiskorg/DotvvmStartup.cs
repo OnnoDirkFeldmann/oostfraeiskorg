@@ -63,6 +63,14 @@ namespace oostfraeiskorg
             config.RouteTable.Add("main.aspx", "main.aspx", "Views/main.dothtml");
             config.RouteTable.Add("main.dothtml", "main.dothtml", "Views/main.dothtml");
 
+            config.RouteTable.Add("onlinecourse", "onlinecourse", "Views/onlinecourse.dothtml");
+            config.RouteTable.Add("onlinecourse.aspx", "onlinecourse.aspx", "Views/onlinecourse.dothtml");
+            config.RouteTable.Add("onlinecourse.dothtml", "onlinecourse.dothtml", "Views/onlinecourse.dothtml");
+
+            config.RouteTable.Add("onlinecourseen", "onlinecourseen", "Views/onlinecourseen.dothtml");
+            config.RouteTable.Add("onlinecourseen.aspx", "onlinecourseen.aspx", "Views/onlinecourseen.dothtml");
+            config.RouteTable.Add("onlinecourseen.dothtml", "onlinecourseen.dothtml", "Views/onlinecourseen.dothtml");
+
             config.RouteTable.AutoDiscoverRoutes(new DefaultRouteStrategy(config));    
         }
 
