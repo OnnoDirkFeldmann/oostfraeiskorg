@@ -114,7 +114,7 @@ namespace oostfraeiskorg.ViewModels
         
         public void UpdateHeader()
         {
-            if (df.Equals("de>frs") || SelectedLanguage.Equals("frs>de"))
+            if (df.Equals("de>frs") || df.Equals("frs>de"))
             {
                 EastFrisianHeader = "Ostfriesisch";
                 TranslationHeader = "Deutsch";
