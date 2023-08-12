@@ -1,0 +1,24 @@
+﻿@viewModel oostfraeiskorg.ViewModels.GrammarViewModel, oostfraeiskorg
+@masterPage Views/MasterPage.dotmaster
+
+<dot:Content ContentPlaceHolderID="MainContent">
+    <div class="container-fluid justify-content-center">
+        <div class="container justify-content-center">
+            <div class="container">
+                <h2>Ostfriesische Grammatik</h2>
+                <p>
+                    Im Rahmen des Projektes oostfraeisk.org ist 2020 auch eine zugehörige Grammatik des Ostfriesischen enstanden,
+                    um dies Struktur des Ostfriesischen Platts festzuhalten.
+                    Seit Erstellung wird die Grammatik fortlaufend erweitert und komplettiert.<br />
+                    <br />
+                    <center>
+                        <iframe src="https://docs.google.com/viewer?url=https://download.oostfraeisk.org/toolleer/%c5%8cstfr%c3%a4isk%20T%c3%b3%c3%b3ll%c4%93r.pdf&embedded=true" style="width: 100%;" height="890"></iframe>
+                    </center>
+                    <br />
+                    <br />
+                </p>
+            </div>
+        </div>
+    </div>
+</dot:Content>
+
