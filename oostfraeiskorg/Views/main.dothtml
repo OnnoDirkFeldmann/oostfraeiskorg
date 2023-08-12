@@ -9,13 +9,9 @@
     <dot:NamedCommand Name="ShowPopupWithBody"
                       Command="{staticCommand: _js.Invoke<string>("ShowPopup",  "Details", PopUpBody)}" />
 
-
     <div class="content">
-        <!-- Such-Resultat -->
         <div class="container-fluid justify-content-center">
-
             <div class="container justify-content-center">
-
                 <dot:GridView Style-Display="none" style="{value: Entries!=null ? '' : 'display: none'}" DataSource="{value: Entries}" class="table table-striped table-responsive-md">
                     <Columns>
                         <dot:GridViewTemplateColumn HeaderText="{value: EastFrisianHeader}" HeaderCssClass="entry_header">
@@ -40,7 +36,6 @@
                                 </dot:Button>
                             </ContentTemplate>
                         </dot:GridViewTemplateColumn>
-
                     </Columns>
                 </dot:GridView>
             </div>

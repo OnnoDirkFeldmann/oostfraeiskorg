@@ -2,85 +2,81 @@
 @masterPage Views/MasterPage.dotmaster
 
 <dot:Content ContentPlaceHolderID="MainContent">
-    <div class="container-fluid justify-content-center">
-        <div class="container justify-content-center">
-            <div class="container">
-                <h2>Downloads:</h2>
-                <h3>E-Books:</h3>
-                <div class="container">
-                    <div class="row">
-                        <div class="col-sm">
-                            <a href="https://download.oostfraeisk.org/onlain-bauken/D'r%20was%20insent%20'n%20oel%20w%c4%abfminsk%20-%20onlain.pdf">
-                                <img src="https://download.oostfraeisk.org/onlain-bauken/D'r%20was%20insent%20'n%20oel%20w%c4%abfminsk%20-%20deksel.png" width="200" height="260" />
-                            </a><br />
-                            D'r was insent 'n oel wīfminsk<br />
-                            <br />
-                        </div>
-                        <div class="col-sm">
-                            <a href="https://download.oostfraeisk.org/onlain-bauken/D%c3%a4i%20%c4%93rdmantjes%20-%20onlain.pdf">
-                                <img src="https://download.oostfraeisk.org/onlain-bauken/D%c3%a4i%20%c4%93rdmantjes%20-%20deksel.png" width="200" height="260" />
-                            </a><br />
-                            Däi Ērdmantjes<br />
-                            <br />
-                        </div>
-                        <div class="col-sm">
-                            <a href="https://download.oostfraeisk.org/onlain-bauken/Dat%20ferh%c3%b3%c3%b3l%20fan%20P%c3%a4iter%20Kn%c3%aen%20-%20onlain.pdf">
-                                <img src="https://download.oostfraeisk.org/onlain-bauken/Dat%20ferh%c3%b3%c3%b3l%20fan%20P%c3%a4iter%20Kn%c3%aen%20-%20deksel.png" width="200" height="260" />
-                            </a><br />
-                            Dat ferhóól fan Päiter Knîn<br />
-                            <br />
-                        </div>
-                        <div class="col-sm">
-                            <a href="https://download.oostfraeisk.org/onlain-bauken/W%c5%8ds%c5%8d%20dat%20w%c3%b3%c3%b3ter%20in%20d'%20s%c3%a4j%20solt%20is%20-%20onlain.pdf">
-                                <img src="https://download.oostfraeisk.org/onlain-bauken/W%c5%8ds%c5%8d%20dat%20w%c3%b3%c3%b3ter%20in%20d'%20s%c3%a4j%20solt%20is%20-%20deksel.png" width="200" height="260" />
-                            </a><br />
-                            Wōsō dat wóóter in d' säj solt is<br />
-                            <br />
-                        </div>
-                        <div class="col-sm">
-                            <a href="https://download.oostfraeisk.org/onlain-bauken/Dat%20ferh%c3%b3%c3%b3l%20fan%20d%c3%a4i%20drei%20l%c3%bctje%20sw%c3%aen%20-%20onlain.pdf">
-                                <img src="https://download.oostfraeisk.org/onlain-bauken/Dat%20ferh%c3%b3%c3%b3l%20fan%20d%c3%a4i%20drei%20l%c3%bctje%20sw%c3%aen%20-%20deksel.png" width="200" height="260" />
-                            </a><br />
-                            Dat ferhóól fan däi drei lütje swîn<br />
-                            <br />
-                        </div>
-                    </div>
+    <div class="container">
+        <h2>Downloads:</h2>
+        <h3>E-Books:</h3>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm">
+                    <a href="https://download.oostfraeisk.org/onlain-bauken/D'r%20was%20insent%20'n%20oel%20w%c4%abfminsk%20-%20onlain.pdf">
+                        <img src="https://download.oostfraeisk.org/onlain-bauken/D'r%20was%20insent%20'n%20oel%20w%c4%abfminsk%20-%20deksel.png" width="200" height="260" />
+                    </a><br />
+                    D'r was insent 'n oel wīfminsk<br />
+                    <br />
                 </div>
-                <h3>Text-Sammelsurium:</h3>
-                - <a href="https://download.oostfraeisk.org/bauken/D%c3%a4i%20l%c3%bctje%20H%c4%93velman.pdf">Däi lütje Hēvelman</a> (Der kleine Häwelmann)<br />
-                <br />
-                - <a href="https://download.oostfraeisk.org/bauken/D%c3%a4i%20l%c3%bctje%20hund%20-%20Der%20kleine%20Hund.pdf">Däi lütje hund - tweitóólerğ</a> (Der kleine Hund - zweisprachig)<br />
-                <br />
-                - <a href="https://download.oostfraeisk.org/bauken/Fan%20d%c3%a4i%20fisker%20un%20s%c4%abn%20w%c4%abf.pdf">Fan däi fisker un sīn wīf</a> (Vom Fischer und seiner Frau)<br />
-                <br />
-                - <a href="https://download.oostfraeisk.org/bauken/%c5%8cstfr%c3%a4isk%20k%c4%81rstt%c4%abd.pdf">Ōstfräisk kārsttīd</a> (Ostfriesische Weihnachtszeit)<br />
-                <br />
-                - <a href="https://download.oostfraeisk.org/bauken/S%c3%bcnnerm%c4%81rten.pdf">Sünnermārten</a> (Sankt Martin)<br />
-                <br />
-                <h3>Lehrmaterial:</h3>
-                - <a href="https://download.oostfraeisk.org/toolleer/%c5%8cstfr%c3%a4isk%20T%c3%b3%c3%b3ll%c4%93r.pdf">Ōstfräisk Tóóllēr</a> (Ostfriesische Grammatik)<br />
-                <br />
-                - <a href="https://download.oostfraeisk.org/leerbauk/%c5%8cstfr%c3%a4isk%20L%c4%93rbauk.pdf">Ōstfräisk Lērbauk</a> (Ostfriesischer Sprachkurs)<br />
-                <br />
-                <h3>Blätter:</h3>
-                - <a href="https://download.oostfraeisk.org/bladjes/ASCII%20un%20%c5%8cstfr%c3%a4isk.pdf">ASCII un Ōstfräisk - Wō Jī Jau emailadräes of domainnóóm sğrīven köönent</a> (ASCII und Ostfriesisch - Wie ihr eure Emailadressen und Domainnamen schreiben könnt)<br />
-                <br />
-                - <a href="https://download.oostfraeisk.org/bladjes/Dat%20%c5%8dstfr%c3%a4isk%20alf%c3%b3b%c3%a4it.pdf">Dat ōstfräisk alfóbäit</a> (Das ostfriesische Alphabet)<br />
-                <br />
-                - <a href="https://download.oostfraeisk.org/bladjes/interfrisian%20keyboard.pdf">Interfrisian Keyboard - instalóósje</a> (Interfrisian Keyboard - Installation)<br />
-                <br />
-                <h3>Hilfsmittel:</h3>
-                - <a href="https://download.oostfraeisk.org/keyboard/ofrs.7z">Ostfriesische Windows Tastatur</a><br />
-                <br />
-                - <a href="https://play.google.com/store/apps/details?id=com.frisian.keyboard">Ostfriesische Androidtastatur</a><br />
-                <br />
-                - <a href="https://download.oostfraeisk.org/dic/frs.dic">Ostfriesische Wörterbuchdatei</a> (für MS Word, Libreoffice etc.)<br />
-                <br />
-                <br />
-                <br />
-                <br />
+                <div class="col-sm">
+                    <a href="https://download.oostfraeisk.org/onlain-bauken/D%c3%a4i%20%c4%93rdmantjes%20-%20onlain.pdf">
+                        <img src="https://download.oostfraeisk.org/onlain-bauken/D%c3%a4i%20%c4%93rdmantjes%20-%20deksel.png" width="200" height="260" />
+                    </a><br />
+                    Däi Ērdmantjes<br />
+                    <br />
+                </div>
+                <div class="col-sm">
+                    <a href="https://download.oostfraeisk.org/onlain-bauken/Dat%20ferh%c3%b3%c3%b3l%20fan%20P%c3%a4iter%20Kn%c3%aen%20-%20onlain.pdf">
+                        <img src="https://download.oostfraeisk.org/onlain-bauken/Dat%20ferh%c3%b3%c3%b3l%20fan%20P%c3%a4iter%20Kn%c3%aen%20-%20deksel.png" width="200" height="260" />
+                    </a><br />
+                    Dat ferhóól fan Päiter Knîn<br />
+                    <br />
+                </div>
+                <div class="col-sm">
+                    <a href="https://download.oostfraeisk.org/onlain-bauken/W%c5%8ds%c5%8d%20dat%20w%c3%b3%c3%b3ter%20in%20d'%20s%c3%a4j%20solt%20is%20-%20onlain.pdf">
+                        <img src="https://download.oostfraeisk.org/onlain-bauken/W%c5%8ds%c5%8d%20dat%20w%c3%b3%c3%b3ter%20in%20d'%20s%c3%a4j%20solt%20is%20-%20deksel.png" width="200" height="260" />
+                    </a><br />
+                    Wōsō dat wóóter in d' säj solt is<br />
+                    <br />
+                </div>
+                <div class="col-sm">
+                    <a href="https://download.oostfraeisk.org/onlain-bauken/Dat%20ferh%c3%b3%c3%b3l%20fan%20d%c3%a4i%20drei%20l%c3%bctje%20sw%c3%aen%20-%20onlain.pdf">
+                        <img src="https://download.oostfraeisk.org/onlain-bauken/Dat%20ferh%c3%b3%c3%b3l%20fan%20d%c3%a4i%20drei%20l%c3%bctje%20sw%c3%aen%20-%20deksel.png" width="200" height="260" />
+                    </a><br />
+                    Dat ferhóól fan däi drei lütje swîn<br />
+                    <br />
+                </div>
             </div>
         </div>
+        <h3>Text-Sammelsurium:</h3>
+        - <a href="https://download.oostfraeisk.org/bauken/D%c3%a4i%20l%c3%bctje%20H%c4%93velman.pdf">Däi lütje Hēvelman</a> (Der kleine Häwelmann)<br />
+        <br />
+        - <a href="https://download.oostfraeisk.org/bauken/D%c3%a4i%20l%c3%bctje%20hund%20-%20Der%20kleine%20Hund.pdf">Däi lütje hund - tweitóólerğ</a> (Der kleine Hund - zweisprachig)<br />
+        <br />
+        - <a href="https://download.oostfraeisk.org/bauken/Fan%20d%c3%a4i%20fisker%20un%20s%c4%abn%20w%c4%abf.pdf">Fan däi fisker un sīn wīf</a> (Vom Fischer und seiner Frau)<br />
+        <br />
+        - <a href="https://download.oostfraeisk.org/bauken/%c5%8cstfr%c3%a4isk%20k%c4%81rstt%c4%abd.pdf">Ōstfräisk kārsttīd</a> (Ostfriesische Weihnachtszeit)<br />
+        <br />
+        - <a href="https://download.oostfraeisk.org/bauken/S%c3%bcnnerm%c4%81rten.pdf">Sünnermārten</a> (Sankt Martin)<br />
+        <br />
+        <h3>Lehrmaterial:</h3>
+        - <a href="https://download.oostfraeisk.org/toolleer/%c5%8cstfr%c3%a4isk%20T%c3%b3%c3%b3ll%c4%93r.pdf">Ōstfräisk Tóóllēr</a> (Ostfriesische Grammatik)<br />
+        <br />
+        - <a href="https://download.oostfraeisk.org/leerbauk/%c5%8cstfr%c3%a4isk%20L%c4%93rbauk.pdf">Ōstfräisk Lērbauk</a> (Ostfriesischer Sprachkurs)<br />
+        <br />
+        <h3>Blätter:</h3>
+        - <a href="https://download.oostfraeisk.org/bladjes/ASCII%20un%20%c5%8cstfr%c3%a4isk.pdf">ASCII un Ōstfräisk - Wō Jī Jau emailadräes of domainnóóm sğrīven köönent</a> (ASCII und Ostfriesisch - Wie ihr eure Emailadressen und Domainnamen schreiben könnt)<br />
+        <br />
+        - <a href="https://download.oostfraeisk.org/bladjes/Dat%20%c5%8dstfr%c3%a4isk%20alf%c3%b3b%c3%a4it.pdf">Dat ōstfräisk alfóbäit</a> (Das ostfriesische Alphabet)<br />
+        <br />
+        - <a href="https://download.oostfraeisk.org/bladjes/interfrisian%20keyboard.pdf">Interfrisian Keyboard - instalóósje</a> (Interfrisian Keyboard - Installation)<br />
+        <br />
+        <h3>Hilfsmittel:</h3>
+        - <a href="https://download.oostfraeisk.org/keyboard/ofrs.7z">Ostfriesische Windows Tastatur</a><br />
+        <br />
+        - <a href="https://play.google.com/store/apps/details?id=com.frisian.keyboard">Ostfriesische Androidtastatur</a><br />
+        <br />
+        - <a href="https://download.oostfraeisk.org/dic/frs.dic">Ostfriesische Wörterbuchdatei</a> (für MS Word, Libreoffice etc.)<br />
+        <br />
+        <br />
+        <br />
+        <br />
     </div>
 </dot:Content>
 
