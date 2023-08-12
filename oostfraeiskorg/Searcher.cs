@@ -102,7 +102,6 @@ namespace WFDOT
             sqlcmd.Parameters.Add(searchstrParamLower);
             sqlcmd.Parameters.Add(searchstrParam);
             sqlcmd.Prepare();
-            Console.WriteLine(sqlcmd.CommandText);
 
             var reader = sqlcmd.ExecuteReader();
             List<Row> rows = new List<Row>();

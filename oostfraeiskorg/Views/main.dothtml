@@ -10,35 +10,32 @@
                       Command="{staticCommand: _js.Invoke<string>("ShowPopup",  "Details", PopUpBody)}" />
 
     <div class="content">
-        <div class="container-fluid justify-content-center">
-            <div class="container justify-content-center">
-                <dot:GridView Style-Display="none" style="{value: Entries!=null ? '' : 'display: none'}" DataSource="{value: Entries}" class="table table-striped table-responsive-md">
-                    <Columns>
-                        <dot:GridViewTemplateColumn HeaderText="{value: EastFrisianHeader}" HeaderCssClass="entry_header">
-                            <ContentTemplate>
-                                <dot:Literal Text="{value: Frisian}" /> <br style="{value: SecondaryForm=='' ? 'display:none' : ''}" />
-                                <dot:Literal Text="{value: SecondaryForm}" /> <br style="{value: StandardForm=='' ? 'display:none' : ''}" />
-                                <dot:Literal Text="{value: StandardForm}" />
-                            </ContentTemplate>
-                        </dot:GridViewTemplateColumn>
-                        <dot:GridViewTemplateColumn HeaderText="{value: TranslationHeader}" HeaderCssClass="entry_header">
-                            <ContentTemplate>
-                                <dot:Literal Text="{value: Translation}" />
-                            </ContentTemplate>
-                        </dot:GridViewTemplateColumn>
-                        <dot:GridViewTemplateColumn HeaderText="" HeaderCssClass="entry_header">
-                            <ContentTemplate>
-                                <dot:Button ButtonTagName="button" Visible="{value: ID!=0}" class="btn btn_secondary bg-primary" title="{value: Frisian}" Click="{staticCommand: _js.InvokeAsync<long>("GetPopupInfo", ID)}">
-                                    <img src="/img/info.png">
-                                </dot:Button>
-                                <dot:Button ButtonTagName="button" Visible="{value: SoundFile}" class="btn btn_secondary bg-primary" title="{value: Frisian}" Click="{staticCommand: _js.InvokeAsync<string>("PlayWbSound", "/rec/" + MP3 + ".mp3")}">
-                                    <img src="/img/sound.png" />
-                                </dot:Button>
-                            </ContentTemplate>
-                        </dot:GridViewTemplateColumn>
-                    </Columns>
-                </dot:GridView>
-            </div>
-        </div>
+        <dot:GridView Style-Display="none" style="{value: Entries!=null ? '' : 'display: none'}" DataSource="{value: Entries}" class="table table-striped table-responsive-md">
+            <Columns>
+                <dot:GridViewTemplateColumn HeaderText="{value: EastFrisianHeader}" HeaderCssClass="entry_header">
+                    <ContentTemplate>
+                        <dot:Literal Text="{value: Frisian}" /> <br style="{value: SecondaryForm=='' ? 'display:none' : ''}" />
+                        <dot:Literal Text="{value: SecondaryForm}" /> <br style="{value: StandardForm=='' ? 'display:none' : ''}" />
+                        <dot:Literal Text="{value: StandardForm}" />
+                    </ContentTemplate>
+                </dot:GridViewTemplateColumn>
+                <dot:GridViewTemplateColumn HeaderText="{value: TranslationHeader}" HeaderCssClass="entry_header">
+                    <ContentTemplate>
+                        <dot:Literal Text="{value: Translation}" />
+                    </ContentTemplate>
+                </dot:GridViewTemplateColumn>
+                <dot:GridViewTemplateColumn HeaderText="" HeaderCssClass="entry_header">
+                    <ContentTemplate>
+                        <dot:Button ButtonTagName="button" Visible="{value: ID!=0}" class="btn btn_secondary bg-primary" title="{value: Frisian}" Click="{staticCommand: _js.InvokeAsync<long>("GetPopupInfo", ID)}">
+                            <img src="/img/info.png">
+                        </dot:Button>
+                        <br  Visible="{value: SoundFile}">
+                        <dot:Button ButtonTagName="button" Visible="{value: SoundFile}" class="btn btn_secondary bg-primary" title="{value: Frisian}" Click="{staticCommand: _js.InvokeAsync<string>("PlayWbSound", "/rec/" + MP3 + ".mp3" )}">
+                            <img src="/img/sound.png">
+                        </dot:Button>
+                    </ContentTemplate>
+                </dot:GridViewTemplateColumn>
+            </Columns>
+        </dot:GridView>
     </div>
 </dot:Content>
