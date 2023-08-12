@@ -32,6 +32,10 @@ namespace oostfraeiskorg
             config.RouteTable.Add("grammar.aspx", "grammar.aspx", "Views/grammar.dothtml");
             config.RouteTable.Add("grammar.dothtml", "grammar.dothtml", "Views/grammar.dothtml");
 
+            config.RouteTable.Add("dsgvo", "dsgvo", "Views/dsgvo.dothtml");
+            config.RouteTable.Add("dsgvo.aspx", "dsgvo.aspx", "Views/dsgvo.dothtml");
+            config.RouteTable.Add("dsgvo.dothtml", "dsgvo.dothtml", "Views/dsgvo.dothtml");
+
             config.RouteTable.AutoDiscoverRoutes(new DefaultRouteStrategy(config));    
         }
 
