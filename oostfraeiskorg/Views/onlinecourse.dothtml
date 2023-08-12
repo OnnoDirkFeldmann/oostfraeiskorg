@@ -56,7 +56,7 @@
                                 </table>
                             </div>
                             <br />
-                            <a class="btn btn-primary" href="/lessons/lesson1.aspx">Zur Lektion 1</a>
+                            <a class="btn btn-primary" href="lesson1">Zur Lektion 1</a>
                             <br />
                             <br />
                             <br />
@@ -93,7 +93,7 @@
                                 </table>
                             </div>
                             <br />
-                            <a class="btn btn-primary" href="/lessons/lesson2.aspx">Zur Lektion 2</a>
+                            <a class="btn btn-primary" href="lesson2">Zur Lektion 2</a>
                             <br />
                             <br />
                             <br />
@@ -130,7 +130,7 @@
                                 </table>
                             </div>
                             <br />
-                            <a class="btn btn-primary" href="/lessons/lesson3.aspx">Zur Lektion 3</a>
+                            <a class="btn btn-primary" href="lesson3">Zur Lektion 3</a>
                             <br />
                             <br />
                             <br />
@@ -167,7 +167,7 @@
                                 </table>
                             </div>
                             <br />
-                            <a class="btn btn-primary" href="/lessons/lesson4.aspx">Zur Lektion 4</a>
+                            <a class="btn btn-primary" href="lesson4">Zur Lektion 4</a>
                             <br />
                             <br />
                             <br />
@@ -176,7 +176,7 @@
                             <br />
                             <p>Erläuterung zum ostfriesischen Vokalsystem und zu ostfriesischen Schreibweise.</p>
                             <br />
-                            <a class="btn btn-primary" href="/lessons/vocalsystem.aspx">Zu Vokalsystem und Schreibweise</a>
+                            <a class="btn btn-primary" href="vocalsystem">Zu Vokalsystem und Schreibweise</a>
                             <br />
                             <br />
                             <br />
