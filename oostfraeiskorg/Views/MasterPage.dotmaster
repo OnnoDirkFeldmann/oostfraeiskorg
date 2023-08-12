@@ -30,37 +30,37 @@
         {"@type":"ListItem",
         "position":2,
         "item":
-        {"@id":"https://oostfraeisk.org/grammar.aspx",
+        {"@id":"https://oostfraeisk.org/grammar",
         "name":"Grammatik - Ōstfräisk wōrdenbauk - Ostfriesisches Wörterbuch"
         }},
         {"@type":"ListItem",
         "position":3,
         "item":
-        {"@id":"https://oostfraeisk.org/leerbauk.aspx",
+        {"@id":"https://oostfraeisk.org/leerbauk",
         "name":"Kursbuch - Ōstfräisk wōrdenbauk - Ostfriesisches Wörterbuch"
         }},
         {"@type":"ListItem",
         "position":4,
         "item":
-        {"@id":"https://oostfraeisk.org/leerbauk.aspx",
+        {"@id":"https://oostfraeisk.org/leerbauk",
         "name":"Onlinekurs - Ōstfräisk wōrdenbauk - Ostfriesisches Wörterbuch"
         }},
         {"@type":"ListItem",
         "position":5,
         "item":
-        {"@id":"https://oostfraeisk.org/downloads.aspx",
+        {"@id":"https://oostfraeisk.org/downloads",
         "name":"Downloads - Ōstfräisk wōrdenbauk - Ostfriesisches Wörterbuch"
         }},
         {"@type":"ListItem",
         "position":6,
         "item":
-        {"@id":"https://oostfraeisk.org/keyboard.aspx",
+        {"@id":"https://oostfraeisk.org/keyboard",
         "name":"Tastatur - Ōstfräisk wōrdenbauk - Ostfriesisches Wörterbuch"
         }},
         {"@type":"ListItem",
         "position":7,
         "item":
-        {"@id":"https://oostfraeisk.org/about.aspx",
+        {"@id":"https://oostfraeisk.org/about",
         "name":"Über - Ōstfräisk wōrdenbauk - Ostfriesisches Wörterbuch"
         }}
         ]
@@ -97,10 +97,10 @@
     <!--Navigation-->
     <nav class="navbar navbar-expand-md navbar-dark bg-primary mb-3">
         <div class="container-fluid">
-            <a href="../main.aspx" class="navbar-brand mr-3">
+            <a href="../main" class="navbar-brand mr-3">
                 <img src="~/img/logo.png" alt="WFDOT Logo" width="100" height="100" />
             </a>
-            <a href="../main.aspx" class="navbar-brand mr-3">
+            <a href="../main" class="navbar-brand mr-3">
                 <h5>Ōstfräisk Wōrdenbauk</h5>
                 <h5>Ostfriesisches Wörterbuch</h5>
                 <h6><small>Wörterbuch für das ostfriesische Platt</small></h6>
@@ -113,21 +113,21 @@
                     <div class="nav-item dropdown">
                         <a class="nav-item nav-link dropdown-toggle" href="#" id="navbarDropdownLernen" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Lernen</a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownLernenDrop">
-                            <a class="dropdown-item" href="../grammar.aspx">Grammatik</a>
-                            <a class="dropdown-item" href="../leerbauk.aspx">Kursbuch</a>
-                            <a class="dropdown-item" href="../onlinecourse.aspx">Online-Kurs</a>
+                            <a class="dropdown-item" href="../grammar">Grammatik</a>
+                            <a class="dropdown-item" href="../leerbauk">Kursbuch</a>
+                            <a class="dropdown-item" href="../onlinecourse">Online-Kurs</a>
                         </div>
                     </div>
                     <div class="nav-item dropdown">
                         <a class="nav-item nav-link dropdown-toggle" href="#" id="navbarDropdownSupport" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Unterstützen</a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownSupportDrop">
-                            <a class="dropdown-item" href="../donateaword.aspx">Fehlendes Wort spenden</a>
+                            <a class="dropdown-item" href="../donateaword">Fehlendes Wort spenden</a>
                             <a class="dropdown-item" href="https://www.paypal.com/donate/?hosted_button_id=KXTTQVB4ZM7ML">Geld spenden</a>
                             <a class="dropdown-item" href="https://www.jungfraeiske-maeinskup.frl/">Jungfräiske Mäinskup</a>
                         </div>
                     </div>
-                    <a href="../keyboard.aspx" class="nav-item nav-link">Tastatur</a>
-                    <a href="../downloads.aspx" class="nav-item nav-link">Downloads</a>
+                    <a href="../keyboard" class="nav-item nav-link">Tastatur</a>
+                    <a href="../downloads" class="nav-item nav-link">Downloads</a>
                 </div>
             </div>
         </div>
@@ -223,13 +223,13 @@
                         <p>oostfraeisk.org 2023</p>
                     </div>
                     <div class="col-md-6 text-md-end">
-                        <a href="../instructions.aspx" class="text-dark">Benutzerhinweise</a>
+                        <a href="../instructions" class="text-dark">Benutzerhinweise</a>
                         <span class="text-muted mx-2">|</span>
-                        <a href="../links.aspx" class="text-dark">Links</a>
+                        <a href="../links" class="text-dark">Links</a>
                         <span class="text-muted mx-2">|</span>
-                        <a href="../about.aspx" class="text-dark">Über</a>
+                        <a href="../about" class="text-dark">Über</a>
                         <span class="text-muted mx-2">|</span>
-                        <a href="../dsgvo.aspx" class="text-dark">Datenschutzerklärung</a>
+                        <a href="../dsgvo" class="text-dark">Datenschutzerklärung</a>
                     </div>
                 </div>
             </footer>
