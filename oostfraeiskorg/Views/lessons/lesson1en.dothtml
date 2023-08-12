@@ -2,7 +2,230 @@
 @masterPage Views/MasterPage.dotmaster
 
 <dot:Content ContentPlaceHolderID="MainContent">
-
+    <div class="container mw-100">
+        <div class="innercontainer mw-100">
+            <div class="row justify-content-center w-100">
+                <div class="col-sm-8 justify-content-center text-left">
+                    <h1>Leks 1</h1>
+                    <h3>video</h3>
+                    <div class="embed-responsive embed-responsive-16by9">
+                        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/1sDgCedE9Z8" allowfullscreen="true"></iframe>
+                    </div>
+                    <br />
+                    <br />
+                </div>
+            </div>
+            <div class="row justify-content-center w-100">
+                <div class="col-sm-8 justify-content-center text-left">
+                    <p>
+                        The first video of this course introduces Fâjk and Jân.
+                        The two young men study and meet for the first time.
+                        The aim of this video is to see how to get along in East Frisian Platt
+                        introduce, greet and say goodbye.
+                    </p>
+                    <br />
+                    <br />
+                </div>
+            </div>
+            <div class="row justify-content-center w-100">
+                <div class="col-sm-8 justify-content-center text-left">
+                    <h3>Fâjk un Jân stellent sük fööer</h3>
+                    <p>
+                        F: Moin! Ik häit Fâjk.<br />
+                        J: Moin! Hārtelk wilkōmen.<br />
+                        F: Wō häitst dū?<br />
+                        J: Ik häit Jân.<br />
+                        <br />
+                        F: Wor kumst dū hēr, Jân?<br />
+                        J: Ik kōm nū fan d' sğaul.<br />
+                        F: Nē, dat wul ik dī näit fróógen.<br />
+                        J: Ō! Dū mäinst, wor ik nū wōn?<br />
+                        F: Jóó!<br />
+                        J: Ik wōn nū in Häisel.
+                        <br />
+                        <br />
+                        F: Dan hārtelk wilkōmen in Læær!<br />
+                        J: Bīdankt! Dājst dū ārbaiden of stūdææren?<br />
+                        F: Ik wil IT stūdææren.<br />
+                        J: Un wat wult dū worden?<br />
+                        F: Ik wil softwērundwikkeler worden. Dājst dū ārbaiden of stūdææren?<br />
+                        J: Studææren! Ik bün nū in 't läest joer fan mīn stūdjem kommunikóósje.
+                        Ik wil nóó mīn stūdjem in Emden ārbaiden.<br />
+                        <br />
+                        F: Wult dū ōk tē drinken?<br />
+                        J: Jóó, gērn!
+                        <br />
+                        F: Dan sğenk ik dī insent äien in.<br />
+                        J: Bīdankt!<br />
+                        <br />
+                        F: Prōst tē!<br />
+                        J: Prōst tē!<br />
+                        <br />
+                        J: Fâjk, wō old büst dū?<br />
+                        F: Ik bün achttain joer old. Un dū Jân? Wō old büst dū?<br />
+                        J: Ik bün äinūntwinterğ.<br />
+                        F: Däi tē was häil gaud!<br />
+                        <br />
+                        J: Dat doch ik ōk!<br />
+                        F: Mesğīn bit tauken kēr?<br />
+                        J: Jóó mesğīn.<br />
+                        F: Bit dan.<br />
+                        J: Jóó, allerbäest!<br />
+                        <br />
+                    </p>
+                </div>
+            </div>
+            <div class="row justify-content-center w-100">
+                <div class="col-sm-8 justify-content-center text-left">
+                    <h3>exercise 1 - introduction</h3>
+                    <iframe src="~/onlinecourse/exercises/lesson1/lesson1exercise1en.html" height="500" style="border: none; width: 100%;" scrolling="no"></iframe>
+                </div>
+            </div>
+            <div class="row justify-content-center w-100">
+                <div class="col-sm-8 justify-content-center text-left">
+                    <h3>exercise 2 - greet and say goodbye</h3>
+                    <iframe src="~/onlinecourse/exercises/lesson1/lesson1exercise2en.html" height="500" style="border: none; width: 100%;" scrolling="no"></iframe>
+                </div>
+            </div>
+            <div class="row justify-content-center w-100">
+                <div class="col-sm-8 justify-content-center text-left">
+                    <h3>grammar - capitalization</h3>
+                    <p>In East Frisian Platt, as in German, the first word at the beginning of a sentence and all proper names are capitalized. In contrast, nouns are always written in lower case, as in almost all other languages.</p>
+                    <br />
+                    <br />
+                </div>
+            </div>
+            <div class="row justify-content-center w-100">
+                <div class="col-sm-8 justify-content-center text-left">
+                    <h3>keyboard</h3>
+                    <p>
+                        As a rule, all East Frisian characters can be found on modern smartphone keyboards (e.g. Android or iOS).
+                        To do this, the respective letter key must be pressed long so that special characters are displayed.
+                    </p>
+                    <div class="row">
+                        <div class="col-sm">
+                            <img src="~/onlinecourse/img/lesson1/keyboard.jpg" class="img-fluid" alt="Samsung-tāstetüer" />
+                        </div>
+                        <div class="col-sm">
+                        </div>
+                        <div class="col-sm">
+                        </div>
+                    </div>
+                    <p>
+                        If your device does not support all characters, you can find out how here
+                        you can use one of our East Frisian keyboards:
+                    </p>
+                    <a class="btn btn-primary" href="../keyboard.aspx" role="button">East Frisian keyboards</a>
+                    <p>
+                        <br />
+                        Otherwise you can also copy the special characters from here:
+                    </p>
+                    <table>
+                        <tr>
+                            <td>ä ā â æ ē ê ğ ī î ó ö ō ô ü ū û</td>
+                        </tr>
+                        <tr>
+                            <td>Ä Ā Â Æ Ē Ê Ğ Ī Î Ó Ö Ō Ô Ü Ū Û</td>
+                        </tr>
+                    </table>
+                    <br />
+                    <br />
+                </div>
+            </div>
+            <div class="row justify-content-center w-100">
+                <div class="col-sm-8 justify-content-center text-left">
+                    <h3>exercise 3 - gap text</h3>
+                    <iframe src="~/onlinecourse/exercises/lesson1/lesson1exercise3en.html" height="500" style="border: none; width: 100%;" scrolling="no"></iframe>
+                </div>
+            </div>
+            <div class="row justify-content-center w-100">
+                <div class="col-sm-8 justify-content-center text-left">
+                    <h3>grammar - the regular verb</h3>
+                    <p>The regular verb in the present tense.</p>
+                    <table class="table-responsive-sm w-100">
+                        <tr>
+                            <th scope="col"></th>
+                            <th scope="col">prōten (to speak)</th>
+                            <th scope="col">wōnen (to live somewhere)</th>
+                            <th scope="col"></th>
+                        </tr>
+                        <tr>
+                            <th scope="row">ik</th>
+                            <td>prōt</td>
+                            <td>wōn</td>
+                            <th scope="row">stem</th>
+                        </tr>
+                        <tr>
+                            <th scope="row">dū</th>
+                            <td>prōt<b>st</b></td>
+                            <td>wōn<b>st</b></td>
+                            <th scope="row">stem + st</th>
+                        </tr>
+                        <tr>
+                            <th scope="row">häi/säi/'t</th>
+                            <td>prōt<b>t</b></td>
+                            <td>wōn<b>t</b></td>
+                            <th scope="row">stem + t</th>
+                        </tr>
+                        <tr>
+                            <th scope="row">wī/jī/säi</th>
+                            <td>prōt<b>ent</b></td>
+                            <td>wōn<b>ent</b></td>
+                            <th scope="row">stem + ent</th>
+                        </tr>
+                    </table>
+                    <br />
+                    <br />
+                </div>
+            </div>
+            <div class="row justify-content-center w-100">
+                <div class="col-sm-8 justify-content-center text-left">
+                    <h3>exercise 4 - conjugate verbs</h3>
+                    <iframe src="~/onlinecourse/exercises/lesson1/lesson1exercise4en.html" height="580" style="border: none; width: 100%;" scrolling="no"></iframe>
+                </div>
+            </div>
+            <div class="row justify-content-center w-100">
+                <div class="col-sm-8 justify-content-center text-left">
+                    <h3>exercise 5 - the right order</h3>
+                    <iframe src="~/onlinecourse/exercises/lesson1/lesson1exercise5en.html" height="800" style="border: none; width: 100%;" scrolling="no"></iframe>
+                </div>
+            </div>
+            <div class="row justify-content-center w-100">
+                <div class="col-sm-8 justify-content-center text-left">
+                    <h3>exercise 6 - characterization</h3>
+                    <iframe src="~/onlinecourse/exercises/lesson1/lesson1exercise6en.html" height="800" style="border: none; width: 100%;" scrolling="no"></iframe>
+                </div>
+            </div>
+            <div class="row justify-content-center w-100">
+                <div class="col-sm-8 justify-content-center text-left">
+                    <h3>media - D'r was insent 'n oel wīfminsk</h3>
+                    <p>
+                        Each lesson ends with an audio text.
+                        Just read along and listen to get used to the pronunciation and spelling of East Frisian.
+                    </p>
+                    <div class="embed-responsive embed-responsive-16by9">
+                        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/zuPjgn4JoPA" allowfullscreen="true"></iframe>
+                    </div>
+                    <br />
+                    <br />
+                </div>
+            </div>
+            <div class="row justify-content-center w-100">
+                <div class="col-sm-8 justify-content-center text-left">
+                    <div class="text-left">
+                        <a class="btn btn-primary" href="../onlinecourseen.aspx" role="button">course overview</a>
+                    </div>
+                    <div class="text-right">
+                        <a class="btn btn-primary" href="..~/onlinecourse/lesson2en.aspx" role="button">Leks 2</a>
+                    </div>
+                </div>
+            </div>
+            <br />
+            <br />
+            <br />
+            <br />
+        </div>
+    </div>
 
 </dot:Content>
 
