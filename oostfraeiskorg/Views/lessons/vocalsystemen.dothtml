@@ -1,0 +1,8 @@
+﻿@viewModel oostfraeiskorg.ViewModels.lessons.VocalsystemenViewModel, oostfraeiskorg
+@masterPage Views/MasterPage.dotmaster
+
+<dot:Content ContentPlaceHolderID="MainContent">
+
+
+</dot:Content>
+

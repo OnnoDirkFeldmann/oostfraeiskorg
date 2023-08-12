@@ -55,6 +55,38 @@ namespace oostfraeiskorg
             config.RouteTable.Add("leerbauk.aspx", "leerbauk.aspx", "Views/coursebook.dothtml");
             config.RouteTable.Add("leerbauk.dothtml", "leerbauk.dothtml", "Views/coursebook.dothtml");
 
+            config.RouteTable.Add("lesson1", "lesson1", "Views/lessons/lesson1.dothtml");
+            config.RouteTable.Add("lesson1.aspx", "lesson1.aspx", "Views/lessons/lesson1.dothtml");
+            config.RouteTable.Add("lesson1.dothtml", "lesson1.dothtml", "Views/lessons/lesson1.dothtml");
+
+            config.RouteTable.Add("lesson1en", "lesson1en", "Views/lessons/lesson1en.dothtml");
+            config.RouteTable.Add("lesson1en.aspx", "lesson1en.aspx", "Views/lessons/lesson1en.dothtml");
+            config.RouteTable.Add("lesson1en.dothtml", "lesson1en.dothtml", "Views/lessons/lesson1en.dothtml");
+
+            config.RouteTable.Add("lesson2", "lesson2", "Views/lessons/lesson2.dothtml");
+            config.RouteTable.Add("lesson2.aspx", "lesson2.aspx", "Views/lessons/lesson2.dothtml");
+            config.RouteTable.Add("lesson2.dothtml", "lesson2.dothtml", "Views/lessons/lesson2.dothtml");
+
+            config.RouteTable.Add("lesson2en", "lesson2en", "Views/lessons/lesson2en.dothtml");
+            config.RouteTable.Add("lesson2en.aspx", "lesson2en.aspx", "Views/lessons/lesson2en.dothtml");
+            config.RouteTable.Add("lesson2en.dothtml", "lesson2en.dothtml", "Views/lessons/lesson2en.dothtml");
+
+            config.RouteTable.Add("lesson3", "lesson3", "Views/lessons/lesson3.dothtml");
+            config.RouteTable.Add("lesson3.aspx", "lesson3.aspx", "Views/lessons/lesson3.dothtml");
+            config.RouteTable.Add("lesson3.dothtml", "lesson3.dothtml", "Views/lessons/lesson3.dothtml");
+
+            config.RouteTable.Add("lesson3en", "lesson3en", "Views/lessons/lesson3en.dothtml");
+            config.RouteTable.Add("lesson3en.aspx", "lesson3en.aspx", "Views/lessons/lesson3en.dothtml");
+            config.RouteTable.Add("lesson3en.dothtml", "lesson3en.dothtml", "Views/lessons/lesson3en.dothtml");
+
+            config.RouteTable.Add("lesson4", "lesson4", "Views/lessons/lesson4.dothtml");
+            config.RouteTable.Add("lesson4.aspx", "lesson4.aspx", "Views/lessons/lesson4.dothtml");
+            config.RouteTable.Add("lesson4.dothtml", "lesson4.dothtml", "Views/lessons/lesson4.dothtml");
+
+            config.RouteTable.Add("lesson4en", "lesson4en", "Views/lessons/lesson4en.dothtml");
+            config.RouteTable.Add("lesson4en.aspx", "lesson4en.aspx", "Views/lessons/lesson4en.dothtml");
+            config.RouteTable.Add("lesson4en.dothtml", "lesson4en.dothtml", "Views/lessons/lesson4en.dothtml");
+
             config.RouteTable.Add("links", "links", "Views/links.dothtml");
             config.RouteTable.Add("links.aspx", "links.aspx", "Views/links.dothtml");
             config.RouteTable.Add("links.dothtml", "links.dothtml", "Views/links.dothtml");
@@ -70,6 +102,14 @@ namespace oostfraeiskorg
             config.RouteTable.Add("onlinecourseen", "onlinecourseen", "Views/onlinecourseen.dothtml");
             config.RouteTable.Add("onlinecourseen.aspx", "onlinecourseen.aspx", "Views/onlinecourseen.dothtml");
             config.RouteTable.Add("onlinecourseen.dothtml", "onlinecourseen.dothtml", "Views/onlinecourseen.dothtml");
+
+            config.RouteTable.Add("vocalsystem", "vocalsystem", "Views/lessons/vocalsystem.dothtml");
+            config.RouteTable.Add("vocalsystem.aspx", "vocalsystem.aspx", "Views/lessons/vocalsystem.dothtml");
+            config.RouteTable.Add("vocalsystem.dothtml", "vocalsystem.dothtml", "Views/lessons/vocalsystem.dothtml");
+
+            config.RouteTable.Add("vocalsystemen", "vocalsystemen", "Views/lessons/vocalsystemen.dothtml");
+            config.RouteTable.Add("vocalsystemen.aspx", "vocalsystemen.aspx", "Views/lessons/vocalsystemen.dothtml");
+            config.RouteTable.Add("vocalsystemen.dothtml", "vocalsystemen.dothtml", "Views/lessons/vocalsystemen.dothtml");
 
             config.RouteTable.AutoDiscoverRoutes(new DefaultRouteStrategy(config));    
         }

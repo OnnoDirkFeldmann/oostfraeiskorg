@@ -56,7 +56,7 @@
                                 </table>
                             </div>
                             <br />
-                            <a class="btn btn-primary" href="/lessons/lesson1en.aspx">to lesson 1</a>
+                            <a class="btn btn-primary" href="lesson1en">to lesson 1</a>
                             <br />
                             <br />
                             <br />
@@ -93,7 +93,7 @@
                                 </table>
                             </div>
                             <br />
-                            <a class="btn btn-primary" href="/lessons/lesson2en.aspx">to lesson 2</a>
+                            <a class="btn btn-primary" href="lesson2en">to lesson 2</a>
                             <br />
                             <br />
                             <br />
@@ -130,7 +130,7 @@
                                 </table>
                             </div>
                             <br />
-                            <a class="btn btn-primary" href="/lessons/lesson3en.aspx">to lesson 3</a>
+                            <a class="btn btn-primary" href="lesson3en">to lesson 3</a>
                             <br />
                             <br />
                             <br />
@@ -167,7 +167,7 @@
                                 </table>
                             </div>
                             <br />
-                            <a class="btn btn-primary" href="/lessons/lesson4en.aspx">to lesson 4</a>
+                            <a class="btn btn-primary" href="lesson4en">to lesson 4</a>
                             <br />
                             <br />
                             <br />
@@ -176,7 +176,7 @@
                             <br />
                             <p>Explanation of the East Frisian vowel system and East Frisian spelling.</p>
                             <br />
-                            <a class="btn btn-primary" href="/lessons/vocalsystemen.aspx">on the vowel system and spelling</a>
+                            <a class="btn btn-primary" href="vocalsystemen">on the vowel system and spelling</a>
                             <br />
                             <br />
                             <br />
