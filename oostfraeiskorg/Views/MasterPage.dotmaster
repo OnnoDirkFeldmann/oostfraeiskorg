@@ -114,7 +114,7 @@
                         <a class="nav-item nav-link dropdown-toggle" href="#" id="navbarDropdownLernen" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Lernen</a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownLernenDrop">
                             <a class="dropdown-item" href="../grammar">Grammatik</a>
-                            <a class="dropdown-item" href="../leerbauk">Kursbuch</a>
+                            <a class="dropdown-item" href="../coursebook">Kursbuch</a>
                             <a class="dropdown-item" href="../onlinecourse">Online-Kurs</a>
                         </div>
                     </div>
