@@ -1,15 +1,14 @@
 ﻿using System.IO;
 using System;
 
-namespace oostfraeiskorg
+namespace oostfraeiskorg;
+
+public static class Server
 {
-    public static class Server
+    public static string MapPath(string path)
     {
-        public static string MapPath(string path)
-        {
-            return Path.Combine(
-                (string)AppDomain.CurrentDomain.GetData("ContentRootPath"),
-                path);
-        }
+        return Path.Combine(AppDomain.CurrentDomain.GetData("ContentRootPath").ToString(), path);
     }
 }
+
+

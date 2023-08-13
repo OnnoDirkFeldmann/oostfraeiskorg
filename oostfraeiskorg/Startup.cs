@@ -2,10 +2,8 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 using DotVVM.Framework.Routing;
-using Microsoft.AspNetCore.Rewrite;
 using System;
 
 namespace oostfraeiskorg
@@ -28,7 +26,6 @@ namespace oostfraeiskorg
             services.AddAuthorization();
             services.AddWebEncoders();
             services.AddAuthentication();
-
             services.AddDotVVM<DotvvmStartup>();
         }
 
@@ -47,7 +44,6 @@ namespace oostfraeiskorg
             }
 
             app.UseRouting();
-
 			app.UseAuthentication();
             app.UseAuthorization();
 
@@ -64,7 +60,6 @@ namespace oostfraeiskorg
             app.UseEndpoints(endpoints => 
             {
                 endpoints.MapDotvvmHotReload();
-
                 // register ASP.NET Core MVC and other endpoint routing middlewares
             });
 

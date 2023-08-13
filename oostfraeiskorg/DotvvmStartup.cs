@@ -121,7 +121,7 @@ namespace oostfraeiskorg
 
         private void ConfigureResources(DotvvmConfiguration config, string applicationPath)
         {
-            // register custom resources and adjust paths to the built-in resources
+            // css
             config.Resources.Register("bootstrap-css", new StylesheetResource
             {
                 Location = new UrlResourceLocation("~/css/bootstrap.min.css")
@@ -138,11 +138,12 @@ namespace oostfraeiskorg
             {
                 Location = new UrlResourceLocation("~/css/font-awesome.min.css")
             });
-            config.Resources.Register("Styles", new StylesheetResource()
+            config.Resources.Register("styles-css", new StylesheetResource()
             {
                 Location = new UrlResourceLocation("~/css/style.css")
             });
 
+            //javascript
             config.Resources.Register("bootstrap", new ScriptResource
             {
                 Location = new UrlResourceLocation("~/lib/js/bootstrap.min.js"),
@@ -167,7 +168,8 @@ namespace oostfraeiskorg
                 Dependencies = new[] { "cookiealert-css" }
             });
 
-            config.Resources.Register("module", new ScriptModuleResource(new UrlResourceLocation("~/lib/js/entry.js"))
+            //modules
+            config.Resources.Register("dictionaryentry", new ScriptModuleResource(new UrlResourceLocation("~/lib/js/dictionaryentry.js"))
             {
             });
         }
