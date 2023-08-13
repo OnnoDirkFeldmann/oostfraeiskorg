@@ -1,101 +1,87 @@
 ﻿using System.Collections.Generic;
 using Microsoft.Data.Sqlite;
-using System.Drawing;
 using System.IO;
 using DotVVM.Framework.Controls;
-using static oostfraeiskorg.ViewModels.MasterPageViewModel;
-using System.Collections;
 using System.Linq;
 using System.Data;
 using System;
-using Microsoft.AspNetCore.Mvc.RazorPages;
 using oostfraeiskorg;
-using System.Data.SqlTypes;
-using System.Reflection.PortableExecutable;
 
 namespace WFDOT
 {
     public class Searcher
     {
-        class Row
+        public static IQueryable<DictionaryEntry> SearchAndFill(string searchString, string searchDirection, string fullTextSearch)
         {
-            public long ID;
-            public string Ostfriesisch, Deutsch, Englisch, Artikel, Nebenformen, Standardform;
-            public List<string> a1 = new List<string>();
-            public List<string> b1 = new List<string>();
-        }
+            var dictionaryEntries = new List<DictionaryEntry>();
 
-        public static IQueryable<Entry> SearchAndFill(string searchstr, string suchrichtung, string volltextsuche)
-        {
-            List<Entry> Entries = new List<Entry>();
-
-            string originalSearch;
-            string NotFound = "";
-            string NeedInput = "";
+            string notFoundMessage = "";
+            string needInputMessage = "";
             var language = Languages.German;
-            string dialectaltrans = "";
+            string dialectalString = "";
+            searchString = searchString.Trim();
+            var displaySearchString = searchString;
 
-            searchstr = searchstr.Trim();
-            originalSearch = searchstr;
-
-            switch (suchrichtung)
+            switch (searchDirection)
             {
                 case "de>frs":
                 case "frs>de":
-                    NotFound = $"Es sind keine Daten für die Suche '{originalSearch}' gefunden worden";
-                    NeedInput = "Sie müssen mindestens ein Wort eingeben";
+                    notFoundMessage = $"Es sind keine Daten für die Suche '{displaySearchString}' gefunden worden";
+                    needInputMessage = "Sie müssen mindestens ein Wort eingeben";
                     language = Languages.German;
-                    dialectaltrans = "dialektal";
+                    dialectalString = "dialektal";
                     break;
                 case "en>frs":
                 case "frs>en":
-                    NotFound = $"No data found for '{originalSearch}'";
-                    NeedInput = "you have to enter at least one word";
+                    notFoundMessage = $"No data found for '{displaySearchString}'";
+                    needInputMessage = "you have to enter at least one word";
                     language = Languages.English;
-                    dialectaltrans = "dialectal";
+                    dialectalString = "dialectal";
                     break;
             }
 
-            if (originalSearch.Equals(string.Empty))
+            if (displaySearchString.Equals(string.Empty))
             {
-                Entries.Add(new Entry("Jī mautent minst äin wōrd ingēven", "", "", NeedInput, 0));
-                return Entries.AsQueryable();
+                dictionaryEntries.Add(new DictionaryEntry("Jī mautent minst äin wōrd ingēven", "", "", needInputMessage, 0));
+                return dictionaryEntries.AsQueryable();
             }
 
-            var sqlCon = DataBaseConnection.GetConnection(oostfraeiskorg.Server.MapPath(""));
-            var sqlcmd = new SqliteCommand();
-            sqlcmd.Connection = sqlCon;
+            var dataBaseConnection = DataBaseConnection.GetConnection(oostfraeiskorg.Server.MapPath(""));
+            var sqlcmd = new SqliteCommand
+            {
+                Connection = dataBaseConnection
+            };
 
-            switch (suchrichtung.ToLower())
+            switch (searchDirection.ToLower())
             {
                 case "de>frs":
-                    SearchStrings.DeFrs(volltextsuche, ref searchstr, ref sqlcmd);
+                    SearchStrings.DeFrs(fullTextSearch, ref searchString, ref sqlcmd);
                     break;
                 case "frs>de":
-                    SearchStrings.FrsDe(volltextsuche, ref searchstr, ref sqlcmd);
+                    SearchStrings.FrsDe(fullTextSearch, ref searchString, ref sqlcmd);
                     break;
                 case "en>frs":
-                    SearchStrings.EnFrs(volltextsuche, ref searchstr, ref sqlcmd);
+                    SearchStrings.EnFrs(fullTextSearch, ref searchString, ref sqlcmd);
                     break;
                 case "frs>en":
-                    SearchStrings.FrsEn(volltextsuche, ref searchstr, ref sqlcmd);
+                    SearchStrings.FrsEn(fullTextSearch, ref searchString, ref sqlcmd);
                     break;
             }
 
             var searchstrParamUpper = new SqliteParameter()
             {
                 ParameterName = "@searchstrupper",
-                Value = searchstr.ToUpper()
+                Value = searchString.ToUpper()
             };
             var searchstrParamLower = new SqliteParameter()
             {
                 ParameterName = "@searchstrlower",
-                Value = searchstr.ToLower()
+                Value = searchString.ToLower()
             };
             var searchstrParam = new SqliteParameter()
             {
                 ParameterName = "@searchstr",
-                Value = searchstr
+                Value = searchString
             };
 
             sqlcmd.Parameters.Add(searchstrParamUpper);
@@ -104,12 +90,13 @@ namespace WFDOT
             sqlcmd.Prepare();
 
             var reader = sqlcmd.ExecuteReader();
-            List<Row> rows = new List<Row>();
+            var dictionaryRows = new List<DictionaryRow>();
 
-            Console.Write("Start reading");
+            Console.Write("start reading dictionary");
+
             while (reader.Read())
             {
-                Row values = new Row();
+                var values = new DictionaryRow();
                 values.ID = reader.GetInt64("ID");
                 values.Ostfriesisch = reader.GetValue("Ostfriesisch").ToString();
                 values.Deutsch = reader.GetValue("Deutsch").ToString();
@@ -117,49 +104,28 @@ namespace WFDOT
                 values.Artikel = reader.GetValue("Artikel").ToString();
                 values.Nebenformen = reader.GetValue("Nebenformen").ToString();
                 values.Standardform = reader.GetValue("Standardform").ToString();
-
-                try
-                {
-                    for (int i = 1; i < reader.FieldCount; i++)
-                    {
-                        if (!reader.GetValue(i).ToString().Equals(string.Empty) && !reader.GetValue(i).ToString().Equals("-"))
-                        {
-                            if (i != 2)
-                            {
-                                values.a1.Add(reader.GetName(i));
-                                values.b1.Add(reader.GetValue(i).ToString());
-                            }
-                            else
-                            {
-                                values.a1.Add(reader.GetName(i));
-                                values.b1.Add(reader.GetValue(i).ToString());
-                            }
-                        }
-                    }
-                }
-                catch
-                {
-                }
-
-                rows.Add(values);
+                dictionaryRows.Add(values);
             }
-            Console.Write("Finished");
-            reader.Close();
-            sqlCon.Close();
 
-            var ids = new List<long>();
+            reader.Close();
+            dataBaseConnection.Close();
+
+            Console.Write("finished reading dictionary");
+
+            var idList = new List<long>();
             var eastFrisianStrings = new List<string>();
             var eastFrisianSecondaryForms = new List<string>();
             var eastFrisianStandardForms = new List<string>();
             var eastFrisianWords = new List<string>();
-            var b = new List<string>();
-            foreach (var row in rows)
+            var translation = new List<string>();
+
+            foreach (var dictionaryRow in dictionaryRows)
             {
-                ids.Add(row.ID);
-                var eastFrisianString = row.Ostfriesisch;
-                eastFrisianString += !row.Artikel.Equals("-") ? $" ({row.Artikel})" : "";
-                var eastFrisianSecondaryForm = !row.Nebenformen.Equals("-") ? $"[{dialectaltrans}: {row.Nebenformen}]" : "";
-                var eastFrisianStandardForm = !row.Standardform.Equals("-") ? $"[{row.Standardform}]" : "";
+                idList.Add(dictionaryRow.ID);
+                var eastFrisianString = dictionaryRow.Ostfriesisch;
+                eastFrisianString += !dictionaryRow.Artikel.Equals("-") ? $" ({dictionaryRow.Artikel})" : "";
+                var eastFrisianSecondaryForm = !dictionaryRow.Nebenformen.Equals("-") ? $"[{dialectalString}: {dictionaryRow.Nebenformen}]" : "";
+                var eastFrisianStandardForm = !dictionaryRow.Standardform.Equals("-") ? $"[{dictionaryRow.Standardform}]" : "";
 
                 eastFrisianStrings.Add(eastFrisianString);
                 eastFrisianSecondaryForms.Add(eastFrisianSecondaryForm);
@@ -167,53 +133,53 @@ namespace WFDOT
                 switch (language)
                 {
                     case Languages.German:
-                        b.Add(row.Deutsch);
+                        translation.Add(dictionaryRow.Deutsch);
                         break;
                     case Languages.English:
-                        b.Add(row.Englisch);
+                        translation.Add(dictionaryRow.Englisch);
                         break;
                 }
-                eastFrisianWords.Add(row.Ostfriesisch);
+                eastFrisianWords.Add(dictionaryRow.Ostfriesisch);
             }
 
-            for (int i = 0; i < ids.Count; i++)
+            for (int i = 0; i < idList.Count; i++)
             {
-                var entry = new Entry(eastFrisianStrings[i], eastFrisianSecondaryForms[i], eastFrisianStandardForms[i], b[i], ids[i]);
+                var dictionaryEntry = new DictionaryEntry(eastFrisianStrings[i], eastFrisianSecondaryForms[i], eastFrisianStandardForms[i], translation[i], idList[i]);
 
-                if (!ids[i].Equals("0"))
+                if (!idList[i].Equals("0"))
                 {
                     string mp3 = $"{oostfraeiskorg.Server.MapPath("")}/wwwroot/rec/{eastFrisianWords[i]}.mp3";
                     if (File.Exists(mp3))
                     {
-                        entry.SoundFile = true;
-                        entry.MP3 = eastFrisianWords[i];
+                        dictionaryEntry.SoundFile = true;
+                        dictionaryEntry.MP3 = eastFrisianWords[i];
                     }
                 }
 
-                Entries.Add(entry);
+                dictionaryEntries.Add(dictionaryEntry);
             }
 
             if (eastFrisianStrings.Count == 0)
             {
-                Entry entry = new Entry("D'r bünt ğīn dóóten föör d' söyek '" + originalSearch + "' funnen worden", "", "", NotFound, 0);
-                Entries.Add(entry);
+                var dictionaryEntry = new DictionaryEntry("D'r bünt ğīn dóóten föör d' söyek '" + displaySearchString + "' funnen worden", "", "", notFoundMessage, 0);
+                dictionaryEntries.Add(dictionaryEntry);
             }
 
-            return Entries.AsQueryable();
+            return dictionaryEntries.AsQueryable();
         }
 
         public static string GetPopUpBody(long wordId)
         {
             string body = "";
 
-            var sqlCon = DataBaseConnection.GetConnection(oostfraeiskorg.Server.MapPath(""));
+            var dataBaseConnection = DataBaseConnection.GetConnection(oostfraeiskorg.Server.MapPath(""));
             var sqlCommand = new SqliteCommand();
-            sqlCommand.Connection = sqlCon;
+            sqlCommand.Connection = dataBaseConnection;
             sqlCommand.CommandText = "SELECT * FROM WB Where ID ='" + wordId + "'";
             var reader = sqlCommand.ExecuteReader();
 
-            List<string> titles = new List<string>();
-            List<string> data = new List<string>();
+            var titles = new List<string>();
+            var data = new List<string>();
             while (reader.Read())
             {
                 try
@@ -239,22 +205,22 @@ namespace WFDOT
                 }
             }
             reader.Close();
-            sqlCon.Close();
+            dataBaseConnection.Close();
 
-            List<string> notEmptyTitles = new List<string>();
-            List<string> notEmptyData = new List<string>();
-            for (int a = 0; a < data.Count; a++)
+            var notEmptyTitles = new List<string>();
+            var notEmptyData = new List<string>();
+            for (int j = 0; j < data.Count; j++)
             {
-                if (!data[a].Equals(string.Empty) && !data[a].Equals("-"))
+                if (!data[j].Equals(string.Empty) && !data[j].Equals("-"))
                 {
-                    notEmptyTitles.Add(titles[a]);
-                    notEmptyData.Add(data[a]);
+                    notEmptyTitles.Add(titles[j]);
+                    notEmptyData.Add(data[j]);
                 }
             }
 
-            for (int a = 0; a < notEmptyData.Count; a++)
+            for (int j = 0; j < notEmptyData.Count; j++)
             {
-                body += "<tr valign=\"top\"><th valign=\"top\"><p>" + notEmptyTitles[a] + ":</p></th><td valign=\"top\"><p>" + notEmptyData[a] + "</p></td ></tr>";
+                body += "<tr valign=\"top\"><th valign=\"top\"><p>" + notEmptyTitles[j] + ":</p></th><td valign=\"top\"><p>" + notEmptyData[j] + "</p></td ></tr>";
             }
 
             body = "<table class=\"table\">" + body + "</table>";

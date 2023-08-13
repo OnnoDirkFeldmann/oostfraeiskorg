@@ -1,6 +1,4 @@
-﻿
-using Microsoft.Data.Sqlite;
-using System;
+﻿using Microsoft.Data.Sqlite;
 
 namespace WFDOT
 {
@@ -8,11 +6,11 @@ namespace WFDOT
     {
         public static SqliteConnection GetConnection(string startpath)
         {
-            SqliteConnection connection = new SqliteConnection();
+            var sqliteConnection = new SqliteConnection();
             string dataSource = startpath + @"/WFDOT.db";
-            connection.ConnectionString = $"Data Source={dataSource}; Pooling=False;";
-            connection.Open();
-            return connection;
+            sqliteConnection.ConnectionString = $"Data Source={dataSource}; Pooling=False;";
+            sqliteConnection.Open();
+            return sqliteConnection;
         }
     }
 }
