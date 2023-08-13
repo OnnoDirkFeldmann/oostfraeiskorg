@@ -9,8 +9,8 @@ namespace oostfraeiskorg.ViewModels
     {
 
         public MainViewModel()
-		{
-            Entries = new GridViewDataSet<Entry>();
+        {
+            Entries = new GridViewDataSet<DictionaryEntry>();
         }
 
         [FromQuery("W")]
@@ -22,45 +22,21 @@ namespace oostfraeiskorg.ViewModels
         [FromQuery("fts")]
         public string fts { get; set; }
 
-        public GridViewDataSet<Entry> Entries { get; set; }
+        public GridViewDataSet<DictionaryEntry> Entries { get; set; }
 
-        private string _eastFrisianHeader = "Ostfriesisch";
+        public string EastFrisianHeader { get; set; } = "Ostfriesisch";
 
-        public string EastFrisianHeader
-        {
-            get => _eastFrisianHeader;
-            set => _eastFrisianHeader = value;
-        }
+        public string TranslationHeader { get; set; } = "Deutsch";
 
-        private string _translationHeader = "Deutsch";
+        public string PopUpBody { get; set; } = "";
 
-        public string TranslationHeader
-        {
-            get => _translationHeader;
-            set => _translationHeader = value;
-        }
-
-        private string _PopUpBody = "";
-
-        public string PopUpBody
-        {
-            get => _PopUpBody;
-            set => _PopUpBody = value;
-        }
-
-        private long _wordid;
-
-        public long wordid
-        {
-            get => _wordid;
-            set => _wordid = value;
-        }
+        public long WordId { get; set; }
 
         public override Task Init()
         {
             if (W != null && df != null && fts != null)
             {
-                Entries = new GridViewDataSet<Entry>();
+                Entries = new GridViewDataSet<DictionaryEntry>();
 
                 //Alte URL-Versionen händeln
                 if (df == "ofrs" || df == "frs")
@@ -99,8 +75,8 @@ namespace oostfraeiskorg.ViewModels
                 {
                     case "de>frs":
                     case "frs>de":
-                       MasterPageTitle = $"Suche nach {W}({df}) - Ōstfräisk wōrdenbauk - Ostfriesisches Wörterbuch";
-                       MasterPageDescription = $"Übersetzung für {W}({df}) auf Ostfriesisch - Wörterbuch der ostfriesischen Sprache";
+                        MasterPageTitle = $"Suche nach {W}({df}) - Ōstfräisk wōrdenbauk - Ostfriesisches Wörterbuch";
+                        MasterPageDescription = $"Übersetzung für {W}({df}) auf Ostfriesisch - Wörterbuch der ostfriesischen Sprache";
                         break;
                     case "en>frs":
                     case "frs>en":
@@ -111,7 +87,7 @@ namespace oostfraeiskorg.ViewModels
             }
             return base.Init();
         }
-        
+
         public void UpdateHeader()
         {
             if (df.Equals("de>frs") || df.Equals("frs>de"))
@@ -128,7 +104,7 @@ namespace oostfraeiskorg.ViewModels
 
         public void GetPopUpBody()
         {
-            PopUpBody = WFDOT.Searcher.GetPopUpBody(wordid);
+            PopUpBody = WFDOT.Searcher.GetPopUpBody(WordId);
         }
     }
 }

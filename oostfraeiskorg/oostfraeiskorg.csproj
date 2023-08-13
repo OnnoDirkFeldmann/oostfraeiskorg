@@ -23,9 +23,6 @@
 		<PackageReference Include="Microsoft.Web.LibraryManager.Build" Version="2.1.175" />
 	</ItemGroup>
 	<ItemGroup>
-	  <Content Update="wwwroot\.htaccess">
-	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-	  </Content>
 	  <Content Update="wwwroot\css\bootstrap.min.css">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </Content>
@@ -74,7 +71,7 @@
 	  <Content Update="wwwroot\lib\js\custom.js">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </Content>
-	  <Content Update="wwwroot\lib\js\entry.js">
+	  <Content Update="wwwroot\lib\js\dictionaryentry.js">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </Content>
 	  <Content Update="wwwroot\lib\js\jquery-3.5.1.min.js">

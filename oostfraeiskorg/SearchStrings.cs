@@ -4,12 +4,12 @@ namespace WFDOT
 {
     public class SearchStrings
     {
-        public static void DeFrs(string volltextsuche, ref string searchstr, ref SqliteCommand sqlcmd)
+        public static void DeFrs(string fullTextSearch, ref string searchString, ref SqliteCommand sqlCommand)
         {
-            if (volltextsuche == "J")
+            if (fullTextSearch == "J")
             {
-                searchstr = "\'" + searchstr + "\'";
-                sqlcmd.CommandText = "SELECT * FROM WBFTS " +
+                searchString = "\'" + searchString + "\'";
+                sqlCommand.CommandText = "SELECT * FROM WBFTS " +
                     "WHERE Deutsch != '-' " +
                     "AND Deutsch MATCH @searchstrlower " +
                     "UNION SELECT * FROM WBFTS " +
@@ -17,29 +17,29 @@ namespace WFDOT
                     "AND Deutsch MATCH @searchstrupper " +
                     "ORDER BY Ostfriesisch ASC";
             }
-            if (volltextsuche == "N")
+            if (fullTextSearch == "N")
             {
-                searchstr = "%" + searchstr + "%";
-                sqlcmd.CommandText = "SELECT * FROM WB " +
+                searchString = "%" + searchString + "%";
+                sqlCommand.CommandText = "SELECT * FROM WB " +
                     "WHERE Deutsch != '-' " +
                     "AND (Deutsch LIKE @searchstrlower " +
                     "OR Deutsch LIKE @searchstrupper) " +
                     "ORDER BY Ostfriesisch ASC";
             }
-            if (volltextsuche == "X")
+            if (fullTextSearch == "X")
             {
-                sqlcmd.CommandText = "SELECT * FROM WB " +
+                sqlCommand.CommandText = "SELECT * FROM WB " +
                     "WHERE Deutsch != '-' " +
                     "AND Deutsch = @searchstr " +
                     "ORDER BY Ostfriesisch ASC";
             }
         }
-        public static void FrsDe(string volltextsuche, ref string searchstr, ref SqliteCommand sqlcmd)
+        public static void FrsDe(string fullTextSearch, ref string searchString, ref SqliteCommand sqlCommand)
         {
-            if (volltextsuche == "J")
+            if (fullTextSearch == "J")
             {
-                searchstr = "\'" + searchstr + "\'";
-                sqlcmd.CommandText = "SELECT * FROM WBFTS " +
+                searchString = "\'" + searchString + "\'";
+                sqlCommand.CommandText = "SELECT * FROM WBFTS " +
                     "WHERE Deutsch != '-' " +
                     "AND Ostfriesisch MATCH @searchstrlower " +
                     "UNION SELECT * FROM WBFTS WHERE Deutsch != '-' " +
@@ -54,10 +54,10 @@ namespace WFDOT
                     "AND Plural MATCH @searchstrupper " +
                     "ORDER BY Ostfriesisch ASC";
             }
-            if (volltextsuche == "N")
+            if (fullTextSearch == "N")
             {
-                searchstr = "%" + searchstr + "%";
-                sqlcmd.CommandText = "SELECT * FROM WB " +
+                searchString = "%" + searchString + "%";
+                sqlCommand.CommandText = "SELECT * FROM WB " +
                     "WHERE Deutsch != '-' AND " +
                     "(Ostfriesisch LIKE @searchstrlower " +
                     "OR Ostfriesisch LIKE @searchstrupper " +
@@ -67,9 +67,9 @@ namespace WFDOT
                     "OR Plural LIKE @searchstrupper) " +
                     "ORDER BY Ostfriesisch ASC";
             }
-            if (volltextsuche == "X")
+            if (fullTextSearch == "X")
             {
-                sqlcmd.CommandText = "SELECT * FROM WB " +
+                sqlCommand.CommandText = "SELECT * FROM WB " +
                     "WHERE Deutsch != '-' AND " +
                     "(Ostfriesisch = @searchstr " +
                     "OR Nebenformen = @searchstr " +
@@ -78,12 +78,12 @@ namespace WFDOT
             }
         }
 
-        public static void EnFrs(string volltextsuche, ref string searchstr, ref SqliteCommand sqlcmd)
+        public static void EnFrs(string fullTextSearch, ref string searchString, ref SqliteCommand sqlCommand)
         {
-            if (volltextsuche == "J")
+            if (fullTextSearch == "J")
             {
-                searchstr = "\'" + searchstr + "\'";
-                sqlcmd.CommandText = "SELECT * FROM WBFTS " +
+                searchString = "\'" + searchString + "\'";
+                sqlCommand.CommandText = "SELECT * FROM WBFTS " +
                     "WHERE Englisch != '-' " +
                     "AND Englisch MATCH @searchstrlower " +
                     "UNION SELECT * FROM WBFTS " +
@@ -91,29 +91,29 @@ namespace WFDOT
                     "AND Englisch MATCH @searchstrupper " +
                     "ORDER BY Ostfriesisch ASC";
             }
-            if (volltextsuche == "N")
+            if (fullTextSearch == "N")
             {
-                searchstr = "%" + searchstr + "%";
-                sqlcmd.CommandText = "SELECT * FROM WB " +
+                searchString = "%" + searchString + "%";
+                sqlCommand.CommandText = "SELECT * FROM WB " +
                     "WHERE Englisch != '-' " +
                     "AND (Englisch LIKE @searchstrlower " +
                     "OR Englisch LIKE @searchstrupper) " +
                     "ORDER BY Ostfriesisch ASC";
             }
-            if (volltextsuche == "X")
+            if (fullTextSearch == "X")
             {
-                sqlcmd.CommandText = "SELECT * FROM WB " +
+                sqlCommand.CommandText = "SELECT * FROM WB " +
                     "WHERE Englisch != '-' AND " +
                     "Englisch = @searchstr " +
                     "ORDER BY Ostfriesisch ASC";
             }
         }
-        public static void FrsEn(string volltextsuche, ref string searchstr, ref SqliteCommand sqlcmd)
+        public static void FrsEn(string fullTextSearch, ref string searchString, ref SqliteCommand sqlCommand)
         {
-            if (volltextsuche == "J")
+            if (fullTextSearch == "J")
             {
-                searchstr = "\'" + searchstr + "\'";
-                sqlcmd.CommandText = "SELECT * FROM WBFTS " +
+                searchString = "\'" + searchString + "\'";
+                sqlCommand.CommandText = "SELECT * FROM WBFTS " +
                     "WHERE Englisch != '-' AND " +
                     "Ostfriesisch MATCH @searchstrlower " +
                     "UNION SELECT * FROM WBFTS WHERE Englisch != '-' " +
@@ -128,10 +128,10 @@ namespace WFDOT
                     "AND Plural MATCH @searchstrupper " +
                     "ORDER BY Ostfriesisch ASC";
             }
-            if (volltextsuche == "N")
+            if (fullTextSearch == "N")
             {
-                searchstr = "%" + searchstr + "%";
-                sqlcmd.CommandText = "SELECT * FROM WB " +
+                searchString = "%" + searchString + "%";
+                sqlCommand.CommandText = "SELECT * FROM WB " +
                     "WHERE Englisch != '-' AND " +
                     "(Ostfriesisch LIKE @searchstrlower " +
                     "OR Ostfriesisch LIKE @searchstrupper " +
@@ -141,9 +141,9 @@ namespace WFDOT
                     "OR Plural LIKE @searchstrupper) " +
                     "ORDER BY Ostfriesisch ASC";
             }
-            if (volltextsuche == "X")
+            if (fullTextSearch == "X")
             {
-                sqlcmd.CommandText = "SELECT * FROM WB " +
+                sqlCommand.CommandText = "SELECT * FROM WB " +
                     "WHERE Englisch != '-' AND " +
                     "(Ostfriesisch = @searchstr " +
                     "OR Nebenformen = @searchstr " +

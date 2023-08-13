@@ -1,11 +1,6 @@
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace oostfraeiskorg
 {
@@ -22,7 +17,8 @@ namespace oostfraeiskorg
                 .ConfigureLogging((context, builder) =>
                 {
                     builder.AddConsole();
-                }).UseUrls("http://localhost:5000")
+                })
+                .UseUrls("http://localhost:5000")
                 .Build();
     }
 }
