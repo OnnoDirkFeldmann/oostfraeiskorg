@@ -8,7 +8,7 @@
     <dot:RequiredResource Name="cookiealert" />
     <dot:RequiredResource Name="custom" />
     <dot:RequiredResource Name="font-awesome-css" />
-    <dot:RequiredResource Name="Styles" />
+    <dot:RequiredResource Name="styles-css" />
     <meta name="viewport" content="width=device-width, initial-scale=0.8, shrink-to-fit=no" />
     <meta name="description" content="{value: MasterPageDescription}" />
     <meta name="keywords" content="{value: MasterPageKeywords}" />

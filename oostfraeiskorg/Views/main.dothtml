@@ -1,11 +1,11 @@
 ﻿@viewModel oostfraeiskorg.ViewModels.MainViewModel, oostfraeiskorg
 @masterPage Views/MasterPage.dotmaster
-@js module
+@js dictionaryentry
 <dot:Content ContentPlaceHolderID="MainContent">
     <dot:NamedCommand Name="GetPopUpBody"
                       Command="{command: _root.GetPopUpBody()}" />
     <dot:NamedCommand Name="SetWordID"
-                      Command="{staticCommand: (int id) => _root.wordid = id}" />
+                      Command="{staticCommand: (int id) => _root.WordId = id}" />
     <dot:NamedCommand Name="ShowPopupWithBody"
                       Command="{staticCommand: _js.Invoke<string>("ShowPopup",  "Details", PopUpBody)}" />
 
