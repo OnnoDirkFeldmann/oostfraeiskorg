@@ -2,23 +2,22 @@ using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Logging;
 
-namespace oostfraeiskorg
-{
-    public class Program
-    {
-        public static void Main(string[] args)
-        {
-            BuildWebHost(args).Run();
-        }
+namespace oostfraeiskorg;
 
-        public static IWebHost BuildWebHost(string[] args) =>
-            WebHost.CreateDefaultBuilder(args)
-                .UseStartup<Startup>()
-                .ConfigureLogging((context, builder) =>
-                {
-                    builder.AddConsole();
-                })
-                .UseUrls("http://localhost:5000")
-                .Build();
+public class Program
+{
+    public static void Main(string[] args)
+    {
+        BuildWebHost(args).Run();
     }
+
+    public static IWebHost BuildWebHost(string[] args) =>
+        WebHost.CreateDefaultBuilder(args)
+            .UseStartup<Startup>()
+            .ConfigureLogging((context, builder) =>
+            {
+                builder.AddConsole();
+            })
+            .UseUrls("http://localhost:5000")
+            .Build();
 }
