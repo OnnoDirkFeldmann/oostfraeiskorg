@@ -33,7 +33,7 @@ public class MainViewModel : MasterPageViewModel
 
     public override Task Init()
     {
-        if (W != null && df != null && fts != null)
+        if (W != null)
         {
             Entries = new GridViewDataSet<DictionaryEntry>();
 
