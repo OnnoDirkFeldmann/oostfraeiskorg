@@ -176,6 +176,19 @@
             </div>
             <div class="row justify-content-center w-100">
                 <div class="col-sm-8 justify-content-center text-left">
+                    <h3>Sprachkurs Ōstfräisk Lērbauk</h3>
+                    <br />
+                    <p>Der Ōstfräisk Onlainkurs endet hier. Zum weiterführenden Selbststudium kann das Kursbuch Ōstfräisk Lērbauk mit Tonaufnahmen verwendet werden.</p>
+                    <br />
+                    <a class="btn btn-primary" href="coursebook">Zum Sprachkurs Ōstfräisk Lērbauk</a>
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                </div>
+            </div>
+            <div class="row justify-content-center w-100">
+                <div class="col-sm-8 justify-content-center text-left">
                     <a class="btn btn-primary" href="onlinecourse" role="button">Kursübersicht</a>
                 </div>
             </div>
@@ -184,6 +197,6 @@
             <br />
             <br />
         </div>
-    </div>
+            </div>
 </dot:Content>
 

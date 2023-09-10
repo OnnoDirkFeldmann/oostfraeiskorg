@@ -178,6 +178,19 @@
             </div>
             <div class="row justify-content-center w-100">
                 <div class="col-sm-8 justify-content-center text-left">
+                    <h3>Language course Ōstfräisk Lērbauk (German)</h3>
+                    <br />
+                    <p>The Ōstfräisk Onlainkurs ends here. For further self-study, the course book Ōstfräisk Lērbauk (German) with audio recordings can be used.</p>
+                    <br />
+                    <a class="btn btn-primary" href="coursebook">to the language course Ōstfräisk Lērbauk (German)</a>
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                </div>
+            </div>
+            <div class="row justify-content-center w-100">
+                <div class="col-sm-8 justify-content-center text-left">
                     <a class="btn btn-primary" href="onlinecourseen" role="button">course overview</a>
                 </div>
             </div>
