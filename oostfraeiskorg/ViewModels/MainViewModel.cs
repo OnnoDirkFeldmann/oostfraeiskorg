@@ -56,7 +56,7 @@ public class MainViewModel : MasterPageViewModel
             UpdateHeader();
 
             //Default Search
-            if (fts != "J" && fts != "N" && fts != "X")
+            if (fts != "J" && fts != "N" && fts != "X" && fts != "B" && fts != "E")
             {
                 fts = "N";
             }

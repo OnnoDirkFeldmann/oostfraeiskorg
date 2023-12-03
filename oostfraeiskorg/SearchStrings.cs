@@ -33,6 +33,24 @@ public class SearchStrings
                 "AND Deutsch = @searchstr " +
                 "ORDER BY Ostfriesisch ASC";
         }
+        if (fullTextSearch == "B")
+        {
+            searchString = searchString + "%";
+            sqlCommand.CommandText = "SELECT * FROM WB " +
+                "WHERE Deutsch != '-' " +
+                "AND (Deutsch LIKE @searchstrlower " +
+                "OR Deutsch LIKE @searchstrupper) " +
+                "ORDER BY Ostfriesisch ASC";
+        }
+        if (fullTextSearch == "E")
+        {
+            searchString = "%" + searchString;
+            sqlCommand.CommandText = "SELECT * FROM WB " +
+                "WHERE Deutsch != '-' " +
+                "AND (Deutsch LIKE @searchstrlower " +
+                "OR Deutsch LIKE @searchstrupper) " +
+                "ORDER BY Ostfriesisch ASC";
+        }
     }
     public static void FrsDe(string fullTextSearch, ref string searchString, ref SqliteCommand sqlCommand)
     {
@@ -76,6 +94,32 @@ public class SearchStrings
                 "OR Plural = @searchstr) " +
                 "ORDER BY Ostfriesisch ASC";
         }
+        if (fullTextSearch == "B")
+        {
+            searchString = searchString + "%";
+            sqlCommand.CommandText = "SELECT * FROM WB " +
+                "WHERE Deutsch != '-' AND " +
+                "(Ostfriesisch LIKE @searchstrlower " +
+                "OR Ostfriesisch LIKE @searchstrupper " +
+                "OR Nebenformen LIKE @searchstrlower " +
+                "OR Nebenformen LIKE @searchstrupper " +
+                "OR Plural LIKE @searchstrlower " +
+                "OR Plural LIKE @searchstrupper) " +
+                "ORDER BY Ostfriesisch ASC";
+        }
+        if (fullTextSearch == "E")
+        {
+            searchString = "%" + searchString;
+            sqlCommand.CommandText = "SELECT * FROM WB " +
+                "WHERE Deutsch != '-' AND " +
+                "(Ostfriesisch LIKE @searchstrlower " +
+                "OR Ostfriesisch LIKE @searchstrupper " +
+                "OR Nebenformen LIKE @searchstrlower " +
+                "OR Nebenformen LIKE @searchstrupper " +
+                "OR Plural LIKE @searchstrlower " +
+                "OR Plural LIKE @searchstrupper) " +
+                "ORDER BY Ostfriesisch ASC";
+        }
     }
 
     public static void EnFrs(string fullTextSearch, ref string searchString, ref SqliteCommand sqlCommand)
@@ -105,6 +149,24 @@ public class SearchStrings
             sqlCommand.CommandText = "SELECT * FROM WB " +
                 "WHERE Englisch != '-' AND " +
                 "Englisch = @searchstr " +
+                "ORDER BY Ostfriesisch ASC";
+        }
+        if (fullTextSearch == "B")
+        {
+            searchString = searchString + "%";
+            sqlCommand.CommandText = "SELECT * FROM WB " +
+                "WHERE Englisch != '-' " +
+                "AND (Englisch LIKE @searchstrlower " +
+                "OR Englisch LIKE @searchstrupper) " +
+                "ORDER BY Ostfriesisch ASC";
+        }
+        if (fullTextSearch == "E")
+        {
+            searchString = "%" + searchString;
+            sqlCommand.CommandText = "SELECT * FROM WB " +
+                "WHERE Englisch != '-' " +
+                "AND (Englisch LIKE @searchstrlower " +
+                "OR Englisch LIKE @searchstrupper) " +
                 "ORDER BY Ostfriesisch ASC";
         }
     }
@@ -148,6 +210,32 @@ public class SearchStrings
                 "(Ostfriesisch = @searchstr " +
                 "OR Nebenformen = @searchstr " +
                 "OR Plural = @searchstr) " +
+                "ORDER BY Ostfriesisch ASC";
+        }
+        if (fullTextSearch == "B")
+        {
+            searchString = searchString + "%";
+            sqlCommand.CommandText = "SELECT * FROM WB " +
+                "WHERE Englisch != '-' AND " +
+                "(Ostfriesisch LIKE @searchstrlower " +
+                "OR Ostfriesisch LIKE @searchstrupper " +
+                "OR Nebenformen LIKE @searchstrlower " +
+                "OR Nebenformen LIKE @searchstrupper " +
+                "OR Plural LIKE @searchstrlower " +
+                "OR Plural LIKE @searchstrupper) " +
+                "ORDER BY Ostfriesisch ASC";
+        }
+        if (fullTextSearch == "E")
+        {
+            searchString = "%" + searchString;
+            sqlCommand.CommandText = "SELECT * FROM WB " +
+                "WHERE Englisch != '-' AND " +
+                "(Ostfriesisch LIKE @searchstrlower " +
+                "OR Ostfriesisch LIKE @searchstrupper " +
+                "OR Nebenformen LIKE @searchstrlower " +
+                "OR Nebenformen LIKE @searchstrupper " +
+                "OR Plural LIKE @searchstrlower " +
+                "OR Plural LIKE @searchstrupper) " +
                 "ORDER BY Ostfriesisch ASC";
         }
     }
