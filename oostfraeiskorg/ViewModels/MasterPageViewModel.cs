@@ -44,6 +44,16 @@ public class MasterPageViewModel : DotvvmViewModelBase
         Context.RedirectToRoute("main", query: new { W = SearchText, df = SelectedLanguage.ToLower(), fts = "X" });
     }
 
+    public void SearchBegins()
+    {
+        Context.RedirectToRoute("main", query: new { W = SearchText, df = SelectedLanguage.ToLower(), fts = "B" });
+    }
+
+    public void SearchEnds()
+    {
+        Context.RedirectToRoute("main", query: new { W = SearchText, df = SelectedLanguage.ToLower(), fts = "E" });
+    }
+
     #endregion
 
     #region events
