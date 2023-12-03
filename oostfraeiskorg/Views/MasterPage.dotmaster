@@ -140,6 +140,8 @@
                 </button>
                 <div class="dropdown-menu">
                     <dot:Button ID="btn_like" runat="server" class="dropdown-item" Click="{command: SearchLike()}" Text="Unscharfe Suche" />
+                    <dot:Button ID="btn_exact" runat="server" class="dropdown-item" Click="{command: SearchBegins()}" Text="Beginnt mit" />
+                    <dot:Button ID="btn_exact" runat="server" class="dropdown-item" Click="{command: SearchEnds()}" Text="Endet mit" />
                     <dot:Button ID="btn_exact" runat="server" class="dropdown-item" Click="{command: SearchExact()}" Text="Exakte Suche" />
                 </div>
             </div>
