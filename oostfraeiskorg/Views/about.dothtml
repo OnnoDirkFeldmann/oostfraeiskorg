@@ -6,11 +6,11 @@
         <h2>Über oostfraeisk.org</h2>
         <br />
         <p>
-            Das Ostfriesische (Ōstfräisk oder Ōstfräisk Tóól), welches mitunter auch Ostfriesisches Platt genannt wird, ist eine Sprache, die auf der
-            ostfriesischen Halbinsel (Ōstfräisland) in den heutigen Landkreisen Aurich (Auerk), Friesland (Fräisland), Leer (Læær) und Wittmund (Witmund)
+            Das Ostfriesische (Oostfräisk oder Oostfräisk Tóól), welches mitunter auch Ostfriesisches Platt genannt wird, ist eine Sprache, die auf der
+            ostfriesischen Halbinsel (Oostfräisland) in den heutigen Landkreisen Aurich (Auerk), Friesland (Fräisland), Leer (Läär) und Wittmund (Witmund)
             sowie den kreisfreien Städten Emden (Emden) und Wilhelmshaven (Wilmshóóven) gesprochen wird. Ausgenommen von diesem Sprachgebiet ist jedoch der südliche Landkreis Friesland.
             Die Grenze bildet ungefähr der frühere Verlauf des schwarzen Bracks (Swârt Brak).
-            Ōstfräisk ist Teil des westgermanischen Zweiges der germanischen Sprachen und gehört wie das Friesische, Englische und Niederdeutsche zu den nordseegermanischen Sprachen.
+            Oostfräisk ist Teil des westgermanischen Zweiges der germanischen Sprachen und gehört wie das Friesische, Englische und Niederdeutsche zu den nordseegermanischen Sprachen.
             Die ostfriesische Sprache wird heute meist dem Niederdeutschen zugeordnet, nimmt aber aufgrund verschiedener historischer Entwicklungen als
             friesisch-niederdeutsche Sprache eine Sonderstellung innerhalb desselben ein. Sie weist neben einer urfriesischen Sprachschicht (friesisches Substrat) auch
             konservatives Niederdeutsch sowie historisch starke niederländische und einige romanische Einflüsse auf. Seit Anfang des 20. Jahrhunderts steht das Ostfriesische zudem unter dem Einfluss des Standardhochdeutschen.
@@ -21,7 +21,7 @@
             <br />
             Die Website oostfraeisk.org wurde ins Leben gerufen, da die Sprache schon seit dem geraumer Zeit immer mehr unter dem Druck des Deutschen zerfällt.
             Von diesem Prozess sind aktuell immer mehr spracheigene Wörter, Strukturen und grammatikalische Gegebenheiten bedroht.
-            Grundlage des Projektes ist dabei die Feldforschung, mit welcher über verschiedenste Gewährspersonen sowohl der althergebrachte wie auch der moderne, oft noch nicht erfasste, Wortschatz 
+            Grundlage des Projektes ist dabei die Feldforschung, mit welcher über verschiedenste Gewährspersonen sowohl der althergebrachte wie auch der moderne, oft noch nicht erfasste, Wortschatz
             sowie die Grammatik der Sprache dokumentiert werden soll.
             Mit oostfraeisk.org wird seit 2019 versucht der fortschreitenden Entwicklung entgegenzuwirken und einen standardisierten und gleichzeitig
             zeitgemäßen Stand des Ostfriesischen zu präsentieren, um so dieses wichtige Kulturerbe der ostfriesischen Minderheit festzuhalten und für eine Revitalisierung aufzubereiten.
@@ -32,7 +32,7 @@
             <br />
             <br />
             <b>
-                Dat us tóól näit fergēten word't!<br />
+                Dat us tóól näit fergeeten word't!<br />
                 Damit unsere Sprache nicht vergessen wird!
             </b>
             <br />
@@ -50,113 +50,185 @@
         <h3>Meilensteine:</h3>
         <p>
             <br />
-            Dezember 2023:<br />
-            Im Projektbestand wurde der erste Band (A-G), des Wörterbuches von Jan ten Doornkaat Koolman verarbeitet.<br />
+            Januar 2024:<br />
+            Das Schriftsystem dieses Wörterbuches wurde mit dem Ziel bisher gesammeltes Feedback zu verarbeiten überarbeitet. Um das System zugänglicher zu machen, sodass man es auch mit deutscher Tastatur schreiben kann, wurden folgende Anpassungen am weigeltschen System vorgenommen:
+            <ul>
+                <li>
+                    Das Macron für lange Vokale entfällt und wird durch Doppelschreibung
+                    ersetzt: pāsen wird z.B. paasen
+                </li>
+                <li>
+                    Um das morphologische Prinzip einzuhalten wird aus dem Zirkumflex für
+                    Überlange Vokale in anlehnung an die Schreibweise von Marron Fort eine
+                    Doppelschreibung mit einem Zirkumflex auf dem ersten Buchstaben: ûl wird z.B. ûul mit dem Plural uulen
+                </li>
+                <li>
+                    Die Ligatur æ entfällt zugunsten von ä: dæær wird z.B. zu däär
+                </li>
+                <li>
+                    Die Schreibweise sk im Anlaut wird als sk geschrieben, da dies für die meisten
+                    Sprecher natürlicher wirkt: sğaul wird z.B. zu skaul
+                </li>
+            </ul>
             <br />
-            August 2023:<br />
+            <br />
+            Dezember 2023:
+            <br />
+            Im Projektbestand wurde der erste Band (A-G), des Wörterbuches von Jan ten Doornkaat Koolman verarbeitet.
+            <br />
+            <br />
+            August 2023:
+            <br />
             Die Plattform oostfraeisk.org wurde erfolgreich von ASP.NET Webforms nach ASP.NET CORE DotVVM überführt.
-            Damit ist die Website wieder State of the Art und für die Zukunft gerüstet.<br />
+            Damit ist die Website wieder State of the Art und für die Zukunft gerüstet.
             <br />
-            Juli 2023:<br />
-            Ein vier Lektionen umfassender interaktiver Onlinekurs wurde in die Plattform integriert.<br />
             <br />
-            Juni 2023:<br />
-            Im Projektbestand wurden 30% (Buchstaben A-F) des Wörterbuches von Jan ten Doornkaat Koolman verarbeitet.<br />
+            Juli 2023:
             <br />
-            Mai 2023:<br />
+            Ein vier Lektionen umfassender interaktiver Onlinekurs wurde in die Plattform integriert.
+            <br />
+            <br />
+            Juni 2023:
+            <br />
+            Im Projektbestand wurden 30% (Buchstaben A-F) des Wörterbuches von Jan ten Doornkaat Koolman verarbeitet.
+            <br />
+            <br />
+            Mai 2023:
+            <br />
             Mit dem "Wörterbuch ausgestorbener ostfriesischer Dialekte" von Arend Remmers wurden
             teilweise höchst interessante Etymologien zu einigen Wörtern aufgebaut.
             Neben dem Auswerten des ostfriesischen Wörterbuches von Jan ten Doornkaat Koolmann wird jetzt der Fokus
-            auch auf den modernen Wortschatz gelegt. Bisher sind Wörter wie āutōslöödel, pakóózjedróóger oder warjææren,
+            auch auf den modernen Wortschatz gelegt. Bisher sind Wörter wie aautooslöödel, pakóózjedróóger oder warjäären,
             die dem modernen Wortschatz angehören nirgends dokumentiert.
             Ziel ist es den Wortschatz des westfriesischen Wörterbuches "Frysk-Ingelsk" von Anne Dykstra zu verwenden
-            um mithilfe von Muttersprachlern die jeweiligen ostfriesischen Entsprechungen zu finden.<br />
+            um mithilfe von Muttersprachlern die jeweiligen ostfriesischen Entsprechungen zu finden.
             <br />
-            März 2023:<br />
-            Im Projektbestand wurden ein Viertel des Wörterbuches von Jan ten Doornkaat Koolman verarbeitet.<br />
             <br />
-            Januar 2023:<br />
+            März 2023:
+            <br />
+            Im Projektbestand wurden ein Viertel des Wörterbuches von Jan ten Doornkaat Koolman verarbeitet.
+            <br />
+            <br />
+            Januar 2023:
+            <br />
             Im Projektbestand wurde der gesamte Nachlass von Dr. Marron Fort verarbeitet.
             Zusätzlich zu den bereits genannten Materialien wurde Mitte Oktober im Nachlass ein 218-Seiten starkes, jedoch leider unvollständiges Manuskript entdeckt,
-            welches den Grundwortschatz von Emden mit jeweiligen Beispielsätzen behandelt. Dieses wurde ebenfalls ausgewertet.<br />
+            welches den Grundwortschatz von Emden mit jeweiligen Beispielsätzen behandelt. Dieses wurde ebenfalls ausgewertet.
             <br />
-            Dezember 2022:<br />
+            <br />
+            Dezember 2022:
+            <br />
             Lücken im Grundwortschatz wurden mithilfe des saterfriesischen Wörterbuchs
             "Kramer, Pyt(1961) - Seelter Woudebouk" und des halligfriesischen Wörterbuchs
             "Lorenzen, Jens(1977) - Deutsch - Halligfriesisch" ermittelt und durch Befragung
-            von Muttersprachlern geschlossen.<br />
+            von Muttersprachlern geschlossen.
             <br />
-            Oktober 2022:<br />
-            Der Wörterbuchbestand erreicht 70 000 Datensätze.<br />
             <br />
-            August 2022:<br />
+            Oktober 2022:
+            <br />
+            Der Wörterbuchbestand erreicht 70 000 Datensätze.
+            <br />
+            <br />
+            August 2022:
+            <br />
             Der Wörterbuchbestand erreicht 65 000 Datensätze. Die Beta-Version "Englisch-Ostfriesisch" erreicht 11 000 Datensätze.
             Im Projektstand wurden bisher 75% des Nachlasses von Dr. Marron Fort verarbeitet.
             Im Rahmen eines Unterprojektes wurden ca. 3000 Tier-, Pflanzen und Pilznamen eingefügt,
-            die zuvor gesammelt worden waren.<br />
+            die zuvor gesammelt worden waren.
             <br />
-            Juni 2022:<br />
-            Der Wörterbuchbestand erreicht 60 000 Datensätze. Die Beta-Version "Englisch-Ostfriesisch" erreicht 10 000 Datensätze.<br />
             <br />
-            April 2022:<br />
-            Die Beta-Version "Englisch-Ostfriesisch" enthält bereits 6300 Datensätze.<br />
+            Juni 2022:
             <br />
-            März 2022:<br />
+            Der Wörterbuchbestand erreicht 60 000 Datensätze. Die Beta-Version "Englisch-Ostfriesisch" erreicht 10 000 Datensätze.
+            <br />
+            <br />
+            April 2022:
+            <br />
+            Die Beta-Version "Englisch-Ostfriesisch" enthält bereits 6300 Datensätze.
+            <br />
+            <br />
+            März 2022:
+            <br />
             Es wurde eine Beta-Version "Englisch-Ostfriesisch" mit ca. 500 Testdatensätzen implementiert.
             Perspektive ist es die englischen Übersetzungen kontinuierlich nachzupflegen,
             sodass der Betabestand stetig wächst, bis alle Datensätze mit einer englischen Übersetzung ausgestattet wurden.
             Der Wörterbuchbestand erreicht 54 000 Datensätze,
-            während im gesamten Projektstand gleichzeitig bereits 20% des Nachlasses von Dr. Marron Fort verarbeitet wurden.<br />
+            während im gesamten Projektstand gleichzeitig bereits 20% des Nachlasses von Dr. Marron Fort verarbeitet wurden.
             <br />
-            Februar 2022:<br />
-            Der Wörterbuchbestand erreicht 51 000 Datensätze.<br />
             <br />
-            November 2021:<br />
-            Der Wörterbuchbestand erreicht 44 000 Datensätze. Die Tonbeispiele wurden auf ca. 100 Stück erweitert.<br />
+            Februar 2022:
             <br />
-            Oktober 2021:<br />
+            Der Wörterbuchbestand erreicht 51 000 Datensätze.
+            <br />
+            <br />
+            November 2021:
+            <br />
+            Der Wörterbuchbestand erreicht 44 000 Datensätze. Die Tonbeispiele wurden auf ca. 100 Stück erweitert.
+            <br />
+            <br />
+            Oktober 2021:
+            <br />
             Durch Sichtung und Digitalisierung des Nachlasses von Dr. Marron Fort stehen dem Projekt wertvolle Daten zu den ostfriesischen Dialekten zur Verfügung.
             Der Nachlass enthält ein unveröffentlichtes Werkstättenmaterial zu den Orten/Landstrichen
             Aurich, Baltrum, Borkum, Dornum, Esens, Großefehn, Juist, Krummhörn, Langeoog, Leer, Norden, Norderney, Oldersum, Remels,
             Rhauderfehn, Rheiderland, Spiekeroog, Südbrookmerland, Wangerooge und Westoverledingen, welches jeweils aus
             Textproben sowie einem Grundwortschatz-Fragebogen besteht, der ca. 3000 Vokabeln umfasst.
-            In Zukunft wird die Einarbeitung dieses Nachlassmaterials vermehrt ins Auge gefasst.<br />
+            In Zukunft wird die Einarbeitung dieses Nachlassmaterials vermehrt ins Auge gefasst.
             <br />
-            Juli 2021:<br />
-            Der Wörterbuchbestand erreicht 39 000 Datensätze. Für 20 Wörter wurden Tonaufnahmen hinzugefügt.<br />
             <br />
-            Juni 2021:<br />
+            Juli 2021:
+            <br />
+            Der Wörterbuchbestand erreicht 39 000 Datensätze. Für 20 Wörter wurden Tonaufnahmen hinzugefügt.
+            <br />
+            <br />
+            Juni 2021:
+            <br />
             Der 352 Seiten starke Online-Sprachkurs Ōstfräisk Lērbauk der im Rahmen des Projektes entstanden ist wird auf der Website eingebunden.
             Mit diesem Sprachkurs wird in verschiedenen 10 Lektionen, nach dem Vorbild des Sprachkurses "Friesischer Sprachkurs -Frysk"
-            von Wolter Jetten, die Ostfriesische Sprache vermittelt.<br />
+            von Wolter Jetten, die Ostfriesische Sprache vermittelt.
             <br />
-            Mai 2021:<br />
+            <br />
+            Mai 2021:
+            <br />
             Das Grammatikbuch Ōstfräisk Tóóllēr umfasst mittlerweile 222 A4-Seiten in denen Schrift, Lautlehre, Mundarten, Wortarten und Syntax erläutert werden.
             Zusätzlich enthalten sind produktive Übernahmemuster für Fremdwörter sowie eine umfangreiche Liste mit über 200 starken Verben.
-            Alles in allem angereichert mit einer Menge an Beispielen und Textproben.<br />
+            Alles in allem angereichert mit einer Menge an Beispielen und Textproben.
             <br />
-            Februar 2021:<br />
-            Der Wörterbuchbestand erreicht 30 000 Datensätze.<br />
             <br />
-            Dezember 2020:<br />
+            Februar 2021:
+            <br />
+            Der Wörterbuchbestand erreicht 30 000 Datensätze.
+            <br />
+            <br />
+            Dezember 2020:
+            <br />
             Das gesamte Design des Wörterbuches wird modernisiert.
-            Der Wörterbuchbestand enthält mittlerweile ca. 28 000 Datensätze.<br />
+            Der Wörterbuchbestand enthält mittlerweile ca. 28 000 Datensätze.
             <br />
-            September 2020:<br />
-            Der Wörterbuchbestand erreicht 20 000 Datensätze.<br />
             <br />
-            Mai 2020:<br />
+            September 2020:
+            <br />
+            Der Wörterbuchbestand erreicht 20 000 Datensätze.
+            <br />
+            <br />
+            Mai 2020:
+            <br />
             Der Wörterbuchbestand erreicht 10 000 Datensätze die sowohl einzelne Wörter als auch Phrasen und Beispiele enthalten.
-            Als Teil des Wörterbuches wurde ein Grammatikbuch im PDF-Format eingebunden das fortlaufend erweitert werden soll.<br />
+            Als Teil des Wörterbuches wurde ein Grammatikbuch im PDF-Format eingebunden das fortlaufend erweitert werden soll.
             <br />
-            Januar 2020:<br />
+            <br />
+            Januar 2020:
+            <br />
             Der Wortbestand umfasst jetzt das gesamte Wortmaterial von "Ōstfräisk Plat - Düütsk" sowie Wortmaterial aus eigenen Forschungsergebnissen.
             Ab jetzt werden verstärkt eigene Forschungen zur Sprache, vor allem in den Bereichen Wortgut und Grammatik, angestrengt.
-            Es werden primär die ostfriesischen Wörterbücher von Cirk Heinrich Stürenburg sowie Jan ten Doornkaat Koolman zur tiefergehenden Forschung herangezogen.<br />
+            Es werden primär die ostfriesischen Wörterbücher von Cirk Heinrich Stürenburg sowie Jan ten Doornkaat Koolman zur tiefergehenden Forschung herangezogen.
             <br />
-            Mai 2019:<br />
+            <br />
+            Mai 2019:
+            <br />
             Start des Onlinewörterbuches auf der Basis von "Holger Weigelt (2010): Grammatik- und Wörterbuchprojekt - Ōstfräisk Plat - Düütsk".
-            Erste Datensätze werden angelegt.<br />
+            Erste Datensätze werden angelegt.
+            <br />
             <br />
             <br />
             <br />
