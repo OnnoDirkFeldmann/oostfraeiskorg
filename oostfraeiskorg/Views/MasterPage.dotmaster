@@ -43,17 +43,23 @@
         {"@type":"ListItem",
         "position":4,
         "item":
+        {"@id":"https://oostfraeisk.org/onlinecourse",
+        "name":"Onlinekurs - Oostfräisk Woordenbauk - Ostfriesisches Wörterbuch"
+        }},
+        {"@type":"ListItem",
+        "position":5,
+        "item":
         {"@id":"https://oostfraeisk.org/downloads",
         "name":"Downloads - Oostfräisk Woordenbauk - Ostfriesisches Wörterbuch"
         }},
         {"@type":"ListItem",
-        "position":5,
+        "position":6,
         "item":
         {"@id":"https://oostfraeisk.org/keyboard",
         "name":"Tastatur - Oostfräisk Woordenbauk - Ostfriesisches Wörterbuch"
         }},
         {"@type":"ListItem",
-        "position":6,
+        "position":7,
         "item":
         {"@id":"https://oostfraeisk.org/about",
         "name":"Über - Oostfräisk Woordenbauk - Ostfriesisches Wörterbuch"
