@@ -74,12 +74,12 @@ public class MainViewModel : MasterPageViewModel
             {
                 case "de>frs":
                 case "frs>de":
-                    MasterPageTitle = $"Suche nach {W}({df}) - Ōstfräisk wōrdenbauk - Ostfriesisches Wörterbuch";
+                    MasterPageTitle = $"Suche nach {W}({df}) - Oostfräisk Woordenbauk - Ostfriesisches Wörterbuch";
                     MasterPageDescription = $"Übersetzung für {W}({df}) auf Ostfriesisch - Wörterbuch der ostfriesischen Sprache";
                     break;
                 case "en>frs":
                 case "frs>en":
-                    MasterPageTitle = $"Searched for {W}({df})) - Ōstfräisk wōrdenbauk - East Frisian Dictionary";
+                    MasterPageTitle = $"Searched for {W}({df})) - Oostfräisk Woordenbauk - East Frisian Dictionary";
                     MasterPageDescription = $"Translation for {W}({df})) into East Frisian - Dictionary of the East Frisian Language";
                     break;
             }

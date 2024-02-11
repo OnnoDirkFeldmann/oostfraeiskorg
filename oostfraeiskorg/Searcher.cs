@@ -41,7 +41,7 @@ public class Searcher
 
         if (displaySearchString.Equals(string.Empty))
         {
-            dictionaryEntries.Add(new DictionaryEntry("Jī mautent minst äin wōrd ingēven", "", "", needInputMessage, 0));
+            dictionaryEntries.Add(new DictionaryEntry("Jii mautent minst äin woord ingeeven", "", "", needInputMessage, 0));
             return dictionaryEntries.AsQueryable();
         }
 
