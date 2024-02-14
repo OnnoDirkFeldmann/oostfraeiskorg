@@ -6,49 +6,33 @@
         <h2>Ostfriesische Tastaturen</h2>
         <p>
             Um das Ostfriesische zu schreiben, muss man die Vokale mit Akut und Zirkumflex, sowie das das ğ tippen können.
-            Da das ğ auf der deutschen Tastaturbelegung nicht immer vorhanden ist gibt es installierbare ostfriesische Tastaturen.
-            Das Vorgehen dafür ist zumeist sehr einfach, jedoch geräteabhängig.<br />
+            Auf der deutschen Handytastatur lassen sich diese Zeichen problemlos tippen, während auf der deutschen Computertastatur das ğ fehlt.<br />
             <br />
         </p>
         <h3>Windows:</h3>
         <p>
             Für Windows haben wir ein eigenes Tastaturlayout entwickelt.
             Das Schreiben des Ostfriesischen ist dadurch sehr leicht.
-            Allgemeine Tastenkombination für Zeichen die im Deutschen
-            nicht vorkommen ist SHIFT + ^.<br />
             <br />
-            SHIFT + ^ dann G = Ğ
-            <br />
-            SHIFT + ^ dann g = ğ
+            ^ dann G = Ğ
+            ^ dann g = ğ
             <br />
             <br />
-            Die restlichen Zeichen lassen sich wie mit der deutschen
+            Die restlichen Zeichen lassen sich ohnehin mit der deutschen
             Tastatur schreiben:<br />
             <br />
-            ^ dann A = Â
-            <br />
-            ^ dann a = â
-            <br />
-            ^ dann E = Ê
-            <br />
-            ^ dann e = ê
-            <br />
-            ^ dann I = Î
-            <br />
-            ^ dann i = î
-            <br />
-            ^ dann O = Ô
-            <br />
-            ^ dann o = ô
-            <br />
-            ^ dann U = Û
-            <br />
-            ^ dann u = û
-            <br />
-            ´ dann O = Ó
-            <br />
-            ´ dann o = ó
-            <br />
+            ^ dann A = Â<br />
+            ^ dann a = â<br />
+            ^ dann E = Ê<br />
+            ^ dann e = ê<br />
+            ^ dann I = Î<br />
+            ^ dann i = î<br />
+            ^ dann O = Ô<br />
+            ^ dann o = ô<br />
+            ^ dann U = Û<br />
+            ^ dann u = û<br />
+            ´ dann O = Ó<br />
+            ´ dann o = ó<br />
             <br />
             Die Tastatur kann hier heruntergeladen werden:<br />
             <a href='https://download.oostfraeisk.org/taastetueur/frs.zip'>Download Tastatur Windows</a><br />
@@ -59,7 +43,7 @@
         </p>
         <h3>Mac OS:</h3>
         <p>
-            Unter Mac OS existiert noch kein eigenes Tastaturlayout.<br />
+            Unter Mac OS kann man durch das Gedrückthalten einer Taste eine Auswahl mit diakritischen Zeichen erhalten.<br />
             <br />
         </p>
         <h3>Linux:</h3>
