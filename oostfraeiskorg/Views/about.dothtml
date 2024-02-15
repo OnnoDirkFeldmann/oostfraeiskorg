@@ -51,22 +51,36 @@
         <p>
             <br />
             Januar 2024:<br />
-            Das Schriftsystem dieses Wörterbuches wurde mit dem Ziel bisher gesammeltes Feedback zu verarbeiten, überarbeitet.
-            Um das System zugänglicher und mit gängiger deutscher Handytastatur schreibbar zu machen, wurden folgende Anpassungen vorgenommen:
+            Im Jahre 2024 wurde das Schriftsystem noch einmal überarbeitet.
+            Ziel war es bisher gesammeltes Feedback zu verarbeiten, welches darauf drängte,
+            das System zugänglicher zu machen, sodass man es auch mit deutscher Tastatur schreiben kann.
+            So wurden folgende Anpassungen am Weigeltschen System vorgenommen.
             <ul>
                 <li>
-                    Das Makron für lange Vokale  wird durch Doppelschreibung ersetzt: pāsen wird z.B. paasen
+                    •	Das Macron für lange Vokale entfällt und wird,
+                    in Anlehnung an die Schreibweise von Marron Curtis Fort,
+                    durch Doppelschreibung ersetzt:
+                    pāsen wird zu paasen
                 </li>
                 <li>
-                    Um das morphologische Prinzip einzuhalten wird aus dem Zirkumflex für
-                    überlange Vokale, in Anlehnung an die Schreibweise von Marron C. Fort, eine
-                    Doppelschreibung mit einem Zirkumflex auf dem ersten Buchstaben: ûl wird z.B. ûul und hat dann den Plural uulen
+                    Um das morphologische Prinzip einzuhalten,
+                    wird aus dem Zirkumflex für überlange Vokale,
+                    in Anlehnung an Fort, eine Doppelschreibung mit einem Zirkumflex
+                    auf dem ersten Buchstaben: ûl wird zu ûul mit dem Plural uulen
                 </li>
                 <li>
-                    Die Ligatur -æ- wird durch -ä- ersetzt: dæær wird z.B. zu däär
+                    Die Ligatur æ entfällt zugunsten von ää,
+                    was der Schreibweise nach Fort entspricht:
+                    dæær wird zu däär
                 </li>
                 <li>
-                    Der Digraph -sğ- im Anlaut wird durch -sk- ersetzt, da -sk- für den Großteil der Sprecher im Schriftbild natürlicher wirkt: sğaul wird z.B. skaul
+                    Die Schreibweise sk im Anlaut wird als sk geschrieben,
+                    da dies für die meisten Sprecher natürlicher wirkt und gleichzeitig den
+                    Vorschlägen von Fort entspricht: sğaul wird zu skaul
+                </li>
+                <li>
+                    Das g mit Breve (ğ) wird in der Schrift weiterhin genutzt, 
+                    da es eine wichtige Funktion trägt und obendrein auf allen deutschen Handytastaturen verfügbar ist.
                 </li>
             </ul>
             <br />
