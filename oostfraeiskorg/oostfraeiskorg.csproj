@@ -92,10 +92,652 @@
 	  <Content Update="wwwroot\lib\js\popper.min.js">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </Content>
+	  <Content Update="wwwroot\onlinecourse\exercises\lesson1\lesson1exercise1.h5p">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\onlinecourse\exercises\lesson1\lesson1exercise1.html">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\onlinecourse\exercises\lesson1\lesson1exercise1en.h5p">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\onlinecourse\exercises\lesson1\lesson1exercise1en.html">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\onlinecourse\exercises\lesson1\lesson1exercise2.h5p">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\onlinecourse\exercises\lesson1\lesson1exercise2.html">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\onlinecourse\exercises\lesson1\lesson1exercise2en.h5p">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\onlinecourse\exercises\lesson1\lesson1exercise2en.html">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\onlinecourse\exercises\lesson1\lesson1exercise3.h5p">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\onlinecourse\exercises\lesson1\lesson1exercise3.html">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\onlinecourse\exercises\lesson1\lesson1exercise3en.h5p">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\onlinecourse\exercises\lesson1\lesson1exercise3en.html">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\onlinecourse\exercises\lesson1\lesson1exercise4.h5p">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\onlinecourse\exercises\lesson1\lesson1exercise4.html">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\onlinecourse\exercises\lesson1\lesson1exercise4en.h5p">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\onlinecourse\exercises\lesson1\lesson1exercise4en.html">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\onlinecourse\exercises\lesson1\lesson1exercise5.h5p">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\onlinecourse\exercises\lesson1\lesson1exercise5.html">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\onlinecourse\exercises\lesson1\lesson1exercise5en.h5p">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\onlinecourse\exercises\lesson1\lesson1exercise5en.html">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\onlinecourse\exercises\lesson1\lesson1exercise6.h5p">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\onlinecourse\exercises\lesson1\lesson1exercise6.html">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\onlinecourse\exercises\lesson1\lesson1exercise6en.h5p">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\onlinecourse\exercises\lesson1\lesson1exercise6en.html">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\onlinecourse\exercises\lesson2\lesson2exercise1.h5p">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\onlinecourse\exercises\lesson2\lesson2exercise1.html">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\onlinecourse\exercises\lesson2\lesson2exercise1en.h5p">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\onlinecourse\exercises\lesson2\lesson2exercise1en.html">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\onlinecourse\exercises\lesson2\lesson2exercise2.h5p">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\onlinecourse\exercises\lesson2\lesson2exercise2.html">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\onlinecourse\exercises\lesson2\lesson2exercise2en.h5p">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\onlinecourse\exercises\lesson2\lesson2exercise2en.html">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\onlinecourse\exercises\lesson2\lesson2exercise3.h5p">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\onlinecourse\exercises\lesson2\lesson2exercise3.html">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\onlinecourse\exercises\lesson2\lesson2exercise3en.h5p">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\onlinecourse\exercises\lesson2\lesson2exercise3en.html">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\onlinecourse\exercises\lesson2\lesson2exercise4.h5p">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\onlinecourse\exercises\lesson2\lesson2exercise4.html">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\onlinecourse\exercises\lesson2\lesson2exercise4en.h5p">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\onlinecourse\exercises\lesson2\lesson2exercise4en.html">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\onlinecourse\exercises\lesson2\lesson2exercise5.h5p">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\onlinecourse\exercises\lesson2\lesson2exercise5.html">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\onlinecourse\exercises\lesson2\lesson2exercise5en.h5p">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\onlinecourse\exercises\lesson2\lesson2exercise5en.html">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\onlinecourse\exercises\lesson3\lesson3exercise1.h5p">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\onlinecourse\exercises\lesson3\lesson3exercise1.html">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\onlinecourse\exercises\lesson3\lesson3exercise1en.h5p">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\onlinecourse\exercises\lesson3\lesson3exercise1en.html">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\onlinecourse\exercises\lesson3\lesson3exercise2.h5p">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\onlinecourse\exercises\lesson3\lesson3exercise2.html">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\onlinecourse\exercises\lesson3\lesson3exercise2en.h5p">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\onlinecourse\exercises\lesson3\lesson3exercise2en.html">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\onlinecourse\exercises\lesson3\lesson3exercise3.h5p">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\onlinecourse\exercises\lesson3\lesson3exercise3.html">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\onlinecourse\exercises\lesson3\lesson3exercise3en.h5p">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\onlinecourse\exercises\lesson3\lesson3exercise3en.html">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\onlinecourse\exercises\lesson3\lesson3exercise4.h5p">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\onlinecourse\exercises\lesson3\lesson3exercise4.html">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\onlinecourse\exercises\lesson3\lesson3exercise4en.h5p">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\onlinecourse\exercises\lesson3\lesson3exercise4en.html">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\onlinecourse\exercises\lesson3\lesson3exercise5.h5p">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\onlinecourse\exercises\lesson3\lesson3exercise5.html">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\onlinecourse\exercises\lesson3\lesson3exercise5en.h5p">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\onlinecourse\exercises\lesson3\lesson3exercise5en.html">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\onlinecourse\exercises\lesson3\lesson3exercise6.h5p">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\onlinecourse\exercises\lesson3\lesson3exercise6.html">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\onlinecourse\exercises\lesson3\lesson3exercise6en.h5p">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\onlinecourse\exercises\lesson3\lesson3exercise6en.html">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\onlinecourse\exercises\lesson4\lesson4exercise1.h5p">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\onlinecourse\exercises\lesson4\lesson4exercise1.html">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\onlinecourse\exercises\lesson4\lesson4exercise1en.h5p">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\onlinecourse\exercises\lesson4\lesson4exercise1en.html">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\onlinecourse\exercises\lesson4\lesson4exercise2.h5p">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\onlinecourse\exercises\lesson4\lesson4exercise2.html">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\onlinecourse\exercises\lesson4\lesson4exercise2en.h5p">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\onlinecourse\exercises\lesson4\lesson4exercise2en.html">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\onlinecourse\exercises\lesson4\lesson4exercise3.h5p">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\onlinecourse\exercises\lesson4\lesson4exercise3.html">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\onlinecourse\exercises\lesson4\lesson4exercise3en.h5p">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\onlinecourse\exercises\lesson4\lesson4exercise3en.html">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\onlinecourse\exercises\lesson4\lesson4exercise4-1.h5p">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\onlinecourse\exercises\lesson4\lesson4exercise4-1.html">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\onlinecourse\exercises\lesson4\lesson4exercise4-1en.h5p">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\onlinecourse\exercises\lesson4\lesson4exercise4-1en.html">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\onlinecourse\exercises\lesson4\lesson4exercise4-2.h5p">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\onlinecourse\exercises\lesson4\lesson4exercise4-2.html">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\onlinecourse\exercises\lesson4\lesson4exercise4-2en.h5p">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\onlinecourse\exercises\lesson4\lesson4exercise4-2en.html">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\onlinecourse\exercises\lesson4\lesson4exercise5.h5p">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\onlinecourse\exercises\lesson4\lesson4exercise5.html">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\onlinecourse\exercises\lesson4\lesson4exercise5en.h5p">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\onlinecourse\exercises\lesson4\lesson4exercise5en.html">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\onlinecourse\img\lesson1\keyboard.jpg">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\onlinecourse\img\lesson3\billerwuelk.jpg">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\onlinecourse\img\lesson4\adjective-overlength.jpg">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\onlinecourse\img\lesson4\adjective-overlengthen.jpg">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\onlinecourse\img\lesson4\anna.jpg">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\onlinecourse\img\vocalsystem\vocalsystem-categories.jpg">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\onlinecourse\img\vocalsystem\vocalsystem-categoriesen.jpg">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\onlinecourse\img\vocalsystem\vocalsystem.jpg">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\onlinecourse\img\vocalsystem\vocalsystemen.jpg">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
 	  <Content Update="wwwroot\oostfraeisk.org-le-ssl.conf">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </Content>
 	  <Content Update="wwwroot\oostfraeisk.org.conf">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\rec\%27t.mp3">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\rec\acht stük.mp3">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\rec\achttain.mp3">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\rec\Auerk.mp3">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\rec\besfóóer.mp3">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\rec\brör.mp3">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\rec\bâab.mp3">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\rec\bäep.mp3">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\rec\daartain.mp3">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\rec\daarterğ.mp3">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\rec\dat.mp3">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\rec\dii.mp3">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\rec\dissent.mp3">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\rec\disser.mp3">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\rec\dit.mp3">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\rec\drei stük.mp3">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\rec\dräj.mp3">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\rec\duu.mp3">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\rec\duusend.mp3">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\rec\däi häen lee %27n âaj.mp3">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\rec\däien.mp3">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\rec\däient.mp3">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\rec\elf stük.mp3">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\rec\elm.mp3">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\rec\Emden.mp3">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\rec\fent.mp3">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\rec\fiif stük.mp3">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\rec\fiiftain.mp3">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\rec\fiifterğ.mp3">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\rec\fiilapper.mp3">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\rec\fróóğ diin bâab.mp3">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\rec\fär stük.mp3">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\rec\färtain.mp3">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\rec\färterğ.mp3">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\rec\fäär.mp3">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\rec\fîiv.mp3">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\rec\fóóer.mp3">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\rec\fôon.mp3">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\rec\hum.mp3">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\rec\hunnert.mp3">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\rec\häi.mp3">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\rec\hööers.mp3">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\rec\höör.mp3">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\rec\ik.mp3">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\rec\jau.mp3">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\rec\jii.mp3">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\rec\jâaus.mp3">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\rec\kau.mp3">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\rec\laagen.mp3">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\rec\liegen.mp3">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\rec\läegen.mp3">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\rec\Läär.mp3">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\rec\man.mp3">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\rec\mauder.mp3">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\rec\mii.mp3">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\rec\miin.mp3">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\rec\miljoon.mp3">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\rec\mäem.mp3">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\rec\mäied.mp3">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\rec\mîin.mp3">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\rec\neegen stük.mp3">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\rec\neegen.mp3">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\rec\neegentain.mp3">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\rec\neegenterğ.mp3">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\rec\Nörden.mp3">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\rec\Nördernäj.mp3">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\rec\paasen.mp3">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\rec\poeğ.mp3">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\rec\puep.mp3">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\rec\ses stük.mp3">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\rec\sestain.mp3">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\rec\sesterğ.mp3">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\rec\siin.mp3">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\rec\skaul.mp3">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\rec\stróóet.mp3">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\rec\säegen.mp3">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\rec\säes.mp3">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\rec\säi.mp3">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\rec\sîin.mp3">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\rec\sööem.mp3">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\rec\sööm stük.mp3">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\rec\söömtain.mp3">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\rec\söömterğ.mp3">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\rec\sük.mp3">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\rec\sükker.mp3">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\rec\süster.mp3">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\rec\tachenterğ.mp3">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\rec\tain stük.mp3">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\rec\twalf stük.mp3">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\rec\twalm.mp3">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\rec\twei stük.mp3">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\rec\twinterğ.mp3">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\rec\twäj.mp3">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\rec\tâajn.mp3">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\rec\ues.mp3">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\rec\us.mp3">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\rec\wat.mp3">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\rec\wekker.mp3">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\rec\wel.mp3">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\rec\wicht.mp3">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\rec\wii.mp3">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\rec\Wiismaur.mp3">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\rec\Witmund.mp3">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\rec\woo.mp3">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\rec\woosoo.mp3">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\rec\wor.mp3">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\rec\Wäiner.mp3">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\rec\wóóter.mp3">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\rec\âacht.mp3">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\rec\äien.mp3">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\rec\äin stük.mp3">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\rec\äinuntwinterğ.mp3">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="wwwroot\rec\Äisens.mp3">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </Content>
 	  <Content Update="wwwroot\robots.txt">
