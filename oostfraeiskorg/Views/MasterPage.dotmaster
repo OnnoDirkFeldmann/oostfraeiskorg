@@ -108,7 +108,7 @@
                     <div class="collapse navbar-collapse" ID="navbarCollapse">
                         <div class="navbar-nav">
                             <div class="nav-item dropdown">
-                                <a class="nav-item nav-link dropdown-toggle" href="#" ID="navbarDropdownLernen" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Lernen</a>
+                                <a class="nav-item nav-link dropdown-toggle" href="#" ID="navbarDropdownLernen" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: white">Lernen</a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdownLernenDrop">
                                     <a class="dropdown-item" href="../grammar">Grammatik</a>
                                     <a class="dropdown-item" href="../coursebook">Kursbuch</a>
@@ -116,15 +116,15 @@
                                 </div>
                             </div>
                             <div class="nav-item dropdown">
-                                <a class="nav-item nav-link dropdown-toggle" href="#" ID="navbarDropdownSupport" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Unterstützen</a>
+                                <a class="nav-item nav-link dropdown-toggle" href="#" ID="navbarDropdownSupport" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: white">Unterstützen</a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdownSupportDrop">
                                     <a class="dropdown-item" href="../donateaword">Fehlendes Wort spenden</a>
                                     <a class="dropdown-item" href="https://www.paypal.com/donate/?hosted_button_id=KXTTQVB4ZM7ML">Geld spenden</a>
                                     <a class="dropdown-item" href="https://www.jungfraeiske-maeinskup.frl/">Jungfräiske Mäinskup</a>
                                 </div>
                             </div>
-                            <a href="../keyboard" class="nav-item nav-link">Tastatur</a>
-                            <a href="../downloads" class="nav-item nav-link">Downloads</a>
+                            <a href="../keyboard" class="nav-item nav-link" style="color: white">Tastatur</a>
+                            <a href="../downloads" class="nav-item nav-link" style="color: white">Downloads</a>
                         </div>
                     </div>
                 </div>
