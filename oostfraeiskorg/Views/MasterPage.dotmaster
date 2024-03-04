@@ -143,7 +143,7 @@
             </div>
             <div class="input-group">
                 <dot:Button ID="btn_keyboard" runat="server" class="btn btn-primary" Text="⌨" Click="{command: btn_keyboard_Click()}" />
-                <dot:TextBox ID="txt_search" class="form-control" Text="{value: SearchText}" placeholder="Gib ein deutsches Wort ein"></dot:TextBox>
+                <dot:TextBox ID="txt_search" class="form-control" Text="{value: SearchText}"></dot:TextBox>
                 <dot:Button ID="btn_search" runat="server" class="btn btn-secondary bg-primary" Click="{command: Search()}" Text="Suche" IsSubmitButton="true" />
                 <button type="button" class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" aria-label="Erweiterte Suche">
                     <span class="sr-only"></span>
