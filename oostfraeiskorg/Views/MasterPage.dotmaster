@@ -89,7 +89,7 @@
             <div class="row justify-content-center align-items-center">
                 <div class="col-sm d-flex justify-content-center">
                     <a href="../main" class="navbar-brand mr-3">
-                        <img src="~/img/logo.webp" width="100" height="100" />
+                        <img src="~/img/logo.webp" width="100" height="100" alt="Logo/Startseite"/>
                     </a>
                 </div>
                 <div class="col-sm d-flex justify-content-center">
@@ -138,21 +138,21 @@
             <div class="btn-group d-flex justify-content-center" role="group" aria-label="...">
 
                 <!---Sprachauswahl-->
-                <dot:ListBox Size="0" DataSource="{value: Languages}" SelectedValue="{value: SelectedLanguage}" class="dropdown btn btn-secondary bg-primary flex-grow-1" aria-label="Sprachauswahl"/>
+                <dot:ListBox Size="0" DataSource="{value: Languages}" SelectedValue="{value: SelectedLanguage}" class="dropdown btn btn-secondary bg-primary flex-grow-1" aria-label="Sprachauswahl" SelectionChanged="{command: LanguageSelectionChanged()}"/>
 
             </div>
             <div class="input-group">
                 <dot:Button ID="btn_keyboard" runat="server" class="btn btn-primary" Text="⌨" Click="{command: btn_keyboard_Click()}" />
-                <dot:TextBox ID="txt_search" class="form-control" Text="{value: SearchText}"></dot:TextBox>
-                <dot:Button ID="btn_search" runat="server" class="btn btn-secondary bg-primary" Click="{command: Search()}" Text="Suche" IsSubmitButton="true" />
-                <button type="button" class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" aria-label="Erweiterte Suche">
+                <dot:TextBox ID="txt_search" class="form-control" Text="{value: SearchText}" placeholder="{value: InputPlaceHolder}"></dot:TextBox>
+                <dot:Button ID="btn_search" runat="server" class="btn btn-secondary bg-primary" Click="{command: Search()}" Text="{value: SearchButtonText}" IsSubmitButton="true" />
+                <button type="button" class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" aria-label="{value: ExtendedSearchButtonText}">
                     <span class="sr-only"></span>
                 </button>
                 <div class="dropdown-menu">
-                    <dot:Button ID="btn_like" runat="server" class="dropdown-item" Click="{command: SearchLike()}" Text="Unscharfe Suche" />
-                    <dot:Button ID="btn_exact" runat="server" class="dropdown-item" Click="{command: SearchBegins()}" Text="Beginnt mit" />
-                    <dot:Button ID="btn_exact" runat="server" class="dropdown-item" Click="{command: SearchEnds()}" Text="Endet mit" />
-                    <dot:Button ID="btn_exact" runat="server" class="dropdown-item" Click="{command: SearchExact()}" Text="Exakte Suche" />
+                    <dot:Button ID="btn_like" runat="server" class="dropdown-item" Click="{command: SearchLike()}" Text="{value: SearchLikeButtonText}" />
+                    <dot:Button ID="btn_exact" runat="server" class="dropdown-item" Click="{command: SearchBegins()}" Text="{value: SearchBeginsButtonText}" />
+                    <dot:Button ID="btn_exact" runat="server" class="dropdown-item" Click="{command: SearchEnds()}" Text="{value: SearchEndsButtonText}" />
+                    <dot:Button ID="btn_exact" runat="server" class="dropdown-item" Click="{command: SearchExact()}" Text="{value: SearchExactButtonText}" />
                 </div>
             </div>
             <div class="accordion" ID="symbolparent">
