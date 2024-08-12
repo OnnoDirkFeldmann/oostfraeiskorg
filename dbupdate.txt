@@ -1,0 +1,13 @@
+Delete FROM WB;
+Drop Table WBFTS;
+
+CREATE VIRTUAL TABLE WBFTS USING fts4(ID, Ostfriesisch, Deutsch, Artikel, Wortart, Plural, Genus, Komparation, Konjugation, Nebenformen, Standardform, Englisch, tokenize=unicode61);
+
+INSERT INTO WBFTS (ID, Ostfriesisch, Deutsch, Artikel, Wortart, Plural, Genus, Komparation, Konjugation, Nebenformen, Standardform, Englisch)
+SELECT ID, Ostfriesisch, Deutsch, Artikel, Wortart, Plural, Genus, Komparation, Konjugation, Nebenformen, Standardform, Englisch FROM WB;
+
+SELECT * FROM WBFTS;
+
+SELECT * FROM WBFTS WHERE Deutsch MATCH 'test';
+
+SELECT * FROM WB WHERE Ostfriesisch Like 'test'
