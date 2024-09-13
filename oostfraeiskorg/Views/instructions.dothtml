@@ -84,23 +84,23 @@
         <br />
         -Eine stark abweichende Nebenform ist alleinstehend in den Suchergebnissen aufgeführt und verweißt auf die standardostfriesische Form.
         Der Kommentar des Eintrags enthält die geografische Verbreitung. Ist keine Verbreitung angegeben, so handelt es sich um eine freie Variante die im ganzen Sprachgebiet genutzt wird.<br />
-        Beispiel: besmóóer => bäep.<br />
+        Beispiel: besmauer => bäep.<br />
         <br />
         -Synonyme Bedeutungen eines Datensatzes sind mit einem Kommata, verschiedene Bedeutungen mit einem Semikolon voneinander getrennt.<br />
         Beispiel: höeğt - Höhe; Anhöhe, Erhebung, Hügel.<br />
         Aus diesem Grund wurde auf sämtliche Kommasetzungen in den Beispielen verzichtet.<br />
         <br />
-        -Sind zwei Wörter im Schriftbild homonyn, aber in Wortart, Genus, Plural, Flexion oder Etymologie treten, treten sie als zwei Datensätze auf.<br />
+        -Sind zwei Wörter im Schriftbild homonyn, aber unterscheiden sich in Wortart, Genus, Plural, Flexion oder Etymologie, erscheinen sie als getrennte Datensätze.<br />
         Beispiel: wêer (Wetter) und wêer (Hammel) unterscheiden sich im Genus und in der Etymologie und sind daher in zwei separaten Datensätzen gelistet.<br />
         <br />
         -In den Suchergebnissen können über einen Klick auf den Button "Details", Zusatzinformationen zum jeweiligen Datensatz ausgegeben werden.<br />
-        Diese enthalten zum Beispiel Angaben zur Flexion, Etymologie oder Volkstümlichem eines Wortes.<br />
+        Diese enthalten zum Beispiel Angaben zur Flexion, die Etymologie oder Kommentare zu einem Wort.<br />
         <br />
         <h5>Der Details-Dialog:</h5>
         -Der Details-Dialog ist eine Sammlung von Zusatzinformationen.<br />
         <br />
         -Die Konjugationsformen der Verben enthalten, sofern zwei Formen möglich sind als erstes die westliche Form/Vollform und als zweites die östliche Form/Kurzform.<br />
-        Beispiel: proot'de/prôt (Vollform/Kurzform) oder frat/freet (westliches Ostfriesland/östliches Ostfriesland).<br />
+        Beispiel: frat/freet (westliches Ostfriesland/östliches Ostfriesland) oder proot'de/prôot (Vollform/Kurzform).<br />
     </font>
     <br />
     <br />
