@@ -160,7 +160,7 @@ public class Searcher
 
         if (eastFrisianStrings.Count == 0)
         {
-            var dictionaryEntry = new DictionaryEntry("D'r bünt ğiin dóóten föör d' söyek '" + displaySearchString + "' funnen worden", "", "", notFoundMessage, 0);
+            var dictionaryEntry = new DictionaryEntry("D'r bünt kiin dóóten föör d' söyek '" + displaySearchString + "' funnen worden", "", "", notFoundMessage, 0);
             dictionaryEntries.Add(dictionaryEntry);
         }
 
