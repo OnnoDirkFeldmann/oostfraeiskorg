@@ -8,7 +8,7 @@ public class DsgvoViewModel : MasterPageViewModel
     {
         MasterPageTitle = "Datenschutzerklärung - Oostfräisk Woordenbauk - Ostfriesisches Wörterbuch";
         MasterPageDescription = "Datenschutz - Wörterbuch der ostfriesischen Sprache - Wörter aus dem Ostfriesischen oder ins Ostfriesische übersetzen. Die Sprache der Ostfriesen mit dem Wörterbuch für das Ostfriesische Platt als Standardostfriesisch lernen.";
-        MasterPageKeywords = ", Datenschutzerklärung, dsgvo, jungfräiske mäinskup, jfm, ostfriesische Sprache, ostfriesisch, oostfräisk";
+        MasterPageKeywords = ", Datenschutzerklärung, dsgvo, ostfriesische Sprache, ostfriesisch, oostfräisk";
         return base.Init();
     }
 }
