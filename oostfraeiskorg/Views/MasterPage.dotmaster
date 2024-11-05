@@ -12,7 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="{value: MasterPageDescription}" />
     <meta name="keywords" content="{value: MasterPageKeywords}" />
-    <meta name="author" content="Onno Dirk Feldmann in Kooperation mit der Jungfräiske Mäinskup e.V." />
+    <meta name="author" content="Onno Dirk Feldmann, Oostfräisk Instituut, Jungfräiske Mäinskup e.V." />
     <meta charset="utf-8" />
     <title>{{value: MasterPageTitle}}</title>
 
@@ -120,6 +120,7 @@
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdownSupportDrop">
                                     <a class="dropdown-item" href="../donateaword">Fehlendes Wort spenden</a>
                                     <a class="dropdown-item" href="https://www.paypal.com/donate/?hosted_button_id=KXTTQVB4ZM7ML">Geld spenden</a>
+                                    <a class="dropdown-item" href="https://www.oostfraeisk-instituut.org/">Oostfräisk Instituut</a>
                                     <a class="dropdown-item" href="https://www.jungfraeiske-maeinskup.frl/">Jungfräiske Mäinskup</a>
                                 </div>
                             </div>
