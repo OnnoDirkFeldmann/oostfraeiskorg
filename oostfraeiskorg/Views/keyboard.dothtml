@@ -43,7 +43,28 @@
         </p>
         <h3>Mac OS:</h3>
         <p>
-            Unter Mac OS kann man durch das Gedrückthalten einer Taste eine Auswahl mit diakritischen Zeichen erhalten.<br />
+            Unter Mac OS kann über das Tastaturlayout "ABC - Extended" auf die Zeichen zugegriffen werden.<br />
+            <br />
+            option-key dann B = Ğ
+            option-key dann b = ğ
+            <br />
+            <br />
+            Die restlichen Zeichen lassen sich ohnehin mit der deutschen
+            Tastatur schreiben:<br />
+            <br />
+            ^ dann A = Â<br />
+            ^ dann a = â<br />
+            ^ dann E = Ê<br />
+            ^ dann e = ê<br />
+            ^ dann I = Î<br />
+            ^ dann i = î<br />
+            ^ dann O = Ô<br />
+            ^ dann o = ô<br />
+            ^ dann U = Û<br />
+            ^ dann u = û<br />
+            ´ dann O = Ó<br />
+            ´ dann o = ó<br />
+            <br />
             <br />
         </p>
         <h3>Linux:</h3>
@@ -53,8 +74,6 @@
             Unter Ubuntu muss hierfür Tweaks heruntergeladen werden:<br />
             sudo apt install gnome-tweak-tool<br />
             In der Anwendung kann der der Compose-Key dann aktiviert werden.<br />
-            <br />
-            Folgende Kombinationen ergeben die jeweiligen ostfriesischen Zeichen.<br />
             <br />
             Compose + b dann G = Ğ<br />
             Compose + b dann g = ğ<br />
@@ -77,18 +96,15 @@
         </p>
         <h3>Android:</h3>
         <p>
-            Für Android wurde im Rahmen eines Projektes eine interfriesische Tastatur mit dem Namen
+            Die meisten Android-Tastaturen unterstützen bereits alle Ostfriesischen Schriftzeichen.
+            Im Rahmen des Projektes wurde allerdings auch eine interfriesische Tastatur mit dem Namen
             "Interfrisian Keyboard" entwickelt, die neben diversen friesischen Sprachen auch das Ostfriesische (Oostfräisk) enthält.
+            Vorteil dieser App sind automatische ostfriesische Wortvorschläge.
             Die App ist über den Google PlayStore herunterladbar:<br />
             <a href="https://play.google.com/store/apps/details?id=com.frisian.keyboard" target="blank" rel="external">Interfrisian Keyboard im PlayStore</a><br />
             <br />
             <h3>Apple IOS:</h3>
-            Unter IOS existiert noch kein eigenes Tastaturlayout.
-            Durch die Installation der App Swift Key mit den Sprachen
-            Norwegisch, Deutsch und Maori stehen jedoch alle Zeichen zur
-            Verfügung und das Ostfriesische kann getippt werden.
-            Die jeweiligen Zeichen sind durch langes Drücken auf
-            ein Zeichen zu erreichen.<br />
+            Die meisten IOS-Tastaturen unterstützen bereits alle Ostfriesischen Schriftzeichen.<br />
             <br />
             <br />
             <br />
