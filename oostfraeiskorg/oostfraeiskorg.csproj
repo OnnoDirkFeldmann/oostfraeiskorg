@@ -428,7 +428,7 @@
 	  <Content Update="wwwroot\rec\daartain.mp3">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </Content>
-	  <Content Update="wwwroot\rec\daarterğ.mp3">
+	  <Content Update="wwwroot\rec\daartiğ.mp3">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </Content>
 	  <Content Update="wwwroot\rec\dat.mp3">
@@ -485,7 +485,7 @@
 	  <Content Update="wwwroot\rec\fiiftain.mp3">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </Content>
-	  <Content Update="wwwroot\rec\fiifterğ.mp3">
+	  <Content Update="wwwroot\rec\fiiftiğ.mp3">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </Content>
 	  <Content Update="wwwroot\rec\fiilapper.mp3">
@@ -500,7 +500,7 @@
 	  <Content Update="wwwroot\rec\färtain.mp3">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </Content>
-	  <Content Update="wwwroot\rec\färterğ.mp3">
+	  <Content Update="wwwroot\rec\färtiğ.mp3">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </Content>
 	  <Content Update="wwwroot\rec\fäär.mp3">
@@ -590,7 +590,7 @@
 	  <Content Update="wwwroot\rec\neegentain.mp3">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </Content>
-	  <Content Update="wwwroot\rec\neegenterğ.mp3">
+	  <Content Update="wwwroot\rec\neegentiğ.mp3">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </Content>
 	  <Content Update="wwwroot\rec\Nörden.mp3">
@@ -614,7 +614,7 @@
 	  <Content Update="wwwroot\rec\sestain.mp3">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </Content>
-	  <Content Update="wwwroot\rec\sesterğ.mp3">
+	  <Content Update="wwwroot\rec\sestiğ.mp3">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </Content>
 	  <Content Update="wwwroot\rec\siin.mp3">
@@ -647,7 +647,7 @@
 	  <Content Update="wwwroot\rec\söömtain.mp3">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </Content>
-	  <Content Update="wwwroot\rec\söömterğ.mp3">
+	  <Content Update="wwwroot\rec\söömtiğ.mp3">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </Content>
 	  <Content Update="wwwroot\rec\sük.mp3">
@@ -659,7 +659,7 @@
 	  <Content Update="wwwroot\rec\süster.mp3">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </Content>
-	  <Content Update="wwwroot\rec\tachenterğ.mp3">
+	  <Content Update="wwwroot\rec\tachentiğ.mp3">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </Content>
 	  <Content Update="wwwroot\rec\tain stük.mp3">
@@ -674,7 +674,7 @@
 	  <Content Update="wwwroot\rec\twei stük.mp3">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </Content>
-	  <Content Update="wwwroot\rec\twinterğ.mp3">
+	  <Content Update="wwwroot\rec\twintiğ.mp3">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </Content>
 	  <Content Update="wwwroot\rec\twäj.mp3">
@@ -734,7 +734,7 @@
 	  <Content Update="wwwroot\rec\äin stük.mp3">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </Content>
-	  <Content Update="wwwroot\rec\äinuntwinterğ.mp3">
+	  <Content Update="wwwroot\rec\äinuntwintiğ.mp3">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </Content>
 	  <Content Update="wwwroot\rec\Äisens.mp3">
