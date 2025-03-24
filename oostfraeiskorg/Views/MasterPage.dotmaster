@@ -31,14 +31,14 @@
         {"@type":"ListItem",
         "position":2,
         "item":
-        {"@id":"https://oostfraeisk.org/grammar",
-        "name":"Grammatik - Oostfräisk Woordenbauk - Ostfriesisches Wörterbuch"
+        {"@id":"https://oostfraeisk.org/translator",
+        "name":"Übersetzer - Oostfräisk Woordenbauk - Ostfriesisches Wörterbuch"
         }},
         {"@type":"ListItem",
         "position":3,
         "item":
-        {"@id":"https://oostfraeisk.org/translate",
-        "name":"Übersetzer - Oostfräisk Woordenbauk - Ostfriesisches Wörterbuch"
+        {"@id":"https://oostfraeisk.org/grammar",
+        "name":"Grammatik - Oostfräisk Woordenbauk - Ostfriesisches Wörterbuch"
         }},
         {"@type":"ListItem",
         "position":4,
@@ -95,7 +95,7 @@
             <div class="row justify-content-center align-items-center">
                 <div class="col-sm d-flex justify-content-center">
                     <a href="../main" class="navbar-brand mr-3">
-                        <img src="~/img/logo.webp" width="100" height="100" alt="Logo/Startseite"/>
+                        <img src="~/img/logo.webp" width="100" height="100" alt="Logo/Startseite" />
                     </a>
                 </div>
                 <div class="col-sm d-flex justify-content-center">
@@ -113,6 +113,7 @@
                 <div class="col-sm d-flex justify-content-center">
                     <div class="collapse navbar-collapse" ID="navbarCollapse">
                         <div class="navbar-nav">
+                            <a href="../translator" class="nav-item nav-link" style="color: white">Übersetzer</a>
                             <div class="nav-item dropdown">
                                 <a class="nav-item nav-link dropdown-toggle" href="#" ID="navbarDropdownLernen" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: white">Lernen</a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdownLernenDrop">
@@ -121,7 +122,6 @@
                                     <a class="dropdown-item" href="../onlinecourse">Online-Kurs</a>
                                 </div>
                             </div>
-                            <a href="../translator" class="nav-item nav-link" style="color: white">Übersetzer</a>
                             <div class="nav-item dropdown">
                                 <a class="nav-item nav-link dropdown-toggle" href="#" ID="navbarDropdownSupport" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: white">Unterstützen</a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdownSupportDrop">
@@ -146,7 +146,7 @@
             <div class="btn-group d-flex justify-content-center" role="group" aria-label="...">
 
                 <!---Sprachauswahl-->
-                <dot:ListBox Size="0" DataSource="{value: Languages}" SelectedValue="{value: SelectedLanguage}" class="dropdown btn btn-secondary bg-primary flex-grow-1" aria-label="Sprachauswahl" SelectionChanged="{command: LanguageSelectionChanged()}"/>
+                <dot:ListBox Size="0" DataSource="{value: Languages}" SelectedValue="{value: SelectedLanguage}" class="dropdown btn btn-secondary bg-primary flex-grow-1" aria-label="Sprachauswahl" SelectionChanged="{command: LanguageSelectionChanged()}" />
 
             </div>
             <div class="input-group">
