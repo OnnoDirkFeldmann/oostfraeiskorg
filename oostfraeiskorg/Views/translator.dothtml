@@ -19,7 +19,7 @@
             <!-- Input box for German text -->
             <div class="col-5 border p-3">
                 <h5>Deutsch:</h5>
-                <dot:TextBox Text="{value: GermanText}" class="form-control input-box" Type="MultiLine" style="height: 300px; width: 100%; resize: none;" placeholder="Hier deutschen Text eingeben" />
+                <dot:TextBox Text="{value: GermanText}" class="form-control input-box" Type="MultiLine" style="height: 300px; width: 100%; resize: none;" placeholder="Hier deutschen Text eingeben" maxlength="500" />
             </div>
 
             <div class="p-3">
