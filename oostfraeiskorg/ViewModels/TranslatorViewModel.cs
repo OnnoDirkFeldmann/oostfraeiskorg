@@ -15,7 +15,8 @@ public class TranslatorViewModel : MasterPageViewModel
 {
     private const int MaxTextLength = 500;
     private const int DelayMilliseconds = 500;
-    private static readonly string ApiUrl = "https://vanmoders114-east-frisian-translator.hf.space/gradio_api/call/predict";
+    //private static readonly string ApiUrl = "https://vanmoders114-east-frisian-translator.hf.space/gradio_api/call/predict";
+    private static readonly string ApiUrl = "http://127.0.0.1:7860/gradio_api/call/predict";
 
     public string GermanText { get; set; } = "";
     public string EastFrisianText { get; set; } = "";
