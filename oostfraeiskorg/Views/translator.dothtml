@@ -16,20 +16,20 @@
 
     <div class="">
         <div class="row justify-content-center align-items-center">
-            <!-- Input box for German text -->
+            <!-- input up Düütsk -->
             <div class="col-5 border p-3">
                 <h5>Deutsch:</h5>
-                <dot:TextBox Text="{value: GermanText}" class="form-control input-box" Type="MultiLine" style="height: 300px; width: 100%; resize: none;" placeholder="Hier deutschen Text eingeben" maxlength="500" />
+                <dot:TextBox Text="{value: GermanText}" class="form-control input-box" Type="MultiLine" style="height: 300px; width: 100%; resize: none;" placeholder="Hier einen deutschen Text eingeben." maxlength="500" />
             </div>
 
             <div class="p-3">
                 <dot:Button Text="Übersetze" Click="{staticCommand: _js.Invoke("StartTranslation")}" class="btn btn-primary search-button" />
             </div>
 
-            <!-- Translation output -->
+            <!-- aautput up Oostfräisk -->
             <div class="col-5 border p-3">
                 <h5>Ostfriesisch:</h5>
-                <dot:TextBox Text="{value: EastFrisianText}" class="form-control input-box" id="translation" Type="MultiLine" Enabled="false" style="height: 300px; width: 100%; resize: none;" placeholder="Hir staajt däi fertóólt oostfräisk tekst" />
+                <dot:TextBox Text="{value: EastFrisianText}" class="form-control input-box" id="translation" Type="MultiLine" Enabled="false" style="height: 300px; width: 100%; resize: none;" placeholder="Hir staajt däi ooverset't oostfräisk tekst." />
             </div>
         </div>
     </div>
