@@ -37,29 +37,35 @@
         {"@type":"ListItem",
         "position":3,
         "item":
+        {"@id":"https://oostfraeisk.org/translate",
+        "name":"Übersetzer - Oostfräisk Woordenbauk - Ostfriesisches Wörterbuch"
+        }},
+        {"@type":"ListItem",
+        "position":4,
+        "item":
         {"@id":"https://oostfraeisk.org/leerbauk",
         "name":"Kursbuch - Oostfräisk Woordenbauk - Ostfriesisches Wörterbuch"
         }},
         {"@type":"ListItem",
-        "position":4,
+        "position":5,
         "item":
         {"@id":"https://oostfraeisk.org/onlinecourse",
         "name":"Onlinekurs - Oostfräisk Woordenbauk - Ostfriesisches Wörterbuch"
         }},
         {"@type":"ListItem",
-        "position":5,
+        "position":6,
         "item":
         {"@id":"https://oostfraeisk.org/downloads",
         "name":"Downloads - Oostfräisk Woordenbauk - Ostfriesisches Wörterbuch"
         }},
         {"@type":"ListItem",
-        "position":6,
+        "position":7,
         "item":
         {"@id":"https://oostfraeisk.org/keyboard",
         "name":"Tastatur - Oostfräisk Woordenbauk - Ostfriesisches Wörterbuch"
         }},
         {"@type":"ListItem",
-        "position":7,
+        "position":8,
         "item":
         {"@id":"https://oostfraeisk.org/about",
         "name":"Über - Oostfräisk Woordenbauk - Ostfriesisches Wörterbuch"
@@ -115,6 +121,7 @@
                                     <a class="dropdown-item" href="../onlinecourse">Online-Kurs</a>
                                 </div>
                             </div>
+                            <a href="../translator" class="nav-item nav-link" style="color: white">Übersetzer</a>
                             <div class="nav-item dropdown">
                                 <a class="nav-item nav-link dropdown-toggle" href="#" ID="navbarDropdownSupport" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: white">Unterstützen</a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdownSupportDrop">

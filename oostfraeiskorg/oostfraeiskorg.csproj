@@ -83,6 +83,9 @@
 	  <Content Update="wwwroot\lib\js\custom.js">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </Content>
+	  <Content Update="wwwroot\lib\js\translator.js">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
 	  <Content Update="wwwroot\lib\js\dictionaryentry.js">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </Content>
