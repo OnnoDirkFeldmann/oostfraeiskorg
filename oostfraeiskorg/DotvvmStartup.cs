@@ -47,6 +47,10 @@ public class DotvvmStartup : IDotvvmStartup, IDotvvmServiceConfigurator
         config.RouteTable.Add("grammar.aspx", "grammar.aspx", "Views/grammar.dothtml");
         config.RouteTable.Add("grammar.dothtml", "grammar.dothtml", "Views/grammar.dothtml");
 
+        config.RouteTable.Add("translator", "translator", "Views/translator.dothtml");
+        config.RouteTable.Add("translator.aspx", "translator.aspx", "Views/translator.dothtml");
+        config.RouteTable.Add("translator.dothtml", "translator.dothtml", "Views/translator.dothtml");
+
         config.RouteTable.Add("keyboard", "keyboard", "Views/keyboard.dothtml");
         config.RouteTable.Add("keyboard.aspx", "keyboard.aspx", "Views/keyboard.dothtml");
         config.RouteTable.Add("keyboard.dothtml", "keyboard.dothtml", "Views/keyboard.dothtml");
@@ -111,7 +115,7 @@ public class DotvvmStartup : IDotvvmStartup, IDotvvmServiceConfigurator
         config.RouteTable.Add("vocalsystemen.aspx", "vocalsystemen.aspx", "Views/lessons/vocalsystemen.dothtml");
         config.RouteTable.Add("vocalsystemen.dothtml", "vocalsystemen.dothtml", "Views/lessons/vocalsystemen.dothtml");
 
-        config.RouteTable.AutoDiscoverRoutes(new DefaultRouteStrategy(config));    
+        config.RouteTable.AutoDiscoverRoutes(new DefaultRouteStrategy(config));
     }
 
     private void ConfigureControls(DotvvmConfiguration config, string applicationPath)
@@ -147,7 +151,7 @@ public class DotvvmStartup : IDotvvmStartup, IDotvvmServiceConfigurator
         config.Resources.Register("bootstrap", new ScriptResource
         {
             Location = new UrlResourceLocation("~/lib/js/bootstrap.min.js"),
-            Dependencies = new[] { "bootstrap-css" , "jquery", "popper" }
+            Dependencies = new[] { "bootstrap-css", "jquery", "popper" }
         });
         config.Resources.Register("jquery", new ScriptResource
         {
@@ -172,11 +176,14 @@ public class DotvvmStartup : IDotvvmStartup, IDotvvmServiceConfigurator
         config.Resources.Register("dictionaryentry", new ScriptModuleResource(new UrlResourceLocation("~/lib/js/dictionaryentry.js"))
         {
         });
+        config.Resources.Register("translator", new ScriptModuleResource(new UrlResourceLocation("~/lib/js/translator.js"))
+        {
+        });
     }
 
-		public void ConfigureServices(IDotvvmServiceCollection options)
+    public void ConfigureServices(IDotvvmServiceCollection options)
     {
         options.AddDefaultTempStorages("temp");
         options.AddHotReload();
-		}
+    }
 }
