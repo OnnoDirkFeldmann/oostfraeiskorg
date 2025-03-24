@@ -1,4 +1,5 @@
-﻿using Microsoft.Data.Sqlite;
+﻿using DotVVM.Framework.Controls;
+using Microsoft.Data.Sqlite;
 
 namespace oostfraeiskorg;
 
@@ -9,47 +10,56 @@ public class SearchStrings
         if (fullTextSearch == "J")
         {
             searchString = "\'" + searchString + "\'";
-            sqlCommand.CommandText = "SELECT * FROM WBFTS " +
+            /*sqlCommand.CommandText = "SELECT * FROM WBFTS " +
                 "WHERE Deutsch != '-' " +
                 "AND Deutsch MATCH @searchstrlower " +
                 "UNION SELECT * FROM WBFTS " +
                 "WHERE Deutsch != '-' " +
                 "AND Deutsch MATCH @searchstrupper " +
-                "ORDER BY Ostfriesisch ASC";
+                "ORDER BY Ostfriesisch ASC";*/
+
+            sqlCommand.CommandText = "SELECT *, CASE WHEN Wortart = 'Phrase' THEN 1 ELSE 0 END AS PhraseOrder FROM WBFTS " +
+                "WHERE Deutsch != '-' " +
+                "AND Deutsch MATCH @searchstrlower " +
+                "UNION SELECT *, CASE WHEN Wortart = 'Phrase' THEN 1 ELSE 0 END AS PhraseOrder FROM WBFTS " +
+                "WHERE Deutsch != '-' " +
+                "AND Deutsch MATCH @searchstrupper " +
+                "ORDER BY PhraseOrder ASC, Ostfriesisch ASC";
+
         }
         if (fullTextSearch == "N")
         {
             searchString = "%" + searchString + "%";
-            sqlCommand.CommandText = "SELECT * FROM WB " +
+            sqlCommand.CommandText = "SELECT *, CASE WHEN Wortart = 'Phrase' THEN 1 ELSE 0 END AS PhraseOrder FROM WB " +
                 "WHERE Deutsch != '-' " +
                 "AND (Deutsch LIKE @searchstrlower " +
                 "OR Deutsch LIKE @searchstrupper) " +
-                "ORDER BY Ostfriesisch ASC";
+                "ORDER BY PhraseOrder ASC, Ostfriesisch ASC";
         }
         if (fullTextSearch == "X")
         {
-            sqlCommand.CommandText = "SELECT * FROM WB " +
+            sqlCommand.CommandText = "SELECT *, CASE WHEN Wortart = 'Phrase' THEN 1 ELSE 0 END AS PhraseOrder FROM WB " +
                 "WHERE Deutsch != '-' " +
                 "AND Deutsch = @searchstr " +
-                "ORDER BY Ostfriesisch ASC";
+                "ORDER BY PhraseOrder ASC, Ostfriesisch ASC";
         }
         if (fullTextSearch == "B")
         {
             searchString = searchString + "%";
-            sqlCommand.CommandText = "SELECT * FROM WB " +
+            sqlCommand.CommandText = "SELECT *, CASE WHEN Wortart = 'Phrase' THEN 1 ELSE 0 END AS PhraseOrder FROM WB " +
                 "WHERE Deutsch != '-' " +
                 "AND (Deutsch LIKE @searchstrlower " +
                 "OR Deutsch LIKE @searchstrupper) " +
-                "ORDER BY Ostfriesisch ASC";
+                "ORDER BY PhraseOrder ASC, Ostfriesisch ASC";
         }
         if (fullTextSearch == "E")
         {
             searchString = "%" + searchString;
-            sqlCommand.CommandText = "SELECT * FROM WB " +
+            sqlCommand.CommandText = "SELECT *, CASE WHEN Wortart = 'Phrase' THEN 1 ELSE 0 END AS PhraseOrder FROM WB " +
                 "WHERE Deutsch != '-' " +
                 "AND (Deutsch LIKE @searchstrlower " +
                 "OR Deutsch LIKE @searchstrupper) " +
-                "ORDER BY Ostfriesisch ASC";
+                "ORDER BY PhraseOrder ASC, Ostfriesisch ASC";
         }
     }
     public static void FrsDe(string fullTextSearch, ref string searchString, ref SqliteCommand sqlCommand)
@@ -127,47 +137,47 @@ public class SearchStrings
         if (fullTextSearch == "J")
         {
             searchString = "\'" + searchString + "\'";
-            sqlCommand.CommandText = "SELECT * FROM WBFTS " +
+            sqlCommand.CommandText = "SELECT *, CASE WHEN Wortart = 'Phrase' THEN 1 ELSE 0 END AS PhraseOrder FROM WBFTS " +
                 "WHERE Englisch != '-' " +
                 "AND Englisch MATCH @searchstrlower " +
-                "UNION SELECT * FROM WBFTS " +
+                "UNION SELECT *, CASE WHEN Wortart = 'Phrase' THEN 1 ELSE 0 END AS PhraseOrder FROM WBFTS " +
                 "WHERE Englisch != '-' " +
                 "AND Englisch MATCH @searchstrupper " +
-                "ORDER BY Ostfriesisch ASC";
+                "ORDER BY PhraseOrder ASC, Ostfriesisch ASC";
         }
         if (fullTextSearch == "N")
         {
             searchString = "%" + searchString + "%";
-            sqlCommand.CommandText = "SELECT * FROM WB " +
+            sqlCommand.CommandText = "SELECT *, CASE WHEN Wortart = 'Phrase' THEN 1 ELSE 0 END AS PhraseOrder FROM WB " +
                 "WHERE Englisch != '-' " +
                 "AND (Englisch LIKE @searchstrlower " +
                 "OR Englisch LIKE @searchstrupper) " +
-                "ORDER BY Ostfriesisch ASC";
+                "ORDER BY PhraseOrder ASC, Ostfriesisch ASC";
         }
         if (fullTextSearch == "X")
         {
-            sqlCommand.CommandText = "SELECT * FROM WB " +
+            sqlCommand.CommandText = "SELECT *, CASE WHEN Wortart = 'Phrase' THEN 1 ELSE 0 END AS PhraseOrder FROM WB " +
                 "WHERE Englisch != '-' AND " +
                 "Englisch = @searchstr " +
-                "ORDER BY Ostfriesisch ASC";
+                "ORDER BY PhraseOrder ASC, Ostfriesisch ASC";
         }
         if (fullTextSearch == "B")
         {
             searchString = searchString + "%";
-            sqlCommand.CommandText = "SELECT * FROM WB " +
+            sqlCommand.CommandText = "SELECT *, CASE WHEN Wortart = 'Phrase' THEN 1 ELSE 0 END AS PhraseOrder FROM WB " +
                 "WHERE Englisch != '-' " +
                 "AND (Englisch LIKE @searchstrlower " +
                 "OR Englisch LIKE @searchstrupper) " +
-                "ORDER BY Ostfriesisch ASC";
+                "ORDER BY PhraseOrder ASC, Ostfriesisch ASC";
         }
         if (fullTextSearch == "E")
         {
             searchString = "%" + searchString;
-            sqlCommand.CommandText = "SELECT * FROM WB " +
+            sqlCommand.CommandText = "SELECT *, CASE WHEN Wortart = 'Phrase' THEN 1 ELSE 0 END AS PhraseOrder FROM WB " +
                 "WHERE Englisch != '-' " +
                 "AND (Englisch LIKE @searchstrlower " +
                 "OR Englisch LIKE @searchstrupper) " +
-                "ORDER BY Ostfriesisch ASC";
+                "ORDER BY PhraseOrder ASC, Ostfriesisch ASC";
         }
     }
     public static void FrsEn(string fullTextSearch, ref string searchString, ref SqliteCommand sqlCommand)

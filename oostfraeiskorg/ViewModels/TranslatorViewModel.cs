@@ -13,14 +13,15 @@ namespace oostfraeiskorg.ViewModels;
 
 public class TranslatorViewModel : MasterPageViewModel
 {
+    private const int MaxTextLength = 500;
+    private const int DelayMilliseconds = 500;
+    private static readonly string ApiUrl = "https://vanmoders114-east-frisian-translator.hf.space/gradio_api/call/predict";
 
     public string GermanText { get; set; } = "";
-
     public string EastFrisianText { get; set; } = "";
 
     public override Task Init()
     {
-
         return base.Init();
     }
 
@@ -30,10 +31,13 @@ public class TranslatorViewModel : MasterPageViewModel
         EastFrisianText = await Translate(GermanText);
     }
 
-    private static readonly string apiUrl = "https://vanmoders114-east-frisian-translator.hf.space/gradio_api/call/predict";
-
     public static async Task<string> Translate(string text)
     {
+        if (text.Length > MaxTextLength)
+        {
+            text = text.Substring(0, MaxTextLength);
+        }
+
         using HttpClient client = new HttpClient();
 
         // JSON payload
@@ -48,7 +52,7 @@ public class TranslatorViewModel : MasterPageViewModel
         try
         {
             // Step 1: Send POST request to get the event ID
-            HttpResponseMessage response = await client.PostAsync(apiUrl, content);
+            HttpResponseMessage response = await client.PostAsync(ApiUrl, content);
             response.EnsureSuccessStatusCode();
 
             string responseJson = await response.Content.ReadAsStringAsync();
@@ -61,20 +65,23 @@ public class TranslatorViewModel : MasterPageViewModel
             }
 
             // Step 2: Fetch the translation result using event ID
-            string resultUrl = $"{apiUrl}/{eventId}";
+            string resultUrl = $"{ApiUrl}/{eventId}";
 
             while (true)
             {
-                await Task.Delay(500); // Wait before checking the result
+                await Task.Delay(DelayMilliseconds); // Wait before checking the result
                 HttpResponseMessage resultResponse = await client.GetAsync(resultUrl);
                 string jsonData = await resultResponse.Content.ReadAsStringAsync();
 
-                jsonData = ExtractJsonFromEventStream(jsonData);
-                JArray jsonResponse = JArray.Parse(jsonData);
+                if (jsonData.Contains("event: complete"))
+                {
+                    jsonData = ExtractJsonFromEventStream(jsonData);
+                    JArray jsonResponse = JArray.Parse(jsonData);
 
-                // Extract the translation from the "data" array
-                string translation = jsonResponse[0]?.ToString();
-                return translation ?? "Translation failed.";
+                    // Extract the translation from the "data" array
+                    string translation = jsonResponse[0]?.ToString();
+                    return translation ?? "Translation failed.";
+                }
             }
         }
         catch (Exception ex)
@@ -88,14 +95,16 @@ public class TranslatorViewModel : MasterPageViewModel
     {
         // Split response by lines
         string[] lines = rawResponse.Split('\n');
+        string lastLine = "";
 
         foreach (string line in lines)
         {
-            if (line.StartsWith("data: "))
+            if (lastLine.StartsWith("event: complete") && line.StartsWith("data: "))
             {
                 // Extract the JSON part after "data: "
                 return line.Substring(6).Trim();
             }
+            lastLine = line;
         }
         return null;
     }
