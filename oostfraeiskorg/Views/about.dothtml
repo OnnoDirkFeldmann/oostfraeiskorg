@@ -2,7 +2,7 @@
 @masterPage Views/MasterPage.dotmaster
 
 <dot:Content ContentPlaceHolderID="MainContent">
-   <div class="container">
+    <div class="container">
         <h2>Über oostfraeisk.org</h2>
         <br />
         <p>
@@ -47,9 +47,16 @@
         <p>
             <br />
             März 2025:
-            Der KI-basierte Übersetzer Bóóbel (https://github.com/VanModers/oostfraeisk_translator) wird in das Projekt integriert und soll in Zukunft fortlaufend verbessert werden.
             <br />
-            Das Kur
+            Der KI-basierte Übersetzer Bóóbel wurde in das Projekt integriert und soll in Zukunft fortlaufend verbessert werden.<br />
+            <a href="https://github.com/VanModers/oostfraeisk_translator">VanModers/oostfraeisk_translator</a>
+            <br />
+            <br />
+            Dezember 2024:
+            <br />
+            Der Quellcode des Projektes oostfraeisk.org wurde frei zugänglich gemacht.<br />
+            <a href="https://github.com/OnnoDirkFeldmann/oostfraeiskorg">OnnoDirkFeldmann/oostfraeiskorg</a>
+            <br />
             <br />
             November 2024:
             <br />
