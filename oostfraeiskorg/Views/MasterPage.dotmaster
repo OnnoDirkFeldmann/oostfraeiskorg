@@ -113,7 +113,7 @@
                 <div class="col-sm d-flex justify-content-center">
                     <div class="collapse navbar-collapse" ID="navbarCollapse">
                         <div class="navbar-nav">
-                            <a href="../translator" class="nav-item nav-link" style="color: white">Übersetzer (Beta-Version)</a>
+                            <!-- <a href="../translator" class="nav-item nav-link" style="color: white">Übersetzer (Beta-Version)</a> -->
                             <div class="nav-item dropdown">
                                 <a class="nav-item nav-link dropdown-toggle" href="#" ID="navbarDropdownLernen" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: white">Lernen</a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdownLernenDrop">
@@ -143,58 +143,58 @@
         <div class="container">
 
             <!--Suchleiste-->
-            <div class="btn-group d-flex justify-content-center" role="group" aria-label="...">
+                            <div class="btn-group d-flex justify-content-center" role="group" aria-label="...">
 
-                <!---Sprachauswahl-->
-                <dot:ListBox Size="0" DataSource="{value: Languages}" SelectedValue="{value: SelectedLanguage}" class="dropdown btn btn-secondary bg-primary flex-grow-1" aria-label="Sprachauswahl" SelectionChanged="{command: LanguageSelectionChanged()}" />
+                                <!---Sprachauswahl-->
+                                <dot:ListBox Size="0" DataSource="{value: Languages}" SelectedValue="{value: SelectedLanguage}" class="dropdown btn btn-secondary bg-primary flex-grow-1" aria-label="Sprachauswahl" SelectionChanged="{command: LanguageSelectionChanged()}" />
 
-            </div>
-            <div class="input-group">
-                <dot:Button ID="btn_keyboard" runat="server" class="btn btn-primary" Text="⌨" Click="{command: btn_keyboard_Click()}" />
-                <dot:TextBox ID="txt_search" class="form-control" Text="{value: SearchText}" placeholder="{value: InputPlaceHolder}"></dot:TextBox>
-                <dot:Button ID="btn_search" runat="server" class="btn btn-secondary bg-primary" Click="{command: Search()}" Text="{value: SearchButtonText}" IsSubmitButton="true" />
-                <button type="button" class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" aria-label="{value: ExtendedSearchButtonText}">
-                    <span class="sr-only"></span>
-                </button>
-                <div class="dropdown-menu">
-                    <dot:Button ID="btn_like" runat="server" class="dropdown-item" Click="{command: SearchLike()}" Text="{value: SearchLikeButtonText}" />
-                    <dot:Button ID="btn_exact" runat="server" class="dropdown-item" Click="{command: SearchBegins()}" Text="{value: SearchBeginsButtonText}" />
-                    <dot:Button ID="btn_exact" runat="server" class="dropdown-item" Click="{command: SearchEnds()}" Text="{value: SearchEndsButtonText}" />
-                    <dot:Button ID="btn_exact" runat="server" class="dropdown-item" Click="{command: SearchExact()}" Text="{value: SearchExactButtonText}" />
-                </div>
-            </div>
-            <div class="accordion" ID="symbolparent">
-                <div class="card">
+                            </div>
+                            <div class="input-group">
+                                <dot:Button ID="btn_keyboard" runat="server" class="btn btn-primary" Text="⌨" Click="{command: btn_keyboard_Click()}" />
+                                <dot:TextBox ID="txt_search" class="form-control" Text="{value: SearchText}" placeholder="{value: InputPlaceHolder}"></dot:TextBox>
+                                <dot:Button ID="btn_search" runat="server" class="btn btn-secondary bg-primary" Click="{command: Search()}" Text="{value: SearchButtonText}" IsSubmitButton="true" />
+                                <button type="button" class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" aria-label="{value: ExtendedSearchButtonText}">
+                                    <span class="sr-only"></span>
+                                </button>
+                                <div class="dropdown-menu">
+                                    <dot:Button ID="btn_like" runat="server" class="dropdown-item" Click="{command: SearchLike()}" Text="{value: SearchLikeButtonText}" />
+                                    <dot:Button ID="btn_exact" runat="server" class="dropdown-item" Click="{command: SearchBegins()}" Text="{value: SearchBeginsButtonText}" />
+                                    <dot:Button ID="btn_exact" runat="server" class="dropdown-item" Click="{command: SearchEnds()}" Text="{value: SearchEndsButtonText}" />
+                                    <dot:Button ID="btn_exact" runat="server" class="dropdown-item" Click="{command: SearchExact()}" Text="{value: SearchExactButtonText}" />
+                                </div>
+                            </div>
+                            <div class="accordion" ID="symbolparent">
+                                <div class="card">
 
-                    <div ID="symbols" Style-Display="none" style="{value: ShowKeyboard ? '' : 'display: none'}" class="expand" data-parent="#symbolparent">
-                        <div class="card-body">
-                            <dot:Button ID="btn_atrema" runat="server" class="btn btn-secondary bg-primary flex-grow-1" Text="ä" Click="{command: btn_symbols_Click('ä')}" />
-                            <dot:Button ID="btnacirkumflex" runat="server" class="btn btn-secondary bg-primary flex-grow-1" Text="â" Click="{command: btn_symbols_Click('â')}" />
-                            <dot:Button ID="ecirkumflex" runat="server" class="btn btn-secondary bg-primary flex-grow-1" Text="ê" Click="{command: btn_symbols_Click('ê')}" />
-                            <dot:Button ID="gbreve" runat="server" class="btn btn-secondary bg-primary flex-grow-1" Text="ğ" Click="{command: btn_symbols_Click('ğ')}" />
-                            <dot:Button ID="icirkumflex" runat="server" class="btn btn-secondary bg-primary flex-grow-1" Text="î" Click="{command: btn_symbols_Click('î')}" />
-                            <dot:Button ID="otrema" runat="server" class="btn btn-secondary bg-primary flex-grow-1" Text="ö" Click="{command: btn_symbols_Click('ö')}" />
-                            <dot:Button ID="oacut" runat="server" class="btn btn-secondary bg-primary flex-grow-1" Text="ó" Click="{command: btn_symbols_Click('ó')}" />
-                            <dot:Button ID="ocirkumflex" runat="server" class="btn btn-secondary bg-primary flex-grow-1" Text="ô" Click="{command: btn_symbols_Click('ô')}" />
-                            <dot:Button ID="utrema" runat="server" class="btn btn-secondary bg-primary flex-grow-1" Text="ü" Click="{command: btn_symbols_Click('ü')}" />
-                            <dot:Button ID="ucirkumflex" runat="server" class="btn btn-secondary bg-primary flex-grow-1" Text="û" Click="{command: btn_symbols_Click('û')}" />
-                            <br />
-                            <br />
-                            <dot:Button ID="btnatremagr" runat="server" class="btn btn-secondary bg-primary flex-grow-1" Text="Ä" Click="{command: btn_symbols_Click('Ä')}" />
-                            <dot:Button ID="btnacirkumflexgr" runat="server" class="btn btn-secondary bg-primary flex-grow-1" Text="Â" Click="{command: btn_symbols_Click('Â')}" />
-                            <dot:Button ID="ecirkumflexgr" runat="server" class="btn btn-secondary bg-primary flex-grow-1" Text="Ê" Click="{command: btn_symbols_Click('Ê')}" />
-                            <dot:Button ID="gbrevegr" runat="server" class="btn btn-secondary bg-primary flex-grow-1" Text="Ğ" Click="{command: btn_symbols_Click('Ğ')}" />
-                            <dot:Button ID="icirkumflexgr" runat="server" class="btn btn-secondary bg-primary flex-grow-1" Text="Î" Click="{command: btn_symbols_Click('Î')}" />
-                            <dot:Button ID="otremagr" runat="server" class="btn btn-secondary bg-primary flex-grow-1" Text="Ö" Click="{command: btn_symbols_Click('Ö')}" />
-                            <dot:Button ID="oacutgr" runat="server" class="btn btn-secondary bg-primary flex-grow-1" Text="Ó" Click="{command: btn_symbols_Click('Ó')}" />
-                            <dot:Button ID="ocirkumflexgr" runat="server" class="btn btn-secondary bg-primary flex-grow-1" Text="Ô" Click="{command: btn_symbols_Click('Ô')}" />
-                            <dot:Button ID="utremagr" runat="server" class="btn btn-secondary bg-primary flex-grow-1" Text="Ü" Click="{command: btn_symbols_Click('Ü')}" />
-                            <dot:Button ID="ucirkumflexgr" runat="server" class="btn btn-secondary bg-primary flex-grow-1" Text="Û" Click="{command: btn_symbols_Click('Û')}" />
+                                    <div ID="symbols" Style-Display="none" style="{value: ShowKeyboard ? '' : 'display: none'}" class="expand" data-parent="#symbolparent">
+                                        <div class="card-body">
+                                            <dot:Button ID="btn_atrema" runat="server" class="btn btn-secondary bg-primary flex-grow-1" Text="ä" Click="{command: btn_symbols_Click('ä')}" />
+                                            <dot:Button ID="btnacirkumflex" runat="server" class="btn btn-secondary bg-primary flex-grow-1" Text="â" Click="{command: btn_symbols_Click('â')}" />
+                                            <dot:Button ID="ecirkumflex" runat="server" class="btn btn-secondary bg-primary flex-grow-1" Text="ê" Click="{command: btn_symbols_Click('ê')}" />
+                                            <dot:Button ID="gbreve" runat="server" class="btn btn-secondary bg-primary flex-grow-1" Text="ğ" Click="{command: btn_symbols_Click('ğ')}" />
+                                            <dot:Button ID="icirkumflex" runat="server" class="btn btn-secondary bg-primary flex-grow-1" Text="î" Click="{command: btn_symbols_Click('î')}" />
+                                            <dot:Button ID="otrema" runat="server" class="btn btn-secondary bg-primary flex-grow-1" Text="ö" Click="{command: btn_symbols_Click('ö')}" />
+                                            <dot:Button ID="oacut" runat="server" class="btn btn-secondary bg-primary flex-grow-1" Text="ó" Click="{command: btn_symbols_Click('ó')}" />
+                                            <dot:Button ID="ocirkumflex" runat="server" class="btn btn-secondary bg-primary flex-grow-1" Text="ô" Click="{command: btn_symbols_Click('ô')}" />
+                                            <dot:Button ID="utrema" runat="server" class="btn btn-secondary bg-primary flex-grow-1" Text="ü" Click="{command: btn_symbols_Click('ü')}" />
+                                            <dot:Button ID="ucirkumflex" runat="server" class="btn btn-secondary bg-primary flex-grow-1" Text="û" Click="{command: btn_symbols_Click('û')}" />
+                                            <br />
+                                            <br />
+                                            <dot:Button ID="btnatremagr" runat="server" class="btn btn-secondary bg-primary flex-grow-1" Text="Ä" Click="{command: btn_symbols_Click('Ä')}" />
+                                            <dot:Button ID="btnacirkumflexgr" runat="server" class="btn btn-secondary bg-primary flex-grow-1" Text="Â" Click="{command: btn_symbols_Click('Â')}" />
+                                            <dot:Button ID="ecirkumflexgr" runat="server" class="btn btn-secondary bg-primary flex-grow-1" Text="Ê" Click="{command: btn_symbols_Click('Ê')}" />
+                                            <dot:Button ID="gbrevegr" runat="server" class="btn btn-secondary bg-primary flex-grow-1" Text="Ğ" Click="{command: btn_symbols_Click('Ğ')}" />
+                                            <dot:Button ID="icirkumflexgr" runat="server" class="btn btn-secondary bg-primary flex-grow-1" Text="Î" Click="{command: btn_symbols_Click('Î')}" />
+                                            <dot:Button ID="otremagr" runat="server" class="btn btn-secondary bg-primary flex-grow-1" Text="Ö" Click="{command: btn_symbols_Click('Ö')}" />
+                                            <dot:Button ID="oacutgr" runat="server" class="btn btn-secondary bg-primary flex-grow-1" Text="Ó" Click="{command: btn_symbols_Click('Ó')}" />
+                                            <dot:Button ID="ocirkumflexgr" runat="server" class="btn btn-secondary bg-primary flex-grow-1" Text="Ô" Click="{command: btn_symbols_Click('Ô')}" />
+                                            <dot:Button ID="utremagr" runat="server" class="btn btn-secondary bg-primary flex-grow-1" Text="Ü" Click="{command: btn_symbols_Click('Ü')}" />
+                                            <dot:Button ID="ucirkumflexgr" runat="server" class="btn btn-secondary bg-primary flex-grow-1" Text="Û" Click="{command: btn_symbols_Click('Û')}" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-        </div>
         <hr />
 
         <!--Inhaltscontainer-->
