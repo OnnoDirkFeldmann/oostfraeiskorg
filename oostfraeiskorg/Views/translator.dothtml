@@ -12,6 +12,29 @@
         .border {
             border: 1px solid #CCC;
         }
+
+        .overlay {
+            position: relative;
+        }
+
+        .overlay-content {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 10px;
+            border-radius: 5px;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        .overlay-content.show {
+            opacity: 1;
+        }
+
+        .overlay-content button {
+            margin: 0 5px;
+        }
     </style>
 
     <h2>Übersetzer (Beta-Version)</h2>
@@ -20,20 +43,30 @@
         <!-- input up Düütsk -->
         <div class="col-xxl-6 col-md-5 border">
             <br />
-            <h5>Deutsch</h5>
-            <dot:TextBox Text="{value: GermanText}" class="form-control input-box" Type="MultiLine" style="height: 300px; width: 100%; resize: none;" placeholder="Hier einen deutschen Text eingeben." maxlength="500" />
+            <h5>
+                <dot:Literal Text="{value: InputTitle}" />
+            </h5>
+            <dot:TextBox Changed="{command: DeactivateFeedback()}" Text="{value: GermanText}" class="form-control input-box" Type="MultiLine" style="height: 300px; width: 100%; resize: none;" placeholder="Hier einen deutschen Text eingeben." maxlength="500" />
             <br />
         </div>
 
-        <div class="col-xxl-6 col-2 d-flex justify-content-center align-items-center">
-            <dot:Button Text="Übersetze" Click="{staticCommand: _js.InvokeAsync("StartTranslation")}" class="btn btn-primary search-button" />
+        <div class="col-xxl-6 col-2 d-flex flex-column justify-content-center align-items-center">
+            <dot:Button Text="Übersetze" Click="{staticCommand: _js.InvokeAsync('StartTranslation')}" class="btn btn-primary search-button mb-2" />
+            <dot:Button Text="↻" Click="{command: SwitchTranslationMode()}" style="{value: DoubleTranslationEnabled ? '' : 'display: none'}" class="btn btn-primary" />
         </div>
 
         <!-- aautput up Oostfräisk -->
         <div class="col-xxl-6 col-md-5 border">
             <br />
-            <h5>Ostfriesisch</h5>
+            <h5>
+                <dot:Literal Text="{value: TranslationTitle}" />
+            </h5>
             <dot:TextBox Text="{value: EastFrisianText}" class="form-control input-box" id="translation" Type="MultiLine" Enabled="false" style="height: 300px; width: 100%; resize: none;" placeholder="Hir staajt däi ooverset't oostfräisk tekst." />
+            <div class="{value: ShowTranslationFeedback ? 'overlay-content show' : 'overlay-content'}">
+                <span>War die Übersetzung richtig?</span>
+                <dot:Button Text="✔" Click="{command: ReportTranslationSuccess()}" class="btn btn-success" />
+                <dot:Button Text="✘" Click="{command: ReportTranslationIssue()}" class="btn btn-danger" />
+            </div>
             <br />
         </div>
     </div>
