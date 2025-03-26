@@ -83,7 +83,7 @@ public class TranslatorViewModel : MasterPageViewModel
                 {
                     From = new MailAddress("noreply@example.com"),
                     Subject = subject,
-                    Body = $"{GermanText}\n\n{EastFrisianText}",
+                    Body = $"{GermanText}\n\nOOVERSETTEN:\n\n{EastFrisianText}",
                     IsBodyHtml = false,
                 };
                 mailMessage.To.Add("oostfraeisk.ooversetter@gmail.com");
