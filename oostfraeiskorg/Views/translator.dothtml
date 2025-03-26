@@ -16,21 +16,23 @@
 
     <div class="row justify-content-center align-items-center">
         <!-- input up Düütsk -->
-        <div class="col-xxl-6 col-md-5">
+        <div class="col-xxl-6 col-md-5 border">
+            <br />
             <h5>Deutsch</h5>
             <dot:TextBox Text="{value: GermanText}" class="form-control input-box" Type="MultiLine" style="height: 300px; width: 100%; resize: none;" placeholder="Hier einen deutschen Text eingeben." maxlength="500" />
+            <br />
         </div>
 
-        <div class="col-xxl-6 col-md-2">
-            <div class="justify-content-center align-items-center">
-                <dot:Button Text="Übersetze" Click="{staticCommand: _js.Invoke("StartTranslation")}" class="btn btn-primary search-button" />
-            </div>
+        <div class="col-xxl-6 col-2 d-flex justify-content-center align-items-center">
+            <dot:Button Text="Übersetze" Click="{staticCommand: _js.Invoke("StartTranslation")}" class="btn btn-primary search-button" />
         </div>
 
         <!-- aautput up Oostfräisk -->
-        <div class="col-xxl-6 col-md-5">
+        <div class="col-xxl-6 col-md-5 border">
+            <br />
             <h5>Ostfriesisch</h5>
             <dot:TextBox Text="{value: EastFrisianText}" class="form-control input-box" id="translation" Type="MultiLine" Enabled="false" style="height: 300px; width: 100%; resize: none;" placeholder="Hir staajt däi ooverset't oostfräisk tekst." />
+            <br />
         </div>
     </div>
 
