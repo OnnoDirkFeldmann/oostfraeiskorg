@@ -14,9 +14,8 @@ class App {
 
     async StartTranslation() {
         try {
-           await this.context.namedCommands["PrepareTranslation"]();
-           await this.context.namedCommands["TranslateAsync"]();
-
+            await this.context.namedCommands["PrepareTranslation"]();
+            await this.context.namedCommands["TranslateAsync"]();
         } catch (err) {
             // handle error states
             dotvvm.patchState({ ErrorMessage: "Translation failed!" });

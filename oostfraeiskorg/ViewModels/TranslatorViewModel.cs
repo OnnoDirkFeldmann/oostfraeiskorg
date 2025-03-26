@@ -81,7 +81,7 @@ public class TranslatorViewModel : MasterPageViewModel
             {
                 var mailMessage = new MailMessage
                 {
-                    From = new MailAddress("noreply@example.com"),
+                    From = new MailAddress("edufraeisk@gmail.com"),
                     Subject = subject,
                     Body = $"{GermanText}\n\nOOVERSETTEN:\n\n{EastFrisianText}",
                     IsBodyHtml = false,
