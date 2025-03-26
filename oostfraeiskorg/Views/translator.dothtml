@@ -5,6 +5,8 @@
 <dot:Content ContentPlaceHolderID="MainContent">
     <dot:NamedCommand Name="TranslateAsync"
                       Command="{command: _root.TranslateAsync()}" />
+    <dot:NamedCommand Name="PrepareTranslation"
+                      Command="{command: _root.PrepareTranslation()}" />
 
     <style>
         .border {
@@ -24,7 +26,7 @@
         </div>
 
         <div class="col-xxl-6 col-2 d-flex justify-content-center align-items-center">
-            <dot:Button Text="Übersetze" Click="{staticCommand: _js.Invoke("StartTranslation")}" class="btn btn-primary search-button" />
+            <dot:Button Text="Übersetze" Click="{staticCommand: _js.InvokeAsync("StartTranslation")}" class="btn btn-primary search-button" />
         </div>
 
         <!-- aautput up Oostfräisk -->
