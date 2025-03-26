@@ -4,6 +4,12 @@ class App {
     constructor(context) {
         // store the context so it can be accessed later
         this.context = context;
+
+        const input = document.getElementById('input');
+
+        input.addEventListener("focus", (event) => {
+            this.context.namedCommands["DeactivateFeedback"]();
+        });
     }
 
     async StartTranslation() {
