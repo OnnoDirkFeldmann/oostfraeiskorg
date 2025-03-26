@@ -19,6 +19,7 @@ public class TranslatorViewModel : MasterPageViewModel
     private const int MaxTextLength = 500;
     private const int DelayMilliseconds = 50;
     //private static readonly string ApiUrl = "https://vanmoders114-east-frisian-translator.hf.space/gradio_api/call/predict";
+    private static readonly string BearerToken = "";
     private static readonly string ApiUrl = "http://127.0.0.1:7860/gradio_api/call/predict";
 
 
@@ -117,6 +118,10 @@ public class TranslatorViewModel : MasterPageViewModel
         }
 
         using HttpClient client = new HttpClient();
+
+        // Set up the headers
+        client.DefaultRequestHeaders.Add("Authorization", $"Bearer {BearerToken}");
+        client.DefaultRequestHeaders.Add("Accept", "application/json");
 
         // JSON payload
         var requestBody = new
