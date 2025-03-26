@@ -14,7 +14,7 @@ namespace oostfraeiskorg.ViewModels;
 public class TranslatorViewModel : MasterPageViewModel
 {
     private const int MaxTextLength = 500;
-    private const int DelayMilliseconds = 500;
+    private const int DelayMilliseconds = 50;
     //private static readonly string ApiUrl = "https://vanmoders114-east-frisian-translator.hf.space/gradio_api/call/predict";
     private static readonly string ApiUrl = "http://127.0.0.1:7860/gradio_api/call/predict";
 
@@ -27,6 +27,11 @@ public class TranslatorViewModel : MasterPageViewModel
         MasterPageDescription = "Übersetzer - Wörterbuch der ostfriesischen Sprache - Wörter aus dem Ostfriesischen oder ins Ostfriesische übersetzen. Die Sprache der Ostfriesen mit dem Wörterbuch für das Ostfriesische Platt als Standardostfriesisch lernen.";
         MasterPageKeywords += ", übersetzer, translator ostfriesische Sprache, ostfriesisch, oostfräisk";
         return base.Init();
+    }
+
+    public void PrepareTranslation()
+    {
+        EastFrisianText = "...";
     }
 
     public async Task TranslateAsync()
