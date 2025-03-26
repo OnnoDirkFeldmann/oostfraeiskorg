@@ -8,6 +8,9 @@ using System;
 using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.AspNetCore.Components;
 using DotVVM.Framework.Binding;
+using System.Net.Mail;
+using System.Net;
+using Microsoft.Extensions.Hosting;
 
 namespace oostfraeiskorg.ViewModels;
 
@@ -18,8 +21,14 @@ public class TranslatorViewModel : MasterPageViewModel
     //private static readonly string ApiUrl = "https://vanmoders114-east-frisian-translator.hf.space/gradio_api/call/predict";
     private static readonly string ApiUrl = "http://127.0.0.1:7860/gradio_api/call/predict";
 
+
+    public bool DoubleTranslationEnabled { get; } = false;
+
+    public string InputTitle { get; set; } = "Deutsch";
+    public string TranslationTitle { get; set; } = "Ostfriesisch";
     public string GermanText { get; set; } = "";
     public string EastFrisianText { get; set; } = "";
+    public bool ShowTranslationFeedback { get; set; } = false;
 
     public override Task Init()
     {
@@ -27,6 +36,65 @@ public class TranslatorViewModel : MasterPageViewModel
         MasterPageDescription = "Übersetzer - Wörterbuch der ostfriesischen Sprache - Wörter aus dem Ostfriesischen oder ins Ostfriesische übersetzen. Die Sprache der Ostfriesen mit dem Wörterbuch für das Ostfriesische Platt als Standardostfriesisch lernen.";
         MasterPageKeywords += ", übersetzer, translator ostfriesische Sprache, ostfriesisch, oostfräisk";
         return base.Init();
+    }
+
+    public void SwitchTranslationMode()
+    {
+        var temp = InputTitle;
+        InputTitle = TranslationTitle;
+        TranslationTitle = temp;
+        var tempText = GermanText;
+        GermanText = EastFrisianText;
+        EastFrisianText = tempText;
+    }
+
+    public void DeactivateFeedback()
+    {
+        ShowTranslationFeedback = false;
+    }
+
+    public void ReportTranslationIssue()
+    {
+        SentReport("Translation Issue Report");
+        ShowTranslationFeedback = false;
+    }
+
+    public void ReportTranslationSuccess()
+    {
+        SentReport("Translation Success Report");
+        ShowTranslationFeedback = false;
+    }
+
+    private void SentReport(string subject)
+    {
+        try
+        {
+            using (var client = new SmtpClient
+            {
+                Host = "smtp.gmail.com",
+                Port = 587,
+                EnableSsl = true,
+                DeliveryMethod = SmtpDeliveryMethod.Network,
+                UseDefaultCredentials = false,
+                Credentials = new NetworkCredential("edufraeisk@gmail.com", "aqaxxjjwedmtvuic")
+            })
+            {
+                var mailMessage = new MailMessage
+                {
+                    From = new MailAddress("noreply@example.com"),
+                    Subject = subject,
+                    Body = $"{GermanText}\n\n{EastFrisianText}",
+                    IsBodyHtml = false,
+                };
+                mailMessage.To.Add("oostfraeisk.ooversetter@gmail.com");
+
+                client.Send(mailMessage);
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error sending email: {ex.Message}");
+        }
     }
 
     public void PrepareTranslation()
@@ -38,6 +106,7 @@ public class TranslatorViewModel : MasterPageViewModel
     {
         // Perform translation
         EastFrisianText = await Translate(GermanText);
+        ShowTranslationFeedback = true;
     }
 
     public static async Task<string> Translate(string text)
