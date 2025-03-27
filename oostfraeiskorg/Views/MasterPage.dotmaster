@@ -92,7 +92,7 @@
     <!--Navigation-->
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-3">
         <div class="container">
-            <div class="row container-fluid justify-content-center align-items-center">
+            <div class="row container-fluid p-1 justify-content-around align-items-center">
                 <!--Desktop-->
                 <div class="col- d-none d-lg-flex justify-content-left mr-3">
                     <a href="../main" class="navbar-brand">
@@ -122,10 +122,10 @@
                 </div>
                 <!---->
                 <!--Mobile-->
-                <div class="col-xs d-md-none d-flex justify-content-center">
-                    <a href="../main" class="navbar-brand">
-                        <img src="~/img/logo.webp" width="50" height="50" alt="Logo/Startseite" />
-                    </a>
+                <div class="col-xs d-md-none d-flex justify-content-end">
+                        <a href="../main">
+                            <img src="~/img/logo.webp" width="50" height="50" alt="Logo/Startseite"/>
+                        </a>
                 </div>
                 <div class="col-xs d-md-none d-flex justify-content-center">
                     <a href="../main" class="navbar-brand">
