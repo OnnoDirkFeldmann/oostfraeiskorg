@@ -134,7 +134,7 @@
                 <!--Mobile-->
                 <div class="col-xs d-md-none d-flex justify-content-end">
                     <a href="../main">
-                        <img src="~/img/logo.webp" width="50" height="50" alt="Logo/Startseite" />
+                        <img src="~/img/logo_mobile.webp" width="50" height="50" alt="Logo/Startseite" />
                     </a>
                 </div>
                 <div class="col-xs d-md-none d-flex justify-content-center">
