@@ -52,15 +52,20 @@
                 resize: none;
                 height: calc(50vh - 200px);
             }
+
+            .button-padding {
+                padding: 6%
+            }
         }
     </style>
 
     <h2>Übersetzer (Beta-Version)</h2>
-
+    <p class="justify-content-center align-items-center">
+        Der Übersetzer befindet sich noch in der Beta-Phase. Übersetzungen können fehlerhaft sein.
+    </p>
     <div class="row justify-content-center align-items-center">
         <!-- input up Düütsk -->
         <div class="col-12 col-md-5 border">
-            <br />
             <h5>
                 <dot:Literal Text="{value: InputTitle}" />
             </h5>
@@ -68,14 +73,13 @@
             <br />
         </div>
 
-        <div class="col-12 col-md-2 d-flex flex-column justify-content-center align-items-center my-2 my-md-0">
+        <div class="col-12 col-md-1 button-padding d-flex flex-column justify-content-center align-items-center my-2 my-md-0">
             <dot:Button Text="Übersetze" Click="{staticCommand: _js.InvokeAsync('StartTranslation')}" class="btn btn-primary search-button mb-2" />
             <dot:Button Text="↻" Click="{command: SwitchTranslationMode()}" style="{value: DoubleTranslationEnabled ? '' : 'display: none'}" class="btn btn-primary" />
         </div>
 
         <!-- aautput up Oostfräisk -->
         <div class="col-12 col-md-5 border">
-            <br />
             <h5>
                 <dot:Literal Text="{value: TranslationTitle}" />
             </h5>
