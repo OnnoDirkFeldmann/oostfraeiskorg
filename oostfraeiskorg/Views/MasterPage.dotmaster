@@ -94,13 +94,13 @@
         <div class="container">
             <div class="row container-fluid justify-content-center align-items-center">
                 <!--Desktop-->
-                <div class="col-sm d-none d-lg-flex justify-content-center">
-                    <a href="../main" class="navbar-brand mr-3">
+                <div class="col- d-none d-lg-flex justify-content-left mr-3">
+                    <a href="../main" class="navbar-brand">
                         <img src="~/img/logo.webp" width="100" height="100" alt="Logo/Startseite" />
                     </a>
                 </div>
-                <div class="col-sm d-none d-lg-flex justify-content-center">
-                    <a href="../main" class="navbar-brand mr-3">
+                <div class="col- d-none d-lg-flex justify-content-left mr-3">
+                    <a href="../main" class="navbar-brand">
                         <h5>Oostfräisk Woordenbauk</h5>
                         <h5>Ostfriesisches Wörterbuch</h5>
                         <h6><small>Wörterbuch fürs Ostfriesische Platt</small></h6>
@@ -108,13 +108,13 @@
                 </div>
                 <!---->
                 <!--Tablet-->
-                <div class="col-sm d-none d-md-flex d-lg-none justify-content-center">
-                    <a href="../main" class="navbar-brand mr-3">
+                <div class="col- d-none d-md-flex d-lg-none justify-content-left mr-3">
+                    <a href="../main" class="navbar-brand">
                         <img src="~/img/logo.webp" width="100" height="100" alt="Logo/Startseite" />
                     </a>
                 </div>
-                <div class="col-sm d-none d-md-flex d-lg-none justify-content-center">
-                    <a href="../main" class="navbar-brand mr-3">
+                <div class="col- d-none d-md-flex d-lg-none justify-content-left mr-3">
+                    <a href="../main" class="navbar-brand">
                         <h5>Oostfräisk Woordenbauk</h5>
                         <h6>Ostfriesisches Wörterbuch</h6>
                         <h6><small>Wörterbuch fürs Ostfriesische Platt</small></h6>
@@ -123,12 +123,12 @@
                 <!---->
                 <!--Mobile-->
                 <div class="col-xs d-md-none d-flex justify-content-center">
-                    <a href="../main" class="navbar-brand mr-3">
+                    <a href="../main" class="navbar-brand">
                         <img src="~/img/logo.webp" width="50" height="50" alt="Logo/Startseite" />
                     </a>
                 </div>
                 <div class="col-xs d-md-none d-flex justify-content-center">
-                    <a href="../main" class="navbar-brand mr-3">
+                    <a href="../main" class="navbar-brand">
                         <h6>Oostfräisk Woordenbauk<br />Ostfriesisches Wörterbuch<br /><small>Wörterbuch fürs Ostfriesische Platt</small></h6>
                     </a>
                 </div>
