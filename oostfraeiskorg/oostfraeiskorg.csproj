@@ -62,6 +62,9 @@
 	  <Content Update="wwwroot\img\logo.webp">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </Content>
+	  <Content Update="wwwroot\img\logo_mobile.webp">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
 	  <Content Update="wwwroot\img\sound.png">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </Content>
