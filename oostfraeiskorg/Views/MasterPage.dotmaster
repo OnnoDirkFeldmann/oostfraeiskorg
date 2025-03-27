@@ -106,6 +106,11 @@
                         <h6><small>Wörterbuch fürs Ostfriesische Platt</small></h6>
                     </a>
                 </div>
+                <div class="col-xs d-none d-lg-flex justify-content-center">
+                    <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse" aria-label="Menü">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                </div>
                 <!---->
                 <!--Tablet-->
                 <div class="col- d-none d-md-flex d-lg-none justify-content-left mr-3">
@@ -116,29 +121,34 @@
                 <div class="col- d-none d-md-flex d-lg-none justify-content-left mr-3">
                     <a href="../main" class="navbar-brand">
                         <h5>Oostfräisk Woordenbauk</h5>
-                        <h6>Ostfriesisches Wörterbuch</h6>
+                        <h5>Ostfriesisches Wörterbuch</h5>
                         <h6><small>Wörterbuch fürs Ostfriesische Platt</small></h6>
                     </a>
+                </div>
+                <div class="col-md d-none d-md-flex d-lg-none justify-content-end">
+                    <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse" aria-label="Menü">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
                 </div>
                 <!---->
                 <!--Mobile-->
                 <div class="col-xs d-md-none d-flex justify-content-end">
-                        <a href="../main">
-                            <img src="~/img/logo.webp" width="50" height="50" alt="Logo/Startseite"/>
-                        </a>
+                    <a href="../main">
+                        <img src="~/img/logo.webp" width="50" height="50" alt="Logo/Startseite" />
+                    </a>
                 </div>
                 <div class="col-xs d-md-none d-flex justify-content-center">
                     <a href="../main" class="navbar-brand">
                         <h6>Oostfräisk Woordenbauk<br />Ostfriesisches Wörterbuch<br /><small>Wörterbuch fürs Ostfriesische Platt</small></h6>
                     </a>
                 </div>
-                <!---->
-                <div class="col-xs d-flex justify-content-center">
+                <div class="col-xs d-md-none d-flex justify-content-center">
                     <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse" aria-label="Menü">
                         <span class="navbar-toggler-icon"></span>
                     </button>
                 </div>
-                <div class="col-sm d-flex justify-content-center">
+                <!---->
+                <div class="col-lg d-flex justify-content-center">
                     <div class="collapse navbar-collapse" ID="navbarCollapse">
                         <div class="navbar-nav">
                             <!-- <a href="../translator" class="nav-item nav-link" style="color: white">Übersetzer (Beta-Version)</a> -->
@@ -169,14 +179,12 @@
     </nav>
     <form ID="form1" runat="server" defaultbutton="btn_search">
         <div class="container">
-
             <!--Suchleiste-->
+            <!---Sprachauswahl-->
             <div class="btn-group d-flex justify-content-center" role="group" aria-label="...">
-
-                <!---Sprachauswahl-->
                 <dot:ListBox Size="0" DataSource="{value: Languages}" SelectedValue="{value: SelectedLanguage}" class="dropdown btn btn-secondary bg-primary flex-grow-1" aria-label="Sprachauswahl" SelectionChanged="{command: LanguageSelectionChanged()}" />
-
             </div>
+            <!---->
             <div class="input-group">
                 <dot:Button ID="btn_keyboard" runat="server" class="btn btn-primary" Text="⌨" Click="{command: btn_keyboard_Click()}" />
                 <dot:TextBox ID="txt_search" class="form-control" Text="{value: SearchText}" placeholder="{value: InputPlaceHolder}"></dot:TextBox>
@@ -191,6 +199,7 @@
                     <dot:Button ID="btn_exact" runat="server" class="dropdown-item" Click="{command: SearchExact()}" Text="{value: SearchExactButtonText}" />
                 </div>
             </div>
+            <!---->
             <div class="accordion" ID="symbolparent">
                 <div class="card">
 
