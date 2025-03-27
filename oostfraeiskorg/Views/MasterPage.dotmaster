@@ -93,18 +93,47 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-3">
         <div class="container">
             <div class="row justify-content-center align-items-center">
-                <div class="col-sm d-flex justify-content-center">
+                <!--Desktop-->
+                <div class="col-sm d-none d-lg-flex justify-content-center">
                     <a href="../main" class="navbar-brand mr-3">
                         <img src="~/img/logo.webp" width="100" height="100" alt="Logo/Startseite" />
                     </a>
                 </div>
-                <div class="col-sm d-flex justify-content-center">
+                <div class="col-sm d-none d-lg-flex justify-content-center">
                     <a href="../main" class="navbar-brand mr-3">
                         <h5>Oostfräisk Woordenbauk</h5>
                         <h5>Ostfriesisches Wörterbuch</h5>
                         <h6><small>Wörterbuch für das Ostfriesische Platt</small></h6>
                     </a>
                 </div>
+                <!---->
+                <!--Tablet-->
+                <div class="col-sm d-none d-md-flex d-lg-none justify-content-center">
+                    <a href="../main" class="navbar-brand mr-3">
+                        <img src="~/img/logo.webp" width="100" height="100" alt="Logo/Startseite" />
+                    </a>
+                </div>
+                <div class="col-sm d-none d-md-flex d-lg-none justify-content-center">
+                    <a href="../main" class="navbar-brand mr-3">
+                        <h5>Oostfräisk Woordenbauk</h5>
+                        <h6>Ostfriesisches Wörterbuch</h6>
+                        <h6><small>Wörterbuch für das Ostfriesische Platt</small></h6>
+                    </a>
+                </div>
+                <!---->
+                <!--Mobile-->
+                <div class="col-xs d-md-none d-flex justify-content-center">
+                    <a href="../main" class="navbar-brand mr-3">
+                        <img src="~/img/logo.webp" width="50" height="50" alt="Logo/Startseite" />
+                    </a>
+                </div>
+                <div class="col-xs d-md-none d-flex justify-content-center">
+                    <a href="../main" class="navbar-brand mr-3">
+                        <h6>Oostfräisk Woordenbauk</h6>
+                        <h6><small>Wörterbuch für das Ostfriesische Platt</small></h6>
+                    </a>
+                </div>
+                <!---->
                 <div class="col-sm d-flex justify-content-center">
                     <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse" aria-label="Menü">
                         <span class="navbar-toggler-icon"></span>
@@ -228,7 +257,7 @@
                         <span class="text-muted mx-2">|</span>
                         <a href="../about" class="text-dark">Über</a>
                         <span class="text-muted mx-2">|</span>
-                        <a href="../dsgvo" class="text-dark">Datenschutzerklärung</a>
+                        <a href="../dsgvo" class="text-dark">Datenschutz</a>
                     </div>
                 </div>
             </footer>
