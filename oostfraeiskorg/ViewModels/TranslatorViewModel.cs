@@ -16,7 +16,7 @@ namespace oostfraeiskorg.ViewModels;
 
 public class TranslatorViewModel : MasterPageViewModel
 {
-    private const int MaxTextLength = 500;
+    private const int MaxTextLength = 300;
     private const int DelayMilliseconds = 50;
     //private static readonly string ApiUrl = "https://vanmoders114-east-frisian-translator.hf.space/gradio_api/call/predict";
     private static readonly string BearerToken = "";
@@ -25,6 +25,7 @@ public class TranslatorViewModel : MasterPageViewModel
 
     public bool DoubleTranslationEnabled { get; } = false;
 
+    public int MaximumTextLength {get; } = MaxTextLength;
     public string InputTitle { get; set; } = "Deutsch";
     public string TranslationTitle { get; set; } = "Ostfriesisch";
     public string GermanText { get; set; } = "";
