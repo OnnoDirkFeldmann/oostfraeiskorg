@@ -10,6 +10,12 @@ class App {
         input.addEventListener("focus", (event) => {
             this.context.namedCommands["DeactivateFeedback"]();
         });
+
+        var charCount = document.getElementById('charCount');
+
+        input.addEventListener('input', function () {
+            charCount.textContent = input.value.length + '/' + input.maxLength;
+        });
     }
 
     async StartTranslation() {

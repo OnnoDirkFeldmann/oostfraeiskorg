@@ -57,6 +57,18 @@
                 padding: 6%
             }
         }
+
+        .position-relative {
+            position: relative;
+        }
+
+        .char-count {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            font-size: 12px;
+            color: #999;
+        }
     </style>
 
     <h2>Übersetzer (Beta-Version)</h2>
@@ -69,7 +81,10 @@
             <h5>
                 <dot:Literal Text="{value: InputTitle}" />
             </h5>
-            <dot:TextBox Text="{value: GermanText}" Type="MultiLine" id="input" class="form-control input-box" placeholder="Hier einen deutschen Text eingeben." maxlength="500" />
+            <div class="position-relative">
+                <dot:TextBox Text="{value: GermanText}" Type="MultiLine" id="input" class="form-control input-box" placeholder="Hier einen deutschen Text eingeben." maxlength="{value: MaximumTextLength}" />
+                <span id="charCount" class="char-count">0/<dot:Literal Text="{value: MaximumTextLength}" /></span>
+            </div>
             <br />
         </div>
 
