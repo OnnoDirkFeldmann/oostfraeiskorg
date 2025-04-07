@@ -1,5 +1,4 @@
 {
-  "_name_or_path": "Helsinki-NLP/opus-mt-de-en",
   "_num_labels": 3,
   "activation_dropout": 0.0,
   "activation_function": "swish",
@@ -50,7 +49,7 @@
   "share_encoder_decoder_embeddings": true,
   "static_position_embeddings": true,
   "torch_dtype": "float32",
-  "transformers_version": "4.48.3",
+  "transformers_version": "4.50.3",
   "use_cache": true,
   "vocab_size": 58101
 }
