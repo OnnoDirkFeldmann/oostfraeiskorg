@@ -11,12 +11,120 @@
                       Command="{command: _root.DeactivateFeedback()}" />
 
     <style>
-        .border {
-            border: 1px solid #CCC;
+
+        .translation-container {
+            height: calc(40vh - 10px); /* Adjust this based on header size */
+            overflow: auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: stretch; /* Stretch items to same height */
+            gap: 20px;
+            padding: 0 1rem;
         }
 
-        .overlay {
+        .translation-wrapper {
+            display: flex;
+            flex: 1;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            width: 100%;
+            height: 100%;
+        }
+
+        .translation-box {
+            flex: 1 1 45%;
+            min-width: 200px;
+            display: flex;
+            flex-direction: column;
+            background: #f9f9f9;
+            border-radius: 1rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            padding: 1rem;
+            height: 100%;
+        }
+
+        .input-box.form-control {
+            flex-grow: 1;
+            border: none;
+            background-color: #fff;
+            box-shadow: inset 0 0 5px rgba(0,0,0,0.1);
+            border-radius: 0.5rem;
+            padding: 1rem;
+            font-size: 1rem;
+            resize: none;
+            height: 100%;
+            min-height: 0;
+        }
+
+        .button-box {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            align-items: center;
+            padding: 1rem;
+        }
+
+        /* RESPONSIVE - stack on small screens */
+        @media (max-width: 768px) {
+            .translation-container {
+                height: auto;
+                flex-direction: column;
+                overflow: auto;
+                gap: 0px;
+                padding: 0 0rem;
+            }
+
+            .translation-box {
+                height: auto;
+                padding: 0.35rem;
+            }
+
+            .input-box.form-control {
+                height: 120px;
+            }
+
+            .translation-box h5 {
+                font-weight: 200;
+            }
+
+            body {
+                overflow: auto; /* Allow scrolling on mobile */
+            }
+
+            .translation-wrapper {
+                gap: 5px;
+            }
+        }
+
+        .translation-box h5 {
+            text-align: center;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .btn-primary {
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+        }
+
+        .input-wrapper {
             position: relative;
+            flex-grow: 1;
+        }
+
+        .char-count-inline {
+            position: absolute;
+            bottom: 8px;
+            right: 12px;
+            font-size: 0.75rem;
+            color: #888;
+            pointer-events: none;
+            background: rgba(255,255,255,0.8);
+            padding: 2px 4px;
+            border-radius: 4px;
         }
 
         .overlay-content {
@@ -37,74 +145,56 @@
             .overlay-content button {
                 margin: 0 5px;
             }
-
-        @media (max-width: 767px) {
-            .input-box.form-control {
-                width: 100%;
-                resize: none;
-                height: calc(25vh - 100px);
-            }
-        }
-
-        @media (min-width: 768px) {
-            .input-box.form-control {
-                width: 100%;
-                resize: none;
-                height: calc(50vh - 200px);
-            }
-
-            .button-padding {
-                padding: 6%
-            }
-        }
-
-        .position-relative {
-            position: relative;
-        }
-
-        .char-count {
-            position: absolute;
-            bottom: 10px;
-            right: 10px;
-            font-size: 12px;
-            color: #999;
-        }
     </style>
 
-    <h2>Übersetzer (Beta-Version)</h2>
-    <p class="justify-content-center align-items-center">
-        Der Übersetzer befindet sich noch in der Beta-Phase. Übersetzungen können fehlerhaft sein.
-    </p>
-    <div class="row justify-content-center align-items-center">
-        <!-- input up Düütsk -->
-        <div class="col-12 col-md-5 border">
-            <h5>
-                <dot:Literal Text="{value: InputTitle}" />
-            </h5>
-            <div class="position-relative">
-                <dot:TextBox Text="{value: GermanText}" Type="MultiLine" id="input" class="form-control input-box" placeholder="Hier einen deutschen Text eingeben." maxlength="{value: MaximumTextLength}" />
-                <span id="charCount" class="char-count">0/<dot:Literal Text="{value: MaximumTextLength}" /></span>
+    <h2 class="text-center mt-3">Übersetzer</h2>
+    <p class="text-center">(Beta-Version)</p>
+    <p class="text-center">Der Übersetzer befindet sich noch in der Beta-Phase. Übersetzungen können fehlerhaft sein.</p>
+
+    <div class="translation-container">
+
+        <div class="translation-wrapper">
+            <!-- German Input -->
+            <div class="translation-box">
+                <h5>
+                    <dot:Literal Text="{value: InputTitle}" />
+                </h5>
+                <div class="input-wrapper">
+                    <dot:TextBox Text="{value: GermanText}" Type="MultiLine" id="input"
+                                 class="form-control input-box"
+                                 placeholder="Hier einen deutschen Text eingeben."
+                                 maxlength="{value: MaximumTextLength}" />
+                    <span id="charCount" class="char-count-inline">
+                        0/
+                        <dot:Literal Text="{value: MaximumTextLength}" />
+                    </span>
+                </div>
+
             </div>
-            <br />
-        </div>
 
-        <div class="col-12 col-md-1 button-padding d-flex flex-column justify-content-center align-items-center my-2 my-md-0">
-            <dot:Button Text="Übersetze" Click="{staticCommand: _js.InvokeAsync('StartTranslation')}" class="btn btn-primary search-button mb-2" />
-            <dot:Button Text="↻" Click="{command: SwitchTranslationMode()}" style="{value: DoubleTranslationEnabled ? '' : 'display: none'}" class="btn btn-primary" />
-        </div>
-
-        <!-- aautput up Oostfräisk -->
-        <div class="col-12 col-md-5 border">
-            <h5>
-                <dot:Literal Text="{value: TranslationTitle}" />
-            </h5>
-            <dot:TextBox Text="{value: EastFrisianText}" Type="MultiLine" Enabled="false" id="translation" class="form-control input-box" placeholder="Hir staajt däi ooverset't oostfräisk tekst." />
-            <br />
-        </div>
-        <div class="{value: ShowTranslationFeedback ? 'overlay-content show' : 'overlay-content'}">
-            <span>War die Übersetzung richtig?</span>
-            <dot:Button Text="✔" Click="{command: ReportTranslationSuccess()}" class="btn btn-success" />
-            <dot:Button Text="✘" Click="{command: ReportTranslationIssue()}" class="btn btn-danger" />
+            <!-- East Frisian Output -->
+            <div class="translation-box">
+                <h5>
+                    <dot:Literal Text="{value: TranslationTitle}" />
+                </h5>
+                <dot:TextBox Text="{value: EastFrisianText}" Type="MultiLine" Enabled="false" id="translation"
+                             class="form-control input-box"
+                             placeholder="Hir staajt däi ooverset't oostfräisk tekst." />
+            </div>
         </div>
     </div>
+
+    <!-- Buttons -->
+    <div class="button-box">
+        <dot:Button Text="Übersetze" Click="{staticCommand: _js.InvokeAsync('StartTranslation')}" class="btn btn-primary" />
+        <dot:Button Text="↻" Click="{command: SwitchTranslationMode()}" style="{value: DoubleTranslationEnabled ? '' : 'display: none'}" class="btn btn-primary" />
+    </div>
+
+    <!-- Feedback -->
+    <div class="{value: ShowTranslationFeedback ? 'overlay-content text-center mt-3 show' : 'overlay-content text-center mt-3'}">
+        <span>War die Übersetzung richtig?</span>
+        <dot:Button Text="✔" Click="{command: ReportTranslationSuccess()}" class="btn btn-success mx-2" />
+        <dot:Button Text="✘" Click="{command: ReportTranslationIssue()}" class="btn btn-danger mx-2" />
+    </div>
+
 </dot:Content>
