@@ -23,7 +23,7 @@ public class TranslatorViewModel : MasterPageViewModel
     private static readonly string ApiUrl = "http://127.0.0.1:7860/gradio_api/call/predict";
 
 
-    public bool DoubleTranslationEnabled { get; } = false;
+    public bool DoubleTranslationEnabled { get; } = true;
 
     public int MaximumTextLength {get; } = MaxTextLength;
     public string InputTitle { get; set; } = "Deutsch";
@@ -31,6 +31,7 @@ public class TranslatorViewModel : MasterPageViewModel
     public string GermanText { get; set; } = "";
     public string EastFrisianText { get; set; } = "";
     public bool ShowTranslationFeedback { get; set; } = false;
+    public bool IsLoading { get; set; } = false;
 
     public override Task Init()
     {
@@ -102,12 +103,15 @@ public class TranslatorViewModel : MasterPageViewModel
     public void PrepareTranslation()
     {
         EastFrisianText = "...";
+        IsLoading = true;
+        ShowTranslationFeedback = false;
     }
 
     public async Task TranslateAsync()
     {
         // Perform translation
         EastFrisianText = await Translate(GermanText);
+        IsLoading = false;
         ShowTranslationFeedback = true;
     }
 

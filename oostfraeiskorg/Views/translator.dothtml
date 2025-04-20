@@ -96,6 +96,14 @@
             .translation-wrapper {
                 gap: 5px;
             }
+
+            .beta-text {
+                font-size: 0.75rem;
+            }
+
+            h2 {
+                font-size: 1.75rem;
+            }
         }
 
         .translation-box h5 {
@@ -110,9 +118,43 @@
             font-weight: 600;
         }
 
+        .switch-button {
+            font-weight: 2000;
+        }
+
         .input-wrapper {
             position: relative;
             flex-grow: 1;
+        }
+
+        .loading-spinner {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            background: #fff;
+            border-radius: 0.5rem;
+            box-shadow: inset 0 0 5px rgba(0,0,0,0.1);
+            position: relative;
+        }
+
+        .spinner {
+            width: 2rem;
+            height: 2rem;
+            border: 4px solid #ccc;
+            border-top: 4px solid #007bff;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
         }
 
         .char-count-inline {
@@ -130,9 +172,9 @@
         .overlay-content {
             position: relative;
             bottom: 0px;
-            left: 10px;
+            left: 0px;
             background-color: rgba(255, 255, 255, 0.8);
-            padding: 10px;
+            padding: 2px;
             border-radius: 5px;
             opacity: 0;
             transition: opacity 0.5s ease-in-out;
@@ -147,9 +189,9 @@
             }
     </style>
 
-    <h2 class="text-center mt-3">Übersetzer</h2>
+    <h2 class="text-center mt-3">Ooversetter</h2>
     <p class="text-center">(Beta-Version)</p>
-    <p class="text-center">Der Übersetzer befindet sich noch in der Beta-Phase. Übersetzungen können fehlerhaft sein.</p>
+    <p class="beta-text text-center">Der Übersetzer befindet sich noch in der Beta-Phase. Übersetzungen können fehlerhaft sein.</p>
 
     <div class="translation-container">
 
@@ -169,7 +211,11 @@
                         <dot:Literal Text="{value: MaximumTextLength}" />
                     </span>
                 </div>
-
+                <!-- Buttons -->
+                <div class="button-box">
+                    <dot:Button Text="Übersetze" Click="{staticCommand: _js.InvokeAsync('StartTranslation')}" class="btn btn-primary" />
+                    <dot:Button Text="↻" Click="{command: SwitchTranslationMode()}" style="{value: DoubleTranslationEnabled ? '' : 'display: none'}" class="btn btn-primary switch-button" />
+                </div>
             </div>
 
             <!-- East Frisian Output -->
@@ -177,24 +223,24 @@
                 <h5>
                     <dot:Literal Text="{value: TranslationTitle}" />
                 </h5>
-                <dot:TextBox Text="{value: EastFrisianText}" Type="MultiLine" Enabled="false" id="translation"
-                             class="form-control input-box"
-                             placeholder="Hir staajt däi ooverset't oostfräisk tekst." />
+                <div class="input-wrapper">
+                    <dot:TextBox Text="{value: EastFrisianText}" Type="MultiLine" Enabled="false" id="translation"
+                                 class="form-control input-box"
+                                 placeholder="Hir staajt däi ooverset't oostfräisk tekst."
+                                 Visible="{value: !IsLoading}" />
+                    <div class="loading-spinner" Visible="{value: IsLoading}">
+                        <div class="spinner"></div>
+                    </div>
+                </div>
+
+                <!-- Feedback -->
+                <div class="{value: ShowTranslationFeedback ? 'overlay-content text-center show' : 'overlay-content text-center'}">
+                    <span>War die Übersetzung richtig?</span>
+                    <dot:Button Text="✔" Click="{command: ReportTranslationSuccess()}" class="btn btn-success mx-2" />
+                    <dot:Button Text="✘" Click="{command: ReportTranslationIssue()}" class="btn btn-danger mx-2" />
+                </div>
             </div>
         </div>
-    </div>
-
-    <!-- Buttons -->
-    <div class="button-box">
-        <dot:Button Text="Übersetze" Click="{staticCommand: _js.InvokeAsync('StartTranslation')}" class="btn btn-primary" />
-        <dot:Button Text="↻" Click="{command: SwitchTranslationMode()}" style="{value: DoubleTranslationEnabled ? '' : 'display: none'}" class="btn btn-primary" />
-    </div>
-
-    <!-- Feedback -->
-    <div class="{value: ShowTranslationFeedback ? 'overlay-content text-center mt-3 show' : 'overlay-content text-center mt-3'}">
-        <span>War die Übersetzung richtig?</span>
-        <dot:Button Text="✔" Click="{command: ReportTranslationSuccess()}" class="btn btn-success mx-2" />
-        <dot:Button Text="✘" Click="{command: ReportTranslationIssue()}" class="btn btn-danger mx-2" />
     </div>
 
 </dot:Content>
