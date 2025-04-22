@@ -29,3 +29,10 @@ class App {
     }
 
 }
+
+window.onload = function () {
+    const heading = document.querySelector('h2.text-center.mt-3');
+    if (heading) {
+        heading.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+};

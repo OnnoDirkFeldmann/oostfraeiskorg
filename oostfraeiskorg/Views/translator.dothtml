@@ -90,13 +90,13 @@
             font-weight: 600;
         }
 
-        .button-box .btn-success {
+        .overlay-content .btn-success {
             padding: 0.3rem 0.6rem;
             border-radius: 0.5rem;
             font-weight: 600;
         }
 
-        .button-box .btn-danger {
+        .overlay-content .btn-danger {
             padding: 0.3rem 0.6rem;
             border-radius: 0.5rem;
             font-weight: 600;
@@ -138,7 +138,7 @@
             font-size: 0.75rem;
             color: #888;
             pointer-events: none;
-            background: rgba(255,255,255,0.8);
+            background: rgba(255,255,255,0.2);
             padding: 2px 4px;
             border-radius: 4px;
         }
@@ -175,7 +175,7 @@
 
             .translation-box {
                 height: auto;
-                padding: 0.75rem;
+                padding: 0.2rem;
             }
 
             body {
@@ -191,46 +191,47 @@
             }
 
             h2 {
-                font-size: 1.75rem;
+                font-size: 1.7rem;
             }
 
             .input-box.form-control {
-                height: 120px; /* FIX: Match desktop for visual consistency */
-                min-height: 120px;
+                height: 100px; /* FIX: Match desktop for visual consistency */
+                min-height: 100px;
             }
 
             .loading-spinner {
-                min-height: 120px; /* FIX: Equal height to the textboxes on mobile */
+                min-height: 100px; /* FIX: Equal height to the textboxes on mobile */
             }
 
             .button-box .btn-primary {
-                padding: 0.5rem 1.0rem;
+                padding: 0.42rem 0.84rem;
                 border-radius: 0.5rem;
                 font-weight: 600;
             }
 
             .overlay-content {
                 display: block;
-                font-size: 0.95rem;
+                font-size: 0.85rem;
             }
 
-            .button-box .btn-success {
-                padding: 0.2rem 0.4rem;
-                border-radius: 0.5rem;
-                font-weight: 600;
-            }
+                .overlay-content .btn-success {
+                    padding: 0.1rem 0.5rem;
+                    border-radius: 0.5rem;
+                    font-weight: 600;
+                    font-size: 0.85rem;
+                }
 
-            .button-box .btn-danger {
-                padding: 0.2rem 0.4rem;
-                border-radius: 0.5rem;
-                font-weight: 600;
-            }
+                .overlay-content .btn-danger {
+                    padding: 0.1rem 0.5rem;
+                    border-radius: 0.5rem;
+                    font-weight: 600;
+                    font-size: 0.85rem;
+                }
         }
     </style>
 
     <h2 class="text-center mt-3">Ooversetter</h2>
-    <p class="text-center">(Beta-Version)</p>
-    <p class="beta-text text-center">Der Übersetzer befindet sich noch in der Beta-Phase. Übersetzungen können fehlerhaft sein.</p>
+    <p class="beta-text text-center">Übersetzer für das Ostfriesische Platt (Beta-Version)</p>
 
     <div class="translation-container">
 
@@ -283,5 +284,6 @@
             </div>
         </div>
     </div>
+    <p class="beta-text text-center">Der Übersetzer befindet sich noch in der Beta-Phase. Übersetzungen können fehlerhaft sein.</p>
 
 </dot:Content>
