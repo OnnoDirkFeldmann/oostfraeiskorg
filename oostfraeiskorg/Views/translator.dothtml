@@ -244,7 +244,7 @@
                 <div class="input-wrapper">
                     <dot:TextBox Text="{value: GermanText}" Type="MultiLine" id="input"
                                  class="form-control input-box"
-                                 placeholder="Hier einen deutschen Text eingeben."
+                                 placeholder="{value: InputPlaceholderText}"
                                  maxlength="{value: MaximumTextLength}" />
                     <span id="charCount" class="char-count-inline">
                         0/
@@ -253,7 +253,7 @@
                 </div>
                 <!-- Buttons -->
                 <div class="button-box">
-                    <dot:Button Text="Übersetze" Click="{staticCommand: _js.InvokeAsync('StartTranslation')}" class="btn btn-primary" />
+                    <dot:Button Text="{value: TranslationText}" Click="{staticCommand: _js.InvokeAsync('StartTranslation')}" class="btn btn-primary" />
                     <dot:Button Text="↻" Click="{command: SwitchTranslationMode()}" style="{value: DoubleTranslationEnabled ? '' : 'display: none'}" class="btn btn-primary switch-button" />
                 </div>
             </div>
@@ -266,7 +266,7 @@
                 <div class="input-wrapper">
                     <dot:TextBox Text="{value: EastFrisianText}" Type="MultiLine" Enabled="false" id="translation"
                                  class="form-control input-box"
-                                 placeholder="Hir staajt däi ooverset't oostfräisk tekst."
+                                 placeholder="{value: TranslationPlaceholderText}"
                                  Visible="{value: !IsLoading}" />
                     <div class="loading-spinner" Visible="{value: IsLoading}">
                         <div class="spinner"></div>
