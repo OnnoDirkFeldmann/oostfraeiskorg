@@ -27,9 +27,12 @@ public class TranslatorViewModel : MasterPageViewModel
 
     public int MaximumTextLength {get; } = MaxTextLength;
     public string InputTitle { get; set; } = "Deutsch";
-    public string TranslationTitle { get; set; } = "Ostfriesisch";
+    public string TranslationTitle { get; set; } = "Oostfräisk";
     public string GermanText { get; set; } = "";
+    public string InputPlaceholderText { get; set; } = "Hier steht der deutsche Text.";
     public string EastFrisianText { get; set; } = "";
+    public string TranslationPlaceholderText { get; set; } = "Hir staajt däi oostfräisk tekst.";
+    public string TranslationText { get; set; } = "Übersetze";
     public bool ShowTranslationFeedback { get; set; } = false;
     public bool IsLoading { get; set; } = false;
 
@@ -49,6 +52,11 @@ public class TranslatorViewModel : MasterPageViewModel
         var tempText = GermanText;
         GermanText = EastFrisianText;
         EastFrisianText = tempText;
+        var tempPlaceholder = InputPlaceholderText;
+        InputPlaceholderText = TranslationPlaceholderText;
+        TranslationPlaceholderText = temp;
+
+        TranslationText = TranslationText == "Übersetze" ? "ooversetten" : "Übersetze";
     }
 
     public void DeactivateFeedback()
