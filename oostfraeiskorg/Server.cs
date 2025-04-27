@@ -7,7 +7,7 @@ public static class Server
 {
     public static string MapPath(string path)
     {
-        return Path.Combine(AppDomain.CurrentDomain.GetData("ContentRootPath").ToString(), path);
+        return Path.Combine(AppContext.BaseDirectory, path);
     }
 }
 
