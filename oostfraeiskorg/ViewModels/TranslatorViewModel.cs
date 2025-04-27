@@ -11,6 +11,7 @@ using DotVVM.Framework.Binding;
 using System.Net.Mail;
 using System.Net;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Configuration;
 
 namespace oostfraeiskorg.ViewModels;
 
@@ -20,8 +21,9 @@ public class TranslatorViewModel : MasterPageViewModel
     private const int DelayMilliseconds = 50;
     private static readonly string ApiFrsUrl = "https://vanmoders114-east-frisian-translator.hf.space/gradio_api/call/predict";
     private static readonly string ApiGerUrl = "https://vanmoders114-east-frisian-german-translator.hf.space/gradio_api/call/predict";
-    private static readonly string BearerToken = "";
     //private static readonly string ApiUrl = "http://127.0.0.1:7860/gradio_api/call/predict";
+
+    private readonly string BearerToken;
 
 
     public bool DoubleTranslationEnabled { get; } = true;
@@ -36,6 +38,17 @@ public class TranslatorViewModel : MasterPageViewModel
     public string TranslationText { get; set; } = "Übersetze";
     public bool ShowTranslationFeedback { get; set; } = false;
     public bool IsLoading { get; set; } = false;
+
+
+    public TranslatorViewModel(IConfiguration configuration)
+    {
+        // Load the BearerToken from appsettings.json
+        BearerToken = configuration["TranslatorConfig:BearerToken"];
+        if (string.IsNullOrEmpty(BearerToken))
+        {
+            throw new Exception("BearerToken is missing in the configuration.");
+        }
+    }
 
     public override Task Init()
     {
@@ -55,7 +68,7 @@ public class TranslatorViewModel : MasterPageViewModel
         EastFrisianText = tempText;
         var tempPlaceholder = InputPlaceholderText;
         InputPlaceholderText = TranslationPlaceholderText;
-        TranslationPlaceholderText = temp;
+        TranslationPlaceholderText = tempPlaceholder;
 
         TranslationText = TranslationText == "Übersetze" ? "ooversetten" : "Übersetze";
     }
@@ -120,7 +133,7 @@ public class TranslatorViewModel : MasterPageViewModel
     {
         string apiUrl = TranslationText == "Übersetze" ? ApiFrsUrl : ApiGerUrl;
         // Perform translation
-        EastFrisianText = await Translate(GermanText, apiUrl);
+        EastFrisianText = await Translate(GermanText, apiUrl, BearerToken);
         IsLoading = false;
         if (TranslationText == "Übersetze")
         {
@@ -128,7 +141,7 @@ public class TranslatorViewModel : MasterPageViewModel
         }
     }
 
-    public static async Task<string> Translate(string text, string apiUrl)
+    public static async Task<string> Translate(string text, string apiUrl, string bearerToken)
     {
         if (text.Length > MaxTextLength)
         {
@@ -138,7 +151,7 @@ public class TranslatorViewModel : MasterPageViewModel
         using HttpClient client = new HttpClient();
 
         // Set up the headers
-        client.DefaultRequestHeaders.Add("Authorization", $"Bearer {BearerToken}");
+        client.DefaultRequestHeaders.Add("Authorization", $"Bearer {bearerToken}");
         client.DefaultRequestHeaders.Add("Accept", "application/json");
 
         // JSON payload
