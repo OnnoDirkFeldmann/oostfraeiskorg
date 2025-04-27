@@ -18,9 +18,10 @@ public class TranslatorViewModel : MasterPageViewModel
 {
     private const int MaxTextLength = 300;
     private const int DelayMilliseconds = 50;
-    //private static readonly string ApiUrl = "https://vanmoders114-east-frisian-translator.hf.space/gradio_api/call/predict";
+    private static readonly string ApiFrsUrl = "https://vanmoders114-east-frisian-translator.hf.space/gradio_api/call/predict";
+    private static readonly string ApiGerUrl = "https://vanmoders114-east-frisian-german-translator.hf.space/gradio_api/call/predict";
     private static readonly string BearerToken = "";
-    private static readonly string ApiUrl = "http://127.0.0.1:7860/gradio_api/call/predict";
+    //private static readonly string ApiUrl = "http://127.0.0.1:7860/gradio_api/call/predict";
 
 
     public bool DoubleTranslationEnabled { get; } = true;
@@ -117,13 +118,17 @@ public class TranslatorViewModel : MasterPageViewModel
 
     public async Task TranslateAsync()
     {
+        string apiUrl = TranslationText == "Übersetze" ? ApiFrsUrl : ApiGerUrl;
         // Perform translation
-        EastFrisianText = await Translate(GermanText);
+        EastFrisianText = await Translate(GermanText, apiUrl);
         IsLoading = false;
-        ShowTranslationFeedback = true;
+        if (TranslationText == "Übersetze")
+        {
+            ShowTranslationFeedback = true;
+        }
     }
 
-    public static async Task<string> Translate(string text)
+    public static async Task<string> Translate(string text, string apiUrl)
     {
         if (text.Length > MaxTextLength)
         {
@@ -148,7 +153,7 @@ public class TranslatorViewModel : MasterPageViewModel
         try
         {
             // Step 1: Send POST request to get the event ID
-            HttpResponseMessage response = await client.PostAsync(ApiUrl, content);
+            HttpResponseMessage response = await client.PostAsync(apiUrl, content);
             response.EnsureSuccessStatusCode();
 
             string responseJson = await response.Content.ReadAsStringAsync();
@@ -161,7 +166,7 @@ public class TranslatorViewModel : MasterPageViewModel
             }
 
             // Step 2: Fetch the translation result using event ID
-            string resultUrl = $"{ApiUrl}/{eventId}";
+            string resultUrl = $"{apiUrl}/{eventId}";
 
             while (true)
             {
