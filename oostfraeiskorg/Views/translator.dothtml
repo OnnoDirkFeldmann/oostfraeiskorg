@@ -254,7 +254,7 @@
                 <!-- Buttons -->
                 <div class="button-box">
                     <dot:Button Text="{value: TranslationText}" Click="{staticCommand: _js.InvokeAsync('StartTranslation')}" class="btn btn-primary" />
-                    <dot:Button Text="↻" Click="{command: SwitchTranslationMode()}" style="{value: DoubleTranslationEnabled ? '' : 'display: none'}" class="btn btn-primary switch-button" />
+                    <dot:Button Text="⇄" Click="{command: SwitchTranslationMode()}" style="{value: DoubleTranslationEnabled ? '' : 'display: none'}" class="btn btn-primary switch-button" />
                 </div>
             </div>
 
