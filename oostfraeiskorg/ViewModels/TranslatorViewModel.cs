@@ -21,6 +21,7 @@ public class TranslatorViewModel : MasterPageViewModel
     private const int DelayMilliseconds = 50;
     private static readonly string ApiFrsUrl = "https://vanmoders114-east-frisian-translator.hf.space/gradio_api/call/predict";
     private static readonly string ApiGerUrl = "https://vanmoders114-east-frisian-german-translator.hf.space/gradio_api/call/predict";
+    private static readonly string ApiSaveFeedbackUrl = "https://vanmoders114-ooversetter-feedback.hf.space/gradio_api/call/save_translation";
     //private static readonly string ApiUrl = "http://127.0.0.1:7860/gradio_api/call/predict";
 
     private readonly string BearerToken;
@@ -31,9 +32,9 @@ public class TranslatorViewModel : MasterPageViewModel
     public int MaximumTextLength {get; } = MaxTextLength;
     public string InputTitle { get; set; } = "Deutsch";
     public string TranslationTitle { get; set; } = "Oostfräisk";
-    public string GermanText { get; set; } = "";
+    public string InputText { get; set; } = "";
     public string InputPlaceholderText { get; set; } = "Hier steht der deutsche Text.";
-    public string EastFrisianText { get; set; } = "";
+    public string OutputText { get; set; } = "";
     public string TranslationPlaceholderText { get; set; } = "Hir staajt däi oostfräisk tekst.";
     public string TranslationText { get; set; } = "Übersetze";
     public bool ShowTranslationFeedback { get; set; } = false;
@@ -63,9 +64,9 @@ public class TranslatorViewModel : MasterPageViewModel
         var temp = InputTitle;
         InputTitle = TranslationTitle;
         TranslationTitle = temp;
-        var tempText = GermanText;
-        GermanText = EastFrisianText;
-        EastFrisianText = tempText;
+        var tempText = InputText;
+        InputText = OutputText;
+        OutputText = tempText;
         var tempPlaceholder = InputPlaceholderText;
         InputPlaceholderText = TranslationPlaceholderText;
         TranslationPlaceholderText = tempPlaceholder;
@@ -78,20 +79,24 @@ public class TranslatorViewModel : MasterPageViewModel
         ShowTranslationFeedback = false;
     }
 
-    public void ReportTranslationIssue()
+    public async Task ReportTranslationIssue()
     {
-        SentReport("Translation Issue Report");
+        await SentReport("Translation Issue Report", " [FEELER]");
         ShowTranslationFeedback = false;
     }
 
-    public void ReportTranslationSuccess()
+    public async Task ReportTranslationSuccess()
     {
-        SentReport("Translation Success Report");
+        await SentReport("Translation Success Report", "");
         ShowTranslationFeedback = false;
     }
 
-    private void SentReport(string subject)
+    private async Task SentReport(string subject, string addedMarker)
     {
+        string gerText = TranslationText == "Übersetze" ? InputText : OutputText + addedMarker;
+        string frsText = TranslationText == "Übersetze" ? OutputText + addedMarker : InputText;
+
+        await SaveFeedback(gerText, frsText, ApiSaveFeedbackUrl, BearerToken);
         try
         {
             using (var client = new SmtpClient
@@ -108,7 +113,7 @@ public class TranslatorViewModel : MasterPageViewModel
                 {
                     From = new MailAddress("edufraeisk@gmail.com"),
                     Subject = subject,
-                    Body = $"{GermanText}\n\nOOVERSETTEN:\n\n{EastFrisianText}",
+                    Body = $"{gerText}\n\nOOVERSETTEN:\n\n{frsText}",
                     IsBodyHtml = false,
                 };
                 mailMessage.To.Add("oostfraeisk.ooversetter@gmail.com");
@@ -122,9 +127,48 @@ public class TranslatorViewModel : MasterPageViewModel
         }
     }
 
+    public static async Task SaveFeedback(string gerText, string frsText, string apiUrl, string bearerToken)
+    {
+        using HttpClient client = new HttpClient();
+
+        // Set up the headers
+        client.DefaultRequestHeaders.Add("Authorization", $"Bearer {bearerToken}");
+        client.DefaultRequestHeaders.Add("Accept", "application/json");
+
+        // JSON payload
+        var requestBody = new
+        {
+            data = new string[] { gerText, frsText }
+        };
+
+        string jsonPayload = Newtonsoft.Json.JsonConvert.SerializeObject(requestBody);
+        var content = new StringContent(jsonPayload, Encoding.UTF8, "application/json");
+
+        try
+        {
+            // Step 1: Send POST request to get the event ID
+            HttpResponseMessage response = await client.PostAsync(apiUrl, content);
+            response.EnsureSuccessStatusCode();
+
+            string responseJson = await response.Content.ReadAsStringAsync();
+            var jsonIdResponse = JObject.Parse(responseJson);
+            string eventId = jsonIdResponse["event_id"]?.ToString();
+
+            if (string.IsNullOrEmpty(eventId))
+            {
+                throw new Exception("Failed to retrieve event_id from API response.");
+            }
+
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error: {ex.Message}");
+        }
+    }
+
     public void PrepareTranslation()
     {
-        EastFrisianText = "...";
+        OutputText = "...";
         IsLoading = true;
         ShowTranslationFeedback = false;
     }
@@ -133,12 +177,9 @@ public class TranslatorViewModel : MasterPageViewModel
     {
         string apiUrl = TranslationText == "Übersetze" ? ApiFrsUrl : ApiGerUrl;
         // Perform translation
-        EastFrisianText = await Translate(GermanText, apiUrl, BearerToken);
+        OutputText = await Translate(InputText, apiUrl, BearerToken);
         IsLoading = false;
-        if (TranslationText == "Übersetze")
-        {
-            ShowTranslationFeedback = true;
-        }
+        ShowTranslationFeedback = true;
     }
 
     public static async Task<string> Translate(string text, string apiUrl, string bearerToken)
