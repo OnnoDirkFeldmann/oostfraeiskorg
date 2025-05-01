@@ -236,13 +236,13 @@
     <div class="translation-container">
 
         <div class="translation-wrapper">
-            <!-- German Input -->
+            <!-- Input -->
             <div class="translation-box">
                 <h5>
                     <dot:Literal Text="{value: InputTitle}" />
                 </h5>
                 <div class="input-wrapper">
-                    <dot:TextBox Text="{value: GermanText}" Type="MultiLine" id="input"
+                    <dot:TextBox Text="{value: InputText}" Type="MultiLine" id="input"
                                  class="form-control input-box"
                                  placeholder="{value: InputPlaceholderText}"
                                  maxlength="{value: MaximumTextLength}" />
@@ -258,13 +258,13 @@
                 </div>
             </div>
 
-            <!-- East Frisian Output -->
+            <!-- Output -->
             <div class="translation-box">
                 <h5>
                     <dot:Literal Text="{value: TranslationTitle}" />
                 </h5>
                 <div class="input-wrapper">
-                    <dot:TextBox Text="{value: EastFrisianText}" Type="MultiLine" Enabled="false" id="translation"
+                    <dot:TextBox Text="{value: OutputText}" Type="MultiLine" Enabled="false" id="translation"
                                  class="form-control input-box"
                                  placeholder="{value: TranslationPlaceholderText}"
                                  Visible="{value: !IsLoading}" />
