@@ -31,7 +31,7 @@ class App {
 }
 
 window.onload = function () {
-    const heading = document.querySelector('h2.text-center.mt-3');
+    const heading = document.querySelector('.ooversetter-logo');
     if (heading) {
         heading.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
