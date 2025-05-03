@@ -12,6 +12,11 @@
 
     <style>
 
+        .ooversetter-logo {
+            max-width: 350px;
+            height: auto;
+        }
+
         .translation-container {
             display: flex;
             flex-wrap: wrap;
@@ -188,10 +193,15 @@
 
             .beta-text {
                 font-size: 0.75rem;
+                padding-top: 0.5em;
             }
 
             h2 {
                 font-size: 1.7rem;
+            }
+
+            .ooversetter-logo {
+                max-width: 250px;
             }
 
             .input-box.form-control {
@@ -230,8 +240,10 @@
         }
     </style>
 
-    <h2 class="text-center mt-3">Ooversetter</h2>
-    <p class="beta-text text-center">Übersetzer für das Ostfriesische Platt (Beta-Version)</p>
+    <div class="text-center mt-3">
+        <img src="~/img/ooversetter_logo.png" alt="Ooversetter Logo" class="ooversetter-logo" />
+        <p class="beta-text text-center">Übersetzer für das Ostfriesische Platt (Beta-Version)</p>
+    </div>
 
     <div class="translation-container">
 
