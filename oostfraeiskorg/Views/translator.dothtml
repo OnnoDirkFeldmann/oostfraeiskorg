@@ -12,6 +12,24 @@
 
     <style>
 
+        .clear-button {
+            position: absolute;
+            top: 8px;
+            right: 12px;
+            background: none;
+            border: none;
+            color: #888;
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: 0;
+            line-height: 1;
+            z-index: 10;
+        }
+
+        .clear-button:hover {
+            color: #000;
+        }
+
         .ooversetter-logo {
             max-width: 350px;
             height: auto;
@@ -258,6 +276,7 @@
                                  class="form-control input-box"
                                  placeholder="{value: InputPlaceholderText}"
                                  maxlength="{value: MaximumTextLength}" />
+                    <dot:Button Text="×" Click="{command: ClearInput()}" class="clear-button" tabindex="-1" />
                     <span id="charCount" class="char-count-inline">
                         0/
                         <dot:Literal Text="{value: MaximumTextLength}" />
