@@ -28,6 +28,19 @@ class App {
         }
     }
 
+    async ToggleFeedback(show) {
+        const feedbackElement = document.querySelector('.overlay-content');
+        if (show) {
+            feedbackElement.classList.remove('hidden');
+            feedbackElement.classList.add('show');
+        } else {
+            feedbackElement.classList.remove('show');
+            setTimeout(() => {
+                feedbackElement.classList.add('hidden');
+            }, 500); // Match the CSS transition duration (0.5s)
+        }
+    }
+
 }
 
 window.onload = function () {
