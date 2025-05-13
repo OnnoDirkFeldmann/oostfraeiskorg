@@ -16,6 +16,8 @@ class App {
         input.addEventListener('input', function () {
             charCount.textContent = input.value.length + '/' + input.maxLength;
         });
+
+        charCount.textContent = input.value.length + '/' + input.maxLength;
     }
 
     async StartTranslation() {
@@ -39,6 +41,11 @@ class App {
                 feedbackElement.classList.add('hidden');
             }, 500); // Match the CSS transition duration (0.5s)
         }
+    }
+
+    async ClearInput() {
+        charCount.textContent = '0/' + input.maxLength;
+        await this.context.namedCommands["ClearInput"]();
     }
 
 }
