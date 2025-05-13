@@ -9,6 +9,8 @@
                       Command="{command: _root.PrepareTranslation()}" />
     <dot:NamedCommand Name="DeactivateFeedback"
                       Command="{command: _root.DeactivateFeedback()}" />
+    <dot:NamedCommand Name="ClearInput"
+                      Command="{command: _root.ClearInput()}" />
 
     <style>
 
@@ -297,8 +299,9 @@
                         <dot:TextBox Text="{value: InputText}" Type="MultiLine" id="input"
                                      class="form-control input-box"
                                      placeholder="{value: InputPlaceholderText}"
-                                     maxlength="{value: MaximumTextLength}" />
-                        <dot:Button Text="×" Click="{command: ClearInput()}" class="clear-button" tabindex="-1" />
+                                     maxlength="{value: MaximumTextLength}"
+                                     Enabled="{value: !IsLoading}" />
+                        <dot:Button Text="×" Click="{staticCommand: _js.InvokeAsync('ClearInput')}" class="clear-button" tabindex="-1" />
                         <span id="charCount" class="char-count-inline">
                             0/
                             <dot:Literal Text="{value: MaximumTextLength}" />
