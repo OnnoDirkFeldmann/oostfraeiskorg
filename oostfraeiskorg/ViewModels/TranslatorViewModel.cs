@@ -175,7 +175,7 @@ public class TranslatorViewModel : MasterPageViewModel
 
     public void PrepareTranslation()
     {
-        OutputText = "...";
+        OutputText = "";
         IsLoading = true;
         ShowTranslationFeedback = false;
     }
