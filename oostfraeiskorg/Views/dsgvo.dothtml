@@ -8,10 +8,11 @@
             <h2>1. Datenschutz auf einen Blick</h2>
             <h3>Allgemeine Hinweise</h3>
             <p>
-                Die folgenden Hinweise geben einen einfachen überblick darüber, was mit Ihren personenbezogenen Daten passiert,
+                Die folgenden Hinweise geben einen einfachen Überblick darüber, was mit Ihren personenbezogenen Daten passiert,
                 wenn Sie diese Website besuchen. Personenbezogene Daten sind alle Daten, mit denen Sie persönlich identifiziert werden können.
                 Ausführliche Informationen zum Thema Datenschutz entnehmen Sie unserer unter diesem Text aufgeführten Datenschutzerklärung.
             </p>
+
             <h3>Datenerfassung auf dieser Website</h3>
             <p><strong>Wer ist verantwortlich für die Datenerfassung auf dieser Website?</strong></p>
             <p>
@@ -51,7 +52,42 @@
                 Hierzu sowie zu weiteren Fragen zum Thema Datenschutz können Sie sich jederzeit unter der im
                 Impressum angegebenen Adresse an uns wenden.
             </p>
-            <h2>2. Allgemeine Hinweise und Pflicht-informationen</h2>
+
+            <h3>Verarbeitung von Nutzereingaben und Feedback</h3>
+            <p>
+                Diese Website bietet die Möglichkeit, Texteingaben für Übersetzungen und Feedback zu verarbeiten. Die von Ihnen eingegebenen Texte werden
+                ausschließlich für den Zweck der Übersetzung und Verbesserung unserer Dienste verwendet.
+            </p>
+            <p>
+                <strong>Feedback:</strong> Wenn Sie Feedback zu einer Übersetzung geben (z. B. durch die Schaltflächen "✔" oder "✘"), wird dieses Feedback zusammen mit dem übersetzten Text
+                und dem Originaltext gespeichert. Diese Daten werden verwendet, um die Qualität der Übersetzungen zu verbessern. Es werden keine weiteren personenbezogenen Daten
+                im Zusammenhang mit dem Feedback gespeichert.
+            </p>
+
+            <p><strong>Nutzung der Hugging Face API für Übersetzungen</strong></p>
+            <p>
+                Für die Bereitstellung der Übersetzungsdienste verwenden wir die API von Hugging Face (Hugging Face Inc., 20 Jay Street, New York, New York, USA).
+                Die von Ihnen eingegebenen Texte werden an die Server von Hugging Face übermittelt, um die Übersetzung durchzuführen. Hugging Face verarbeitet diese Daten
+                in unserem Auftrag und verpflichtet sich vertraglich, die Vertraulichkeit der verarbeiteten Daten zu gewährleisten.
+            </p>
+            <p>
+                Die Verarbeitung der Texte erfolgt auf Grundlage Ihrer Einwilligung gemäß Art. 6 Abs. 1 lit. a DSGVO. Sie können Ihre Einwilligung jederzeit widerrufen,
+                indem Sie die Nutzung der Übersetzungsdienste einstellen.
+            </p>
+            <p>
+                Weitere Informationen zur Datenverarbeitung durch Hugging Face finden Sie in deren Datenschutzerklärung unter:
+                <a href="https://huggingface.co/privacy" target="_blank" rel="noopener noreferrer">https://huggingface.co/privacy</a>.
+            </p>
+
+            <p><strong>Rechte der Nutzer</strong></p>
+            <p>
+                Sie haben das Recht, jederzeit Auskunft über die von Ihnen verarbeiteten Texte zu erhalten, die Löschung dieser Daten zu verlangen oder Ihre Einwilligung
+                zur Verarbeitung zu widerrufen. Bitte beachten Sie, dass die Übersetzungsdienste ohne die Verarbeitung der Texte nicht bereitgestellt werden können.
+            </p>
+            <p>
+                Für Anfragen oder weitere Informationen zum Datenschutz können Sie sich jederzeit an die im Impressum angegebene Adresse wenden.
+            </p>
+            <h2>2. Allgemeine Hinweise und Pflichtinformationen</h2>
             <h3>Datenschutz</h3>
             <p>
                 Die Betreiber dieser Seiten
