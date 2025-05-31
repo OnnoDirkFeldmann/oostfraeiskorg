@@ -16,6 +16,8 @@ class App {
         input.addEventListener('input', function () {
             charCount.textContent = input.value.length + '/' + input.maxLength;
         });
+
+        charCount.textContent = input.value.length + '/' + input.maxLength;
     }
 
     async StartTranslation() {
@@ -26,6 +28,24 @@ class App {
             // handle error states
             dotvvm.patchState({ ErrorMessage: "Translation failed!" });
         }
+    }
+
+    async ToggleFeedback(show) {
+        const feedbackElement = document.querySelector('.overlay-content');
+        if (show) {
+            feedbackElement.classList.remove('hidden');
+            feedbackElement.classList.add('show');
+        } else {
+            feedbackElement.classList.remove('show');
+            setTimeout(() => {
+                feedbackElement.classList.add('hidden');
+            }, 500); // Match the CSS transition duration (0.5s)
+        }
+    }
+
+    async ClearInput() {
+        charCount.textContent = '0/' + input.maxLength;
+        await this.context.namedCommands["ClearInput"]();
     }
 
 }

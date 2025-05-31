@@ -74,6 +74,13 @@ public class TranslatorViewModel : MasterPageViewModel
         TranslationText = TranslationText == "Übersetze" ? "ooversetten" : "Übersetze";
     }
 
+    public void ClearInput()
+    {
+        InputText = "";
+        OutputText = "";
+        ShowTranslationFeedback = false;
+    }
+
     public void DeactivateFeedback()
     {
         ShowTranslationFeedback = false;
@@ -168,7 +175,7 @@ public class TranslatorViewModel : MasterPageViewModel
 
     public void PrepareTranslation()
     {
-        OutputText = "...";
+        OutputText = "";
         IsLoading = true;
         ShowTranslationFeedback = false;
     }
