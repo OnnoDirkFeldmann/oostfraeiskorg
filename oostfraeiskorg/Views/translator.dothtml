@@ -38,6 +38,33 @@
                 color: #000;
             }
 
+        .input-wrapper .clear-button {
+            right: 12px;
+        }
+
+        .copy-button {
+            position: absolute;
+            top: 8px;
+            right: 12px;
+            background: none;
+            border: none;
+            color: #888;
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: 0;
+            line-height: 1;
+            z-index: 10;
+            transition: color 0.2s;
+        }
+
+            .copy-button:hover {
+                color: #007bff;
+            }
+
+        .input-wrapper .copy-button {
+            right: 12px;
+        }
+
         .ooversetter-logo {
             max-width: 350px;
             height: auto;
@@ -279,33 +306,6 @@
                     font-size: 0.85rem;
                 }
         }
-
-        .copy-button {
-            position: absolute;
-            top: 8px;
-            right: 40px; /* Place it left of the clear button */
-            background: none;
-            border: none;
-            color: #888;
-            font-size: 1.2rem;
-            cursor: pointer;
-            padding: 0;
-            line-height: 1;
-            z-index: 10;
-            transition: color 0.2s;
-        }
-
-            .copy-button:hover {
-                color: #007bff;
-            }
-
-        .input-wrapper .clear-button {
-            right: 12px;
-        }
-
-        .input-wrapper .copy-button {
-            right: 40px;
-        }
     </style>
 
     <div class="text-center mt-3">
@@ -353,10 +353,10 @@
                                      class="form-control input-box"
                                      placeholder="{value: TranslationPlaceholderText}"
                                      Visible="{value: !IsLoading}" />
+                        <dot:Button Text="⧉" Click="{staticCommand: _js.InvokeAsync('CopyOutput')}" class="copy-button" tabindex="-1" />
                         <div class="loading-spinner" Visible="{value: IsLoading}">
                             <div class="spinner"></div>
                         </div>
-                        <dot:Button Text="⧉" Click="{staticCommand: _js.InvokeAsync('CopyOutput')}" class="copy-button" tabindex="-1" />
                     </div>
 
                     <!-- Feedback -->
