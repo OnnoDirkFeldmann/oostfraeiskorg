@@ -48,6 +48,13 @@ class App {
         await this.context.namedCommands["ClearInput"]();
     }
 
+    async CopyOutput() {
+        var output = document.getElementById('translation');
+        if (output) {
+            navigator.clipboard.writeText(output.value);
+        }
+    }
+
 }
 
 window.onload = function () {
