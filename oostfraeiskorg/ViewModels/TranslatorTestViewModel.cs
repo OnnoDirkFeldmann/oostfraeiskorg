@@ -15,7 +15,7 @@ using Microsoft.Extensions.Configuration;
 
 namespace oostfraeiskorg.ViewModels;
 
-public class TranslatorViewModel : MasterPageViewModel
+public class TranslatorTestViewModel : MasterPageViewModel
 {
     private const int MaxTextLength = 300;
     private const int DelayMilliseconds = 50;
@@ -39,30 +39,9 @@ public class TranslatorViewModel : MasterPageViewModel
     public string TranslationText { get; set; } = "Übersetze";
     public bool ShowTranslationFeedback { get; set; } = false;
     public bool IsLoading { get; set; } = false;
-    private DateTime releaseDate = new DateTime(2025, 9, 6, 11, 30, 0, DateTimeKind.Utc);
-    public bool IsTranslatorAvailable
-    {
-        get
-        {
-            // Server-side check, so users can't bypass
-            return DateTime.UtcNow >= releaseDate;
-        }
-    }
-    public string CountdownText
-    {
-        get
-        {
-            var now = DateTime.UtcNow;
-            if (now >= releaseDate)
-                return "";
-
-            var diff = releaseDate - now;
-            return $"{diff.Days} Tage {diff.Hours} Std {diff.Minutes} Min {diff.Seconds} Sek";
-        }
-    }
 
 
-    public TranslatorViewModel(IConfiguration configuration)
+    public TranslatorTestViewModel(IConfiguration configuration)
     {
         // Load the BearerToken from appsettings.json
         BearerToken = configuration["TranslatorConfig:BearerToken"];
@@ -109,16 +88,12 @@ public class TranslatorViewModel : MasterPageViewModel
 
     public async Task ReportTranslationIssue()
     {
-        if (!IsTranslatorAvailable)
-            return;
         await SentReport("Translation Issue Report", " [FEELER]");
         ShowTranslationFeedback = false;
     }
 
     public async Task ReportTranslationSuccess()
     {
-        if (!IsTranslatorAvailable)
-            return;
         await SentReport("Translation Success Report", "");
         ShowTranslationFeedback = false;
     }
@@ -207,15 +182,6 @@ public class TranslatorViewModel : MasterPageViewModel
 
     public async Task TranslateAsync()
     {
-        if (!IsTranslatorAvailable)
-        {
-            // Optionally log, show error, or just silently block
-            OutputText = "Der Übersetzer ist noch nicht verfügbar.";
-            IsLoading = false;
-            ShowTranslationFeedback = false;
-            return;
-        }
-
         string apiUrl = TranslationText == "Übersetze" ? ApiFrsUrl : ApiGerUrl;
         // Perform translation
         OutputText = await Translate(InputText, apiUrl, BearerToken);
