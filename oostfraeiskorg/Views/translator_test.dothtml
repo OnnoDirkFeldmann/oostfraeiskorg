@@ -1,4 +1,4 @@
-﻿@viewModel oostfraeiskorg.ViewModels.TranslatorViewModel, oostfraeiskorg
+﻿@viewModel oostfraeiskorg.ViewModels.TranslatorTestViewModel, oostfraeiskorg
 @masterPage Views/MasterPage.dotmaster
 @js translator
 
@@ -13,77 +13,6 @@
                       Command="{command: _root.ClearInput()}" />
 
     <style>
-
-        .countdown-outer {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 40vh;
-            margin-top: 3em;
-        }
-
-        .countdown-box {
-            background: #fff;
-            border-radius: 1.5rem;
-            box-shadow: 0 4px 24px rgba(0,0,0,0.12);
-            padding: 2.5rem 2rem;
-            max-width: 500px;
-            margin: auto;
-            border: 2px solid #007bff;
-            animation: fadeIn 1s;
-            margin-bottom: 2.5em;
-        }
-
-        .countdown-title {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #007bff;
-            margin-bottom: 1.2rem;
-            letter-spacing: 0.02em;
-            margin-top: 2.5em;
-        }
-
-        .countdown-timer {
-            font-size: 2.2rem;
-            font-weight: 800;
-            color: #222;
-            letter-spacing: 0.05em;
-            margin-bottom: 1.2rem;
-            font-family: 'Courier New', Courier, monospace;
-            transition: color 0.3s;
-        }
-
-            .countdown-timer:empty {
-                color: #aaa;
-            }
-
-        .countdown-progress {
-            width: 100%;
-            height: 8px;
-            background: #e9ecef;
-            border-radius: 4px;
-            overflow: hidden;
-            margin-top: 1.2rem;
-        }
-
-        .countdown-bar {
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, #007bff 0%, #00c6ff 100%);
-            animation: progressBar 2s linear infinite;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: scale(0.95);
-            }
-
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
 
         .feedback-notice {
             font-size: 0.85rem;
@@ -379,89 +308,73 @@
         }
     </style>
 
-    <!-- Countdown Section -->
-    <div Visible="{value: !IsTranslatorAvailable}" class="countdown-outer text-center mt-5">
-        <div class="countdown-box">
-            <h1 class="countdown-title" style="margin-top:2.5em;">
-                Der Ooversetter wird am <strong style="font-weight:800;">06.09.2025</strong> freigeschaltet! Seid gespannt!<br />
-                <span style="font-size:0.95em;color:#555;">Däi Ooversetter word't up d' <strong style="font-weight:800;">06.09.2025</strong> freiskalt't. Weest gespant!</span>
-            </h1>
-            <div id="countdown-live" class="countdown-timer">
-                <dot:Literal Text="{value: CountdownText}" />
-            </div>
-        </div>
+    <div class="text-center mt-3">
+        <img src="~/img/ooversetter_logo.png" alt="Ooversetter Logo" class="ooversetter-logo" />
+        <p class="beta-text text-center">Übersetzer für das Ostfriesische Platt (Beta-Version)</p>
     </div>
 
-    <!-- Translator Section -->
-    <div Visible="{value: IsTranslatorAvailable}">
-        <div class="text-center mt-3">
-            <img src="~/img/ooversetter_logo.png" alt="Ooversetter Logo" class="ooversetter-logo" />
-            <p class="beta-text text-center">Übersetzer für das Ostfriesische Platt (Beta-Version)</p>
-        </div>
+    <div class="translation-container">
 
-        <div class="translation-container">
+        <div class="translation-wrapper">
+            <!-- Input -->
+            <div class="translation-box">
+                <div class="translation-frame">
+                    <h5>
+                        <dot:Literal Text="{value: InputTitle}" />
+                    </h5>
+                    <div class="input-wrapper">
+                        <dot:TextBox Text="{value: InputText}" Type="MultiLine" id="input"
+                                     class="form-control input-box"
+                                     placeholder="{value: InputPlaceholderText}"
+                                     maxlength="{value: MaximumTextLength}"
+                                     Enabled="{value: !IsLoading}" />
+                        <dot:Button Text="×" Click="{staticCommand: _js.InvokeAsync('ClearInput')}" class="clear-button" tabindex="-1" />
+                        <span id="charCount" class="char-count-inline">
+                            0/
+                            <dot:Literal Text="{value: MaximumTextLength}" />
+                        </span>
+                    </div>
+                    <!-- Buttons -->
+                    <div class="button-box">
+                        <dot:Button Text="{value: TranslationText}" Click="{staticCommand: _js.InvokeAsync('StartTranslation')}" class="btn btn-primary" />
+                        <dot:Button Text="⇄" Click="{command: SwitchTranslationMode()}" style="{value: DoubleTranslationEnabled ? '' : 'display: none'}" class="btn btn-primary switch-button" />
+                    </div>
+                </div>
+            </div>
 
-            <div class="translation-wrapper">
-                <!-- Input -->
-                <div class="translation-box">
-                    <div class="translation-frame">
-                        <h5>
-                            <dot:Literal Text="{value: InputTitle}" />
-                        </h5>
-                        <div class="input-wrapper">
-                            <dot:TextBox Text="{value: InputText}" Type="MultiLine" id="input"
-                                         class="form-control input-box"
-                                         placeholder="{value: InputPlaceholderText}"
-                                         maxlength="{value: MaximumTextLength}"
-                                         Enabled="{value: !IsLoading}" />
-                            <dot:Button Text="×" Click="{staticCommand: _js.InvokeAsync('ClearInput')}" class="clear-button" tabindex="-1" />
-                            <span id="charCount" class="char-count-inline">
-                                0/
-                                <dot:Literal Text="{value: MaximumTextLength}" />
-                            </span>
+            <!-- Output -->
+            <div class="translation-box">
+                <div class="translation-frame">
+                    <h5>
+                        <dot:Literal Text="{value: TranslationTitle}" />
+                    </h5>
+                    <div class="input-wrapper">
+                        <dot:TextBox Text="{value: OutputText}" Type="MultiLine" Enabled="false" id="translation"
+                                     class="form-control input-box"
+                                     placeholder="{value: TranslationPlaceholderText}"
+                                     Visible="{value: !IsLoading}" />
+                        <dot:Button Text="⧉" Click="{staticCommand: _js.InvokeAsync('CopyOutput')}" class="copy-button" tabindex="-1" />
+                        <div class="loading-spinner" Visible="{value: IsLoading}">
+                            <div class="spinner"></div>
                         </div>
-                        <!-- Buttons -->
-                        <div class="button-box">
-                            <dot:Button Text="{value: TranslationText}" Click="{staticCommand: _js.InvokeAsync('StartTranslation')}" class="btn btn-primary" />
-                            <dot:Button Text="⇄" Click="{command: SwitchTranslationMode()}" style="{value: DoubleTranslationEnabled ? '' : 'display: none'}" class="btn btn-primary switch-button" />
+                    </div>
+
+                    <!-- Feedback -->
+                    <div class="{value: ShowTranslationFeedback ? 'overlay-content text-center show' : 'overlay-content text-center'}">
+                        <span>War die Übersetzung richtig?</span>
+                        <div>
+                            <dot:Button Text="✔" Click="{command: ReportTranslationSuccess()}" class="btn btn-success mx-2" />
+                            <dot:Button Text="✘" Click="{command: ReportTranslationIssue()}" class="btn btn-danger mx-2" />
                         </div>
                     </div>
                 </div>
+                <p class="{value: true ? 'text-center feedback-notice' : 'd-none'}">
+                    Mit dem Absenden Ihres Feedbacks stimmen Sie zu, dass Ihre Eingaben und die Übersetzungen gespeichert werden, um unsere Dienste zu verbessern.
+                </p>
 
-                <!-- Output -->
-                <div class="translation-box">
-                    <div class="translation-frame">
-                        <h5>
-                            <dot:Literal Text="{value: TranslationTitle}" />
-                        </h5>
-                        <div class="input-wrapper">
-                            <dot:TextBox Text="{value: OutputText}" Type="MultiLine" Enabled="false" id="translation"
-                                         class="form-control input-box"
-                                         placeholder="{value: TranslationPlaceholderText}"
-                                         Visible="{value: !IsLoading}" />
-                            <dot:Button Text="⧉" Click="{staticCommand: _js.InvokeAsync('CopyOutput')}" class="copy-button" tabindex="-1" />
-                            <div class="loading-spinner" Visible="{value: IsLoading}">
-                                <div class="spinner"></div>
-                            </div>
-                        </div>
-
-                        <!-- Feedback -->
-                        <div class="{value: ShowTranslationFeedback ? 'overlay-content text-center show' : 'overlay-content text-center'}">
-                            <span>War die Übersetzung richtig?</span>
-                            <div>
-                                <dot:Button Text="✔" Click="{command: ReportTranslationSuccess()}" class="btn btn-success mx-2" />
-                                <dot:Button Text="✘" Click="{command: ReportTranslationIssue()}" class="btn btn-danger mx-2" />
-                            </div>
-                        </div>
-                    </div>
-                    <p class="{value: true ? 'text-center feedback-notice' : 'd-none'}">
-                        Mit dem Absenden Ihres Feedbacks stimmen Sie zu, dass Ihre Eingaben und die Übersetzungen gespeichert werden, um unsere Dienste zu verbessern.
-                    </p>
-
-                </div>
             </div>
         </div>
-        <p class="beta-text text-center">Der Übersetzer befindet sich noch in der Beta-Phase. Übersetzungen können fehlerhaft sein.</p>
     </div>
+    <p class="beta-text text-center">Der Übersetzer befindet sich noch in der Beta-Phase. Übersetzungen können fehlerhaft sein.</p>
 
 </dot:Content>

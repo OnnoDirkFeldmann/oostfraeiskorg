@@ -63,3 +63,35 @@ window.onload = function () {
         heading.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 };
+
+window.addEventListener('DOMContentLoaded', function () {
+    var releaseDate = new Date('2025-09-06T11:30:00Z');
+    var countdownEl = document.getElementById('countdown-live');
+
+    function updateCountdown() {
+        var now = new Date();
+        var diff = releaseDate - now;
+        if (diff <= 0) {
+            if (countdownEl) countdownEl.textContent = "Der Übersetzer ist jetzt verfügbar!";
+            window.location.reload();
+        } else {
+            var days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+            var minutes = Math.floor((diff / (1000 * 60)) % 60);
+            var seconds = Math.floor((diff / 1000) % 60);
+            if (countdownEl) {
+                countdownEl.textContent =
+                    days + " Tage " +
+                    hours + " Std " +
+                    minutes + " Min " +
+                    seconds + " Sek";
+            }
+            setTimeout(updateCountdown, 1000);
+        }
+    }
+    var now = new Date();
+    var diff = releaseDate - now;
+    if (diff > 0) {
+        updateCountdown();
+    }
+});
