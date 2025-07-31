@@ -65,7 +65,7 @@ window.onload = function () {
 };
 
 window.addEventListener('DOMContentLoaded', function () {
-    var releaseDate = new Date('2025-09-06T11:30:00Z');
+    var releaseDate = new Date('2025-09-06T09:30:00Z');
     var countdownEl = document.getElementById('countdown-live');
 
     function updateCountdown() {

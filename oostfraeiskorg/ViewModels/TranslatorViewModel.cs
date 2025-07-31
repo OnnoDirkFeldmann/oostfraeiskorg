@@ -39,7 +39,7 @@ public class TranslatorViewModel : MasterPageViewModel
     public string TranslationText { get; set; } = "Übersetze";
     public bool ShowTranslationFeedback { get; set; } = false;
     public bool IsLoading { get; set; } = false;
-    private DateTime releaseDate = new DateTime(2025, 9, 6, 11, 30, 0, DateTimeKind.Utc);
+    private DateTime releaseDate = new DateTime(2025, 9, 6, 9, 30, 0, DateTimeKind.Utc);
     public bool IsTranslatorAvailable
     {
         get
@@ -209,7 +209,6 @@ public class TranslatorViewModel : MasterPageViewModel
     {
         if (!IsTranslatorAvailable)
         {
-            // Optionally log, show error, or just silently block
             OutputText = "Der Übersetzer ist noch nicht verfügbar.";
             IsLoading = false;
             ShowTranslationFeedback = false;
