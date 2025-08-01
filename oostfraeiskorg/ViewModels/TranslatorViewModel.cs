@@ -74,9 +74,9 @@ public class TranslatorViewModel : MasterPageViewModel
 
     public override Task Init()
     {
-        MasterPageTitle = "Übersetzer - Oostfräisk Woordenbauk - Ostfriesisches Wörterbuch";
-        MasterPageDescription = "Übersetzer - Wörterbuch der ostfriesischen Sprache - Wörter aus dem Ostfriesischen oder ins Ostfriesische übersetzen. Die Sprache der Ostfriesen mit dem Wörterbuch für das Ostfriesische Platt als Standardostfriesisch lernen.";
-        MasterPageKeywords += ", übersetzer, translator ostfriesische Sprache, ostfriesisch, oostfräisk";
+        MasterPageTitle = "Ooversetter - Übersetzer für das Ostfriesische Platt - Oostfräisk Woordenbauk - Ostfriesisches Wörterbuch";
+        MasterPageDescription = "Ooversetter - Übersetzer für das Ostfriesische Platt - Wörterbuch der ostfriesischen Sprache - Wörter aus dem Ostfriesischen oder ins Ostfriesische übersetzen. Die Sprache der Ostfriesen mit dem Wörterbuch für das Ostfriesische Platt als Standardostfriesisch lernen.";
+        MasterPageKeywords += ", ooversetter, übersetzer, translator ostfriesische Sprache, ostfriesisch, oostfräisk";
         return base.Init();
     }
 
