@@ -32,7 +32,7 @@
         "position":2,
         "item":
         {"@id":"https://oostfraeisk.org/translator",
-        "name":"Ooversetter - Oostfräisk Woordenbauk - Ostfriesisches Wörterbuch"
+        "name":"Ooversetter - Übersetzer für das Ostfriesische Platt - Oostfräisk Woordenbauk - Ostfriesisches Wörterbuch"
         }},
         {"@type":"ListItem",
         "position":3,
@@ -151,7 +151,7 @@
                 <div class="col-lg d-flex justify-content-center">
                     <div class="collapse navbar-collapse" ID="navbarCollapse">
                         <div class="navbar-nav">
-                            <!-- <a href="../translator" class="nav-item nav-link" style="color: white">Übersetzer (Beta-Version)</a> -->
+                            <a href="../translator" class="nav-item nav-link" style="color: white">Übersetzer</a>
                             <div class="nav-item dropdown">
                                 <a class="nav-item nav-link dropdown-toggle" href="#" ID="navbarDropdownLernen" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: white">Lernen</a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdownLernenDrop">
