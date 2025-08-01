@@ -25,6 +25,7 @@ public class AdminViewModel : MasterPageViewModel
         ls_sitemap_fixed += "<urlset xmlns=\"https://www.sitemaps.org/schemas/sitemap/0.9\">";
         ls_sitemap_fixed += "<url><loc>https://oostfraeisk.org/</loc><changefreq>always</changefreq><priority>0.8</priority></url>";
         ls_sitemap_fixed += "<url><loc>https://oostfraeisk.org/main</loc><changefreq>always</changefreq></url>";
+        ls_sitemap_fixed += "<url><loc>https://oostfraeisk.org/translator</loc><changefreq>always</changefreq></url>";
         ls_sitemap_fixed += "<url><loc>https://oostfraeisk.org/grammar</loc><changefreq>always</changefreq></url>";
         ls_sitemap_fixed += "<url><loc>https://oostfraeisk.org/coursebook</loc><changefreq>always</changefreq></url>";
         ls_sitemap_fixed += "<url><loc>https://oostfraeisk.org/onlinecourse</loc><changefreq>always</changefreq></url>";
