@@ -392,13 +392,18 @@
                         allowfullscreen>
                 </iframe>
             </div>
-            <h1 class="countdown-title" style="margin-top:2.5em;">
+            <h1 class="countdown-title" style="margin-top:1em;">
                 Der Ooversetter wird am <strong style="font-weight:800;">06.09.2025</strong> freigeschaltet! Seid gespannt!<br />
-                <span style="font-size:0.95em;color:#555;">Däi Ooversetter word't up d' <strong style="font-weight:800;">06.09.2025</strong> freiskalt't. Weest gespant!</span>
+                <span style="font-size:0.9em;color:#555;">Däi Ooversetter word't up d' <strong style="font-weight:800;">06.09.2025</strong> freiskalt't. Weest gespant!</span><br />
             </h1>
-            <div id="countdown-live" class="countdown-timer">
+            <div ID="countdown-live" class="countdown-timer">
                 <dot:Literal Text="{value: CountdownText}" />
             </div>
+            <h1 class="countdown-title" style="margin-top:1em;">
+                <span style="font-size:0.7em;color:#555;">
+                    Die Vorstellung wird am 06.09.2025 um 11 Uhr im Kukelorum (Boomweg 26, 26605 Aurich) stattfinden: <a href="https://www.kultino.de/kalender/22436-ooversetter">Kultino</a>
+                </span>
+            </h1>
         </div>
     </div>
 
@@ -419,13 +424,13 @@
                             <dot:Literal Text="{value: InputTitle}" />
                         </h5>
                         <div class="input-wrapper">
-                            <dot:TextBox Text="{value: InputText}" Type="MultiLine" id="input"
+                            <dot:TextBox Text="{value: InputText}" Type="MultiLine" ID="input"
                                          class="form-control input-box"
                                          placeholder="{value: InputPlaceholderText}"
                                          maxlength="{value: MaximumTextLength}"
                                          Enabled="{value: !IsLoading}" />
                             <dot:Button Text="×" Click="{staticCommand: _js.InvokeAsync('ClearInput')}" class="clear-button" tabindex="-1" />
-                            <span id="charCount" class="char-count-inline">
+                            <span ID="charCount" class="char-count-inline">
                                 0/
                                 <dot:Literal Text="{value: MaximumTextLength}" />
                             </span>
@@ -445,7 +450,7 @@
                             <dot:Literal Text="{value: TranslationTitle}" />
                         </h5>
                         <div class="input-wrapper">
-                            <dot:TextBox Text="{value: OutputText}" Type="MultiLine" Enabled="false" id="translation"
+                            <dot:TextBox Text="{value: OutputText}" Type="MultiLine" Enabled="false" ID="translation"
                                          class="form-control input-box"
                                          placeholder="{value: TranslationPlaceholderText}"
                                          Visible="{value: !IsLoading}" />
