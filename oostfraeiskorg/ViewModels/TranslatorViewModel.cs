@@ -39,27 +39,6 @@ public class TranslatorViewModel : MasterPageViewModel
     public string TranslationText { get; set; } = "Übersetze";
     public bool ShowTranslationFeedback { get; set; } = false;
     public bool IsLoading { get; set; } = false;
-    private DateTime releaseDate = new DateTime(2025, 9, 6, 9, 30, 0, DateTimeKind.Utc);
-    public bool IsTranslatorAvailable
-    {
-        get
-        {
-            // Server-side check, so users can't bypass
-            return DateTime.UtcNow >= releaseDate;
-        }
-    }
-    public string CountdownText
-    {
-        get
-        {
-            var now = DateTime.UtcNow;
-            if (now >= releaseDate)
-                return "";
-
-            var diff = releaseDate - now;
-            return $"{diff.Days} Tage {diff.Hours} Std {diff.Minutes} Min {diff.Seconds} Sek";
-        }
-    }
 
 
     public TranslatorViewModel(IConfiguration configuration)
@@ -76,7 +55,7 @@ public class TranslatorViewModel : MasterPageViewModel
     {
         MasterPageTitle = "Ooversetter - Übersetzer für das Ostfriesische Platt - Oostfräisk Woordenbauk - Ostfriesisches Wörterbuch";
         MasterPageDescription = "Ooversetter - Übersetzer für das Ostfriesische Platt - Wörterbuch der ostfriesischen Sprache - Wörter aus dem Ostfriesischen oder ins Ostfriesische übersetzen. Die Sprache der Ostfriesen mit dem Wörterbuch für das Ostfriesische Platt als Standardostfriesisch lernen.";
-        MasterPageKeywords += ", ooversetter, übersetzer, translator ostfriesische Sprache, ostfriesisch, oostfräisk";
+        MasterPageKeywords += ", ooversetter, übersetzer, ostfriesisches platt, translator ostfriesische Sprache, ostfriesisch, oostfräisk, ostfriesisches plattdeutsch";
         return base.Init();
     }
 
@@ -109,16 +88,12 @@ public class TranslatorViewModel : MasterPageViewModel
 
     public async Task ReportTranslationIssue()
     {
-        if (!IsTranslatorAvailable)
-            return;
         await SentReport("Translation Issue Report", " [FEELER]");
         ShowTranslationFeedback = false;
     }
 
     public async Task ReportTranslationSuccess()
     {
-        if (!IsTranslatorAvailable)
-            return;
         await SentReport("Translation Success Report", "");
         ShowTranslationFeedback = false;
     }
@@ -207,14 +182,6 @@ public class TranslatorViewModel : MasterPageViewModel
 
     public async Task TranslateAsync()
     {
-        if (!IsTranslatorAvailable)
-        {
-            OutputText = "Der Übersetzer ist noch nicht verfügbar.";
-            IsLoading = false;
-            ShowTranslationFeedback = false;
-            return;
-        }
-
         string apiUrl = TranslationText == "Übersetze" ? ApiFrsUrl : ApiGerUrl;
         // Perform translation
         OutputText = await Translate(InputText, apiUrl, BearerToken);
