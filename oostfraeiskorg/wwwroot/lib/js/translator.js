@@ -30,6 +30,21 @@ class App {
         }
     }
 
+    async StartTTS() {
+        try {
+            await this.context.namedCommands["PrepareGenerateSpeech"]();
+            await this.context.namedCommands["GenerateSpeechAsync"]();
+            const audio = document.getElementById('ttsAudio');
+            if (audio) {
+                audio.play().catch(err => {
+                    console.log("Autoplay blocked, user must click play:", err);
+                });
+            }
+        } catch (err) {
+            dotvvm.patchState({ ErrorMessage: "TTS failed!" });
+        }
+    }
+
     async ToggleFeedback(show) {
         const feedbackElement = document.querySelector('.overlay-content');
         if (show) {

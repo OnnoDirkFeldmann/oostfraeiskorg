@@ -11,8 +11,43 @@
                       Command="{command: _root.DeactivateFeedback()}" />
     <dot:NamedCommand Name="ClearInput"
                       Command="{command: _root.ClearInput()}" />
+    <dot:NamedCommand Name="GenerateSpeechAsync"
+                      Command="{command: _root.GenerateSpeechAsync()}" />
+    <dot:NamedCommand Name="PrepareGenerateSpeech"
+                      Command="{command: _root.PrepareGenerateSpeech()}" />
 
     <style>
+
+        .tts-button {
+            position: absolute;
+            top: 8px;
+            right: 44px; /* space for copy button */
+            background: none;
+            border: none;
+            color: #888;
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: 0;
+            line-height: 1;
+            z-index: 10;
+            transition: color 0.2s;
+        }
+
+            .tts-button:hover {
+                color: #007bff;
+            }
+
+        .input-wrapper .tts-button {
+            right: 44px;
+        }
+
+        .tts-spinner {
+            position: absolute;
+            top: 8px;
+            right: 44px;
+            /*width: 1rem;
+            height: 1rem;*/
+        }
 
         .feedback-notice {
             font-size: 0.85rem;
@@ -329,6 +364,15 @@
                                      maxlength="{value: MaximumTextLength}"
                                      Enabled="{value: !IsLoading}" />
                         <dot:Button Text="×" Click="{staticCommand: _js.InvokeAsync('ClearInput')}" class="clear-button" tabindex="-1" />
+                        <dot:Button Text="🔊"
+                                    Click="{staticCommand: _js.InvokeAsync('StartTTS')}"
+                                    class="tts-button"
+                                    Enabled="{value: InputText != '' && !IsTtsLoading}"
+                                    Visible="{value: InputTitle == 'Oostfräisk' && !IsTtsLoading}"
+                                    tabindex="-1" />
+                        <div class="tts-spinner" Visible="{value: IsTtsLoading && InputTitle == 'Oostfräisk'}">
+                            <div class="spinner"></div>
+                        </div>
                         <span id="charCount" class="char-count-inline">
                             0/
                             <dot:Literal Text="{value: MaximumTextLength}" />
@@ -354,10 +398,25 @@
                                      placeholder="{value: TranslationPlaceholderText}"
                                      Visible="{value: !IsLoading}" />
                         <dot:Button Text="⧉" Click="{staticCommand: _js.InvokeAsync('CopyOutput')}" class="copy-button" tabindex="-1" />
+                        <dot:Button Text="🔊"
+                                    Click="{staticCommand: _js.InvokeAsync('StartTTS')}"
+                                    class="tts-button"
+                                    Enabled="{value: OutputText != '' && !IsTtsLoading}"
+                                    Visible="{value: TranslationTitle == 'Oostfräisk' && !IsTtsLoading}"
+                                    tabindex="-1" />
+
+                        <div class="tts-spinner" Visible="{value: IsTtsLoading && TranslationTitle == 'Oostfräisk'}">
+                            <div class="spinner"></div>
+                        </div>
+
                         <div class="loading-spinner" Visible="{value: IsLoading}">
                             <div class="spinner"></div>
                         </div>
                     </div>
+
+                    <If Condition="{value: TtsAudioUrl != ''}">
+                        <audio controls src="{value: TtsAudioUrl}" style="display:none" id="ttsAudio"></audio>
+                    </If>
 
                     <!-- Feedback -->
                     <div class="{value: ShowTranslationFeedback ? 'overlay-content text-center show' : 'overlay-content text-center'}">
