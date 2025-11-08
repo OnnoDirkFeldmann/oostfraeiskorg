@@ -1,5 +1,7 @@
-﻿using System.Net.Mail;
+﻿using Microsoft.Extensions.Configuration;
+using System;
 using System.Net;
+using System.Net.Mail;
 
 namespace oostfraeiskorg.ViewModels;
 
@@ -20,6 +22,25 @@ public class DonateawordViewModel : MasterPageViewModel
     public string DonatedWordEmail { get; set; }
 
     public string DonatedWordOther { get; set; }
+
+    private readonly string BearerToken;
+    private readonly string SmtpCredentialName;
+    private readonly string SmtpCredentialPassword;
+
+    public DonateawordViewModel(IConfiguration configuration)
+    {
+        // Load settings
+        SmtpCredentialName = configuration["TranslatorConfig:SmtpCredentialName"];
+        if (string.IsNullOrEmpty(SmtpCredentialName))
+        {
+            throw new Exception("SmtpCredentialName is missing in the configuration.");
+        }
+        SmtpCredentialPassword = configuration["TranslatorConfig:SmtpCredentialPassword"];
+        if (string.IsNullOrEmpty(SmtpCredentialPassword))
+        {
+            throw new Exception("SmtpCredentialPassword is missing in the configuration.");
+        }
+    }
 
     public void DonateWord()
     {
@@ -52,7 +73,7 @@ public class DonateawordViewModel : MasterPageViewModel
             EnableSsl = true,
             DeliveryMethod = SmtpDeliveryMethod.Network,
             UseDefaultCredentials = false,
-            Credentials = new NetworkCredential("edufraeisk@gmail.com", "aqaxxjjwedmtvuic")
+            Credentials = new NetworkCredential(SmtpCredentialName, SmtpCredentialPassword)
         };
         var mailMessage = new MailMessage
         {

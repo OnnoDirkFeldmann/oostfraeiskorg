@@ -25,6 +25,8 @@ public class TranslatorViewModel : MasterPageViewModel
     //private static readonly string ApiUrl = "http://127.0.0.1:7860/gradio_api/call/predict";
 
     private readonly string BearerToken;
+    private readonly string SmtpCredentialName;
+    private readonly string SmtpCredentialPassword;
 
 
     public bool DoubleTranslationEnabled { get; } = true;
@@ -43,11 +45,21 @@ public class TranslatorViewModel : MasterPageViewModel
 
     public TranslatorViewModel(IConfiguration configuration)
     {
-        // Load the BearerToken from appsettings.json
+        // Load settings
         BearerToken = configuration["TranslatorConfig:BearerToken"];
         if (string.IsNullOrEmpty(BearerToken))
         {
             throw new Exception("BearerToken is missing in the configuration.");
+        }
+        SmtpCredentialName = configuration["TranslatorConfig:SmtpCredentialName"];
+        if (string.IsNullOrEmpty(SmtpCredentialName))
+        {
+            throw new Exception("SmtpCredentialName is missing in the configuration.");
+        }
+        SmtpCredentialPassword = configuration["TranslatorConfig:SmtpCredentialPassword"];
+        if (string.IsNullOrEmpty(SmtpCredentialPassword))
+        {
+            throw new Exception("SmtpCredentialPassword is missing in the configuration.");
         }
     }
 
@@ -113,7 +125,7 @@ public class TranslatorViewModel : MasterPageViewModel
                 EnableSsl = true,
                 DeliveryMethod = SmtpDeliveryMethod.Network,
                 UseDefaultCredentials = false,
-                Credentials = new NetworkCredential("edufraeisk@gmail.com", "aqaxxjjwedmtvuic")
+                Credentials = new NetworkCredential(SmtpCredentialName, SmtpCredentialPassword)
             })
             {
                 var mailMessage = new MailMessage
