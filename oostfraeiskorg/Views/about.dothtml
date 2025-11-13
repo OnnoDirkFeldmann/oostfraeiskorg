@@ -44,9 +44,27 @@
         <h3>Meilensteine:</h3>
         <p>
             <br />
+            November 2025:
+            <br />
+            Ende 2025 wurde das Schriftsystem noch einmal im Bezug auf die Schreibung von Fremdwörtern überarbeitet.
+            <ul>
+                <li>
+                    Vokale in Fremdwörtern werden stets doppelt geschrieben, wenn ihre Länge in allen ostfriesischen Dialekten deutlich hörbar ist.
+                    Nach dem morphologischen Prinzip ergeben sich daher folgende Schreibungen:<br />
+                    astronoom -> astronoomsk, astronoomii
+                </li>
+                <li>
+                    Kann ein Vokal in einem der ostfriesischen Dialekte kurz ausgesprochen werden, wird er auch kurz geschrieben. Dies dient der besseren Lesbarkeit des Schriftbildes:<br />
+                    deefiinäären -> definäären
+                </li>
+                <li>
+                    Die im Ostfriesischen übliche Hiattilgung wird in der Schrift nicht wiedergegeben:<br />
+                    teejoorii -> teorii
+                </li>
+            </ul>
             September 2025:
             <br />
-            Der KI-basierte Übersetzer Ooversetter wurde freigeschaltet und steht nun zur Verfügung.<br />
+            Der KI-basierte Übersetzer Ooversetter wurde freigeschaltet und steht nun zur Verfügung.
             <br />
             <br />
             August 2025:
@@ -95,31 +113,32 @@
                 <li>
                     Das Macron für lange Vokale entfällt und wird,
                     in Anlehnung an die Schreibweise von Fort,
-                    durch Doppelschreibung ersetzt:
-                    pāsen wird zu paasen
+                    durch Doppelschreibung ersetzt:<br />
+                    pāsen -> paasen
                 </li>
                 <li>
                     Um das morphologische Prinzip einzuhalten,
                     wird aus dem Zirkumflex für überlange Vokale,
                     ähnlich wie in der Fortschen Orthographie, eine Doppelschreibung mit einem Zirkumflex
-                    auf dem ersten Buchstaben: ûl wird zu ûul mit dem Plural uulen
+                    auf dem ersten Buchstaben:<br />
+                    ûl -> ûul (Plural uulen)
                 </li>
                 <li>
                     Die Ligatur æ entfällt zugunsten von ää,
-                    was der Schreibweise nach Fort entspricht:
-                    dæær wird zu däär
+                    was der Schreibweise nach Fort entspricht:<br />
+                    dæær -> däär
                 </li>
                 <li>
                     Die Schreibweise sğ im Anlaut wird als sk geschrieben,
                     da dies für die meisten Sprecher natürlicher wirkt und gleichzeitig den
-                    Vorschlägen von Fort entspricht: sğaul wird zu skaul
+                    Vorschlägen von Fort entspricht:<br />
+                    sğaul -> skaul
                 </li>
                 <li>
                     Das g mit Breve (ğ) wird in der Schrift weiterhin genutzt, da es eine wichtige Funktion trägt.
                     Da es auf allen deutschen Handytastaturen verfügbar ist, ist das Schreiben dort problemlos möglich.
                 </li>
             </ul>
-            <br />
             Dezember 2023:
             <br />
             Im Projektbestand wurde der erste Band (A-G), des Wörterbuches von Jan ten Doornkaat Koolman verarbeitet.
