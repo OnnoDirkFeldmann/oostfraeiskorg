@@ -9,7 +9,7 @@
                     <h1>Leks 2</h1>
                     <h3>video</h3>
                     <div class="embed-responsive embed-responsive-16by9">
-                        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/KL2cYWwuYfY" allowfullscreen="true"></iframe>
+                        <iframe class="embed-responsive-item" src="https://www.youtube-nocookie.com/embed/KL2cYWwuYfY" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen="true"></iframe>
                     </div>
                     <br />
                     <br />
@@ -238,7 +238,7 @@
                         Just read along and listen to get used to the pronunciation and spelling of East Frisian.
                     </p>
                     <div class="embed-responsive embed-responsive-16by9">
-                        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/8NSfYswCUu0" allowfullscreen="true"></iframe>
+                        <iframe class="embed-responsive-item" src="https://www.youtube-nocookie.com/embed/8NSfYswCUu0" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen="true"></iframe>
                     </div>
                     <br />
                     <br />

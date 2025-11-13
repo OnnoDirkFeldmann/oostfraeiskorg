@@ -9,7 +9,7 @@
                     <h1>Leks 1</h1>
                     <h3>Video</h3>
                     <div class="embed-responsive embed-responsive-16by9">
-                        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/1sDgCedE9Z8" allowfullscreen="true"></iframe>
+                        <iframe class="embed-responsive-item" src="https://www.youtube-nocookie.com/embed/1sDgCedE9Z8" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen="true"></iframe>
                     </div>
                     <br />
                     <br />
@@ -204,7 +204,7 @@
                         Lesen Sie einfach mit und hören zu um sich an die Aussprache und die Schreibweise des Ostfriesichen zu gewöhnen.
                     </p>
                     <div class="embed-responsive embed-responsive-16by9">
-                        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/VH5jZeSrxJQ" allowfullscreen="true"></iframe>
+                        <iframe class="embed-responsive-item" src="https://www.youtube-nocookie.com/embed/VH5jZeSrxJQ" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen="true"></iframe>
                     </div>
                     <br />
                     <br />
