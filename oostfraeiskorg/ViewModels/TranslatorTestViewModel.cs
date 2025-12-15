@@ -21,7 +21,7 @@ namespace oostfraeiskorg.ViewModels;
 
 public class TranslatorTestViewModel : MasterPageViewModel
 {
-    private const int MaxTextLength = 300;
+    private const int MaxTextLength = 1000;
     private const int DelayMilliseconds = 50;
     private static readonly string ApiFrsUrl = "https://vanmoders114-east-frisian-translator.hf.space/gradio_api/call/predict";
     private static readonly string ApiGerUrl = "https://vanmoders114-east-frisian-german-translator.hf.space/gradio_api/call/predict";
