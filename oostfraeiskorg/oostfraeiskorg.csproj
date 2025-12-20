@@ -500,13 +500,13 @@
 	  <Content Update="wwwroot\rec\fróóğ diin bâab.mp3">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </Content>
-	  <Content Update="wwwroot\rec\fär stük.mp3">
+	  <Content Update="wwwroot\rec\fäär stük.mp3">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </Content>
-	  <Content Update="wwwroot\rec\färtain.mp3">
+	  <Content Update="wwwroot\rec\fäärtain.mp3">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </Content>
-	  <Content Update="wwwroot\rec\färtiğ.mp3">
+	  <Content Update="wwwroot\rec\fäärtiğ.mp3">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </Content>
 	  <Content Update="wwwroot\rec\fäär.mp3">
