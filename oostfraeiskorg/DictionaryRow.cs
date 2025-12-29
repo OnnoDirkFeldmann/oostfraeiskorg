@@ -3,5 +3,5 @@
 public class DictionaryRow
 {
     public long ID;
-    public string Ostfriesisch, Deutsch, Englisch, Artikel, Nebenformen, Standardform, Wortart, Zuordnung;
+    public string Ostfriesisch, Deutsch, Englisch, Artikel, Nebenformen, Standardform, Wortart, Zuordnung, Nummer;
 }

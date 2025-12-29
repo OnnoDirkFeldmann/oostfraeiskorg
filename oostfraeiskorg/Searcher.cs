@@ -41,7 +41,7 @@ public class Searcher
 
         if (displaySearchString.Equals(string.Empty))
         {
-            dictionaryEntries.Add(new DictionaryEntry("Jii mautent minst äin woord ingeeven", "", "", needInputMessage, 0));
+            dictionaryEntries.Add(new DictionaryEntry("", "Jii mautent minst äin woord ingeeven", "", "", needInputMessage, 0));
             return dictionaryEntries.AsQueryable();
         }
 
@@ -105,28 +105,11 @@ public class Searcher
             values.Standardform = reader.GetValue("Standardform").ToString();
             values.Wortart = GetColumnValueSafe(reader, "Wortart");
             values.Zuordnung = GetColumnValueSafe(reader, "Zuordnung");
+            values.Nummer = GetColumnValueSafe(reader, "Nummer");
             dictionaryRows.Add(values);
         }
 
         reader.Close();
-
-        // Fetch Zuordnung from WB table for entries where it's missing
-        var idsNeedingZuordnung = dictionaryRows
-            .Where(r => r.Zuordnung == "-" && r.ID != 0)
-            .Select(r => r.ID)
-            .ToList();
-
-        if (idsNeedingZuordnung.Count > 0)
-        {
-            var zuordnungLookup = GetZuordnungForIds(dataBaseConnection, idsNeedingZuordnung);
-            foreach (var row in dictionaryRows)
-            {
-                if (row.Zuordnung == "-" && zuordnungLookup.TryGetValue(row.ID, out var zuordnung))
-                {
-                    row.Zuordnung = zuordnung;
-                }
-            }
-        }
 
         dataBaseConnection.Close();
 
@@ -148,11 +131,13 @@ public class Searcher
             if (phraseParent.Equals("-")) phraseParent = "";
 
             var dictionaryEntry = new DictionaryEntry(
+                dictionaryRow.Ostfriesisch,
                 eastFrisianString,
                 eastFrisianSecondaryForm,
                 eastFrisianStandardForm,
                 translationText,
                 dictionaryRow.ID,
+                dictionaryRow.Nummer,
                 isPhrase,
                 phraseParent
             );
@@ -174,12 +159,12 @@ public class Searcher
         var words = allEntries.Where(e => !e.IsPhrase).ToList();
         var phrases = allEntries.Where(e => e.IsPhrase).ToList();
 
-        // Build a lookup of words by their East Frisian name (without article)
+        // Build a lookup of words by their East Frisian name and entrynumber
         var wordLookup = new Dictionary<string, DictionaryEntry>(StringComparer.OrdinalIgnoreCase);
         foreach (var word in words)
         {
             // Extract base word (before any parenthesis)
-            var baseWord = word.Frisian.Split('(')[0].Trim();
+            var baseWord = word.Number.Equals("-") ? word.Frisian : $"{word.Frisian}={word.Number}";
             if (!wordLookup.ContainsKey(baseWord))
             {
                 wordLookup[baseWord] = word;
@@ -207,36 +192,11 @@ public class Searcher
 
         if (allEntries.Count == 0)
         {
-            var dictionaryEntry = new DictionaryEntry("D'r bünt kiin dóóten föör d' söyek '" + displaySearchString + "' funnen worden", "", "", notFoundMessage, 0);
+            var dictionaryEntry = new DictionaryEntry("", "D'r bünt kiin dóóten föör d' söyek '" + displaySearchString + "' funnen worden", "", "", notFoundMessage, 0);
             dictionaryEntries.Add(dictionaryEntry);
         }
 
         return dictionaryEntries.AsQueryable();
-    }
-
-    private static Dictionary<long, string> GetZuordnungForIds(SqliteConnection connection, List<long> ids)
-    {
-        var result = new Dictionary<long, string>();
-        if (ids.Count == 0) return result;
-
-        // Build a query to fetch Zuordnung for all IDs
-        var idList = string.Join(",", ids);
-        var sqlCommand = new SqliteCommand
-        {
-            Connection = connection,
-            CommandText = $"SELECT ID, Zuordnung FROM WB WHERE ID IN ({idList})"
-        };
-
-        var reader = sqlCommand.ExecuteReader();
-        while (reader.Read())
-        {
-            var id = reader.GetInt64(0);
-            var zuordnung = reader.GetValue(1)?.ToString() ?? "-";
-            result[id] = zuordnung;
-        }
-        reader.Close();
-
-        return result;
     }
 
     public static string GetPopUpBody(long wordId)
