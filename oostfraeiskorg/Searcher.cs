@@ -103,68 +103,140 @@ public class Searcher
             values.Artikel = reader.GetValue("Artikel").ToString();
             values.Nebenformen = reader.GetValue("Nebenformen").ToString();
             values.Standardform = reader.GetValue("Standardform").ToString();
+            values.Wortart = GetColumnValueSafe(reader, "Wortart");
+            values.Zuordnung = GetColumnValueSafe(reader, "Zuordnung");
             dictionaryRows.Add(values);
         }
 
         reader.Close();
+
+        // Fetch Zuordnung from WB table for entries where it's missing
+        var idsNeedingZuordnung = dictionaryRows
+            .Where(r => r.Zuordnung == "-" && r.ID != 0)
+            .Select(r => r.ID)
+            .ToList();
+
+        if (idsNeedingZuordnung.Count > 0)
+        {
+            var zuordnungLookup = GetZuordnungForIds(dataBaseConnection, idsNeedingZuordnung);
+            foreach (var row in dictionaryRows)
+            {
+                if (row.Zuordnung == "-" && zuordnungLookup.TryGetValue(row.ID, out var zuordnung))
+                {
+                    row.Zuordnung = zuordnung;
+                }
+            }
+        }
+
         dataBaseConnection.Close();
 
         Console.Write("finished reading dictionary");
 
-        var idList = new List<long>();
-        var eastFrisianStrings = new List<string>();
-        var eastFrisianSecondaryForms = new List<string>();
-        var eastFrisianStandardForms = new List<string>();
-        var eastFrisianWords = new List<string>();
-        var translation = new List<string>();
+        // Build entries
+        var allEntries = new List<DictionaryEntry>();
 
         foreach (var dictionaryRow in dictionaryRows)
         {
-            idList.Add(dictionaryRow.ID);
             var eastFrisianString = dictionaryRow.Ostfriesisch;
             eastFrisianString += !dictionaryRow.Artikel.Equals("-") ? $" ({dictionaryRow.Artikel})" : "";
             var eastFrisianSecondaryForm = !dictionaryRow.Nebenformen.Equals("-") ? $"[{dialectalString}: {dictionaryRow.Nebenformen}]" : "";
             var eastFrisianStandardForm = !dictionaryRow.Standardform.Equals("-") ? $"[{dictionaryRow.Standardform}]" : "";
 
-            eastFrisianStrings.Add(eastFrisianString);
-            eastFrisianSecondaryForms.Add(eastFrisianSecondaryForm);
-            eastFrisianStandardForms.Add(eastFrisianStandardForm);
-            switch (language)
-            {
-                case Languages.German:
-                    translation.Add(dictionaryRow.Deutsch);
-                    break;
-                case Languages.English:
-                    translation.Add(dictionaryRow.Englisch);
-                    break;
-            }
-            eastFrisianWords.Add(dictionaryRow.Ostfriesisch);
-        }
+            string translationText = language == Languages.German ? dictionaryRow.Deutsch : dictionaryRow.Englisch;
+            bool isPhrase = dictionaryRow.Wortart.Equals("Phrase", StringComparison.OrdinalIgnoreCase);
+            string phraseParent = dictionaryRow.Zuordnung.Trim();
+            if (phraseParent.Equals("-")) phraseParent = "";
 
-        for (int i = 0; i < idList.Count; i++)
-        {
-            var dictionaryEntry = new DictionaryEntry(eastFrisianStrings[i], eastFrisianSecondaryForms[i], eastFrisianStandardForms[i], translation[i], idList[i]);
+            var dictionaryEntry = new DictionaryEntry(
+                eastFrisianString,
+                eastFrisianSecondaryForm,
+                eastFrisianStandardForm,
+                translationText,
+                dictionaryRow.ID,
+                isPhrase,
+                phraseParent
+            );
 
-            if (!idList[i].Equals("0"))
+            if (!dictionaryRow.ID.Equals(0))
             {
-                string mp3 = $"{oostfraeiskorg.Server.MapPath("")}/wwwroot/rec/{eastFrisianWords[i]}.mp3";
+                string mp3 = $"{oostfraeiskorg.Server.MapPath("")}/wwwroot/rec/{dictionaryRow.Ostfriesisch}.mp3";
                 if (File.Exists(mp3))
                 {
                     dictionaryEntry.SoundFile = true;
-                    dictionaryEntry.MP3 = eastFrisianWords[i];
+                    dictionaryEntry.MP3 = dictionaryRow.Ostfriesisch;
                 }
             }
 
-            dictionaryEntries.Add(dictionaryEntry);
+            allEntries.Add(dictionaryEntry);
         }
 
-        if (eastFrisianStrings.Count == 0)
+        // Separate words and phrases
+        var words = allEntries.Where(e => !e.IsPhrase).ToList();
+        var phrases = allEntries.Where(e => e.IsPhrase).ToList();
+
+        // Build a lookup of words by their East Frisian name (without article)
+        var wordLookup = new Dictionary<string, DictionaryEntry>(StringComparer.OrdinalIgnoreCase);
+        foreach (var word in words)
+        {
+            // Extract base word (before any parenthesis)
+            var baseWord = word.Frisian.Split('(')[0].Trim();
+            if (!wordLookup.ContainsKey(baseWord))
+            {
+                wordLookup[baseWord] = word;
+            }
+        }
+
+        // Assign phrases to their parent words
+        var orphanPhrases = new List<DictionaryEntry>();
+        foreach (var phrase in phrases)
+        {
+            if (!string.IsNullOrEmpty(phrase.PhraseParent) && wordLookup.TryGetValue(phrase.PhraseParent, out var parentWord))
+            {
+                parentWord.Phrases.Add(phrase);
+            }
+            else
+            {
+                // Orphan phrase (no matching parent in results)
+                orphanPhrases.Add(phrase);
+            }
+        }
+
+        // Build final list: words (with their phrases attached), then orphan phrases at the bottom
+        dictionaryEntries.AddRange(words);
+        dictionaryEntries.AddRange(orphanPhrases);
+
+        if (allEntries.Count == 0)
         {
             var dictionaryEntry = new DictionaryEntry("D'r bünt kiin dóóten föör d' söyek '" + displaySearchString + "' funnen worden", "", "", notFoundMessage, 0);
             dictionaryEntries.Add(dictionaryEntry);
         }
 
         return dictionaryEntries.AsQueryable();
+    }
+
+    private static Dictionary<long, string> GetZuordnungForIds(SqliteConnection connection, List<long> ids)
+    {
+        var result = new Dictionary<long, string>();
+        if (ids.Count == 0) return result;
+
+        // Build a query to fetch Zuordnung for all IDs
+        var idList = string.Join(",", ids);
+        var sqlCommand = new SqliteCommand
+        {
+            Connection = connection,
+            CommandText = $"SELECT ID, Zuordnung FROM WB WHERE ID IN ({idList})"
+        };
+
+        var reader = sqlCommand.ExecuteReader();
+        while (reader.Read())
+        {
+            var id = reader.GetInt64(0);
+            var zuordnung = reader.GetValue(1)?.ToString() ?? "-";
+            result[id] = zuordnung;
+        }
+        reader.Close();
+
+        return result;
     }
 
     public static string GetPopUpBody(long wordId)
@@ -229,5 +301,18 @@ public class Searcher
         body = body.Replace("\n", "");
 
         return body;
+    }
+
+    private static string GetColumnValueSafe(SqliteDataReader reader, string columnName)
+    {
+        try
+        {
+            int ordinal = reader.GetOrdinal(columnName);
+            return reader.GetValue(ordinal)?.ToString() ?? "-";
+        }
+        catch (ArgumentOutOfRangeException)
+        {
+            return "-";
+        }
     }
 }

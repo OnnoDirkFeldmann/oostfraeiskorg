@@ -1,4 +1,6 @@
-﻿namespace oostfraeiskorg;
+﻿using System.Collections.Generic;
+
+namespace oostfraeiskorg;
 
 public class DictionaryEntry
 {
@@ -9,12 +11,17 @@ public class DictionaryEntry
     public bool SoundFile { get; set; }
     public string MP3 { get; set; }
     public long ID { get; set; }
+    public bool IsPhrase { get; set; }
+    public string PhraseParent { get; set; }
+    public List<DictionaryEntry> Phrases { get; set; }
+    public bool HasPhrases => Phrases != null && Phrases.Count > 0;
 
     public DictionaryEntry()
     {
+        Phrases = new List<DictionaryEntry>();
     }
 
-    public DictionaryEntry(string frisian, string secondaryform, string standardform, string translation, long id)
+    public DictionaryEntry(string frisian, string secondaryform, string standardform, string translation, long id, bool isPhrase = false, string phraseParent = "")
     {
         Frisian = frisian;
         SecondaryForm = secondaryform;
@@ -23,5 +30,8 @@ public class DictionaryEntry
         ID = id;
         SoundFile = false;
         MP3 = "";
+        IsPhrase = isPhrase;
+        PhraseParent = phraseParent;
+        Phrases = new List<DictionaryEntry>();
     }
 }

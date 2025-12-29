@@ -8,33 +8,285 @@
                       Command="{staticCommand: (int id) => _root.WordId = id}" />
     <dot:NamedCommand Name="ShowPopupWithBody"
                       Command="{staticCommand: _js.Invoke<string>("ShowPopup",  "Details", PopUpBody)}" />
+
+    <style>
+        /* Base table styling */
+        #dictionaryTable {
+            border-collapse: separate;
+            border-spacing: 0;
+        }
+
+        /* Original header style - light blue background, black text */
+            #dictionaryTable thead th.entry_header {
+                background-color: #99ccff;
+                color: #000000;
+                padding: 0.75rem;
+                border-bottom: 2px solid #b8daff;
+                font-weight: 700;
+            }
+
+        /* Word rows - alternating colors */
+        .word-row {
+            background-color: #ffffff;
+        }
+        .word-row:nth-of-type(even) {
+            background-color: #f8f9fa;
+        }
+        .word-row td {
+            padding: 0.6rem 0.75rem;
+            border-bottom: 1px solid #e9ecef;
+            vertical-align: middle;
+        }
+
+        /* Word with phrases - subtle left border indicator */
+        .word-with-phrases td:first-child {
+            border-left: 3px solid #007bff;
+        }
+
+        /* Phrase toggle arrow */
+        .phrase-toggle {
+            cursor: pointer;
+            user-select: none;
+            margin-right: 0.5rem;
+            display: inline-block;
+            color: #007bff;
+            font-size: 0.8rem;
+        }
+        .phrase-toggle::before {
+            content: '▶';
+            display: inline-block;
+            transition: transform 0.2s ease;
+        }
+        .phrase-toggle.expanded::before {
+            transform: rotate(90deg);
+        }
+        .phrase-toggle:hover {
+            color: #0056b3;
+        }
+
+        .phrase-row {
+            background-color: #e8f4fd !important;
+        }
+        .phrase-row td {
+            padding: 0.5rem 0.75rem 0.5rem 2.5rem;
+            border-bottom: 1px solid #cce5ff;
+            font-size: 0.95rem;
+            color: #212529;
+            vertical-align: middle;
+        }
+        .phrase-row td:first-child {
+            border-left: 3px solid #80bdff;
+        }
+        .phrase-row td:first-child::before {
+            content: '↳ ';
+            color: #007bff;
+            font-weight: bold;
+        }
+
+        /* Orphan phrases section header*/
+        .orphan-header {
+            background-color: #6c757d !important;
+        }
+        .orphan-header td {
+            padding: 0.6rem 0.75rem;
+            font-weight: 600;
+            border-bottom: 2px solid #5a6268;
+            color: #ffffff !important;
+        }
+        .orphan-header .orphan-toggle {
+            color: #ffffff;
+        }
+        .orphan-header .orphan-toggle::before {
+            content: '▶';
+            display: inline-block;
+            transition: transform 0.2s ease;
+            margin-right: 0.5rem;
+        }
+        .orphan-header.expanded .orphan-toggle::before {
+            transform: rotate(90deg);
+        }
+        .orphan-header:hover {
+            background-color: #5a6268 !important;
+            cursor: pointer;
+        }
+
+        /* Orphan phrase rows - clearer text */
+        .orphan-phrase-row {
+            background-color: #f8f9fa !important;
+        }
+        .orphan-phrase-row td {
+            padding: 0.5rem 0.75rem 0.5rem 2rem;
+            border-bottom: 1px solid #dee2e6;
+            font-size: 0.95rem;
+            color: #495057;
+            font-style: italic;
+            vertical-align: middle;
+        }
+        .orphan-phrase-row td:first-child {
+            border-left: 3px solid #adb5bd;
+        }
+        .orphan-phrase-row td:first-child::before {
+            content: '↳ ';
+            color: #6c757d;
+        }
+
+        /* Phrase count badge*/
+        .phrase-count {
+            background-color: #007bff;
+            color: white;
+            font-size: 0.75rem;
+            padding: 0.2rem 0.5rem;
+            border-radius: 10px;
+            margin-left: 0.5rem;
+            vertical-align: middle;
+            display: inline-block;
+            min-width: 1.5rem;
+            text-align: center;
+            line-height: 1.2;
+        }
+
+        /* Buttons - restored to original size */
+        #dictionaryTable .btn.btn_secondary {
+            padding: 0.375rem 0.75rem;
+            margin: 0.2rem;
+        }
+        #dictionaryTable .btn.btn_secondary img {
+            width: 20px;
+            height: 20px;
+        }
+    </style>
+
     <div class="content">
-        <dot:GridView Style-Display="none" style="{value: Entries!=null ? '' : 'display: none'}" DataSource="{value: Entries}" class="table table-striped table-responsive-md">
-            <Columns>
-                <dot:GridViewTemplateColumn HeaderText="{value: EastFrisianHeader}" HeaderCssClass="entry_header">
-                    <ContentTemplate>
-                        <dot:Literal Text="{value: Frisian}" /> <br style="{value: SecondaryForm=='' ? 'display:none' : ''}" />
-                        <dot:Literal Text="{value: SecondaryForm}" /> <br style="{value: StandardForm=='' ? 'display:none' : ''}" />
-                        <dot:Literal Text="{value: StandardForm}" />
-                    </ContentTemplate>
-                </dot:GridViewTemplateColumn>
-                <dot:GridViewTemplateColumn HeaderText="{value: TranslationHeader}" HeaderCssClass="entry_header">
-                    <ContentTemplate>
-                        <dot:Literal Text="{value: Translation}" />
-                    </ContentTemplate>
-                </dot:GridViewTemplateColumn>
-                <dot:GridViewTemplateColumn HeaderText="" HeaderCssClass="entry_header">
-                    <ContentTemplate>
-                        <dot:Button ButtonTagName="button" Visible="{value: ID!=0}" class="btn btn_secondary bg-primary" title="{value: Frisian}" Click="{staticCommand: _js.InvokeAsync<long>("GetPopupInfo", ID)}">
-                            <img src="/img/info.webp">
-                        </dot:Button>
-                        <br Visible="{value: SoundFile}">
-                        <dot:Button ButtonTagName="button" Visible="{value: SoundFile}" class="btn btn_secondary bg-primary" title="{value: Frisian}" Click="{staticCommand: _js.InvokeAsync<string>("PlayWbSound", "/rec/" + MP3 + ".mp3" )}">
-                            <img src="/img/sound.webp">
-                        </dot:Button>
-                    </ContentTemplate>
-                </dot:GridViewTemplateColumn>
-            </Columns>
-        </dot:GridView>
+        <table class="table table-responsive-md" id="dictionaryTable" Visible="{value: Entries != null && Entries.Items.Count > 0}">
+            <thead>
+                <tr>
+                    <th class="entry_header"><dot:Literal Text="{value: EastFrisianHeader}" /></th>
+                    <th class="entry_header"><dot:Literal Text="{value: TranslationHeader}" /></th>
+                    <th class="entry_header"></th>
+                </tr>
+            </thead>
+            <tbody id="mainEntries">
+                <dot:Repeater DataSource="{value: Entries}" RenderWrapperTag="false">
+                    <ItemTemplate>
+                        <!-- Skip orphan phrases here, they go in a separate section -->
+                        <tr class="{value: IsPhrase ? 'orphan-phrase-row orphan-phrase' : (HasPhrases ? 'word-row word-with-phrases' : 'word-row')}" 
+                            style="{value: IsPhrase ? 'display: none;' : ''}">
+                            <td>
+                                <span class="phrase-toggle" 
+                                      onclick="togglePhrases(this)"
+                                      Visible="{value: HasPhrases}"></span>
+                                <dot:Literal Text="{value: Frisian}" />
+                                <span class="phrase-count" Visible="{value: HasPhrases}">
+                                    <dot:Literal Text="{value: Phrases.Count}" />
+                                </span>
+                                <br Visible="{value: SecondaryForm != ''}" />
+                                <dot:Literal Text="{value: SecondaryForm}" />
+                                <br Visible="{value: StandardForm != ''}" />
+                                <dot:Literal Text="{value: StandardForm}" />
+                            </td>
+                            <td>
+                                <dot:Literal Text="{value: Translation}" />
+                            </td>
+                            <td>
+                                <dot:Button ButtonTagName="button" Visible="{value: ID!=0}" class="btn btn_secondary bg-primary" title="{value: Frisian}" Click="{staticCommand: _js.InvokeAsync<long>("GetPopupInfo", ID)}">
+                                    <img src="/img/info.webp">
+                                </dot:Button>
+                                <br Visible="{value: SoundFile}">
+                                <dot:Button ButtonTagName="button" Visible="{value: SoundFile}" class="btn btn_secondary bg-primary" title="{value: Frisian}" Click="{staticCommand: _js.InvokeAsync<string>("PlayWbSound", "/rec/" + MP3 + ".mp3" )}">
+                                    <img src="/img/sound.webp">
+                                </dot:Button>
+                            </td>
+                        </tr>
+                        <!-- Phrase rows (collapsed by default) -->
+                        <dot:Repeater DataSource="{value: Phrases}" RenderWrapperTag="false">
+                            <ItemTemplate>
+                                <tr class="phrase-row" style="display: none;">
+                                    <td>
+                                        <dot:Literal Text="{value: Frisian}" />
+                                        <br Visible="{value: SecondaryForm != ''}" />
+                                        <dot:Literal Text="{value: SecondaryForm}" />
+                                        <br Visible="{value: StandardForm != ''}" />
+                                        <dot:Literal Text="{value: StandardForm}" />
+                                    </td>
+                                    <td>
+                                        <dot:Literal Text="{value: Translation}" />
+                                    </td>
+                                    <td>
+                                        <dot:Button ButtonTagName="button" Visible="{value: ID!=0}" class="btn btn_secondary bg-primary" title="{value: Frisian}" Click="{staticCommand: _js.InvokeAsync<long>("GetPopupInfo", ID)}">
+                                            <img src="/img/info.webp">
+                                        </dot:Button>
+                                        <br Visible="{value: SoundFile}">
+                                        <dot:Button ButtonTagName="button" Visible="{value: SoundFile}" class="btn btn_secondary bg-primary" title="{value: Frisian}" Click="{staticCommand: _js.InvokeAsync<string>("PlayWbSound", "/rec/" + MP3 + ".mp3" )}">
+                                            <img src="/img/sound.webp">
+                                        </dot:Button>
+                                    </td>
+                                </tr>
+                            </ItemTemplate>
+                        </dot:Repeater>
+                    </ItemTemplate>
+                </dot:Repeater>
+            </tbody>
+            <!-- Orphan phrases section -->
+            <tbody id="orphanSection"></tbody>
+        </table>
     </div>
+
+    <script>
+        function togglePhrases(el) {
+            el.classList.toggle('expanded');
+            var row = el.closest('tr');
+            var nextRow = row.nextElementSibling;
+            while (nextRow && nextRow.classList.contains('phrase-row')) {
+                if (nextRow.style.display === 'none' || nextRow.style.display === '') {
+                    nextRow.style.display = 'table-row';
+                } else {
+                    nextRow.style.display = 'none';
+                }
+                nextRow = nextRow.nextElementSibling;
+            }
+        }
+
+        function toggleOrphanPhrases() {
+            var header = document.getElementById('orphanHeader');
+            header.classList.toggle('expanded');
+            var orphanRows = document.querySelectorAll('.orphan-phrase');
+            orphanRows.forEach(function(row) {
+                if (row.style.display === 'none' || row.style.display === '') {
+                    row.style.display = 'table-row';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        }
+
+        // On page load, move orphan phrases to their own section with a header
+        document.addEventListener('DOMContentLoaded', function() {
+            var orphanPhrases = document.querySelectorAll('.orphan-phrase');
+            var wordRows = document.querySelectorAll('.word-row');
+            
+            if (orphanPhrases.length > 0) {
+                var orphanSection = document.getElementById('orphanSection');
+                
+                // Check if there are ONLY orphan phrases (no regular words)
+                var onlyPhrases = (wordRows.length === 0);
+                
+                // Create header row
+                var headerRow = document.createElement('tr');
+                headerRow.id = 'orphanHeader';
+                headerRow.className = onlyPhrases ? 'orphan-header expanded' : 'orphan-header';
+                headerRow.onclick = toggleOrphanPhrases;
+                headerRow.innerHTML = '<td colspan="3"><span class="orphan-toggle"></span>Weitere Phrasen (' + orphanPhrases.length + ')</td>';
+                orphanSection.appendChild(headerRow);
+                
+                // Move orphan phrases to this section
+                orphanPhrases.forEach(function(row) {
+                    // If only phrases, show them expanded by default
+                    if (onlyPhrases) {
+                        row.style.display = 'table-row';
+                    }
+                    orphanSection.appendChild(row);
+                });
+            }
+        });
+    </script>
 </dot:Content>
