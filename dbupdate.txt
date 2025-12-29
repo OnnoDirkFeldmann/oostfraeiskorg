@@ -1,10 +1,10 @@
 Delete FROM WB;
 Drop Table WBFTS;
 
-CREATE VIRTUAL TABLE WBFTS USING fts4(ID, Ostfriesisch, Deutsch, Artikel, Wortart, Plural, Genus, Komparation, Konjugation, Nebenformen, Standardform, Englisch, Zuordnung, tokenize=unicode61);
+CREATE VIRTUAL TABLE WBFTS USING fts4(ID, Ostfriesisch, Deutsch, Artikel, Wortart, Plural, Genus, Komparation, Konjugation, Nebenformen, Standardform, Zuordnung, Englisch, tokenize=unicode61);
 
-INSERT INTO WBFTS (ID, Ostfriesisch, Deutsch, Artikel, Wortart, Plural, Genus, Komparation, Konjugation, Nebenformen, Standardform, Englisch, Zuordnung)
-SELECT ID, Ostfriesisch, Deutsch, Artikel, Wortart, Plural, Genus, Komparation, Konjugation, Nebenformen, Standardform, Englisch, Zuordnung FROM WB;
+INSERT INTO WBFTS (ID, Ostfriesisch, Deutsch, Artikel, Wortart, Plural, Genus, Komparation, Konjugation, Nebenformen, Standardform, Zuordnung, Englisch)
+SELECT ID, Ostfriesisch, Deutsch, Artikel, Wortart, Plural, Genus, Komparation, Konjugation, Nebenformen, Standardform, Zuordnung, Englisch FROM WB;
 
 SELECT * FROM WBFTS;
 
