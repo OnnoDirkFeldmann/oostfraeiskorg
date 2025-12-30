@@ -163,7 +163,7 @@ public class Searcher
         words = SortByRelevance(words, displaySearchString, searchDirection);
 
         // Build a lookup of words by their East Frisian name and entrynumber
-        var wordLookup = new Dictionary<string, DictionaryEntry>(StringComparer.OrdinalIgnoreCase);
+        var wordLookup = new Dictionary<string, DictionaryEntry>(StringComparer.Ordinal);
         foreach (var word in words)
         {
             // Extract base word (before any parenthesis)
