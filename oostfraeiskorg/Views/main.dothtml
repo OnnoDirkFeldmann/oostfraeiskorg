@@ -296,7 +296,7 @@
                                 </span>
                                 <br Visible="{value: SecondaryForm != ''}" />
                                 <dot:Literal Text="{value: SecondaryForm}" />
-                                <br Visible="{value: SecondaryForm != ''}" />
+                                <br Visible="{value: StandardForm != ''}" />
                                 <dot:Literal Text="{value: StandardForm}" />
                                 <br Visible="{value: HasPhrases}" />
                                 <span class="phrase-count" Visible="{value: HasPhrases}"><dot:Literal Text="{value: Phrases.Count}" /></span>
