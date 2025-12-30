@@ -159,6 +159,9 @@ public class Searcher
         var words = allEntries.Where(e => !e.IsPhrase).ToList();
         var phrases = allEntries.Where(e => e.IsPhrase).ToList();
 
+        // Sort words by relevance: prioritize entries where search term appears first in translation
+        words = SortByRelevance(words, displaySearchString, searchDirection);
+
         // Build a lookup of words by their East Frisian name and entrynumber
         var wordLookup = new Dictionary<string, DictionaryEntry>(StringComparer.OrdinalIgnoreCase);
         foreach (var word in words)
@@ -197,6 +200,108 @@ public class Searcher
         }
 
         return dictionaryEntries.AsQueryable();
+    }
+
+    /// <summary>
+    /// Sorts dictionary entries by relevance based on where the search term appears.
+    /// Priority order:
+    /// 1. Search term is an exact standalone match as the first item (e.g., "gehen" or "gehen; ..." or "gehen, ...")
+    /// 2. Search term appears as a standalone item elsewhere in the list
+    /// 3. Search term appears at the start of a phrase (e.g., "gehen an einer Stütze")
+    /// 4. Search term is contained within other text
+    /// Alphabetical by Frisian word within each group
+    /// </summary>
+    private static List<DictionaryEntry> SortByRelevance(List<DictionaryEntry> entries, string searchTerm, string searchDirection)
+    {
+        var searchLower = searchTerm.ToLower();
+        bool searchingFrisian = searchDirection.StartsWith("frs>", StringComparison.OrdinalIgnoreCase);
+
+        return entries
+            .OrderBy(entry =>
+            {
+                // Get the text to check based on search direction
+                string textToCheck = searchingFrisian ? entry.Frisian : entry.Translation;
+                if (string.IsNullOrEmpty(textToCheck))
+                    return 5; // No match, lowest priority
+
+                var textLower = textToCheck.ToLower();
+
+                // Split into individual items by semicolon
+                var items = textLower.Split(';', StringSplitOptions.RemoveEmptyEntries)
+                    .Select(s => s.Trim())
+                    .ToList();
+
+                // Check if the first item is an exact match or starts with search term followed by comma
+                var firstItem = items.FirstOrDefault() ?? "";
+                if (IsExactOrCommaMatch(firstItem, searchLower))
+                    return 0; // Highest priority: exact match as first item
+
+                // Check if any other item is an exact match
+                for (int i = 1; i < items.Count; i++)
+                {
+                    if (IsExactOrCommaMatch(items[i], searchLower))
+                        return 1; // High priority: exact match in list but not first
+                }
+
+                // Check if search term is the first item but followed by more words (phrase starting with search term)
+                if (firstItem.StartsWith(searchLower + " "))
+                    return 2; // Medium priority: first item starts with search term as a phrase
+
+                // Check if any item starts with the search term (phrase match)
+                foreach (var item in items)
+                {
+                    if (item.StartsWith(searchLower + " "))
+                        return 3; // Lower priority: some item starts with search term
+                }
+
+                // Search term is contained somewhere
+                if (textLower.Contains(searchLower))
+                    return 4; // Lowest match priority
+
+                return 5; // No direct match
+            })
+            .ThenBy(entry => entry.Frisian, StringComparer.OrdinalIgnoreCase) // Alphabetical within same relevance
+            .ToList();
+    }
+
+    /// <summary>
+    /// Checks if the item is an exact match for the search term, or if it's the search term 
+    /// followed by a comma (e.g., "gehen, laufen" where we're searching for "gehen").
+    /// </summary>
+    private static bool IsExactOrCommaMatch(string item, string searchTerm)
+    {
+        // Exact match
+        if (item.Equals(searchTerm))
+            return true;
+
+        // Match with comma after (e.g., "gehen, laufen" matches "gehen")
+        if (item.StartsWith(searchTerm + ","))
+            return true;
+
+        // Also handle case where there might be spaces around comma
+        if (item.StartsWith(searchTerm + " ,"))
+            return true;
+
+        return false;
+    }
+
+    /// <summary>
+    /// Checks if the search term appears as a standalone word or at the start of a list item.
+    /// </summary>
+    private static bool IsStandaloneMatch(string text, string searchTerm)
+    {
+        // Split by common separators (semicolon, comma)
+        var parts = text.Split([';', ','], StringSplitOptions.RemoveEmptyEntries);
+        
+        foreach (var part in parts)
+        {
+            var trimmed = part.Trim();
+            // Check if this part equals the search term exactly
+            if (trimmed.Equals(searchTerm))
+                return true;
+        }
+        
+        return false;
     }
 
     public static string GetPopUpBody(long wordId)

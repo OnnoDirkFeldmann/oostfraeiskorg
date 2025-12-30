@@ -16,6 +16,7 @@
             border-spacing: 0;
             table-layout: fixed;
             width: 100%;
+            overflow-x: hidden;
         }
 
         /* Fixed column widths - equal for both text columns */
@@ -26,7 +27,7 @@
             width: calc(50% - 30px);
         }
         #dictionaryTable colgroup .col-buttons {
-            width: 60px;
+            width: 65px;
         }
 
         /* Original header style - light blue background, black text */
@@ -36,6 +37,8 @@
             padding: 0.75rem;
             border-bottom: 2px solid #b8daff;
             font-weight: 600;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
         }
 
         /* All table cells - consistent padding and alignment */
@@ -45,66 +48,110 @@
             vertical-align: top;
             word-wrap: break-word;
             overflow-wrap: break-word;
+            word-break: normal;
+            hyphens: auto;
+            -webkit-hyphens: auto;
+            -ms-hyphens: auto;
+            -webkit-hyphenate-limit-chars: 6 3 2;
+            hyphenate-limit-chars: 6 3 2;
         }
 
         /* Button column - always centered, stacked vertically */
         #dictionaryTable td:last-child {
             vertical-align: middle;
             text-align: center;
+            word-break: normal;
+            overflow-wrap: normal;
+            hyphens: none;
+            padding-right: 0.5rem;
         }
 
         /* Word rows - base color (will be overridden by JS for alternating) */
         .word-row {
-            background-color: #ffffff;
-        }
-        .word-row.even-row {
             background-color: #f8f9fa;
         }
+        .word-row.even-row {
+            background-color: #ffffff;
+        }
 
-        /* Word with phrases - subtle left border indicator */
+        /* Word with phrases - blue left border indicator */
         .word-with-phrases td:first-child {
             border-left: 3px solid #007bff;
         }
 
-        /* First column content wrapper for proper alignment */
-        .word-content {
-            display: inline;
-        }
-        .word-content .word-text {
-            display: inline;
+        /* Word without phrases - grey left border for alignment */
+        .word-row:not(.word-with-phrases) td:first-child {
+            border-left: 3px solid #dee2e6;
         }
 
-        /* Phrase toggle arrow - using inline-block for transform support */
+        /* First column content wrapper for proper alignment */
+        .word-content {
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .word-content .word-text {
+            flex: 1;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            word-break: normal;
+            hyphens: auto;
+            -webkit-hyphens: auto;
+            -webkit-hyphenate-limit-chars: 6 3 2;
+            hyphenate-limit-chars: 6 3 2;
+        }
+
+        /* Phrase toggle plus/minus */
         .phrase-toggle {
             cursor: pointer;
             user-select: none;
             margin-right: 0.3rem;
-            display: inline-block;
             color: #007bff;
-            font-size: 0.75rem;
-            transition: transform 0.2s ease;
+            font-size: 1.2rem;
+            font-weight: bold;
+            line-height: 1.2;
+            width: 1rem;
+            min-width: 1rem;
+            max-width: 1rem;
+            text-align: center;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
+
         .phrase-toggle::before {
-            content: '▶';
+            content: '+';
         }
-        .phrase-toggle.expanded {
-            transform: rotate(90deg);
+
+        .phrase-toggle.expanded::before {
+            content: '−';
         }
+
         .phrase-toggle:hover {
             color: #0056b3;
         }
 
-        /* Phrase count badge - inline with word, no wrapping */
+        /* Invisible spacer for rows without toggle - maintains alignment */
+        .toggle-spacer {
+            width: 1rem;
+            min-width: 1rem;
+            max-width: 1rem;
+            margin-right: 0.3rem;
+            flex-shrink: 0;
+        }
+
+        /* Phrase count badge - bottom left */
         .phrase-count {
+            display: block;
+            margin-top: 0.3rem;
             background-color: #007bff;
             color: white;
             font-size: 0.65rem;
             padding: 0.1rem 0.35rem;
             border-radius: 8px;
-            margin-left: 0.25rem;
-            display: inline;
             white-space: nowrap;
-            vertical-align: middle;
+            width: fit-content;
         }
 
         /* Phrase rows - indented and styled */
@@ -112,19 +159,41 @@
             background-color: #e8f4fd !important;
         }
         .phrase-row td {
-            padding: 0.5rem 0.75rem 0.5rem 1.5rem;
+            padding: 0.5rem 0.75rem;
             border-bottom: 1px solid #cce5ff;
             font-size: 0.95rem;
             color: #212529;
         }
         .phrase-row td:first-child {
             border-left: 3px solid #80bdff;
-            padding-left: 2rem;
+            padding-left: 0.75rem;
         }
-        .phrase-row .phrase-indicator {
+        
+        /* Phrase content wrapper for alignment */
+        .phrase-content {
+            display: flex;
+            align-items: flex-start;
+        }
+        .phrase-content .phrase-indicator {
             color: #007bff;
             font-weight: bold;
             margin-right: 0.3rem;
+            width: 1rem;
+            min-width: 1rem;
+            max-width: 1rem;
+            flex-shrink: 0;
+            text-align: center;
+        }
+        .phrase-content .phrase-text {
+            flex: 1;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+
+        /* Secondary and standard forms in phrase rows */
+        .phrase-row .secondary-form,
+        .phrase-row .standard-form {
+            margin-left: calc(1rem + 0.3rem);
         }
 
         /* Orphan phrases section header - fixed colors */
@@ -140,14 +209,18 @@
         .orphan-header .orphan-toggle {
             color: #ffffff;
             display: inline-block;
-            transition: transform 0.2s ease;
+            font-size: 1.2rem;
+            font-weight: bold;
+            line-height: 1.2;
+            margin-right: 0.5rem;
+            width: 1rem;
+            text-align: center;
         }
         .orphan-header .orphan-toggle::before {
-            content: '▶';
-            margin-right: 0.5rem;
+            content: '+';
         }
-        .orphan-header.expanded .orphan-toggle {
-            transform: rotate(90deg);
+        .orphan-header.expanded .orphan-toggle::before {
+            content: '−';
         }
         .orphan-header:hover {
             background-color: #5a6268 !important;
@@ -191,7 +264,7 @@
         /* Responsive adjustments for mobile - increased sizes */
         @media (max-width: 768px) {
             #dictionaryTable {
-                table-layout: auto;
+                table-layout: fixed;
             }
             
             #dictionaryTable colgroup .col-frisian {
@@ -201,7 +274,7 @@
                 width: auto;
             }
             #dictionaryTable colgroup .col-buttons {
-                width: 50px;
+                width: 55px;
             }
             
             #dictionaryTable td {
@@ -238,22 +311,22 @@
             }
             
             .phrase-toggle {
-                font-size: 0.75rem;
+                font-size: 1.1rem;
             }
         }
         
         /* Extra small screens */
         @media (max-width: 480px) {
             #dictionaryTable colgroup .col-frisian {
-                width: 38%;
+                width: 40%;
             }
             #dictionaryTable colgroup .col-buttons {
-                width: 45px;
+                width: 50px;
             }
             
             #dictionaryTable td {
                 padding: 0.4rem 0.5rem;
-                font-size: 0.95rem;
+                font-size: 1rem;
             }
             
             #dictionaryTable .btn.btn_secondary {
@@ -265,11 +338,60 @@
                 width: 18px;
                 height: 18px;
             }
+            
+            .phrase-toggle {
+                font-size: 1.1rem;
+            }
+        }
+
+        /* Extra extra small screens */
+        @media (max-width: 360px) {
+            #dictionaryTable colgroup .col-frisian {
+                width: 38%;
+            }
+
+            #dictionaryTable colgroup .col-buttons {
+                width: 45px;
+            }
+
+            #dictionaryTable td {
+                padding: 0.4rem 0.3rem;
+                font-size: 0.8rem;
+            }
+
+            #dictionaryTable .btn.btn_secondary {
+                padding: 0.35rem 0.5rem;
+                min-width: 38px;
+                min-height: 38px;
+            }
+
+                #dictionaryTable .btn.btn_secondary img {
+                    width: 18px;
+                    height: 18px;
+                }
+
+            .phrase-toggle {
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Secondary and standard forms - aligned with word text, stacked vertically */
+        .secondary-form,
+        .standard-form {
+            display: block;
+            margin-left: calc(1rem + 0.3rem); /* Same as toggle width + margin */
+            font-size: 0.9rem;
+            color: #6c757d;
+        }
+
+        .content {
+            overflow-x: hidden;
+            max-width: 100%;
         }
     </style>
 
     <div class="content">
-        <table class="table table-responsive-md" id="dictionaryTable" Visible="{value: Entries != null && Entries.Items.Count > 0}">
+        <table class="table" id="dictionaryTable" Visible="{value: Entries != null && Entries.Items.Count > 0}">
             <colgroup>
                 <col class="col-frisian">
                 <col class="col-translation">
@@ -292,14 +414,10 @@
                                 <span class="word-content">
                                     <span class="phrase-toggle"
                                           onclick="togglePhrases(this)"
-                                          Visible="{value: HasPhrases}"></span><span class="word-text"><dot:Literal Text="{value: Frisian}" /></span>
+                                          Visible="{value: HasPhrases}"></span><span class="toggle-spacer" Visible="{value: !HasPhrases}"></span><span class="word-text"><dot:Literal Text="{value: FrisianWithArticle}" /></span>
                                 </span>
-                                <br Visible="{value: SecondaryForm != ''}" />
-                                <dot:Literal Text="{value: SecondaryForm}" />
-                                <br Visible="{value: StandardForm != ''}" />
-                                <dot:Literal Text="{value: StandardForm}" />
-                                <br Visible="{value: HasPhrases}" />
-                                <span class="phrase-count" Visible="{value: HasPhrases}"><dot:Literal Text="{value: Phrases.Count}" /></span>
+                                <span class="secondary-form" Visible="{value: SecondaryForm != ''}"><dot:Literal Text="{value: SecondaryForm}" /></span>
+                                <span class="standard-form" Visible="{value: StandardForm != ''}"><dot:Literal Text="{value: StandardForm}" /></span>
                             </td>
                             <td>
                                 <dot:Literal Text="{value: Translation}" />
@@ -308,7 +426,6 @@
                                 <dot:Button ButtonTagName="button" Visible="{value: ID!=0}" class="btn btn_secondary bg-primary" title="{value: Frisian}" Click="{staticCommand: _js.InvokeAsync<long>("GetPopupInfo", ID)}">
                                     <img src="/img/info.webp">
                                 </dot:Button>
-                                <br Visible="{value: SoundFile}" />
                                 <dot:Button ButtonTagName="button" Visible="{value: SoundFile}" class="btn btn_secondary bg-primary" title="{value: Frisian}" Click="{staticCommand: _js.InvokeAsync<string>("PlayWbSound", "/rec/" + MP3 + ".mp3" )}">
                                     <img src="/img/sound.webp">
                                 </dot:Button>
@@ -319,12 +436,11 @@
                             <ItemTemplate>
                                 <tr class="phrase-row" style="display: none;">
                                     <td>
-                                        <span class="phrase-indicator">↳</span>
-                                        <dot:Literal Text="{value: Frisian}" />
-                                        <br Visible="{value: SecondaryForm != ''}" />
-                                        <dot:Literal Text="{value: SecondaryForm}" />
-                                        <br Visible="{value: StandardForm != ''}" />
-                                        <dot:Literal Text="{value: StandardForm}" />
+                                        <span class="phrase-content">
+                                            <span class="phrase-indicator">↳</span><span class="phrase-text"><dot:Literal Text="{value: Frisian}" /></span>
+                                        </span>
+                                        <span class="secondary-form" Visible="{value: SecondaryForm != ''}"><dot:Literal Text="{value: SecondaryForm}" /></span>
+                                        <span class="standard-form" Visible="{value: StandardForm != ''}"><dot:Literal Text="{value: StandardForm}" /></span>
                                     </td>
                                     <td>
                                         <dot:Literal Text="{value: Translation}" />
@@ -333,7 +449,6 @@
                                         <dot:Button ButtonTagName="button" Visible="{value: ID!=0}" class="btn btn_secondary bg-primary" title="{value: Frisian}" Click="{staticCommand: _js.InvokeAsync<long>("GetPopupInfo", ID)}">
                                             <img src="/img/info.webp">
                                         </dot:Button>
-                                        <br Visible="{value: SoundFile}" />
                                         <dot:Button ButtonTagName="button" Visible="{value: SoundFile}" class="btn btn_secondary bg-primary" title="{value: Frisian}" Click="{staticCommand: _js.InvokeAsync<string>("PlayWbSound", "/rec/" + MP3 + ".mp3" )}">
                                             <img src="/img/sound.webp">
                                         </dot:Button>
