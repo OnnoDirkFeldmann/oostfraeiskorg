@@ -424,10 +424,10 @@
                             </td>
                             <td>
                                 <dot:Button ButtonTagName="button" Visible="{value: ID!=0}" class="btn btn_secondary bg-primary" title="{value: Frisian}" Click="{staticCommand: _js.InvokeAsync<long>("GetPopupInfo", ID)}">
-                                    <img src="/img/info.webp">
+                                    <img src="/img/info.webp" alt="Info">
                                 </dot:Button>
                                 <dot:Button ButtonTagName="button" Visible="{value: SoundFile}" class="btn btn_secondary bg-primary" title="{value: Frisian}" Click="{staticCommand: _js.InvokeAsync<string>("PlayWbSound", "/rec/" + MP3 + ".mp3" )}">
-                                    <img src="/img/sound.webp">
+                                    <img src="/img/sound.webp" alt="Sound">
                                 </dot:Button>
                             </td>
                         </tr>
@@ -447,10 +447,10 @@
                                     </td>
                                     <td>
                                         <dot:Button ButtonTagName="button" Visible="{value: ID!=0}" class="btn btn_secondary bg-primary" title="{value: Frisian}" Click="{staticCommand: _js.InvokeAsync<long>("GetPopupInfo", ID)}">
-                                            <img src="/img/info.webp">
+                                            <img src="/img/info.webp" alt="Info">
                                         </dot:Button>
                                         <dot:Button ButtonTagName="button" Visible="{value: SoundFile}" class="btn btn_secondary bg-primary" title="{value: Frisian}" Click="{staticCommand: _js.InvokeAsync<string>("PlayWbSound", "/rec/" + MP3 + ".mp3" )}">
-                                            <img src="/img/sound.webp">
+                                            <img src="/img/sound.webp" alt="Sound">
                                         </dot:Button>
                                     </td>
                                 </tr>

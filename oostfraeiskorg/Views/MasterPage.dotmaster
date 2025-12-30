@@ -96,7 +96,7 @@
                 <!--Desktop-->
                 <div class="col- d-none d-lg-flex justify-content-left mr-3">
                     <a href="../main" class="navbar-brand">
-                        <img src="~/img/logo.webp" width="100" height="100" alt="Logo/Startseite" />
+                        <img src="~/img/logo.webp" width="100" height="100" alt="Logo/Main Page" />
                     </a>
                 </div>
                 <div class="col- d-none d-lg-flex justify-content-left mr-3">
@@ -115,7 +115,7 @@
                 <!--Tablet-->
                 <div class="col- d-none d-md-flex d-lg-none justify-content-left mr-3">
                     <a href="../main" class="navbar-brand">
-                        <img src="~/img/logo.webp" width="100" height="100" alt="Logo/Startseite" />
+                        <img src="~/img/logo.webp" width="100" height="100" alt="Logo/Main Page" />
                     </a>
                 </div>
                 <div class="col- d-none d-md-flex d-lg-none justify-content-left mr-3">
@@ -134,7 +134,7 @@
                 <!--Mobile-->
                 <div class="col-xs d-md-none d-flex justify-content-end">
                     <a href="../main">
-                        <img src="~/img/logo_mobile.webp" width="50" height="50" alt="Logo/Startseite" />
+                        <img src="~/img/logo_mobile.webp" width="50" height="50" alt="Logo/Main Page" />
                     </a>
                 </div>
                 <div class="col-xs d-md-none d-flex justify-content-center">
