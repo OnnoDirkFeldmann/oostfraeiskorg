@@ -31,6 +31,10 @@ public class MainViewModel : MasterPageViewModel
 
     public long WordId { get; set; }
 
+    public string MorePhrasesText { get; set; } = "Weitere Phrasen";
+
+    public string CloseButtonText { get; set; } = "Schließen";
+
     public override Task Init()
     {
         if (W != null)
@@ -93,11 +97,15 @@ public class MainViewModel : MasterPageViewModel
         {
             EastFrisianHeader = "Ostfriesisch";
             TranslationHeader = "Deutsch";
+            MorePhrasesText = "Weitere Phrasen";
+            CloseButtonText = "Schließen";
         }
         else
         {
             EastFrisianHeader = "East Frisian";
             TranslationHeader = "English";
+            MorePhrasesText = "More phrases";
+            CloseButtonText = "Close";
         }
     }
 
