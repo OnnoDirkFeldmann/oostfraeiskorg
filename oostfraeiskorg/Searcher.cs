@@ -10,6 +10,30 @@ namespace oostfraeiskorg;
 
 public class Searcher
 {
+    /// <summary>
+    /// Translation dictionary for database column names (German to English)
+    /// </summary>
+    private static readonly Dictionary<string, string> ColumnTranslationsEnglish = new(StringComparer.OrdinalIgnoreCase)
+    {
+        { "Ostfriesisch", "East Frisian" },
+        { "Deutsch", "German" },
+        { "Englisch", "English" },
+        { "Artikel", "Article" },
+        { "Wortart", "Part of speech" },
+        { "Plural", "Plural" },
+        { "Nebenformen", "Dialectal forms" },
+        { "Etymologie", "Etymology" },
+        { "Standardform", "Standard form" },
+        { "Zuordnung", "Category" },
+        { "Nummer", "Number" },
+        { "Genus", "Gender" },
+        { "Bemerkung", "Remark" },
+        { "Beispiel", "Example" },
+        { "Herkunft", "Origin" },
+        { "Konjugation", "Conjugation"},
+        { "Kommentar", "Comment"},
+    };
+
     public static IQueryable<DictionaryEntry> SearchAndFill(string searchString, string searchDirection, string fullTextSearch)
     {
         var dictionaryEntries = new List<DictionaryEntry>();
@@ -304,7 +328,7 @@ public class Searcher
         return false;
     }
 
-    public static string GetPopUpBody(long wordId)
+    public static string GetPopUpBody(long wordId, Languages language = Languages.German)
     {
         string body = "";
 
@@ -356,7 +380,10 @@ public class Searcher
 
         for (int j = 0; j < notEmptyData.Count; j++)
         {
-            body += "<tr valign=\"top\"><th valign=\"top\"><p>" + notEmptyTitles[j] + ":</p></th><td valign=\"top\"><p>" + notEmptyData[j] + "</p></td ></tr>";
+            string displayTitle = language == Languages.English
+                ? TranslateColumnName(notEmptyTitles[j])
+                : notEmptyTitles[j];
+            body += "<tr valign=\"top\"><th valign=\"top\"><p>" + displayTitle + ":</p></th><td valign=\"top\"><p>" + notEmptyData[j] + "</p></td ></tr>";
         }
 
         body = "<table class=\"table\">" + body + "</table>";
@@ -366,6 +393,16 @@ public class Searcher
         body = body.Replace("\n", "");
 
         return body;
+    }
+
+    /// <summary>
+    /// Translates a German column name to English. Returns original if no translation found.
+    /// </summary>
+    private static string TranslateColumnName(string germanName)
+    {
+        return ColumnTranslationsEnglish.TryGetValue(germanName, out var englishName)
+            ? englishName
+            : germanName;
     }
 
     private static string GetColumnValueSafe(SqliteDataReader reader, string columnName)

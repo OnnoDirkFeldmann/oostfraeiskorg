@@ -10,6 +10,7 @@ public class MainViewModel : MasterPageViewModel
     public MainViewModel()
     {
         Entries = new GridViewDataSet<DictionaryEntry>();
+        CurrentLanguage = oostfraeiskorg.Languages.German;
     }
 
     [FromQuery("W")]
@@ -34,6 +35,8 @@ public class MainViewModel : MasterPageViewModel
     public string MorePhrasesText { get; set; } = "Weitere Phrasen";
 
     public string CloseButtonText { get; set; } = "Schließen";
+
+    public oostfraeiskorg.Languages CurrentLanguage { get; set; }
 
     public override Task Init()
     {
@@ -99,6 +102,7 @@ public class MainViewModel : MasterPageViewModel
             TranslationHeader = "Deutsch";
             MorePhrasesText = "Weitere Phrasen";
             CloseButtonText = "Schließen";
+            CurrentLanguage = oostfraeiskorg.Languages.German;
         }
         else
         {
@@ -106,11 +110,12 @@ public class MainViewModel : MasterPageViewModel
             TranslationHeader = "English";
             MorePhrasesText = "More phrases";
             CloseButtonText = "Close";
+            CurrentLanguage = oostfraeiskorg.Languages.English;
         }
     }
 
     public void GetPopUpBody()
     {
-        PopUpBody = Searcher.GetPopUpBody(WordId);
+        PopUpBody = Searcher.GetPopUpBody(WordId, CurrentLanguage);
     }
 }
