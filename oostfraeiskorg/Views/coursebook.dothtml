@@ -12,40 +12,40 @@
                     <iframe src="https://download.oostfraeisk.org/leerbauk/Oostfr%c3%a4isk%20Leerbauk.pdf" width="100%" height="890"></iframe>
                 </div>
                 <div class="col-sm-4 overflow-auto" style="height: 900px;">
-                    <!--Audio und Video-->
-                    <!--Föörweğ-->
-                    <div class="accordion" id="leksen" height="800">
+                    <!--Audio and video-->
+                    <div class="accordion" ID="leksen" height="800">
+                        <!--Introduction-->
                         <div class="card">
-                            <div class="card-header" id="fwh">
+                            <div class="card-header" ID="elh">
                                 <h5 class="mb-0">
-                                    <button class="btn btn-primary collapsed" type="button" data-toggle="collapse" data-target="#fw" aria-expanded="false" aria-controls="fw">
-                                        Föörweğ
+                                    <button class="btn btn-primary collapsed" type="button" data-toggle="collapse" data-target="#el" aria-expanded="false" aria-controls="el">
+                                        Einleitung
                                     </button>
                                 </h5>
                             </div>
-                            <div id="fw" class="collapse" aria-labelledby="fwh" data-parent="#leksen">
+                            <div ID="el" class="collapse" aria-labelledby="elh" data-parent="#leksen">
                                 <div class="card-body">
-                                    <h3>Föörweğ</h3>
+                                    <h3>Einleitung</h3>
                                     <br />
-                                    <h5>skrift un tóól</h5>
+                                    <h5>Schrift und Aussprache</h5>
                                     <audio controls preload="none">
-                                        <source src="https://download.oostfraeisk.org/leerbauk/t/T00.mp3" type="audio/mpeg">
+                                        <source src="https://download.oostfraeisk.org/leerbauk/t/TE1.mp3" type="audio/mpeg">
                                         Kein Audioplayer vorhanden.
                                     </audio>
-                                    <p>T00</p>
+                                    <p>TE1</p>
                                 </div>
                             </div>
                         </div>
                         <!--Leks 1-->
                         <div class="card">
-                            <div class="card-header" id="leksh1">
+                            <div class="card-header" ID="leksh1">
                                 <h5 class="mb-0">
                                     <button class="btn btn-primary collapsed" type="button" data-toggle="collapse" data-target="#leks1" aria-expanded="false" aria-controls="leks1">
                                         Leks 1
                                     </button>
                                 </h5>
                             </div>
-                            <div id="leks1" class="collapse" aria-labelledby="leksh1" data-parent="#leksen">
+                            <div ID="leks1" class="collapse" aria-labelledby="leksh1" data-parent="#leksen">
                                 <div class="card-body">
                                     <h3>Leks 1</h3>
                                     <br />
@@ -80,14 +80,14 @@
                         </div>
                         <!--Leks 2-->
                         <div class="card">
-                            <div class="card-header" id="leksh2">
+                            <div class="card-header" ID="leksh2">
                                 <h5 class="mb-0">
                                     <button class="btn btn-primary collapsed" type="button" data-toggle="collapse" data-target="#leks2" aria-expanded="false" aria-controls="leks2">
                                         Leks 2
                                     </button>
                                 </h5>
                             </div>
-                            <div id="leks2" class="collapse" aria-labelledby="leksh2" data-parent="#leksen">
+                            <div ID="leks2" class="collapse" aria-labelledby="leksh2" data-parent="#leksen">
                                 <div class="card-body">
                                     <h3>Leks 2</h3>
                                     <br />
@@ -140,14 +140,14 @@
                         </div>
                         <!--Leks 3-->
                         <div class="card">
-                            <div class="card-header" id="leksh3">
+                            <div class="card-header" ID="leksh3">
                                 <h5 class="mb-0">
                                     <button class="btn btn-primary collapsed" type="button" data-toggle="collapse" data-target="#leks3" aria-expanded="false" aria-controls="leks3">
                                         Leks 3
                                     </button>
                                 </h5>
                             </div>
-                            <div id="leks3" class="collapse" aria-labelledby="leksh3" data-parent="#leksen">
+                            <div ID="leks3" class="collapse" aria-labelledby="leksh3" data-parent="#leksen">
                                 <div class="card-body">
                                     <h3>Leks 3</h3>
                                     <br />
@@ -188,14 +188,14 @@
                         </div>
                         <!--Leks 4-->
                         <div class="card">
-                            <div class="card-header" id="leksh4">
+                            <div class="card-header" ID="leksh4">
                                 <h5 class="mb-0">
                                     <button class="btn btn-primary collapsed" type="button" data-toggle="collapse" data-target="#leks4" aria-expanded="false" aria-controls="leks4">
                                         Leks 4
                                     </button>
                                 </h5>
                             </div>
-                            <div id="leks4" class="collapse" aria-labelledby="leksh4" data-parent="#leksen">
+                            <div ID="leks4" class="collapse" aria-labelledby="leksh4" data-parent="#leksen">
                                 <div class="card-body">
                                     <h3>Leks 4</h3>
                                     <br />
@@ -236,14 +236,14 @@
                         </div>
                         <!--Leks 5-->
                         <div class="card">
-                            <div class="card-header" id="leksh5">
+                            <div class="card-header" ID="leksh5">
                                 <h5 class="mb-0">
                                     <button class="btn btn-primary collapsed" type="button" data-toggle="collapse" data-target="#leks5" aria-expanded="false" aria-controls="leks5">
                                         Leks 5
                                     </button>
                                 </h5>
                             </div>
-                            <div id="leks5" class="collapse" aria-labelledby="leksh5" data-parent="#leksen">
+                            <div ID="leks5" class="collapse" aria-labelledby="leksh5" data-parent="#leksen">
                                 <div class="card-body">
                                     <h3>Leks 5</h3>
                                     <br />
@@ -296,14 +296,14 @@
                         </div>
                         <!--Leks 6-->
                         <div class="card">
-                            <div class="card-header" id="leksh6">
+                            <div class="card-header" ID="leksh6">
                                 <h5 class="mb-0">
                                     <button class="btn btn-primary collapsed" type="button" data-toggle="collapse" data-target="#leks6" aria-expanded="false" aria-controls="leks6">
                                         Leks 6
                                     </button>
                                 </h5>
                             </div>
-                            <div id="leks6" class="collapse" aria-labelledby="leksh6" data-parent="#leksen">
+                            <div ID="leks6" class="collapse" aria-labelledby="leksh6" data-parent="#leksen">
                                 <div class="card-body">
                                     <h3>Leks 6</h3>
                                     <br />
@@ -338,20 +338,20 @@
                                     </audio>
                                     <p>T32</p>
                                     <h5>Häimóótküen 6 - Dat oostfräisk póóske</h5>
-                                    <iframe width="300" height="200" src="https://www.youtube-nocookie.com/embed/UtQkda0A1P8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"  referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                                    <iframe width="300" height="200" src="https://www.youtube-nocookie.com/embed/UtQkda0A1P8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                                 </div>
                             </div>
                         </div>
                         <!--Leks 7-->
                         <div class="card">
-                            <div class="card-header" id="leksh7">
+                            <div class="card-header" ID="leksh7">
                                 <h5 class="mb-0">
                                     <button class="btn btn-primary collapsed" type="button" data-toggle="collapse" data-target="#leks7" aria-expanded="false" aria-controls="leks7">
                                         Leks 7
                                     </button>
                                 </h5>
                             </div>
-                            <div id="leks7" class="collapse" aria-labelledby="leksh7" data-parent="#leksen">
+                            <div ID="leks7" class="collapse" aria-labelledby="leksh7" data-parent="#leksen">
                                 <div class="card-body">
                                     <h3>Leks 7</h3>
                                     <br />
@@ -392,14 +392,14 @@
                         </div>
                         <!--Leks 8-->
                         <div class="card">
-                            <div class="card-header" id="leksh8">
+                            <div class="card-header" ID="leksh8">
                                 <h5 class="mb-0">
                                     <button class="btn btn-primary collapsed" type="button" data-toggle="collapse" data-target="#leks8" aria-expanded="false" aria-controls="leks8">
                                         Leks 8
                                     </button>
                                 </h5>
                             </div>
-                            <div id="leks8" class="collapse" aria-labelledby="leksh8" data-parent="#leksen">
+                            <div ID="leks8" class="collapse" aria-labelledby="leksh8" data-parent="#leksen">
                                 <div class="card-body">
                                     <h3>Leks 8</h3>
                                     <br />
@@ -452,14 +452,14 @@
                         </div>
                         <!--Leks 9-->
                         <div class="card">
-                            <div class="card-header" id="leksh9">
+                            <div class="card-header" ID="leksh9">
                                 <h5 class="mb-0">
                                     <button class="btn btn-primary collapsed" type="button" data-toggle="collapse" data-target="#leks9" aria-expanded="false" aria-controls="leks9">
                                         Leks 9
                                     </button>
                                 </h5>
                             </div>
-                            <div id="leks9" class="collapse" aria-labelledby="leksh9" data-parent="#leksen">
+                            <div ID="leks9" class="collapse" aria-labelledby="leksh9" data-parent="#leksen">
                                 <div class="card-body">
                                     <h3>Leks 9</h3>
                                     <br />
@@ -518,18 +518,18 @@
                         </div>
                         <!--Leks 10-->
                         <div class="card">
-                            <div class="card-header" id="leksh10">
+                            <div class="card-header" ID="leksh10">
                                 <h5 class="mb-0">
                                     <button class="btn btn-primary collapsed" type="button" data-toggle="collapse" data-target="#leks10" aria-expanded="false" aria-controls="leks10">
                                         Leks 10
                                     </button>
                                 </h5>
                             </div>
-                            <div id="leks10" class="collapse" aria-labelledby="leksh10" data-parent="#leksen">
+                            <div ID="leks10" class="collapse" aria-labelledby="leksh10" data-parent="#leksen">
                                 <div class="card-body">
                                     <h3>Leks 10</h3>
                                     <br />
-                                    <h5>1. 'T ēten is klor</h5>
+                                    <h5>1. Eeten is klor</h5>
                                     <audio controls preload="none">
                                         <source src="https://download.oostfraeisk.org/leerbauk/t/T53.mp3" type="audio/mpeg">
                                         Kein Audioplayer vorhanden.
@@ -547,13 +547,13 @@
                                         Kein Audioplayer vorhanden.
                                     </audio>
                                     <p>T55</p>
-                                    <h5>3. 'T roer óóvendeeten</h5>
+                                    <h5>3. Dat roer óóvendeeten</h5>
                                     <audio controls preload="none">
                                         <source src="https://download.oostfraeisk.org/leerbauk/t/T56.mp3" type="audio/mpeg">
                                         Kein Audioplayer vorhanden.
                                     </audio>
                                     <p>T56</p>
-                                    <h5>4. 'T proot bii d' tóóvel</h5>
+                                    <h5>4. Proot bii d' tóóvel</h5>
                                     <audio controls preload="none">
                                         <source src="https://download.oostfraeisk.org/leerbauk/t/T57.mp3" type="audio/mpeg">
                                         Kein Audioplayer vorhanden.
@@ -567,10 +567,32 @@
                                     <p>T58</p>
                                     <h5>Häimóótküen 10 - Däi tiid tüsken d' joren</h5>
                                     <iframe width="300" height="200" src="https://www.youtube-nocookie.com/embed/Z4V-zeJbHrE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                                </div>
+                            </div>
+                            <!--Appendix-->
+                            <div class="card">
+                                <div class="card-header" ID="apph">
+                                    <h5 class="mb-0">
+                                        <button class="btn btn-primary collapsed" type="button" data-toggle="collapse" data-target="#app" aria-expanded="false" aria-controls="app">
+                                            Aussprachehilfen
+                                        </button>
+                                    </h5>
+                                </div>
+                                <div ID="app" class="collapse" aria-labelledby="apph" data-parent="#leksen">
+                                    <div class="card-body">
+                                        <h3>Aussprachehilfen</h3>
+                                        <br />
+                                        <h5>Aussprachehilfen</h5>
+                                        <audio controls preload="none">
+                                            <source src="https://download.oostfraeisk.org/leerbauk/t/TA1.mp3" type="audio/mpeg">
+                                            Kein Audioplayer vorhanden.
+                                        </audio>
+                                        <p>TA1</p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
             </div>
         </div>
         <br />
