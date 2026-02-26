@@ -43,19 +43,19 @@ public class Startup
             app.UseHsts();
         }
 
-        app.UseRouting();
-			app.UseAuthentication();
-        app.UseAuthorization();
-
-        // use DotVVM
-        var dotvvmConfiguration = app.UseDotVVM<DotvvmStartup>(env.ContentRootPath);
-        dotvvmConfiguration.AssertConfigurationIsValid();
-
         //default files
         app.UseDefaultFiles();
 
         // use static files
         app.UseStaticFiles();
+
+        // use DotVVM
+        var dotvvmConfiguration = app.UseDotVVM<DotvvmStartup>(env.ContentRootPath);
+        dotvvmConfiguration.AssertConfigurationIsValid();
+
+        app.UseRouting();
+        app.UseAuthentication();
+        app.UseAuthorization();
 
         app.UseEndpoints(endpoints => 
         {
