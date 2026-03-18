@@ -97,10 +97,14 @@ public class SearchStrings
                 "OR Zuordnung IN (SELECT Nebenformen || '=' || Nummer FROM WBFTS WHERE Deutsch != '-' AND Nebenformen MATCH @searchstrlower AND Wortart != 'Phrase' AND Nummer != '-') " +
                 "OR Zuordnung IN (SELECT Nebenformen FROM WBFTS WHERE Deutsch != '-' AND Nebenformen MATCH @searchstrupper AND Wortart != 'Phrase') " +
                 "OR Zuordnung IN (SELECT Nebenformen || '=' || Nummer FROM WBFTS WHERE Deutsch != '-' AND Nebenformen MATCH @searchstrupper AND Wortart != 'Phrase' AND Nummer != '-') " +
-                "OR Zuordnung IN (SELECT Plural FROM WBFTS WHERE Deutsch != '-' AND Plural MATCH @searchstrlower AND Wortart != 'Phrase') " +
-                "OR Zuordnung IN (SELECT Plural || '=' || Nummer FROM WBFTS WHERE Deutsch != '-' AND Plural MATCH @searchstrlower AND Wortart != 'Phrase' AND Nummer != '-') " +
-                "OR Zuordnung IN (SELECT Plural FROM WBFTS WHERE Deutsch != '-' AND Plural MATCH @searchstrupper AND Wortart != 'Phrase') " +
-                "OR Zuordnung IN (SELECT Plural || '=' || Nummer FROM WBFTS WHERE Deutsch != '-' AND Plural MATCH @searchstrupper AND Wortart != 'Phrase' AND Nummer != '-')) " +
+                "OR Zuordnung IN (SELECT Ostfriesisch FROM WBFTS WHERE Deutsch != '-' AND Nebenformen MATCH @searchstrlower AND Wortart != 'Phrase') " +
+                "OR Zuordnung IN (SELECT Ostfriesisch || '=' || Nummer FROM WBFTS WHERE Deutsch != '-' AND Nebenformen MATCH @searchstrlower AND Wortart != 'Phrase' AND Nummer != '-') " +
+                "OR Zuordnung IN (SELECT Ostfriesisch FROM WBFTS WHERE Deutsch != '-' AND Nebenformen MATCH @searchstrupper AND Wortart != 'Phrase') " +
+                "OR Zuordnung IN (SELECT Ostfriesisch || '=' || Nummer FROM WBFTS WHERE Deutsch != '-' AND Nebenformen MATCH @searchstrupper AND Wortart != 'Phrase' AND Nummer != '-') " +
+                "OR Zuordnung IN (SELECT Ostfriesisch FROM WBFTS WHERE Deutsch != '-' AND Plural MATCH @searchstrlower AND Wortart != 'Phrase') " +
+                "OR Zuordnung IN (SELECT Ostfriesisch || '=' || Nummer FROM WBFTS WHERE Deutsch != '-' AND Plural MATCH @searchstrlower AND Wortart != 'Phrase' AND Nummer != '-') " +
+                "OR Zuordnung IN (SELECT Ostfriesisch FROM WBFTS WHERE Deutsch != '-' AND Plural MATCH @searchstrupper AND Wortart != 'Phrase') " +
+                "OR Zuordnung IN (SELECT Ostfriesisch || '=' || Nummer FROM WBFTS WHERE Deutsch != '-' AND Plural MATCH @searchstrupper AND Wortart != 'Phrase' AND Nummer != '-')) " +
                 "ORDER BY PhraseOrder ASC, Ostfriesisch ASC";
         }
         if (fullTextSearch == "N")
@@ -117,10 +121,10 @@ public class SearchStrings
                 "UNION SELECT *, 1 AS PhraseOrder FROM WB " +
                 "WHERE Wortart = 'Phrase' AND (Zuordnung IN (SELECT Ostfriesisch FROM WB WHERE Deutsch != '-' AND (Ostfriesisch LIKE @searchstrlower OR Ostfriesisch LIKE @searchstrupper) AND Wortart != 'Phrase') " +
                 "OR Zuordnung IN (SELECT Ostfriesisch || '=' || Nummer FROM WB WHERE Deutsch != '-' AND (Ostfriesisch LIKE @searchstrlower OR Ostfriesisch LIKE @searchstrupper) AND Wortart != 'Phrase' AND Nummer != '-') " +
-                "OR Zuordnung IN (SELECT Nebenformen FROM WB WHERE Deutsch != '-' AND (Nebenformen LIKE @searchstrlower OR Nebenformen LIKE @searchstrupper) AND Wortart != 'Phrase') " +
-                "OR Zuordnung IN (SELECT Nebenformen || '=' || Nummer FROM WB WHERE Deutsch != '-' AND (Nebenformen LIKE @searchstrlower OR Nebenformen LIKE @searchstrupper) AND Wortart != 'Phrase' AND Nummer != '-') " +
-                "OR Zuordnung IN (SELECT Plural FROM WB WHERE Deutsch != '-' AND (Plural LIKE @searchstrlower OR Plural LIKE @searchstrupper) AND Wortart != 'Phrase') " +
-                "OR Zuordnung IN (SELECT Plural || '=' || Nummer FROM WB WHERE Deutsch != '-' AND (Plural LIKE @searchstrlower OR Plural LIKE @searchstrupper) AND Wortart != 'Phrase' AND Nummer != '-')) " +
+                "OR Zuordnung IN (SELECT Ostfriesisch FROM WB WHERE Deutsch != '-' AND (Nebenformen LIKE @searchstrlower OR Nebenformen LIKE @searchstrupper) AND Wortart != 'Phrase') " +
+                "OR Zuordnung IN (SELECT Ostfriesisch || '=' || Nummer FROM WB WHERE Deutsch != '-' AND (Nebenformen LIKE @searchstrlower OR Nebenformen LIKE @searchstrupper) AND Wortart != 'Phrase' AND Nummer != '-') " +
+                "OR Zuordnung IN (SELECT Ostfriesisch FROM WB WHERE Deutsch != '-' AND (Plural LIKE @searchstrlower OR Plural LIKE @searchstrupper) AND Wortart != 'Phrase') " +
+                "OR Zuordnung IN (SELECT Ostfriesisch || '=' || Nummer FROM WB WHERE Deutsch != '-' AND (Plural LIKE @searchstrlower OR Plural LIKE @searchstrupper) AND Wortart != 'Phrase' AND Nummer != '-')) " +
                 "ORDER BY PhraseOrder ASC, Ostfriesisch ASC";
         }
         if (fullTextSearch == "X")
@@ -149,10 +153,10 @@ public class SearchStrings
                 "UNION SELECT *, 1 AS PhraseOrder FROM WB " +
                 "WHERE Wortart = 'Phrase' AND (Zuordnung IN (SELECT Ostfriesisch FROM WB WHERE Deutsch != '-' AND (Ostfriesisch LIKE @searchstrlower OR Ostfriesisch LIKE @searchstrupper) AND Wortart != 'Phrase') " +
                 "OR Zuordnung IN (SELECT Ostfriesisch || '=' || Nummer FROM WB WHERE Deutsch != '-' AND (Ostfriesisch LIKE @searchstrlower OR Ostfriesisch LIKE @searchstrupper) AND Wortart != 'Phrase' AND Nummer != '-') " +
-                "OR Zuordnung IN (SELECT Nebenformen FROM WB WHERE Deutsch != '-' AND (Nebenformen LIKE @searchstrlower OR Nebenformen LIKE @searchstrupper) AND Wortart != 'Phrase') " +
-                "OR Zuordnung IN (SELECT Nebenformen || '=' || Nummer FROM WB WHERE Deutsch != '-' AND (Nebenformen LIKE @searchstrlower OR Nebenformen LIKE @searchstrupper) AND Wortart != 'Phrase' AND Nummer != '-') " +
-                "OR Zuordnung IN (SELECT Plural FROM WB WHERE Deutsch != '-' AND (Plural LIKE @searchstrlower OR Plural LIKE @searchstrupper) AND Wortart != 'Phrase') " +
-                "OR Zuordnung IN (SELECT Plural || '=' || Nummer FROM WB WHERE Deutsch != '-' AND (Plural LIKE @searchstrlower OR Plural LIKE @searchstrupper) AND Wortart != 'Phrase' AND Nummer != '-')) " +
+                "OR Zuordnung IN (SELECT Ostfriesisch FROM WB WHERE Deutsch != '-' AND (Nebenformen LIKE @searchstrlower OR Nebenformen LIKE @searchstrupper) AND Wortart != 'Phrase') " +
+                "OR Zuordnung IN (SELECT Ostfriesisch || '=' || Nummer FROM WB WHERE Deutsch != '-' AND (Nebenformen LIKE @searchstrlower OR Nebenformen LIKE @searchstrupper) AND Wortart != 'Phrase' AND Nummer != '-') " +
+                "OR Zuordnung IN (SELECT Ostfriesisch FROM WB WHERE Deutsch != '-' AND (Plural LIKE @searchstrlower OR Plural LIKE @searchstrupper) AND Wortart != 'Phrase') " +
+                "OR Zuordnung IN (SELECT Ostfriesisch || '=' || Nummer FROM WB WHERE Deutsch != '-' AND (Plural LIKE @searchstrlower OR Plural LIKE @searchstrupper) AND Wortart != 'Phrase' AND Nummer != '-')) " +
                 "ORDER BY PhraseOrder ASC, Ostfriesisch ASC";
         }
         if (fullTextSearch == "E")
@@ -171,8 +175,10 @@ public class SearchStrings
                 "OR Zuordnung IN (SELECT Ostfriesisch || '=' || Nummer FROM WB WHERE Deutsch != '-' AND (Ostfriesisch LIKE @searchstrlower OR Ostfriesisch LIKE @searchstrupper) AND Wortart != 'Phrase' AND Nummer != '-') " +
                 "OR Zuordnung IN (SELECT Nebenformen FROM WB WHERE Deutsch != '-' AND (Nebenformen LIKE @searchstrlower OR Nebenformen LIKE @searchstrupper) AND Wortart != 'Phrase') " +
                 "OR Zuordnung IN (SELECT Nebenformen || '=' || Nummer FROM WB WHERE Deutsch != '-' AND (Nebenformen LIKE @searchstrlower OR Nebenformen LIKE @searchstrupper) AND Wortart != 'Phrase' AND Nummer != '-') " +
-                "OR Zuordnung IN (SELECT Plural FROM WB WHERE Deutsch != '-' AND (Plural LIKE @searchstrlower OR Plural LIKE @searchstrupper) AND Wortart != 'Phrase') " +
-                "OR Zuordnung IN (SELECT Plural || '=' || Nummer FROM WB WHERE Deutsch != '-' AND (Plural LIKE @searchstrlower OR Plural LIKE @searchstrupper) AND Wortart != 'Phrase' AND Nummer != '-')) " +
+                "OR Zuordnung IN (SELECT Ostfriesisch FROM WB WHERE Deutsch != '-' AND (Nebenformen LIKE @searchstrlower OR Nebenformen LIKE @searchstrupper) AND Wortart != 'Phrase') " +
+                "OR Zuordnung IN (SELECT Ostfriesisch || '=' || Nummer FROM WB WHERE Deutsch != '-' AND (Nebenformen LIKE @searchstrlower OR Nebenformen LIKE @searchstrupper) AND Wortart != 'Phrase' AND Nummer != '-') " +
+                "OR Zuordnung IN (SELECT Ostfriesisch FROM WB WHERE Deutsch != '-' AND (Plural LIKE @searchstrlower OR Plural LIKE @searchstrupper) AND Wortart != 'Phrase') " +
+                "OR Zuordnung IN (SELECT Ostfriesisch || '=' || Nummer FROM WB WHERE Deutsch != '-' AND (Plural LIKE @searchstrlower OR Plural LIKE @searchstrupper) AND Wortart != 'Phrase' AND Nummer != '-')) " +
                 "ORDER BY PhraseOrder ASC, Ostfriesisch ASC";
         }
     }
@@ -269,10 +275,10 @@ public class SearchStrings
                 "OR Zuordnung IN (SELECT Nebenformen || '=' || Nummer FROM WBFTS WHERE Englisch != '-' AND Nebenformen MATCH @searchstrlower AND Wortart != 'Phrase' AND Nummer != '-') " +
                 "OR Zuordnung IN (SELECT Nebenformen FROM WBFTS WHERE Englisch != '-' AND Nebenformen MATCH @searchstrupper AND Wortart != 'Phrase') " +
                 "OR Zuordnung IN (SELECT Nebenformen || '=' || Nummer FROM WBFTS WHERE Englisch != '-' AND Nebenformen MATCH @searchstrupper AND Wortart != 'Phrase' AND Nummer != '-') " +
-                "OR Zuordnung IN (SELECT Plural FROM WBFTS WHERE Englisch != '-' AND Plural MATCH @searchstrlower AND Wortart != 'Phrase') " +
-                "OR Zuordnung IN (SELECT Plural || '=' || Nummer FROM WBFTS WHERE Englisch != '-' AND Plural MATCH @searchstrlower AND Wortart != 'Phrase' AND Nummer != '-') " +
-                "OR Zuordnung IN (SELECT Plural FROM WBFTS WHERE Englisch != '-' AND Plural MATCH @searchstrupper AND Wortart != 'Phrase') " +
-                "OR Zuordnung IN (SELECT Plural || '=' || Nummer FROM WBFTS WHERE Englisch != '-' AND Plural MATCH @searchstrupper AND Wortart != 'Phrase' AND Nummer != '-')) " +
+                "OR Zuordnung IN (SELECT Ostfriesisch FROM WBFTS WHERE Englisch != '-' AND Plural MATCH @searchstrlower AND Wortart != 'Phrase') " +
+                "OR Zuordnung IN (SELECT Ostfriesisch || '=' || Nummer FROM WBFTS WHERE Englisch != '-' AND Plural MATCH @searchstrlower AND Wortart != 'Phrase' AND Nummer != '-') " +
+                "OR Zuordnung IN (SELECT Ostfriesisch FROM WBFTS WHERE Englisch != '-' AND Plural MATCH @searchstrupper AND Wortart != 'Phrase') " +
+                "OR Zuordnung IN (SELECT Ostfriesisch || '=' || Nummer FROM WBFTS WHERE Englisch != '-' AND Plural MATCH @searchstrupper AND Wortart != 'Phrase' AND Nummer != '-')) " +
                 "ORDER BY PhraseOrder ASC, Ostfriesisch ASC";
         }
         if (fullTextSearch == "N")
@@ -289,10 +295,10 @@ public class SearchStrings
                 "UNION SELECT *, 1 AS PhraseOrder FROM WB " +
                 "WHERE Wortart = 'Phrase' AND (Zuordnung IN (SELECT Ostfriesisch FROM WB WHERE Englisch != '-' AND (Ostfriesisch LIKE @searchstrlower OR Ostfriesisch LIKE @searchstrupper) AND Wortart != 'Phrase') " +
                 "OR Zuordnung IN (SELECT Ostfriesisch || '=' || Nummer FROM WB WHERE Englisch != '-' AND (Ostfriesisch LIKE @searchstrlower OR Ostfriesisch LIKE @searchstrupper) AND Wortart != 'Phrase' AND Nummer != '-') " +
-                "OR Zuordnung IN (SELECT Nebenformen FROM WB WHERE Englisch != '-' AND (Nebenformen LIKE @searchstrlower OR Nebenformen LIKE @searchstrupper) AND Wortart != 'Phrase') " +
-                "OR Zuordnung IN (SELECT Nebenformen || '=' || Nummer FROM WB WHERE Englisch != '-' AND (Nebenformen LIKE @searchstrlower OR Nebenformen LIKE @searchstrupper) AND Wortart != 'Phrase' AND Nummer != '-') " +
-                "OR Zuordnung IN (SELECT Plural FROM WB WHERE Englisch != '-' AND (Plural LIKE @searchstrlower OR Plural LIKE @searchstrupper) AND Wortart != 'Phrase') " +
-                "OR Zuordnung IN (SELECT Plural || '=' || Nummer FROM WB WHERE Englisch != '-' AND (Plural LIKE @searchstrlower OR Plural LIKE @searchstrupper) AND Wortart != 'Phrase' AND Nummer != '-')) " +
+                "OR Zuordnung IN (SELECT Ostfriesisch FROM WB WHERE Englisch != '-' AND (Nebenformen LIKE @searchstrlower OR Nebenformen LIKE @searchstrupper) AND Wortart != 'Phrase') " +
+                "OR Zuordnung IN (SELECT Ostfriesisch || '=' || Nummer FROM WB WHERE Englisch != '-' AND (Nebenformen LIKE @searchstrlower OR Nebenformen LIKE @searchstrupper) AND Wortart != 'Phrase' AND Nummer != '-') " +
+                "OR Zuordnung IN (SELECT Ostfriesisch FROM WB WHERE Englisch != '-' AND (Plural LIKE @searchstrlower OR Plural LIKE @searchstrupper) AND Wortart != 'Phrase') " +
+                "OR Zuordnung IN (SELECT Ostfriesisch || '=' || Nummer FROM WB WHERE Englisch != '-' AND (Plural LIKE @searchstrlower OR Plural LIKE @searchstrupper) AND Wortart != 'Phrase' AND Nummer != '-')) " +
                 "ORDER BY PhraseOrder ASC, Ostfriesisch ASC";
         }
         if (fullTextSearch == "X")
@@ -323,8 +329,8 @@ public class SearchStrings
                 "OR Zuordnung IN (SELECT Ostfriesisch || '=' || Nummer FROM WB WHERE Englisch != '-' AND (Ostfriesisch LIKE @searchstrlower OR Ostfriesisch LIKE @searchstrupper) AND Wortart != 'Phrase' AND Nummer != '-') " +
                 "OR Zuordnung IN (SELECT Nebenformen FROM WB WHERE Englisch != '-' AND (Nebenformen LIKE @searchstrlower OR Nebenformen LIKE @searchstrupper) AND Wortart != 'Phrase') " +
                 "OR Zuordnung IN (SELECT Nebenformen || '=' || Nummer FROM WB WHERE Englisch != '-' AND (Nebenformen LIKE @searchstrlower OR Nebenformen LIKE @searchstrupper) AND Wortart != 'Phrase' AND Nummer != '-') " +
-                "OR Zuordnung IN (SELECT Plural FROM WB WHERE Englisch != '-' AND (Plural LIKE @searchstrlower OR Plural LIKE @searchstrupper) AND Wortart != 'Phrase') " +
-                "OR Zuordnung IN (SELECT Plural || '=' || Nummer FROM WB WHERE Englisch != '-' AND (Plural LIKE @searchstrlower OR Plural LIKE @searchstrupper) AND Wortart != 'Phrase' AND Nummer != '-')) " +
+                "OR Zuordnung IN (SELECT Ostfriesisch FROM WB WHERE Englisch != '-' AND (Plural LIKE @searchstrlower OR Plural LIKE @searchstrupper) AND Wortart != 'Phrase') " +
+                "OR Zuordnung IN (SELECT Ostfriesisch || '=' || Nummer FROM WB WHERE Englisch != '-' AND (Plural LIKE @searchstrlower OR Plural LIKE @searchstrupper) AND Wortart != 'Phrase' AND Nummer != '-')) " +
                 "ORDER BY PhraseOrder ASC, Ostfriesisch ASC";
         }
         if (fullTextSearch == "E")
@@ -343,8 +349,10 @@ public class SearchStrings
                 "OR Zuordnung IN (SELECT Ostfriesisch || '=' || Nummer FROM WB WHERE Englisch != '-' AND (Ostfriesisch LIKE @searchstrlower OR Ostfriesisch LIKE @searchstrupper) AND Wortart != 'Phrase' AND Nummer != '-') " +
                 "OR Zuordnung IN (SELECT Nebenformen FROM WB WHERE Englisch != '-' AND (Nebenformen LIKE @searchstrlower OR Nebenformen LIKE @searchstrupper) AND Wortart != 'Phrase') " +
                 "OR Zuordnung IN (SELECT Nebenformen || '=' || Nummer FROM WB WHERE Englisch != '-' AND (Nebenformen LIKE @searchstrlower OR Nebenformen LIKE @searchstrupper) AND Wortart != 'Phrase' AND Nummer != '-') " +
-                "OR Zuordnung IN (SELECT Plural FROM WB WHERE Englisch != '-' AND (Plural LIKE @searchstrlower OR Plural LIKE @searchstrupper) AND Wortart != 'Phrase') " +
-                "OR Zuordnung IN (SELECT Plural || '=' || Nummer FROM WB WHERE Englisch != '-' AND (Plural LIKE @searchstrlower OR Plural LIKE @searchstrupper) AND Wortart != 'Phrase' AND Nummer != '-')) " +
+                "OR Zuordnung IN (SELECT Ostfriesisch FROM WB WHERE Englisch != '-' AND (Nebenformen LIKE @searchstrlower OR Nebenformen LIKE @searchstrupper) AND Wortart != 'Phrase') " +
+                "OR Zuordnung IN (SELECT Ostfriesisch || '=' || Nummer FROM WB WHERE Englisch != '-' AND (Nebenformen LIKE @searchstrlower OR Nebenformen LIKE @searchstrupper) AND Wortart != 'Phrase' AND Nummer != '-') " +
+                "OR Zuordnung IN (SELECT Ostfriesisch FROM WB WHERE Englisch != '-' AND (Plural LIKE @searchstrlower OR Plural LIKE @searchstrupper) AND Wortart != 'Phrase') " +
+                "OR Zuordnung IN (SELECT Ostfriesisch || '=' || Nummer FROM WB WHERE Englisch != '-' AND (Plural LIKE @searchstrlower OR Plural LIKE @searchstrupper) AND Wortart != 'Phrase' AND Nummer != '-')) " +
                 "ORDER BY PhraseOrder ASC, Ostfriesisch ASC";
         }
     }
