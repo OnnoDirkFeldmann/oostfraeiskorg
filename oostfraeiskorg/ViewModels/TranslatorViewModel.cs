@@ -1,5 +1,4 @@
-﻿using DotVVM.Framework.Controls;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using DotVVM.Framework.ViewModel;
 using Newtonsoft.Json.Linq;
 using System.Net.Http;
@@ -15,14 +14,65 @@ using Microsoft.Extensions.Configuration;
 
 namespace oostfraeiskorg.ViewModels;
 
+/// <summary>
+/// Holds an ordered list of API URLs and tracks which one is currently active.
+/// Once a URL fails, the next one is tried and the failed one is never retried.
+/// Thread-safe so concurrent requests don't corrupt the index.
+/// </summary>
+public class ApiEndpoints
+{
+    private readonly string[] _urls;
+    private volatile int _currentIndex;
+
+    public ApiEndpoints(params string[] urls)
+    {
+        if (urls is null || urls.Length == 0)
+            throw new ArgumentException("At least one URL must be provided.", nameof(urls));
+        _urls = urls;
+    }
+
+    public string CurrentUrl => _urls[_currentIndex];
+
+    /// <summary>
+    /// Advances to the next URL if the current one matches <paramref name="failedUrl"/>.
+    /// Returns true if a fallback URL is available, false if all URLs are exhausted.
+    /// </summary>
+    public bool TryAdvance(string failedUrl)
+    {
+        lock (_urls)
+        {
+            // Only advance if the failure is for the URL we're currently on
+            if (_currentIndex < _urls.Length && _urls[_currentIndex] == failedUrl)
+            {
+                _currentIndex++;
+            }
+            return _currentIndex < _urls.Length;
+        }
+    }
+
+    public bool IsExhausted => _currentIndex >= _urls.Length;
+}
+
 public class TranslatorViewModel : MasterPageViewModel
 {
     private const int MaxTextLength = 300;
     private const int DelayMilliseconds = 50;
-    private static readonly string ApiFrsUrl = "https://vanmoders114-east-frisian-translator.hf.space/gradio_api/call/predict";
-    private static readonly string ApiGerUrl = "https://vanmoders114-east-frisian-german-translator.hf.space/gradio_api/call/predict";
+
+    // Shared endpoint chains — exposed so TranslatorTestViewModel can reuse them.
+    // Failover state persists for the lifetime of the app process and is shared across both pages.
+    public static readonly ApiEndpoints SharedFrsEndpoints = new(
+        "https://vanmoders114-east-frisian-translator.hf.space/gradio_api/call/predict",
+        "https://vanmoders114-east-frisian-translator-backup.hf.space/gradio_api/call/predict",
+        "http://127.0.0.1:7860/gradio_api/call/predict"
+    );
+
+    public static readonly ApiEndpoints SharedGerEndpoints = new(
+        "https://vanmoders114-east-frisian-german-translator.hf.space/gradio_api/call/predict",
+        "https://vanmoders114-east-frisian-german-translator-backup.hf.space/gradio_api/call/predict",
+        "http://127.0.0.1:7861/gradio_api/call/predict"
+    );
+
     private static readonly string ApiSaveFeedbackUrl = "https://vanmoders114-ooversetter-feedback.hf.space/gradio_api/call/save_translation";
-    //private static readonly string ApiUrl = "http://127.0.0.1:7860/gradio_api/call/predict";
 
     private readonly string BearerToken;
     private readonly string SmtpCredentialName;
@@ -31,7 +81,7 @@ public class TranslatorViewModel : MasterPageViewModel
 
     public bool DoubleTranslationEnabled { get; } = true;
 
-    public int MaximumTextLength {get; } = MaxTextLength;
+    public int MaximumTextLength { get; } = MaxTextLength;
     public string InputTitle { get; set; } = "Deutsch";
     public string TranslationTitle { get; set; } = "Oostfräisk";
     public string InputText { get; set; } = "";
@@ -194,18 +244,48 @@ public class TranslatorViewModel : MasterPageViewModel
 
     public async Task TranslateAsync()
     {
-        string apiUrl = TranslationText == "Übersetze" ? ApiFrsUrl : ApiGerUrl;
-        // Perform translation
-        OutputText = await Translate(InputText, apiUrl, BearerToken);
+        ApiEndpoints endpoints = TranslationText == "Übersetze" ? SharedFrsEndpoints : SharedGerEndpoints;
+        // Perform translation with automatic failover
+        OutputText = await TranslateWithFallback(InputText, endpoints, BearerToken, MaxTextLength);
         IsLoading = false;
         ShowTranslationFeedback = true;
     }
 
-    public static async Task<string> Translate(string text, string apiUrl, string bearerToken)
+    /// <summary>
+    /// Attempts translation using the current endpoint. On failure, advances to the next
+    /// backup URL and retries. Stops when a translation succeeds or all URLs are exhausted.
+    /// </summary>
+    public static async Task<string> TranslateWithFallback(string text, ApiEndpoints endpoints, string bearerToken, int maxTextLength)
     {
-        if (text.Length > MaxTextLength)
+        while (!endpoints.IsExhausted)
         {
-            text = text.Substring(0, MaxTextLength);
+            string currentUrl = endpoints.CurrentUrl;
+            try
+            {
+                return await Translate(text, currentUrl, bearerToken, maxTextLength);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Translation failed for {currentUrl}: {ex.Message}");
+                if (!endpoints.TryAdvance(currentUrl))
+                {
+                    break; // No more fallback URLs
+                }
+                Console.WriteLine($"Falling back to {endpoints.CurrentUrl}");
+            }
+        }
+
+        return "Translation failed.";
+    }
+
+    /// <summary>
+    /// Performs the actual API call. Throws on failure so the caller can handle failover.
+    /// </summary>
+    public static async Task<string> Translate(string text, string apiUrl, string bearerToken, int maxTextLength)
+    {
+        if (text.Length > maxTextLength)
+        {
+            text = text.Substring(0, maxTextLength);
         }
 
         using HttpClient client = new HttpClient();
@@ -223,45 +303,42 @@ public class TranslatorViewModel : MasterPageViewModel
         string jsonPayload = Newtonsoft.Json.JsonConvert.SerializeObject(requestBody);
         var content = new StringContent(jsonPayload, Encoding.UTF8, "application/json");
 
-        try
+        // Step 1: Send POST request to get the event ID
+        HttpResponseMessage response = await client.PostAsync(apiUrl, content);
+        response.EnsureSuccessStatusCode();
+
+        string responseJson = await response.Content.ReadAsStringAsync();
+        var jsonIdResponse = JObject.Parse(responseJson);
+        string eventId = jsonIdResponse["event_id"]?.ToString();
+
+        if (string.IsNullOrEmpty(eventId))
         {
-            // Step 1: Send POST request to get the event ID
-            HttpResponseMessage response = await client.PostAsync(apiUrl, content);
-            response.EnsureSuccessStatusCode();
-
-            string responseJson = await response.Content.ReadAsStringAsync();
-            var jsonIdResponse = JObject.Parse(responseJson);
-            string eventId = jsonIdResponse["event_id"]?.ToString();
-
-            if (string.IsNullOrEmpty(eventId))
-            {
-                throw new Exception("Failed to retrieve event_id from API response.");
-            }
-
-            // Step 2: Fetch the translation result using event ID
-            string resultUrl = $"{apiUrl}/{eventId}";
-
-            while (true)
-            {
-                await Task.Delay(DelayMilliseconds); // Wait before checking the result
-                HttpResponseMessage resultResponse = await client.GetAsync(resultUrl);
-                string jsonData = await resultResponse.Content.ReadAsStringAsync();
-
-                if (jsonData.Contains("event: complete"))
-                {
-                    jsonData = ExtractJsonFromEventStream(jsonData);
-                    JArray jsonResponse = JArray.Parse(jsonData);
-
-                    // Extract the translation from the "data" array
-                    string translation = jsonResponse[0]?.ToString();
-                    return translation ?? "Translation failed.";
-                }
-            }
+            throw new Exception("Failed to retrieve event_id from API response.");
         }
-        catch (Exception ex)
+
+        // Step 2: Fetch the translation result using event ID
+        string resultUrl = $"{apiUrl}/{eventId}";
+
+        while (true)
         {
-            Console.WriteLine($"Error: {ex.Message}");
-            return "Translation failed.";
+            await Task.Delay(DelayMilliseconds); // Wait before checking the result
+            HttpResponseMessage resultResponse = await client.GetAsync(resultUrl);
+            string jsonData = await resultResponse.Content.ReadAsStringAsync();
+
+            if (jsonData.Contains("event: complete"))
+            {
+                jsonData = ExtractJsonFromEventStream(jsonData);
+                JArray jsonResponse = JArray.Parse(jsonData);
+
+                // Extract the translation from the "data" array
+                string translation = jsonResponse[0]?.ToString();
+                return translation ?? throw new Exception("Translation response was null.");
+            }
+
+            if (jsonData.Contains("event: error"))
+            {
+                throw new Exception($"API returned an error event for {apiUrl}.");
+            }
         }
     }
 

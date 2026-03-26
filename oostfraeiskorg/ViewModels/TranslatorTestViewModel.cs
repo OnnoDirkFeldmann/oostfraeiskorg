@@ -23,11 +23,13 @@ public class TranslatorTestViewModel : MasterPageViewModel
 {
     private const int MaxTextLength = 1000;
     private const int DelayMilliseconds = 50;
-    private static readonly string ApiFrsUrl = "https://vanmoders114-east-frisian-translator.hf.space/gradio_api/call/predict";
-    private static readonly string ApiGerUrl = "https://vanmoders114-east-frisian-german-translator.hf.space/gradio_api/call/predict";
     private static readonly string ApiSaveFeedbackUrl = "https://vanmoders114-ooversetter-feedback.hf.space/gradio_api/call/save_translation";
     private static readonly string ApiTtsUrl = "https://vanmoders114-east-frisian-tts.hf.space/gradio_api/call/predict";
-    //private static readonly string ApiUrl = "http://127.0.0.1:7860/gradio_api/call/predict";
+
+    // Share the same failover endpoint chains as TranslatorViewModel —
+    // if the primary goes down on one page, it's locked out on both.
+    private static readonly ApiEndpoints FrsEndpoints = TranslatorViewModel.SharedFrsEndpoints;
+    private static readonly ApiEndpoints GerEndpoints = TranslatorViewModel.SharedGerEndpoints;
 
     private readonly string BearerToken;
     private readonly string SmtpCredentialName;
@@ -124,7 +126,7 @@ public class TranslatorTestViewModel : MasterPageViewModel
         string gerText = TranslationText == "Übersetze" ? InputText : OutputText + addedMarker;
         string frsText = TranslationText == "Übersetze" ? OutputText + addedMarker : InputText;
 
-        await SaveFeedback(gerText, frsText, ApiSaveFeedbackUrl, BearerToken);
+        await TranslatorViewModel.SaveFeedback(gerText, frsText, ApiSaveFeedbackUrl, BearerToken);
         try
         {
             using (var client = new SmtpClient
@@ -155,45 +157,6 @@ public class TranslatorTestViewModel : MasterPageViewModel
         }
     }
 
-    public static async Task SaveFeedback(string gerText, string frsText, string apiUrl, string bearerToken)
-    {
-        using HttpClient client = new HttpClient();
-
-        // Set up the headers
-        client.DefaultRequestHeaders.Add("Authorization", $"Bearer {bearerToken}");
-        client.DefaultRequestHeaders.Add("Accept", "application/json");
-
-        // JSON payload
-        var requestBody = new
-        {
-            data = new string[] { gerText, frsText }
-        };
-
-        string jsonPayload = Newtonsoft.Json.JsonConvert.SerializeObject(requestBody);
-        var content = new StringContent(jsonPayload, Encoding.UTF8, "application/json");
-
-        try
-        {
-            // Step 1: Send POST request to get the event ID
-            HttpResponseMessage response = await client.PostAsync(apiUrl, content);
-            response.EnsureSuccessStatusCode();
-
-            string responseJson = await response.Content.ReadAsStringAsync();
-            var jsonIdResponse = JObject.Parse(responseJson);
-            string eventId = jsonIdResponse["event_id"]?.ToString();
-
-            if (string.IsNullOrEmpty(eventId))
-            {
-                throw new Exception("Failed to retrieve event_id from API response.");
-            }
-
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine($"Error: {ex.Message}");
-        }
-    }
-
     public void PrepareTranslation()
     {
         OutputText = "";
@@ -203,75 +166,11 @@ public class TranslatorTestViewModel : MasterPageViewModel
 
     public async Task TranslateAsync()
     {
-        string apiUrl = TranslationText == "Übersetze" ? ApiFrsUrl : ApiGerUrl;
-        // Perform translation
-        OutputText = await Translate(InputText, apiUrl, BearerToken);
+        ApiEndpoints endpoints = TranslationText == "Übersetze" ? FrsEndpoints : GerEndpoints;
+        // Perform translation with automatic failover
+        OutputText = await TranslatorViewModel.TranslateWithFallback(InputText, endpoints, BearerToken, MaxTextLength);
         IsLoading = false;
         ShowTranslationFeedback = true;
-    }
-
-    public static async Task<string> Translate(string text, string apiUrl, string bearerToken)
-    {
-        if (text.Length > MaxTextLength)
-        {
-            text = text.Substring(0, MaxTextLength);
-        }
-
-        using HttpClient client = new HttpClient();
-
-        // Set up the headers
-        client.DefaultRequestHeaders.Add("Authorization", $"Bearer {bearerToken}");
-        client.DefaultRequestHeaders.Add("Accept", "application/json");
-
-        // JSON payload
-        var requestBody = new
-        {
-            data = new string[] { text }
-        };
-
-        string jsonPayload = Newtonsoft.Json.JsonConvert.SerializeObject(requestBody);
-        var content = new StringContent(jsonPayload, Encoding.UTF8, "application/json");
-
-        try
-        {
-            // Step 1: Send POST request to get the event ID
-            HttpResponseMessage response = await client.PostAsync(apiUrl, content);
-            response.EnsureSuccessStatusCode();
-
-            string responseJson = await response.Content.ReadAsStringAsync();
-            var jsonIdResponse = JObject.Parse(responseJson);
-            string eventId = jsonIdResponse["event_id"]?.ToString();
-
-            if (string.IsNullOrEmpty(eventId))
-            {
-                throw new Exception("Failed to retrieve event_id from API response.");
-            }
-
-            // Step 2: Fetch the translation result using event ID
-            string resultUrl = $"{apiUrl}/{eventId}";
-
-            while (true)
-            {
-                await Task.Delay(DelayMilliseconds); // Wait before checking the result
-                HttpResponseMessage resultResponse = await client.GetAsync(resultUrl);
-                string jsonData = await resultResponse.Content.ReadAsStringAsync();
-
-                if (jsonData.Contains("event: complete"))
-                {
-                    jsonData = ExtractJsonFromEventStream(jsonData);
-                    JArray jsonResponse = JArray.Parse(jsonData);
-
-                    // Extract the translation from the "data" array
-                    string translation = jsonResponse[0]?.ToString();
-                    return translation ?? "Translation failed.";
-                }
-            }
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine($"Error: {ex.Message}");
-            return "Translation failed.";
-        }
     }
 
     private static string ExtractJsonFromEventStream(string rawResponse)
