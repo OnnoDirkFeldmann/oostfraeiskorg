@@ -61,15 +61,15 @@ public class TranslatorViewModel : MasterPageViewModel
     // Shared endpoint chains — exposed so TranslatorTestViewModel can reuse them.
     // Failover state persists for the lifetime of the app process and is shared across both pages.
     public static readonly ApiEndpoints SharedFrsEndpoints = new(
-        "https://vanmoders114-east-frisian-translator.hf.space/gradio_api/call/predict",
-        "https://vanmoders114-east-frisian-translator-backup.hf.space/gradio_api/call/predict",
-        "http://127.0.0.1:7860/gradio_api/call/predict"
+        "https://vanmoders114-east-frisian-translator.hf.space/gradio_api/call/translate",
+        "https://vanmoders114-east-frisian-translator-backup.hf.space/gradio_api/call/translate",
+        "http://127.0.0.1:7860/gradio_api/call/translate"
     );
 
     public static readonly ApiEndpoints SharedGerEndpoints = new(
-        "https://vanmoders114-east-frisian-german-translator.hf.space/gradio_api/call/predict",
-        "https://vanmoders114-east-frisian-german-translator-backup.hf.space/gradio_api/call/predict",
-        "http://127.0.0.1:7861/gradio_api/call/predict"
+        "https://vanmoders114-east-frisian-german-translator.hf.space/gradio_api/call/translate",
+        "https://vanmoders114-east-frisian-german-translator-backup.hf.space/gradio_api/call/translate",
+        "http://127.0.0.1:7861/gradio_api/call/translate"
     );
 
     private static readonly string ApiSaveFeedbackUrl = "https://vanmoders114-ooversetter-feedback.hf.space/gradio_api/call/save_translation";
