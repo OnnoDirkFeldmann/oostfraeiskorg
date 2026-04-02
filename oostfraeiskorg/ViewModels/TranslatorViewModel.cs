@@ -51,6 +51,18 @@ public class ApiEndpoints
     }
 
     public bool IsExhausted => _currentIndex >= _urls.Length;
+
+    /// <summary>
+    /// Resets the endpoint chain to the first URL, allowing retries after exhaustion.
+    /// Thread-safe.
+    /// </summary>
+    public void Reset()
+    {
+        lock (_urls)
+        {
+            _currentIndex = 0;
+        }
+    }
 }
 
 public class TranslatorViewModel : MasterPageViewModel
@@ -254,6 +266,7 @@ public class TranslatorViewModel : MasterPageViewModel
     /// <summary>
     /// Attempts translation using the current endpoint. On failure, advances to the next
     /// backup URL and retries. Stops when a translation succeeds or all URLs are exhausted.
+    /// Resets the endpoint chain after exhaustion to allow retries on future attempts.
     /// </summary>
     public static async Task<string> TranslateWithFallback(string text, ApiEndpoints endpoints, string bearerToken, int maxTextLength)
     {
@@ -275,6 +288,8 @@ public class TranslatorViewModel : MasterPageViewModel
             }
         }
 
+        // Reset endpoints for future retry attempts
+        endpoints.Reset();
         return "Translation failed.";
     }
 
