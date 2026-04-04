@@ -25,17 +25,15 @@ public class TranslatorTestViewModel : MasterPageViewModel
     private const int DelayMilliseconds = 50;
     private static readonly string ApiSaveFeedbackUrl = "https://vanmoders114-ooversetter-feedback.hf.space/gradio_api/call/save_translation";
     private static readonly string ApiTtsUrl = "https://vanmoders114-east-frisian-tts.hf.space/gradio_api/call/predict";
-
-    // Share the same failover endpoint chains as TranslatorViewModel —
-    // if the primary goes down on one page, it's locked out on both.
-    private static readonly ApiEndpoints FrsEndpoints = TranslatorViewModel.SharedFrsEndpoints;
-    private static readonly ApiEndpoints GerEndpoints = TranslatorViewModel.SharedGerEndpoints;
+    private static readonly string ApiNllbUrl = "https://vanmoders114-east-frisian-nllb-translator.hf.space/gradio_api/call/translate";
 
     private readonly string BearerToken;
     private readonly string SmtpCredentialName;
     private readonly string SmtpCredentialPassword;
 
     private static readonly Dictionary<string, string> TtsCache = new();
+
+    public List<string> LanguageOptions { get; } = ["Deutsch", "English", "Oostfräisk"];
 
 
     public bool DoubleTranslationEnabled { get; } = true;
@@ -44,10 +42,10 @@ public class TranslatorTestViewModel : MasterPageViewModel
     public string InputTitle { get; set; } = "Deutsch";
     public string TranslationTitle { get; set; } = "Oostfräisk";
     public string InputText { get; set; } = "";
-    public string InputPlaceholderText { get; set; } = "Hier steht der deutsche Text.";
+    public string InputPlaceholderText { get; set; } = "Hier steht der Text.";
     public string OutputText { get; set; } = "";
-    public string TranslationPlaceholderText { get; set; } = "Hir staajt däi oostfräisk tekst.";
-    public string TranslationText { get; set; } = "Übersetze";
+    public string TranslationPlaceholderText { get; set; } = "Hier steht die Übersetzung.";
+    public string TranslationText { get; set; } = "Übersetzen";
     public bool ShowTranslationFeedback { get; set; } = false;
     public bool IsLoading { get; set; } = false;
     public string TtsAudioUrl { get; set; } = "";
@@ -87,14 +85,10 @@ public class TranslatorTestViewModel : MasterPageViewModel
         var temp = InputTitle;
         InputTitle = TranslationTitle;
         TranslationTitle = temp;
+
         var tempText = InputText;
         InputText = OutputText;
         OutputText = tempText;
-        var tempPlaceholder = InputPlaceholderText;
-        InputPlaceholderText = TranslationPlaceholderText;
-        TranslationPlaceholderText = tempPlaceholder;
-
-        TranslationText = TranslationText == "Übersetze" ? "ooversetten" : "Übersetze";
     }
 
     public void ClearInput()
@@ -123,8 +117,15 @@ public class TranslatorTestViewModel : MasterPageViewModel
 
     private async Task SentReport(string subject, string addedMarker)
     {
-        string gerText = TranslationText == "Übersetze" ? InputText : OutputText + addedMarker;
-        string frsText = TranslationText == "Übersetze" ? OutputText + addedMarker : InputText;
+        string markedOutput = OutputText + addedMarker;
+
+        string gerText = InputTitle == "Deutsch"
+            ? InputText
+            : (TranslationTitle == "Deutsch" ? markedOutput : string.Empty);
+
+        string frsText = InputTitle == "Oostfräisk"
+            ? InputText
+            : (TranslationTitle == "Oostfräisk" ? markedOutput : string.Empty);
 
         await TranslatorViewModel.SaveFeedback(gerText, frsText, ApiSaveFeedbackUrl, BearerToken);
         try
@@ -143,7 +144,7 @@ public class TranslatorTestViewModel : MasterPageViewModel
                 {
                     From = new MailAddress("edufraeisk@gmail.com"),
                     Subject = subject,
-                    Body = $"{gerText}\n\nOOVERSETTEN:\n\n{frsText}",
+                    Body = $"{InputTitle}: {InputText}\n\n{TranslationTitle}:\n\n{OutputText}{addedMarker}",
                     IsBodyHtml = false,
                 };
                 mailMessage.To.Add("oostfraeisk.ooversetter@gmail.com");
@@ -166,9 +167,15 @@ public class TranslatorTestViewModel : MasterPageViewModel
 
     public async Task TranslateAsync()
     {
-        ApiEndpoints endpoints = TranslationText == "Übersetze" ? FrsEndpoints : GerEndpoints;
-        // Perform translation with automatic failover
-        OutputText = await TranslatorViewModel.TranslateWithFallback(InputText, endpoints, BearerToken, MaxTextLength);
+        if (InputTitle == TranslationTitle)
+        {
+            OutputText = "Bitte unterschiedliche Sprachen auswählen.";
+            IsLoading = false;
+            ShowTranslationFeedback = false;
+            return;
+        }
+
+        OutputText = await Translate(InputText, InputTitle, TranslationTitle, ApiNllbUrl, BearerToken, MaxTextLength);
         IsLoading = false;
         ShowTranslationFeedback = true;
     }
@@ -298,6 +305,69 @@ public class TranslatorTestViewModel : MasterPageViewModel
         {
             Console.WriteLine($"TTS Error: {ex.Message}");
             return "";
+        }
+    }
+
+    public static async Task<string> Translate(string text, string sourceLanguage, string targetLanguage, string apiUrl, string bearerToken, int maxTextLength)
+    {
+        if (text.Length > maxTextLength)
+        {
+            text = text.Substring(0, maxTextLength);
+        }
+
+        using HttpClient client = new HttpClient();
+
+        client.DefaultRequestHeaders.Add("Authorization", $"Bearer {bearerToken}");
+        client.DefaultRequestHeaders.Add("Accept", "application/json");
+
+        var requestBody = new
+        {
+            data = new string[] { text, sourceLanguage, targetLanguage }
+        };
+
+        string jsonPayload = Newtonsoft.Json.JsonConvert.SerializeObject(requestBody);
+        var content = new StringContent(jsonPayload, Encoding.UTF8, "application/json");
+
+        try
+        {
+            HttpResponseMessage response = await client.PostAsync(apiUrl, content);
+            response.EnsureSuccessStatusCode();
+
+            string responseJson = await response.Content.ReadAsStringAsync();
+            var jsonIdResponse = JObject.Parse(responseJson);
+            string eventId = jsonIdResponse["event_id"]?.ToString();
+
+            if (string.IsNullOrEmpty(eventId))
+            {
+                throw new Exception("Failed to retrieve event_id from API response.");
+            }
+
+            string resultUrl = $"{apiUrl}/{eventId}";
+
+            while (true)
+            {
+                await Task.Delay(DelayMilliseconds);
+                HttpResponseMessage resultResponse = await client.GetAsync(resultUrl);
+                string jsonData = await resultResponse.Content.ReadAsStringAsync();
+
+                if (jsonData.Contains("event: complete"))
+                {
+                    jsonData = ExtractJsonFromEventStream(jsonData);
+                    JArray jsonResponse = JArray.Parse(jsonData);
+                    string translation = jsonResponse[0]?.ToString();
+                    return translation ?? throw new Exception("Translation response was null.");
+                }
+
+                if (jsonData.Contains("event: error"))
+                {
+                    throw new Exception($"API returned an error event for {apiUrl}.");
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Translation error: {ex.Message}");
+            return "Translation failed.";
         }
     }
 }

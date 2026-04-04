@@ -18,6 +18,49 @@
 
     <style>
 
+        .title-select-wrap {
+            position: relative;
+            width: fit-content;
+            margin: 0 auto 1rem auto;
+        }
+
+        .title-select {
+            width: auto;
+            min-width: 0;
+            max-width: none;
+            margin: 0;
+            padding: 0 1.5rem 0 0;
+            border: none;
+            background: transparent;
+            box-shadow: none;
+            color: #212529;
+            font-size: 1.5rem;
+            font-weight: 600;
+            line-height: 1.2;
+            text-align: center;
+            text-align-last: center;
+            cursor: pointer;
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+        }
+
+            .title-select:focus {
+                outline: none;
+                box-shadow: none;
+            }
+
+        .title-select-wrap::after {
+            content: "▾";
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1rem;
+            color: #212529;
+            pointer-events: none;
+        }
+
         .tts-button {
             position: absolute;
             top: 8px;
@@ -269,6 +312,14 @@
 
         /* RESPONSIVE - stack on small screens */
         @media (max-width: 768px) {
+            .title-select-wrap {
+                margin-bottom: 0.75rem;
+            }
+
+            .title-select {
+                font-size: 1.25rem;
+            }
+
             .translation-container {
                 height: auto;
                 flex-direction: column;
@@ -354,15 +405,17 @@
             <!-- Input -->
             <div class="translation-box">
                 <div class="translation-frame">
-                    <h5>
-                        <dot:Literal Text="{value: InputTitle}" />
-                    </h5>
+                    <div class="title-select-wrap">
+                        <dot:ComboBox DataSource="{value: LanguageOptions}"
+                                        SelectedValue="{value: InputTitle}"
+                                        class="form-select title-select" />
+                    </div>
                     <div class="input-wrapper">
                         <dot:TextBox Text="{value: InputText}" Type="MultiLine" id="input"
-                                     class="form-control input-box"
-                                     placeholder="{value: InputPlaceholderText}"
-                                     maxlength="{value: MaximumTextLength}"
-                                     Enabled="{value: !IsLoading}" />
+                                        class="form-control input-box"
+                                        placeholder="{value: InputPlaceholderText}"
+                                        maxlength="{value: MaximumTextLength}"
+                                        Enabled="{value: !IsLoading}" />
                         <dot:Button Text="×" Click="{staticCommand: _js.InvokeAsync('ClearInput')}" class="clear-button" tabindex="-1" />
                         <dot:Button Text="🔊"
                                     Click="{staticCommand: _js.InvokeAsync('StartTTS')}"
@@ -378,10 +431,9 @@
                             <dot:Literal Text="{value: MaximumTextLength}" />
                         </span>
                     </div>
-                    <!-- Buttons -->
                     <div class="button-box">
-                        <dot:Button Text="{value: TranslationText}" Click="{staticCommand: _js.InvokeAsync('StartTranslation')}" class="btn btn-primary" />
-                        <dot:Button Text="⇄" Click="{command: SwitchTranslationMode()}" style="{value: DoubleTranslationEnabled ? '' : 'display: none'}" class="btn btn-primary switch-button" />
+                        <dot:Button Text="{value: InputTitle == 'Deutsch' ? 'Übersetzen' : (InputTitle == 'English' ? 'translate' : 'ooversetten')}" Click="{staticCommand: _js.InvokeAsync('StartTranslation')}" class="btn btn-primary" />
+                        <dot:Button Text="⇄" Click="{command: SwitchTranslationMode()}" class="btn btn-primary switch-button" />
                     </div>
                 </div>
             </div>
@@ -389,14 +441,16 @@
             <!-- Output -->
             <div class="translation-box">
                 <div class="translation-frame">
-                    <h5>
-                        <dot:Literal Text="{value: TranslationTitle}" />
-                    </h5>
+                    <div class="title-select-wrap">
+                        <dot:ComboBox DataSource="{value: LanguageOptions}"
+                                        SelectedValue="{value: TranslationTitle}"
+                                        class="form-select title-select" />
+                    </div>
                     <div class="input-wrapper">
                         <dot:TextBox Text="{value: OutputText}" Type="MultiLine" Enabled="false" id="translation"
-                                     class="form-control input-box"
-                                     placeholder="{value: TranslationPlaceholderText}"
-                                     Visible="{value: !IsLoading}" />
+                                        class="form-control input-box"
+                                        placeholder="{value: TranslationPlaceholderText}"
+                                        Visible="{value: !IsLoading}" />
                         <dot:Button Text="⧉" Click="{staticCommand: _js.InvokeAsync('CopyOutput')}" class="copy-button" tabindex="-1" />
                         <dot:Button Text="🔊"
                                     Click="{staticCommand: _js.InvokeAsync('StartTTS')}"
