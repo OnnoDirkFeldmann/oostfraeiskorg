@@ -8,7 +8,9 @@ using Microsoft.Extensions.Hosting;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Buffers.Text;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Net.Mail;
@@ -22,7 +24,9 @@ namespace oostfraeiskorg.ViewModels;
 public class TranslatorTestViewModel : MasterPageViewModel
 {
     private const int MaxTextLength = 1000;
-    private const int DelayMilliseconds = 50;
+    private const int DelayMilliseconds = 500;
+    private const int PollTimeoutSeconds = 60;
+    private const int MaxTtsCacheSize = 50;
     private static readonly string ApiSaveFeedbackUrl = "https://vanmoders114-ooversetter-feedback.hf.space/gradio_api/call/save_translation";
     private static readonly string ApiTtsUrl = "https://vanmoders114-east-frisian-tts.hf.space/gradio_api/call/predict";
     private static readonly string ApiNllbUrl = "https://vanmoders114-east-frisian-nllb-translator.hf.space/gradio_api/call/translate";
@@ -31,10 +35,10 @@ public class TranslatorTestViewModel : MasterPageViewModel
     private readonly string SmtpCredentialName;
     private readonly string SmtpCredentialPassword;
 
-    private static readonly Dictionary<string, string> TtsCache = new();
+    private static readonly HttpClient SharedHttpClient = new();
+    private static readonly ConcurrentDictionary<string, string> TtsCache = new();
 
     public List<string> LanguageOptions { get; } = ["Deutsch", "English", "Oostfräisk"];
-
 
     public bool DoubleTranslationEnabled { get; } = true;
 
@@ -77,7 +81,14 @@ public class TranslatorTestViewModel : MasterPageViewModel
         MasterPageTitle = "Ooversetter - Oostfräisk Woordenbauk - Ostfriesisches Wörterbuch";
         MasterPageDescription = "Ooversetter - Wörterbuch der ostfriesischen Sprache - Wörter aus dem Ostfriesischen oder ins Ostfriesische übersetzen. Die Sprache der Ostfriesen mit dem Wörterbuch für das Ostfriesische Platt als Standardostfriesisch lernen.";
         MasterPageKeywords += ", ooversetter, übersetzer, translator ostfriesische Sprache, ostfriesisch, oostfräisk";
+        NormalizeLanguageSelection();
         return base.Init();
+    }
+
+    public override Task PreRender()
+    {
+        NormalizeLanguageSelection();
+        return base.PreRender();
     }
 
     public void SwitchTranslationMode()
@@ -89,6 +100,8 @@ public class TranslatorTestViewModel : MasterPageViewModel
         var tempText = InputText;
         InputText = OutputText;
         OutputText = tempText;
+
+        NormalizeLanguageSelection();
     }
 
     public void ClearInput()
@@ -167,9 +180,9 @@ public class TranslatorTestViewModel : MasterPageViewModel
 
     public async Task TranslateAsync()
     {
-        if (InputTitle == TranslationTitle)
+        if (!IsAllowedPair(InputTitle, TranslationTitle))
         {
-            OutputText = "Bitte unterschiedliche Sprachen auswählen.";
+            OutputText = "Diese Sprachkombination wird derzeit nicht unterstützt.";
             IsLoading = false;
             ShowTranslationFeedback = false;
             return;
@@ -238,6 +251,8 @@ public class TranslatorTestViewModel : MasterPageViewModel
 
             if (!string.IsNullOrEmpty(audio))
             {
+                if (TtsCache.Count >= MaxTtsCacheSize)
+                    TtsCache.Clear();
                 TtsCache[textToSpeak] = audio;
                 TtsAudioUrl = audio;
             }
@@ -246,22 +261,21 @@ public class TranslatorTestViewModel : MasterPageViewModel
 
     public static async Task<string> GenerateSpeech(string text, string apiUrl, string bearerToken)
     {
-        using HttpClient client = new HttpClient();
-        client.DefaultRequestHeaders.Add("Authorization", $"Bearer {bearerToken}");
-        client.DefaultRequestHeaders.Add("Accept", "application/json");
-
-        // Prepare request
         var requestBody = new
         {
             data = new string[] { text }
         };
         string jsonPayload = Newtonsoft.Json.JsonConvert.SerializeObject(requestBody);
-        var content = new StringContent(jsonPayload, Encoding.UTF8, "application/json");
 
         try
         {
             // Step 1: POST to get event_id
-            HttpResponseMessage response = await client.PostAsync(ApiTtsUrl, content);
+            using var postRequest = new HttpRequestMessage(HttpMethod.Post, apiUrl);
+            postRequest.Headers.Add("Authorization", $"Bearer {bearerToken}");
+            postRequest.Headers.Add("Accept", "application/json");
+            postRequest.Content = new StringContent(jsonPayload, Encoding.UTF8, "application/json");
+
+            HttpResponseMessage response = await SharedHttpClient.SendAsync(postRequest);
             response.EnsureSuccessStatusCode();
 
             string responseJson = await response.Content.ReadAsStringAsync();
@@ -272,11 +286,17 @@ public class TranslatorTestViewModel : MasterPageViewModel
                 throw new Exception("Failed to retrieve event_id from TTS API response.");
 
             // Step 2: Poll for result
-            string resultUrl = $"{ApiTtsUrl}/{eventId}";
-            while (true)
+            string resultUrl = $"{apiUrl}/{eventId}";
+            var deadline = DateTime.UtcNow.AddSeconds(PollTimeoutSeconds);
+            while (DateTime.UtcNow < deadline)
             {
                 await Task.Delay(DelayMilliseconds);
-                HttpResponseMessage resultResponse = await client.GetAsync(resultUrl);
+
+                using var pollRequest = new HttpRequestMessage(HttpMethod.Get, resultUrl);
+                pollRequest.Headers.Add("Authorization", $"Bearer {bearerToken}");
+                pollRequest.Headers.Add("Accept", "application/json");
+
+                HttpResponseMessage resultResponse = await SharedHttpClient.SendAsync(pollRequest);
                 string jsonData = await resultResponse.Content.ReadAsStringAsync();
 
                 if (jsonData.Contains("event: complete"))
@@ -290,9 +310,11 @@ public class TranslatorTestViewModel : MasterPageViewModel
                         return "";
 
                     // Download WAV with Bearer token
-                    using var downloadClient = new HttpClient();
-                    downloadClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {bearerToken}");
-                    byte[] wavBytes = await downloadClient.GetByteArrayAsync(fileUrl);
+                    using var downloadRequest = new HttpRequestMessage(HttpMethod.Get, fileUrl);
+                    downloadRequest.Headers.Add("Authorization", $"Bearer {bearerToken}");
+
+                    HttpResponseMessage downloadResponse = await SharedHttpClient.SendAsync(downloadRequest);
+                    byte[] wavBytes = await downloadResponse.Content.ReadAsByteArrayAsync();
 
                     // Convert to base64 for <audio> tag
                     string base64Audio = Convert.ToBase64String(wavBytes);
@@ -300,6 +322,8 @@ public class TranslatorTestViewModel : MasterPageViewModel
                     return $"data:audio/wav;base64,{base64Audio}";
                 }
             }
+
+            throw new Exception("TTS API polling timed out.");
         }
         catch (Exception ex)
         {
@@ -315,22 +339,21 @@ public class TranslatorTestViewModel : MasterPageViewModel
             text = text.Substring(0, maxTextLength);
         }
 
-        using HttpClient client = new HttpClient();
-
-        client.DefaultRequestHeaders.Add("Authorization", $"Bearer {bearerToken}");
-        client.DefaultRequestHeaders.Add("Accept", "application/json");
-
         var requestBody = new
         {
             data = new string[] { text, sourceLanguage, targetLanguage }
         };
 
         string jsonPayload = Newtonsoft.Json.JsonConvert.SerializeObject(requestBody);
-        var content = new StringContent(jsonPayload, Encoding.UTF8, "application/json");
 
         try
         {
-            HttpResponseMessage response = await client.PostAsync(apiUrl, content);
+            using var postRequest = new HttpRequestMessage(HttpMethod.Post, apiUrl);
+            postRequest.Headers.Add("Authorization", $"Bearer {bearerToken}");
+            postRequest.Headers.Add("Accept", "application/json");
+            postRequest.Content = new StringContent(jsonPayload, Encoding.UTF8, "application/json");
+
+            HttpResponseMessage response = await SharedHttpClient.SendAsync(postRequest);
             response.EnsureSuccessStatusCode();
 
             string responseJson = await response.Content.ReadAsStringAsync();
@@ -344,10 +367,16 @@ public class TranslatorTestViewModel : MasterPageViewModel
 
             string resultUrl = $"{apiUrl}/{eventId}";
 
-            while (true)
+            var deadline = DateTime.UtcNow.AddSeconds(PollTimeoutSeconds);
+            while (DateTime.UtcNow < deadline)
             {
                 await Task.Delay(DelayMilliseconds);
-                HttpResponseMessage resultResponse = await client.GetAsync(resultUrl);
+
+                using var pollRequest = new HttpRequestMessage(HttpMethod.Get, resultUrl);
+                pollRequest.Headers.Add("Authorization", $"Bearer {bearerToken}");
+                pollRequest.Headers.Add("Accept", "application/json");
+
+                HttpResponseMessage resultResponse = await SharedHttpClient.SendAsync(pollRequest);
                 string jsonData = await resultResponse.Content.ReadAsStringAsync();
 
                 if (jsonData.Contains("event: complete"))
@@ -363,11 +392,52 @@ public class TranslatorTestViewModel : MasterPageViewModel
                     throw new Exception($"API returned an error event for {apiUrl}.");
                 }
             }
+
+            throw new Exception($"API polling timed out for {apiUrl}.");
         }
         catch (Exception ex)
         {
             Console.WriteLine($"Translation error: {ex.Message}");
             return "Translation failed.";
         }
+    }
+
+    private bool IsAllowedPair(string sourceLanguage, string targetLanguage)
+    {
+        if (string.Equals(sourceLanguage, targetLanguage, StringComparison.Ordinal))
+        {
+            return false;
+        }
+
+        bool germanEnglishPair =
+            (sourceLanguage == "Deutsch" && targetLanguage == "English") ||
+            (sourceLanguage == "English" && targetLanguage == "Deutsch");
+
+        return !germanEnglishPair;
+    }
+
+    public void NormalizeLanguageSelection()
+    {
+        if (IsAllowedPair(InputTitle, TranslationTitle))
+        {
+            return;
+        }
+
+        string allowedOutput = LanguageOptions.FirstOrDefault(language => IsAllowedPair(InputTitle, language));
+        if (!string.IsNullOrEmpty(allowedOutput))
+        {
+            TranslationTitle = allowedOutput;
+            return;
+        }
+
+        string allowedInput = LanguageOptions.FirstOrDefault(language => IsAllowedPair(language, TranslationTitle));
+        if (!string.IsNullOrEmpty(allowedInput))
+        {
+            InputTitle = allowedInput;
+            return;
+        }
+
+        InputTitle = "Deutsch";
+        TranslationTitle = "Oostfräisk";
     }
 }

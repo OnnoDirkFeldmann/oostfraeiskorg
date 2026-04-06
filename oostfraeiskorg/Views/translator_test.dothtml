@@ -29,14 +29,15 @@
             min-width: 0;
             max-width: none;
             margin: 0;
-            padding: 0 1.5rem 0 0;
+            padding: 0.1rem 1.5rem 0.2rem 0;
             border: none;
             background: transparent;
             box-shadow: none;
             color: #212529;
             font-size: 1.5rem;
             font-weight: 600;
-            line-height: 1.2;
+            line-height: 1.35;
+            min-height: calc(1.35em + 0.3rem);
             text-align: center;
             text-align-last: center;
             cursor: pointer;
@@ -55,7 +56,7 @@
             position: absolute;
             right: 0;
             top: 50%;
-            transform: translateY(-50%);
+            transform: translateY(-45%);
             font-size: 1rem;
             color: #212529;
             pointer-events: none;
@@ -408,6 +409,7 @@
                     <div class="title-select-wrap">
                         <dot:ComboBox DataSource="{value: LanguageOptions}"
                                         SelectedValue="{value: InputTitle}"
+                                        SelectionChanged="{command: NormalizeLanguageSelection()}"
                                         class="form-select title-select" />
                     </div>
                     <div class="input-wrapper">
@@ -444,6 +446,7 @@
                     <div class="title-select-wrap">
                         <dot:ComboBox DataSource="{value: LanguageOptions}"
                                         SelectedValue="{value: TranslationTitle}"
+                                        SelectionChanged="{command: NormalizeLanguageSelection()}"
                                         class="form-select title-select" />
                     </div>
                     <div class="input-wrapper">
