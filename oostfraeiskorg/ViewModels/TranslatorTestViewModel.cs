@@ -52,6 +52,7 @@ public class TranslatorTestViewModel : MasterPageViewModel
     public string TranslationText { get; set; } = "Übersetzen";
     public bool ShowTranslationFeedback { get; set; } = false;
     public bool IsLoading { get; set; } = false;
+    [Bind(Direction.ServerToClient)]
     public string TtsAudioUrl { get; set; } = "";
     public bool IsTtsLoading { get; set; } = false;
 
@@ -213,18 +214,6 @@ public class TranslatorTestViewModel : MasterPageViewModel
 
     public void PrepareGenerateSpeech()
     {
-        string textToSpeak = TranslationTitle == "Oostfräisk"
-            ? OutputText
-            : InputText;
-
-        // Check cache first
-        if (TtsCache.TryGetValue(textToSpeak, out string cachedAudio))
-        {
-            TtsAudioUrl = cachedAudio;
-            IsTtsLoading = false;
-            return;
-        }
-
         IsTtsLoading = true;
     }
 
@@ -243,6 +232,7 @@ public class TranslatorTestViewModel : MasterPageViewModel
             if (TtsCache.TryGetValue(textToSpeak, out string cachedAudio))
             {
                 TtsAudioUrl = cachedAudio;
+                IsTtsLoading = false;
                 return;
             }
 
