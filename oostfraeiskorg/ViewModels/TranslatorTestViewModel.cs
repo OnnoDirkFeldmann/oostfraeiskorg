@@ -18,6 +18,7 @@ using System.Text;
 using System.Threading.Tasks;
 using static System.Net.Mime.MediaTypeNames;
 using static System.Runtime.InteropServices.JavaScript.JSType;
+using oostfraeiskorg.Services;
 
 namespace oostfraeiskorg.ViewModels;
 
@@ -34,6 +35,7 @@ public class TranslatorTestViewModel : MasterPageViewModel
     private readonly string BearerToken;
     private readonly string SmtpCredentialName;
     private readonly string SmtpCredentialPassword;
+    private readonly TranslationCounterService _counterService;
 
     private static readonly HttpClient SharedHttpClient = new();
     private static readonly ConcurrentDictionary<string, string> TtsCache = new();
@@ -55,9 +57,11 @@ public class TranslatorTestViewModel : MasterPageViewModel
     [Bind(Direction.ServerToClient)]
     public string TtsAudioUrl { get; set; } = "";
     public bool IsTtsLoading { get; set; } = false;
+    public int TranslationCount { get; set; }
+    public string TranslationCountStartDate { get; set; }
 
 
-    public TranslatorTestViewModel(IConfiguration configuration)
+    public TranslatorTestViewModel(IConfiguration configuration, TranslationCounterService counterService)
     {
         // Load settings
         BearerToken = configuration["TranslatorConfig:BearerToken"];
@@ -75,6 +79,7 @@ public class TranslatorTestViewModel : MasterPageViewModel
         {
             throw new Exception("SmtpCredentialPassword is missing in the configuration.");
         }
+        _counterService = counterService;
     }
 
     public override Task Init()
@@ -83,6 +88,11 @@ public class TranslatorTestViewModel : MasterPageViewModel
         MasterPageDescription = "Ooversetter - Wörterbuch der ostfriesischen Sprache - Wörter aus dem Ostfriesischen oder ins Ostfriesische übersetzen. Die Sprache der Ostfriesen mit dem Wörterbuch für das Ostfriesische Platt als Standardostfriesisch lernen.";
         MasterPageKeywords += ", ooversetter, übersetzer, translator ostfriesische Sprache, ostfriesisch, oostfräisk";
         NormalizeLanguageSelection();
+
+        // Load translation counter data
+        TranslationCount = _counterService.GetCount();
+        TranslationCountStartDate = _counterService.GetStartDate().ToString("dd.MM.yyyy");
+
         return base.Init();
     }
 

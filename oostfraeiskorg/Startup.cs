@@ -5,6 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using DotVVM.Framework.Routing;
 using System;
+using oostfraeiskorg.Services;
 
 namespace oostfraeiskorg;
 
@@ -27,6 +28,7 @@ public class Startup
         services.AddWebEncoders();
         services.AddAuthentication();
         services.AddDotVVM<DotvvmStartup>();
+        services.AddSingleton<TranslationCounterService>();
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

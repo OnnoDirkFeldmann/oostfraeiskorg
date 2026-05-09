@@ -45,6 +45,19 @@ class App {
         }
     }
 
+    async DownloadTTS() {
+        const audio = document.getElementById('ttsAudio');
+        if (audio && audio.src) {
+            // Create a temporary anchor element to trigger download
+            const a = document.createElement('a');
+            a.href = audio.src;
+            a.download = 'ooversetter_audio.wav';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+        }
+    }
+
     async ToggleFeedback(show) {
         const feedbackElement = document.querySelector('.overlay-content');
         if (show) {

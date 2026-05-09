@@ -64,12 +64,12 @@
 
         .tts-button {
             position: absolute;
-            top: 8px;
-            right: 44px; /* space for copy button */
+            top: 4px;
+            right: 38px;
             background: none;
             border: none;
             color: #888;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             cursor: pointer;
             padding: 0;
             line-height: 1;
@@ -81,16 +81,43 @@
                 color: #007bff;
             }
 
-        .input-wrapper .tts-button {
-            right: 44px;
+        .tts-download-button {
+            position: absolute;
+            top: 4px;
+            right: 70px;
+            background: none;
+            border: none;
+            color: #888;
+            font-size: 1.1rem;
+            cursor: pointer;
+            padding: 0;
+            line-height: 1;
+            z-index: 10;
+            transition: color 0.2s;
         }
+
+            .tts-download-button:hover {
+                color: #007bff;
+            }
 
         .tts-spinner {
             position: absolute;
-            top: 8px;
-            right: 44px;
-            /*width: 1rem;
-            height: 1rem;*/
+            top: 4px;
+            right: 38px;
+        }
+
+            .tts-spinner .spinner {
+                width: 1.4rem;
+                height: 1.4rem;
+                border-width: 3px;
+            }
+
+        .translation-counter {
+            font-size: 0.9rem;
+            color: #666;
+            text-align: center;
+            margin-top: 0.5rem;
+            font-style: italic;
         }
 
         .feedback-notice {
@@ -123,8 +150,8 @@
 
         .copy-button {
             position: absolute;
-            top: 8px;
-            right: 12px;
+            top: 4px;
+            right: 8px;
             background: none;
             border: none;
             color: #888;
@@ -141,7 +168,7 @@
             }
 
         .input-wrapper .copy-button {
-            right: 12px;
+            right: 10px;
         }
 
         .ooversetter-logo {
@@ -392,6 +419,32 @@
                     font-weight: 600;
                     font-size: 0.85rem;
                 }
+
+            .tts-button {
+                font-size: 1.1rem;
+                top: 2px;
+                right: 38px;
+            }
+
+            .tts-download-button {
+                font-size: 1.1rem;
+                top: 2px;
+                right: 68px;
+            }
+
+            .tts-spinner {
+                top: 2px;
+                right: 38px;
+            }
+
+                .tts-spinner .spinner {
+                    width: 1.3rem;
+                    height: 1.3rem;
+                }
+
+            .translation-counter {
+                font-size: 0.75rem;
+            }
         }
     </style>
 
@@ -424,7 +477,17 @@
                                     class="tts-button"
                                     Enabled="{value: InputText != '' && !IsTtsLoading}"
                                     Visible="{value: InputTitle == 'Oostfräisk' && !IsTtsLoading}"
-                                    tabindex="-1" />
+                                    tabindex="-1"
+                                    title="Audio abspielen"
+                                    aria-label="Text vorlesen lassen" />
+                        <dot:Button Text="⬇"
+                                    Click="{staticCommand: _js.InvokeAsync('DownloadTTS')}"
+                                    class="tts-download-button"
+                                    Enabled="{value: TtsAudioUrl != ''}"
+                                    Visible="{value: InputTitle == 'Oostfräisk' && TtsAudioUrl != '' && !IsTtsLoading}"
+                                    tabindex="-1"
+                                    title="Audio herunterladen"
+                                    aria-label="Audio-Datei herunterladen" />
                         <div class="tts-spinner" Visible="{value: IsTtsLoading && InputTitle == 'Oostfräisk'}">
                             <div class="spinner"></div>
                         </div>
@@ -460,7 +523,17 @@
                                     class="tts-button"
                                     Enabled="{value: OutputText != '' && !IsTtsLoading}"
                                     Visible="{value: TranslationTitle == 'Oostfräisk' && !IsTtsLoading}"
-                                    tabindex="-1" />
+                                    tabindex="-1"
+                                    title="Audio abspielen"
+                                    aria-label="Übersetzung vorlesen lassen" />
+                        <dot:Button Text="⬇"
+                                    Click="{staticCommand: _js.InvokeAsync('DownloadTTS')}"
+                                    class="tts-download-button"
+                                    Enabled="{value: TtsAudioUrl != ''}"
+                                    Visible="{value: TranslationTitle == 'Oostfräisk' && TtsAudioUrl != '' && !IsTtsLoading}"
+                                    tabindex="-1"
+                                    title="Audio herunterladen"
+                                    aria-label="Audio-Datei herunterladen" />
 
                         <div class="tts-spinner" Visible="{value: IsTtsLoading && TranslationTitle == 'Oostfräisk'}">
                             <div class="spinner"></div>
@@ -492,5 +565,8 @@
         </div>
     </div>
     <p class="beta-text text-center">Der Übersetzer befindet sich noch in der Beta-Phase. Übersetzungen können fehlerhaft sein.</p>
+    <p class="translation-counter">
+        Ooversettensanfróógen siit <dot:Literal Text="{value: TranslationCountStartDate}" />: <dot:Literal Text="{value: TranslationCount}" />
+    </p>
 
 </dot:Content>

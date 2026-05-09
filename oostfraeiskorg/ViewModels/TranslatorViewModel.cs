@@ -11,6 +11,7 @@ using System.Net.Mail;
 using System.Net;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Configuration;
+using oostfraeiskorg.Services;
 
 namespace oostfraeiskorg.ViewModels;
 
@@ -89,6 +90,7 @@ public class TranslatorViewModel : MasterPageViewModel
     private readonly string BearerToken;
     private readonly string SmtpCredentialName;
     private readonly string SmtpCredentialPassword;
+    private readonly TranslationCounterService _counterService;
 
 
     public bool DoubleTranslationEnabled { get; } = true;
@@ -105,7 +107,7 @@ public class TranslatorViewModel : MasterPageViewModel
     public bool IsLoading { get; set; } = false;
 
 
-    public TranslatorViewModel(IConfiguration configuration)
+    public TranslatorViewModel(IConfiguration configuration, TranslationCounterService counterService)
     {
         // Load settings
         BearerToken = configuration["TranslatorConfig:BearerToken"];
@@ -123,6 +125,7 @@ public class TranslatorViewModel : MasterPageViewModel
         {
             throw new Exception("SmtpCredentialPassword is missing in the configuration.");
         }
+        _counterService = counterService;
     }
 
     public override Task Init()
@@ -261,6 +264,9 @@ public class TranslatorViewModel : MasterPageViewModel
         OutputText = await TranslateWithFallback(InputText, endpoints, BearerToken, MaxTextLength);
         IsLoading = false;
         ShowTranslationFeedback = true;
+
+        // Increment translation counter for the official translator page
+        _counterService.IncrementCounter();
     }
 
     /// <summary>
