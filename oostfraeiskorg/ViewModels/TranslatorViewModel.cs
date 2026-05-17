@@ -70,19 +70,13 @@ public class TranslatorViewModel : MasterPageViewModel
 {
     private const int MaxTextLength = 300;
     private const int DelayMilliseconds = 50;
+    private const int PollTimeoutSeconds = 60;
 
-    // Shared endpoint chains — exposed so TranslatorTestViewModel can reuse them.
+    // Shared NLLB endpoint chain — used by both the official page and the test page.
     // Failover state persists for the lifetime of the app process and is shared across both pages.
-    public static readonly ApiEndpoints SharedFrsEndpoints = new(
-        "https://vanmoders114-east-frisian-translator.hf.space/gradio_api/call/translate",
-        "https://vanmoders114-east-frisian-translator-backup.hf.space/gradio_api/call/translate",
-        "http://127.0.0.1:7860/gradio_api/call/translate"
-    );
-
-    public static readonly ApiEndpoints SharedGerEndpoints = new(
-        "https://vanmoders114-east-frisian-german-translator.hf.space/gradio_api/call/translate",
-        "https://vanmoders114-east-frisian-german-translator-backup.hf.space/gradio_api/call/translate",
-        "http://127.0.0.1:7861/gradio_api/call/translate"
+    public static readonly ApiEndpoints SharedNllbEndpoints = new(
+        "https://vanmoders114-east-frisian-nllb-translator.hf.space/gradio_api/call/translate",
+        "https://vanmoders114-east-frisian-nllb-translator-backup.hf.space/gradio_api/call/translate"
     );
 
     private static readonly string ApiSaveFeedbackUrl = "https://vanmoders114-ooversetter-feedback.hf.space/gradio_api/call/save_translation";
@@ -259,9 +253,10 @@ public class TranslatorViewModel : MasterPageViewModel
 
     public async Task TranslateAsync()
     {
-        ApiEndpoints endpoints = TranslationText == "Übersetze" ? SharedFrsEndpoints : SharedGerEndpoints;
+        string sourceLanguage = TranslationText == "Übersetze" ? "Deutsch" : "Oostfräisk";
+        string targetLanguage = TranslationText == "Übersetze" ? "Oostfräisk" : "Deutsch";
         // Perform translation with automatic failover
-        OutputText = await TranslateWithFallback(InputText, endpoints, BearerToken, MaxTextLength);
+        OutputText = await TranslateWithFallback(InputText, sourceLanguage, targetLanguage, SharedNllbEndpoints, BearerToken, MaxTextLength);
         IsLoading = false;
         ShowTranslationFeedback = true;
 
@@ -274,14 +269,14 @@ public class TranslatorViewModel : MasterPageViewModel
     /// backup URL and retries. Stops when a translation succeeds or all URLs are exhausted.
     /// Resets the endpoint chain after exhaustion to allow retries on future attempts.
     /// </summary>
-    public static async Task<string> TranslateWithFallback(string text, ApiEndpoints endpoints, string bearerToken, int maxTextLength)
+    public static async Task<string> TranslateWithFallback(string text, string sourceLanguage, string targetLanguage, ApiEndpoints endpoints, string bearerToken, int maxTextLength)
     {
         while (!endpoints.IsExhausted)
         {
             string currentUrl = endpoints.CurrentUrl;
             try
             {
-                return await Translate(text, currentUrl, bearerToken, maxTextLength);
+                return await Translate(text, sourceLanguage, targetLanguage, currentUrl, bearerToken, maxTextLength);
             }
             catch (Exception ex)
             {
@@ -302,7 +297,7 @@ public class TranslatorViewModel : MasterPageViewModel
     /// <summary>
     /// Performs the actual API call. Throws on failure so the caller can handle failover.
     /// </summary>
-    public static async Task<string> Translate(string text, string apiUrl, string bearerToken, int maxTextLength)
+    public static async Task<string> Translate(string text, string sourceLanguage, string targetLanguage, string apiUrl, string bearerToken, int maxTextLength)
     {
         if (text.Length > maxTextLength)
         {
@@ -315,10 +310,10 @@ public class TranslatorViewModel : MasterPageViewModel
         client.DefaultRequestHeaders.Add("Authorization", $"Bearer {bearerToken}");
         client.DefaultRequestHeaders.Add("Accept", "application/json");
 
-        // JSON payload
+        // JSON payload — NLLB model expects [text, sourceLanguage, targetLanguage]
         var requestBody = new
         {
-            data = new string[] { text }
+            data = new string[] { text, sourceLanguage, targetLanguage }
         };
 
         string jsonPayload = Newtonsoft.Json.JsonConvert.SerializeObject(requestBody);
@@ -339,8 +334,9 @@ public class TranslatorViewModel : MasterPageViewModel
 
         // Step 2: Fetch the translation result using event ID
         string resultUrl = $"{apiUrl}/{eventId}";
+        var deadline = DateTime.UtcNow.AddSeconds(PollTimeoutSeconds);
 
-        while (true)
+        while (DateTime.UtcNow < deadline)
         {
             await Task.Delay(DelayMilliseconds); // Wait before checking the result
             HttpResponseMessage resultResponse = await client.GetAsync(resultUrl);
@@ -361,6 +357,8 @@ public class TranslatorViewModel : MasterPageViewModel
                 throw new Exception($"API returned an error event for {apiUrl}.");
             }
         }
+
+        throw new Exception($"API polling timed out for {apiUrl}.");
     }
 
     private static string ExtractJsonFromEventStream(string rawResponse)

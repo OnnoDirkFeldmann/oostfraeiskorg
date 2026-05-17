@@ -30,7 +30,6 @@ public class TranslatorTestViewModel : MasterPageViewModel
     private const int MaxTtsCacheSize = 50;
     private static readonly string ApiSaveFeedbackUrl = "https://vanmoders114-ooversetter-feedback.hf.space/gradio_api/call/save_translation";
     private static readonly string ApiTtsUrl = "https://vanmoders114-east-frisian-tts.hf.space/gradio_api/call/predict";
-    private static readonly string ApiNllbUrl = "https://vanmoders114-east-frisian-nllb-translator.hf.space/gradio_api/call/translate";
 
     private readonly string BearerToken;
     private readonly string SmtpCredentialName;
@@ -199,7 +198,7 @@ public class TranslatorTestViewModel : MasterPageViewModel
             return;
         }
 
-        OutputText = await Translate(InputText, InputTitle, TranslationTitle, ApiNllbUrl, BearerToken, MaxTextLength);
+        OutputText = await TranslatorViewModel.TranslateWithFallback(InputText, InputTitle, TranslationTitle, TranslatorViewModel.SharedNllbEndpoints, BearerToken, MaxTextLength);
         IsLoading = false;
         ShowTranslationFeedback = true;
     }
@@ -329,76 +328,6 @@ public class TranslatorTestViewModel : MasterPageViewModel
         {
             Console.WriteLine($"TTS Error: {ex.Message}");
             return "";
-        }
-    }
-
-    public static async Task<string> Translate(string text, string sourceLanguage, string targetLanguage, string apiUrl, string bearerToken, int maxTextLength)
-    {
-        if (text.Length > maxTextLength)
-        {
-            text = text.Substring(0, maxTextLength);
-        }
-
-        var requestBody = new
-        {
-            data = new string[] { text, sourceLanguage, targetLanguage }
-        };
-
-        string jsonPayload = Newtonsoft.Json.JsonConvert.SerializeObject(requestBody);
-
-        try
-        {
-            using var postRequest = new HttpRequestMessage(HttpMethod.Post, apiUrl);
-            postRequest.Headers.Add("Authorization", $"Bearer {bearerToken}");
-            postRequest.Headers.Add("Accept", "application/json");
-            postRequest.Content = new StringContent(jsonPayload, Encoding.UTF8, "application/json");
-
-            HttpResponseMessage response = await SharedHttpClient.SendAsync(postRequest);
-            response.EnsureSuccessStatusCode();
-
-            string responseJson = await response.Content.ReadAsStringAsync();
-            var jsonIdResponse = JObject.Parse(responseJson);
-            string eventId = jsonIdResponse["event_id"]?.ToString();
-
-            if (string.IsNullOrEmpty(eventId))
-            {
-                throw new Exception("Failed to retrieve event_id from API response.");
-            }
-
-            string resultUrl = $"{apiUrl}/{eventId}";
-
-            var deadline = DateTime.UtcNow.AddSeconds(PollTimeoutSeconds);
-            while (DateTime.UtcNow < deadline)
-            {
-                await Task.Delay(DelayMilliseconds);
-
-                using var pollRequest = new HttpRequestMessage(HttpMethod.Get, resultUrl);
-                pollRequest.Headers.Add("Authorization", $"Bearer {bearerToken}");
-                pollRequest.Headers.Add("Accept", "application/json");
-
-                HttpResponseMessage resultResponse = await SharedHttpClient.SendAsync(pollRequest);
-                string jsonData = await resultResponse.Content.ReadAsStringAsync();
-
-                if (jsonData.Contains("event: complete"))
-                {
-                    jsonData = ExtractJsonFromEventStream(jsonData);
-                    JArray jsonResponse = JArray.Parse(jsonData);
-                    string translation = jsonResponse[0]?.ToString();
-                    return translation ?? throw new Exception("Translation response was null.");
-                }
-
-                if (jsonData.Contains("event: error"))
-                {
-                    throw new Exception($"API returned an error event for {apiUrl}.");
-                }
-            }
-
-            throw new Exception($"API polling timed out for {apiUrl}.");
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine($"Translation error: {ex.Message}");
-            return "Translation failed.";
         }
     }
 
