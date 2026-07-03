@@ -39,10 +39,10 @@ public class SearchStrings
         {
             sqlCommand.CommandText = "SELECT *, CASE WHEN Wortart = 'Phrase' THEN 1 ELSE 0 END AS PhraseOrder FROM WB " +
                 "WHERE Deutsch != '-' " +
-                "AND Deutsch = @searchstr " +
+                "AND Deutsch = @searchstr COLLATE NOCASE " +
                 "UNION SELECT *, 1 AS PhraseOrder FROM WB " +
-                "WHERE Wortart = 'Phrase' AND (Zuordnung IN (SELECT Ostfriesisch FROM WB WHERE Deutsch != '-' AND Deutsch = @searchstr AND Wortart != 'Phrase') " +
-                "OR Zuordnung IN (SELECT Ostfriesisch || '=' || Nummer FROM WB WHERE Deutsch != '-' AND Deutsch = @searchstr AND Wortart != 'Phrase' AND Nummer != '-')) " +
+                "WHERE Wortart = 'Phrase' AND (Zuordnung IN (SELECT Ostfriesisch FROM WB WHERE Deutsch != '-' AND Deutsch = @searchstr COLLATE NOCASE AND Wortart != 'Phrase') " +
+                "OR Zuordnung IN (SELECT Ostfriesisch || '=' || Nummer FROM WB WHERE Deutsch != '-' AND Deutsch = @searchstr COLLATE NOCASE AND Wortart != 'Phrase' AND Nummer != '-')) " +
                 "ORDER BY PhraseOrder ASC, Ostfriesisch ASC";
         }
         if (fullTextSearch == "B")
@@ -131,12 +131,12 @@ public class SearchStrings
         {
             sqlCommand.CommandText = "SELECT *, CASE WHEN Wortart = 'Phrase' THEN 1 ELSE 0 END AS PhraseOrder FROM WB " +
                 "WHERE Deutsch != '-' AND " +
-                "(Ostfriesisch = @searchstr " +
-                "OR Nebenformen = @searchstr " +
-                "OR Plural = @searchstr) " +
+                "(Ostfriesisch = @searchstr COLLATE NOCASE " +
+                "OR Nebenformen = @searchstr COLLATE NOCASE " +
+                "OR Plural = @searchstr COLLATE NOCASE) " +
                 "UNION SELECT *, 1 AS PhraseOrder FROM WB " +
-                "WHERE Wortart = 'Phrase' AND (Zuordnung IN (SELECT Ostfriesisch FROM WB WHERE Deutsch != '-' AND (Ostfriesisch = @searchstr OR Nebenformen = @searchstr OR Plural = @searchstr) AND Wortart != 'Phrase') " +
-                "OR Zuordnung IN (SELECT Ostfriesisch || '=' || Nummer FROM WB WHERE Deutsch != '-' AND (Ostfriesisch = @searchstr OR Nebenformen = @searchstr OR Plural = @searchstr) AND Wortart != 'Phrase' AND Nummer != '-')) " +
+                "WHERE Wortart = 'Phrase' AND (Zuordnung IN (SELECT Ostfriesisch FROM WB WHERE Deutsch != '-' AND (Ostfriesisch = @searchstr COLLATE NOCASE OR Nebenformen = @searchstr COLLATE NOCASE OR Plural = @searchstr COLLATE NOCASE) AND Wortart != 'Phrase') " +
+                "OR Zuordnung IN (SELECT Ostfriesisch || '=' || Nummer FROM WB WHERE Deutsch != '-' AND (Ostfriesisch = @searchstr COLLATE NOCASE OR Nebenformen = @searchstr COLLATE NOCASE OR Plural = @searchstr COLLATE NOCASE) AND Wortart != 'Phrase' AND Nummer != '-')) " +
                 "ORDER BY PhraseOrder ASC, Ostfriesisch ASC";
         }
         if (fullTextSearch == "B")
@@ -217,10 +217,10 @@ public class SearchStrings
         {
             sqlCommand.CommandText = "SELECT *, CASE WHEN Wortart = 'Phrase' THEN 1 ELSE 0 END AS PhraseOrder FROM WB " +
                 "WHERE Englisch != '-' AND " +
-                "Englisch = @searchstr " +
+                "Englisch = @searchstr COLLATE NOCASE " +
                 "UNION SELECT *, 1 AS PhraseOrder FROM WB " +
-                "WHERE Wortart = 'Phrase' AND (Zuordnung IN (SELECT Ostfriesisch FROM WB WHERE Englisch != '-' AND Englisch = @searchstr AND Wortart != 'Phrase') " +
-                "OR Zuordnung IN (SELECT Ostfriesisch || '=' || Nummer FROM WB WHERE Englisch != '-' AND Englisch = @searchstr AND Wortart != 'Phrase' AND Nummer != '-')) " +
+                "WHERE Wortart = 'Phrase' AND (Zuordnung IN (SELECT Ostfriesisch FROM WB WHERE Englisch != '-' AND Englisch = @searchstr COLLATE NOCASE AND Wortart != 'Phrase') " +
+                "OR Zuordnung IN (SELECT Ostfriesisch || '=' || Nummer FROM WB WHERE Englisch != '-' AND Englisch = @searchstr COLLATE NOCASE AND Wortart != 'Phrase' AND Nummer != '-')) " +
                 "ORDER BY PhraseOrder ASC, Ostfriesisch ASC";
         }
         if (fullTextSearch == "B")
@@ -305,12 +305,12 @@ public class SearchStrings
         {
             sqlCommand.CommandText = "SELECT *, CASE WHEN Wortart = 'Phrase' THEN 1 ELSE 0 END AS PhraseOrder FROM WB " +
                 "WHERE Englisch != '-' AND " +
-                "(Ostfriesisch = @searchstr " +
-                "OR Nebenformen = @searchstr " +
-                "OR Plural = @searchstr) " +
+                "(Ostfriesisch = @searchstr COLLATE NOCASE " +
+                "OR Nebenformen = @searchstr COLLATE NOCASE " +
+                "OR Plural = @searchstr COLLATE NOCASE) " +
                 "UNION SELECT *, 1 AS PhraseOrder FROM WB " +
-                "WHERE Wortart = 'Phrase' AND (Zuordnung IN (SELECT Ostfriesisch FROM WB WHERE Englisch != '-' AND (Ostfriesisch = @searchstr OR Nebenformen = @searchstr OR Plural = @searchstr) AND Wortart != 'Phrase') " +
-                "OR Zuordnung IN (SELECT Ostfriesisch || '=' || Nummer FROM WB WHERE Englisch != '-' AND (Ostfriesisch = @searchstr OR Nebenformen = @searchstr OR Plural = @searchstr) AND Wortart != 'Phrase' AND Nummer != '-')) " +
+                "WHERE Wortart = 'Phrase' AND (Zuordnung IN (SELECT Ostfriesisch FROM WB WHERE Englisch != '-' AND (Ostfriesisch = @searchstr COLLATE NOCASE OR Nebenformen = @searchstr COLLATE NOCASE OR Plural = @searchstr COLLATE NOCASE) AND Wortart != 'Phrase') " +
+                "OR Zuordnung IN (SELECT Ostfriesisch || '=' || Nummer FROM WB WHERE Englisch != '-' AND (Ostfriesisch = @searchstr COLLATE NOCASE OR Nebenformen = @searchstr COLLATE NOCASE OR Plural = @searchstr COLLATE NOCASE) AND Wortart != 'Phrase' AND Nummer != '-')) " +
                 "ORDER BY PhraseOrder ASC, Ostfriesisch ASC";
         }
         if (fullTextSearch == "B")
