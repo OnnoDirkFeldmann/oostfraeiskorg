@@ -1,4 +1,4 @@
-﻿using Microsoft.Data.Sqlite;
+using Microsoft.Data.Sqlite;
 
 namespace oostfraeiskorg;
 
@@ -8,7 +8,7 @@ public class DataBaseConnection
     {
         var sqliteConnection = new SqliteConnection();
         string dataSource = startpath + @"/WFDOT.db";
-        sqliteConnection.ConnectionString = $"Data Source={dataSource}; Pooling=False;";
+        sqliteConnection.ConnectionString = $"Data Source={dataSource}; Mode=ReadOnly; Cache=Shared; Pooling=True;";
         sqliteConnection.Open();
         return sqliteConnection;
     }

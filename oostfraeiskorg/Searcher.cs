@@ -5,11 +5,22 @@ using DotVVM.Framework.Controls;
 using System.Linq;
 using System.Data;
 using System;
+using oostfraeiskorg.Services;
 
 namespace oostfraeiskorg;
 
 public class Searcher
 {
+    private static SearchCacheService _cacheService;
+
+    /// <summary>
+    /// Sets the cache service to use for search result caching
+    /// </summary>
+    public static void SetCacheService(SearchCacheService cacheService)
+    {
+        _cacheService = cacheService;
+    }
+
     /// <summary>
     /// Translation dictionary for database column names (German to English)
     /// </summary>
@@ -36,6 +47,12 @@ public class Searcher
 
     public static IQueryable<DictionaryEntry> SearchAndFill(string searchString, string searchDirection, string fullTextSearch)
     {
+        // Try to get cached results first
+        if (_cacheService != null && _cacheService.TryGetCachedResults(searchString, searchDirection, fullTextSearch, out var cachedResults))
+        {
+            return cachedResults;
+        }
+
         var dictionaryEntries = new List<DictionaryEntry>();
 
         string notFoundMessage = "";
@@ -223,7 +240,12 @@ public class Searcher
             dictionaryEntries.Add(dictionaryEntry);
         }
 
-        return dictionaryEntries.AsQueryable();
+        var results = dictionaryEntries.AsQueryable();
+        
+        // Cache the results for future requests
+        _cacheService?.CacheResults(displaySearchString, searchDirection, fullTextSearch, results);
+        
+        return results;
     }
 
     /// <summary>

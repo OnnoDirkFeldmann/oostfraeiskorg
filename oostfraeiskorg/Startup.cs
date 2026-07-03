@@ -32,6 +32,13 @@ public class Startup
         services.AddAuthentication();
         services.AddDotVVM<DotvvmStartup>();
         services.AddSingleton<TranslationCounterService>();
+        
+        // Add memory cache and search cache service
+        services.AddMemoryCache(options =>
+        {
+            options.SizeLimit = 5000; // Limit to 5000 cached entries
+        });
+        services.AddSingleton<SearchCacheService>();
 
         // Configure native rate limiting
         services.AddRateLimiter(options =>
@@ -56,8 +63,11 @@ public class Startup
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-    public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+    public void Configure(IApplicationBuilder app, IWebHostEnvironment env, SearchCacheService searchCacheService)
     {
+        // Initialize the Searcher with cache service
+        Searcher.SetCacheService(searchCacheService);
+        
         if (env.IsDevelopment())
         {
             app.UseDeveloperExceptionPage();
