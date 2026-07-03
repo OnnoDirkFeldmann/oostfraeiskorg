@@ -8,12 +8,13 @@ namespace oostfraeiskorg.Services;
 /// <summary>
 /// Caches search results to reduce database load from repeated searches.
 /// Perfect for handling scraper bots that often request the same data multiple times.
+/// Cache is set to 24 hours since dictionary data never changes.
 /// </summary>
 public class SearchCacheService
 {
     private readonly IMemoryCache _cache;
-    private const int DefaultCacheMinutes = 10;
-    private const int MaxCacheEntries = 5000; // Limit cache size
+    private const int DefaultCacheHours = 24; // Database never changes, so aggressive caching is safe
+    private const int MaxCacheEntries = 10000; // Increased since we cache longer
 
     public SearchCacheService(IMemoryCache cache)
     {
@@ -65,7 +66,7 @@ public class SearchCacheService
         
         var cacheOptions = new MemoryCacheEntryOptions
         {
-            AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(DefaultCacheMinutes),
+            AbsoluteExpirationRelativeToNow = TimeSpan.FromHours(DefaultCacheHours),
             Size = 1, // Each entry counts as 1 toward the size limit
             Priority = CacheItemPriority.Normal
         };
@@ -74,7 +75,7 @@ public class SearchCacheService
     }
 
     /// <summary>
-    /// Clears all cached search results. Use this if database is updated.
+    /// Clears all cached search results. Use this if database is ever updated.
     /// </summary>
     public void ClearCache()
     {
