@@ -67,7 +67,7 @@ public class AdminViewModel : MasterPageViewModel
                 ls_sitemap_dynamic = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>";
                 ls_sitemap_dynamic += "<urlset xmlns=\"https://www.sitemaps.org/schemas/sitemap/0.9\">";
             }
-            ls_sitemap_dynamic += "<url><loc>https://oostfraeisk.org/main?W=" + entrys[i].Replace("'", "&apos;").Replace("\"", "&quot;").Replace(">", "&gt;").Replace("<", "&lt;") + "&amp;df=frs>de&amp;fts=J</loc><changefreq>always</changefreq></url>";
+            ls_sitemap_dynamic += "<url><loc>https://oostfraeisk.org/main?W=" + entrys[i].Replace("'", "&apos;").Replace("\"", "&quot;").Replace(">", "&gt;").Replace("<", "&lt;") + "&amp;df=frs>de&amp;fts=X</loc><changefreq>always</changefreq></url>";
             if ((i == entrys.Count - 1 || i % entryCount == 0) && i != 0)
             {
                 ls_sitemap_dynamic += "</urlset>";
