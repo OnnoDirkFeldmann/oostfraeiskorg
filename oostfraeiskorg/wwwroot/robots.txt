@@ -1,5 +1,6 @@
 User-agent: *
 Allow: /
+Crawl-delay: 1
 
 Sitemap: https://oostfraeisk.org/sitemapfixed.xml
 Sitemap: https://oostfraeisk.org/sitemapdynamic1.xml

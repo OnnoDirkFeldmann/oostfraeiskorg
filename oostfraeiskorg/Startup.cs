@@ -1,10 +1,13 @@
 ﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.RateLimiting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using DotVVM.Framework.Routing;
 using System;
+using System.Threading.RateLimiting;
 using oostfraeiskorg.Services;
 
 namespace oostfraeiskorg;
@@ -29,6 +32,27 @@ public class Startup
         services.AddAuthentication();
         services.AddDotVVM<DotvvmStartup>();
         services.AddSingleton<TranslationCounterService>();
+
+        // Configure native rate limiting
+        services.AddRateLimiter(options =>
+        {
+            options.RejectionStatusCode = 429;
+
+            // Global rate limiter: per IP address with sliding window
+            options.GlobalLimiter = PartitionedRateLimiter.Create<HttpContext, string>(context =>
+            {
+                var ipAddress = context.Connection.RemoteIpAddress?.ToString() ?? "unknown";
+
+                return RateLimitPartition.GetSlidingWindowLimiter(ipAddress, _ => new SlidingWindowRateLimiterOptions
+                {
+                    PermitLimit = 600,
+                    Window = TimeSpan.FromMinutes(1),
+                    SegmentsPerWindow = 6,
+                    QueueProcessingOrder = QueueProcessingOrder.OldestFirst,
+                    QueueLimit = 30
+                });
+            });
+        });
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -50,6 +74,9 @@ public class Startup
 
         // use static files
         app.UseStaticFiles();
+
+        // Enable rate limiting middleware
+        app.UseRateLimiter();
 
         // use DotVVM
         var dotvvmConfiguration = app.UseDotVVM<DotvvmStartup>(env.ContentRootPath);
