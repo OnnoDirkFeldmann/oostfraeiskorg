@@ -1,4 +1,4 @@
-﻿@viewModel oostfraeiskorg.ViewModels.TranslatorTestViewModel, oostfraeiskorg
+@viewModel oostfraeiskorg.ViewModels.TranslatorTestViewModel, oostfraeiskorg
 @masterPage Views/MasterPage.dotmaster
 @js translator
 
@@ -118,6 +118,18 @@
             text-align: center;
             margin-top: 0.5rem;
             font-style: italic;
+        }
+
+        .tts-ai-notice {
+            color: #666;
+            font-size: 0.8rem;
+            margin: 0.35rem 1rem;
+        }
+
+        .tts-error {
+            color: #a12622;
+            font-size: 0.85rem;
+            margin: 0.35rem 1rem;
         }
 
         .feedback-notice {
@@ -451,6 +463,9 @@
     <div class="text-center mt-3">
         <img src="~/img/ooversetter_logo.png" alt="Ooversetter Logo" class="ooversetter-logo" />
         <p class="beta-text text-center">Übersetzer für das Ostfriesische Platt (Beta-Version)</p>
+        <p class="tts-ai-notice">Die Sprachausgabe ist KI-generiert.
+            <a href="/ki-audio">Audio prüfen</a>
+        </p>
     </div>
 
     <div class="translation-container">
@@ -477,15 +492,13 @@
                                     class="tts-button"
                                     Enabled="{value: InputText != '' && !IsTtsLoading}"
                                     Visible="{value: InputTitle == 'Oostfräisk' && !IsTtsLoading}"
-                                    tabindex="-1"
-                                    title="Audio abspielen"
-                                    aria-label="Text vorlesen lassen" />
+                                    title="KI-Sprachausgabe abspielen"
+                                    aria-label="Text mit KI-Stimme vorlesen lassen" />
                         <dot:Button Text="⬇"
                                     Click="{staticCommand: _js.InvokeAsync('DownloadTTS')}"
                                     class="tts-download-button"
                                     Enabled="{value: TtsAudioUrl != ''}"
                                     Visible="{value: InputTitle == 'Oostfräisk' && TtsAudioUrl != '' && !IsTtsLoading}"
-                                    tabindex="-1"
                                     title="Audio herunterladen"
                                     aria-label="Audio-Datei herunterladen" />
                         <div class="tts-spinner" Visible="{value: IsTtsLoading && InputTitle == 'Oostfräisk'}">
@@ -523,15 +536,13 @@
                                     class="tts-button"
                                     Enabled="{value: OutputText != '' && !IsTtsLoading}"
                                     Visible="{value: TranslationTitle == 'Oostfräisk' && !IsTtsLoading}"
-                                    tabindex="-1"
-                                    title="Audio abspielen"
-                                    aria-label="Übersetzung vorlesen lassen" />
+                                    title="KI-Sprachausgabe abspielen"
+                                    aria-label="Übersetzung mit KI-Stimme vorlesen lassen" />
                         <dot:Button Text="⬇"
                                     Click="{staticCommand: _js.InvokeAsync('DownloadTTS')}"
                                     class="tts-download-button"
                                     Enabled="{value: TtsAudioUrl != ''}"
                                     Visible="{value: TranslationTitle == 'Oostfräisk' && TtsAudioUrl != '' && !IsTtsLoading}"
-                                    tabindex="-1"
                                     title="Audio herunterladen"
                                     aria-label="Audio-Datei herunterladen" />
 
@@ -544,9 +555,7 @@
                         </div>
                     </div>
 
-                    <If Condition="{value: TtsAudioUrl != ''}">
-                        <audio controls src="{value: TtsAudioUrl}" style="display:none" id="ttsAudio"></audio>
-                    </If>
+                    <audio controls src="{value: TtsAudioUrl}" hidden id="ttsAudio" tabindex="0" aria-label="KI-Sprachausgabe"></audio>
 
                     <!-- Feedback -->
                     <div class="{value: ShowTranslationFeedback ? 'overlay-content text-center show' : 'overlay-content text-center'}">
@@ -564,6 +573,9 @@
             </div>
         </div>
     </div>
+        <p class="tts-error text-center" role="alert" Visible="{value: TtsErrorMessage != ''}">
+            <dot:Literal Text="{value: TtsErrorMessage}" />
+        </p>
     <p class="beta-text text-center">Der Übersetzer befindet sich noch in der Beta-Phase. Übersetzungen können fehlerhaft sein.</p>
     <p class="translation-counter">
         Ooversettensanfróógen siit <dot:Literal Text="{value: TranslationCountStartDate}" />: <dot:Literal Text="{value: TranslationCount}" />

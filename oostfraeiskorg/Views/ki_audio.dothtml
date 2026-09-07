@@ -1,0 +1,47 @@
+@viewModel oostfraeiskorg.ViewModels.AiAudioViewModel, oostfraeiskorg
+@masterPage Views/MasterPage.dotmaster
+
+<dot:Content ContentPlaceHolderID="MainContent">
+    <style>
+        .audio-check-page input { max-width: 100%; }
+        .audio-check-page [hidden] { display: none !important; }
+        .audio-check-page #result { white-space: pre-line; }
+        .audio-check-page pre { white-space: pre-wrap; overflow-wrap: anywhere; }
+    </style>
+    <div class="container audio-check-page">
+        <h2>KI-Sprachausgabe und Audio prüfen</h2>
+        <p>Die Sprachausgabe des Ooversetters ist KI-generiert. Heruntergeladene WAV-Dateien
+            enthalten eine Kennzeichnung in den Dateiinformationen und ein AudioSeal-Wasserzeichen.</p>
+        <section class="card bg-light mb-4" aria-labelledby="check-title">
+            <div class="card-body">
+                <h3 id="check-title" class="card-title">Eine Audiodatei prüfen</h3>
+                <p>Die Prüfung läuft auf deinem Gerät. Deine Audiodatei wird nicht hochgeladen.</p>
+                <div class="form-group">
+                    <label for="audio-file">WAV-Datei (0,5 Sekunden bis 2 Minuten, höchstens 20 MB)</label>
+                    <input id="audio-file" class="form-control-file" type="file" accept=".wav,audio/wav" />
+                </div>
+                <button id="check" type="button" class="btn btn-primary">Audio prüfen</button>
+                <p class="small text-muted mt-3">Für die Prüfung werden einmalig etwa 45 MB heruntergeladen. Je nach Gerät kann die Prüfung etwas dauern.</p>
+                <p id="status" role="status" aria-live="polite"></p>
+                <p id="result" class="alert alert-info" hidden></p>
+                <details id="technical" hidden>
+                    <summary>Details zum Prüfergebnis</summary><pre id="technical-result"></pre>
+                </details>
+            </div>
+        </section>
+        <h3>Was bedeutet das Ergebnis?</h3>
+        <p><strong>Wasserzeichen erkannt:</strong> AudioSeal wurde im Tonsignal gefunden.
+            Das ist ein Hinweis auf eine Markierung, kein Nachweis des Urhebers.</p>
+        <p><strong>Kein eindeutiges Wasserzeichen:</strong> Die Datei kann trotzdem KI-generiert sein.
+            Bearbeitungen und kurze Ausschnitte können die Erkennung erschweren.
+            Der Prüfer erkennt AudioSeal und ist kein allgemeiner KI-Detektor.</p>
+        <p>Die Kennzeichnungen können verändert werden. Sie belegen nicht, wer eine Aufnahme erstellt hat.</p>
+        <p class="small text-muted">Prüfung mit <a href="https://github.com/facebookresearch/audioseal">Meta AudioSeal</a>
+            und <a href="https://onnxruntime.ai/">ONNX Runtime</a>.
+            <a href="/audio-check/model-info.json">Modellinformationen</a> ·
+            <a href="/audio-check/LICENSE-AudioSeal.txt">AudioSeal-Lizenz</a> ·
+            <a href="/audio-check/LICENSE-ONNXRuntime.txt">ONNX-Runtime-Lizenz</a></p>
+        <p><a href="/translator_e6a9d1b4e787207e7f83c816041028a97f22db3c">Zurück zum Ooversetter</a></p>
+    </div>
+    <script type="module" src="/audio-check/check.js"></script>
+</dot:Content>

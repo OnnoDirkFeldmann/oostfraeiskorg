@@ -1,0 +1,10 @@
+{
+  "source": "https://huggingface.co/facebook/audioseal",
+  "revision": "3c19eba53390776cf2cc9ed5f6c9ac67ce72ecba",
+  "checkpoint_sha256": "8a78e8a83584113523e161fc599fcab10fd0e94c04d2eb9d2fa1e9ec91ab69d9",
+  "onnx_sha256": "d84a723760ebd910bf8192489395b5c0cb588e60b6f012eebc09ddebb3e88db5",
+  "license": "MIT",
+  "audioseal_version": "0.2.0",
+  "sample_rate": 16000,
+  "window_samples": 80000
+}

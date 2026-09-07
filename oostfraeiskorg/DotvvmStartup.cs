@@ -1,4 +1,4 @@
-﻿using DotVVM.Framework.Configuration;
+using DotVVM.Framework.Configuration;
 using DotVVM.Framework.ResourceManagement;
 using DotVVM.Framework.Routing;
 using Microsoft.Extensions.DependencyInjection;
@@ -18,6 +18,8 @@ public class DotvvmStartup : IDotvvmStartup, IDotvvmServiceConfigurator
     private void ConfigureRoutes(DotvvmConfiguration config, string applicationPath)
     {
         config.RouteTable.Add("index", "", "Views/main.dothtml");
+        config.RouteTable.Add("ki_audio", "ki-audio", "Views/ki_audio.dothtml");
+        config.RouteTable.Add("ki_audio_legacy", "ki-audio.html", "Views/ki_audio.dothtml");
 
         config.RouteTable.Add("about", "about", "Views/about.dothtml");
         config.RouteTable.Add("about.aspx", "about.aspx", "Views/about.dothtml");

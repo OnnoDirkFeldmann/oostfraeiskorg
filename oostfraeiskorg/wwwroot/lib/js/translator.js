@@ -35,13 +35,19 @@ class App {
             await this.context.namedCommands["PrepareGenerateSpeech"]();
             await this.context.namedCommands["GenerateSpeechAsync"]();
             const audio = document.getElementById('ttsAudio');
-            if (audio) {
-                audio.play().catch(err => {
-                    console.log("Autoplay blocked, user must click play:", err);
-                });
+            if (audio && audio.getAttribute('src')) {
+                audio.hidden = true;
+                try {
+                    await audio.play();
+                } catch (err) {
+                    // A delayed response can outlive the browser's user gesture.
+                    // Expose native controls so playback can still be started.
+                    audio.hidden = false;
+                    audio.focus();
+                }
             }
         } catch (err) {
-            dotvvm.patchState({ ErrorMessage: "TTS failed!" });
+            dotvvm.patchState({ TtsErrorMessage: "Die Sprachausgabe konnte nicht geladen werden. Bitte erneut versuchen.", IsTtsLoading: false });
         }
     }
 
@@ -100,7 +106,7 @@ window.addEventListener('DOMContentLoaded', function () {
         var now = new Date();
         var diff = releaseDate - now;
         if (diff <= 0) {
-            if (countdownEl) countdownEl.textContent = "Der Übersetzer ist jetzt verfügbar!";
+            if (countdownEl) countdownEl.textContent = "Der Ãœbersetzer ist jetzt verfÃ¼gbar!";
             window.location.reload();
         } else {
             var days = Math.floor(diff / (1000 * 60 * 60 * 24));
