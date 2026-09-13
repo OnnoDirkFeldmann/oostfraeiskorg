@@ -31,10 +31,10 @@
         </section>
         <h3>Was bedeutet das Ergebnis?</h3>
         <p><strong>Wasserzeichen erkannt:</strong> AudioSeal wurde im Tonsignal gefunden.
-            Das ist ein Hinweis auf eine Markierung, kein Nachweis des Urhebers.</p>
+            Das ist ein Hinweis auf eine Markierung.</p>
         <p><strong>Kein eindeutiges Wasserzeichen:</strong> Die Datei kann trotzdem KI-generiert sein.
             Bearbeitungen und kurze Ausschnitte können die Erkennung erschweren.
-            Der Prüfer erkennt AudioSeal und ist kein allgemeiner KI-Detektor.</p>
+            Der Prüfer erkennt nur AudioSeal.</p>
         <p>Die Kennzeichnungen können verändert werden. Sie belegen nicht, wer eine Aufnahme erstellt hat.</p>
         <p class="small text-muted">Prüfung mit <a href="https://github.com/facebookresearch/audioseal">Meta AudioSeal</a>
             und <a href="https://onnxruntime.ai/">ONNX Runtime</a>.

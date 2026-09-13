@@ -33,7 +33,6 @@ public class TranslatorTestViewModel : MasterPageViewModel
     private static readonly string ApiTtsUrl = "https://vanmoders114-east-frisian-tts.hf.space/gradio_api/call/predict";
 
     private readonly string BearerToken;
-    private readonly string TtsRestartToken;
     private readonly string SmtpCredentialName;
     private readonly string SmtpCredentialPassword;
     private readonly TranslationCounterService _counterService;
@@ -75,7 +74,6 @@ public class TranslatorTestViewModel : MasterPageViewModel
     {
         // Load settings
         BearerToken = configuration["TranslatorConfig:BearerToken"];
-        TtsRestartToken = configuration["TranslatorConfig:TtsRestartToken"];
         if (string.IsNullOrEmpty(BearerToken))
         {
             throw new Exception("BearerToken is missing in the configuration.");
@@ -261,7 +259,7 @@ public class TranslatorTestViewModel : MasterPageViewModel
                 return;
             }
 
-            string audio = await GenerateSpeech(textToSpeak, ApiTtsUrl, BearerToken, TtsRestartToken);
+            string audio = await GenerateSpeech(textToSpeak, ApiTtsUrl, BearerToken);
             if (TtsCache.Count >= MaxTtsCacheSize)
                 TtsCache.Clear();
             TtsCache[textToSpeak] = audio;
@@ -350,7 +348,7 @@ public class TranslatorTestViewModel : MasterPageViewModel
             : delay;
     }
 
-    public static async Task<string> GenerateSpeech(string text, string apiUrl, string bearerToken, string restartToken = null)
+    public static async Task<string> GenerateSpeech(string text, string apiUrl, string bearerToken)
     {
         var requestBody = new
         {
@@ -361,7 +359,7 @@ public class TranslatorTestViewModel : MasterPageViewModel
         using var timeout = new CancellationTokenSource(TimeSpan.FromSeconds(TtsRequestTimeoutSeconds));
 
         if (string.Equals(apiUrl, ApiTtsUrl, StringComparison.OrdinalIgnoreCase))
-            await TtsSpaceWakeup.EnsureRunningAsync(bearerToken, timeout.Token, restartToken);
+            await TtsSpaceWakeup.EnsureRunningAsync(bearerToken, timeout.Token);
 
         // The app proxy can still be transitioning after the Hub reports RUNNING, so
         // transient submission failures use the same overall five-minute window.

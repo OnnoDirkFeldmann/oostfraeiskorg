@@ -9,6 +9,10 @@ using Microsoft.AspNetCore.Components;
 using DotVVM.Framework.Binding;
 using System.Net.Mail;
 using System.Net;
+using System.Collections.Concurrent;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Configuration;
 using oostfraeiskorg.Services;
@@ -71,6 +75,9 @@ public class TranslatorViewModel : MasterPageViewModel
     private const int MaxTextLength = 300;
     private const int DelayMilliseconds = 50;
     private const int PollTimeoutSeconds = 60;
+    private const int TtsRequestTimeoutSeconds = 300;
+    private const int MaxTtsRetryDelaySeconds = 20;
+    private const int MaxTtsCacheSize = 50;
 
     // Shared NLLB endpoint chain — used by both the official page and the test page.
     // Failover state persists for the lifetime of the app process and is shared across both pages.
@@ -80,25 +87,39 @@ public class TranslatorViewModel : MasterPageViewModel
     );
 
     private static readonly string ApiSaveFeedbackUrl = "https://vanmoders114-ooversetter-feedback.hf.space/gradio_api/call/save_translation";
+    private static readonly string ApiTtsUrl = "https://vanmoders114-east-frisian-tts.hf.space/gradio_api/call/predict";
 
     private readonly string BearerToken;
     private readonly string SmtpCredentialName;
     private readonly string SmtpCredentialPassword;
     private readonly TranslationCounterService _counterService;
 
+    private static readonly HttpClient SharedHttpClient = new()
+    {
+        Timeout = Timeout.InfiniteTimeSpan
+    };
+    private static readonly ConcurrentDictionary<string, string> TtsCache = new();
+    private static readonly HuggingFaceSpaceWakeup TtsSpaceWakeup = new(
+        SharedHttpClient, "VanModers114/East_Frisian_TTS");
 
+    public List<string> LanguageOptions { get; } = ["Deutsch", "English", "Oostfräisk"];
     public bool DoubleTranslationEnabled { get; } = true;
 
     public int MaximumTextLength { get; } = MaxTextLength;
     public string InputTitle { get; set; } = "Deutsch";
     public string TranslationTitle { get; set; } = "Oostfräisk";
     public string InputText { get; set; } = "";
-    public string InputPlaceholderText { get; set; } = "Hier steht der deutsche Text.";
+    public string InputPlaceholderText { get; set; } = "Hier steht der Text.";
     public string OutputText { get; set; } = "";
-    public string TranslationPlaceholderText { get; set; } = "Hir staajt däi oostfräisk tekst.";
-    public string TranslationText { get; set; } = "Übersetze";
+    public string TranslationPlaceholderText { get; set; } = "Hier steht die Übersetzung.";
+    public string TranslationText { get; set; } = "Übersetzen";
     public bool ShowTranslationFeedback { get; set; } = false;
     public bool IsLoading { get; set; } = false;
+    [Bind(Direction.ServerToClient)]
+    public string TtsAudioUrl { get; set; } = "";
+    [Bind(Direction.ServerToClient)]
+    public string TtsErrorMessage { get; set; } = "";
+    public bool IsTtsLoading { get; set; } = false;
 
 
     public TranslatorViewModel(IConfiguration configuration, TranslationCounterService counterService)
@@ -127,26 +148,31 @@ public class TranslatorViewModel : MasterPageViewModel
         MasterPageTitle = "Ooversetter - Übersetzer für das Ostfriesische Platt - Oostfräisk Woordenbauk - Ostfriesisches Wörterbuch";
         MasterPageDescription = "Ooversetter - Übersetzer für das Ostfriesische Platt - Wörterbuch der ostfriesischen Sprache - Wörter aus dem Ostfriesischen oder ins Ostfriesische übersetzen. Die Sprache der Ostfriesen mit dem Wörterbuch für das Ostfriesische Platt als Standardostfriesisch lernen.";
         MasterPageKeywords += ", ooversetter, übersetzer, ostfriesisches platt, translator ostfriesische Sprache, ostfriesisch, oostfräisk, ostfriesisches plattdeutsch";
+        NormalizeLanguageSelection();
         return base.Init();
+    }
+
+    public override Task PreRender()
+    {
+        NormalizeLanguageSelection();
+        return base.PreRender();
     }
 
     public void SwitchTranslationMode()
     {
+        ClearSpeechResult();
         var temp = InputTitle;
         InputTitle = TranslationTitle;
         TranslationTitle = temp;
         var tempText = InputText;
         InputText = OutputText;
         OutputText = tempText;
-        var tempPlaceholder = InputPlaceholderText;
-        InputPlaceholderText = TranslationPlaceholderText;
-        TranslationPlaceholderText = tempPlaceholder;
-
-        TranslationText = TranslationText == "Übersetze" ? "ooversetten" : "Übersetze";
+        NormalizeLanguageSelection();
     }
 
     public void ClearInput()
     {
+        ClearSpeechResult();
         InputText = "";
         OutputText = "";
         ShowTranslationFeedback = false;
@@ -171,8 +197,13 @@ public class TranslatorViewModel : MasterPageViewModel
 
     private async Task SentReport(string subject, string addedMarker)
     {
-        string gerText = TranslationText == "Übersetze" ? InputText : OutputText + addedMarker;
-        string frsText = TranslationText == "Übersetze" ? OutputText + addedMarker : InputText;
+        string markedOutput = OutputText + addedMarker;
+        string gerText = InputTitle == "Deutsch"
+            ? InputText
+            : (TranslationTitle == "Deutsch" ? markedOutput : string.Empty);
+        string frsText = InputTitle == "Oostfräisk"
+            ? InputText
+            : (TranslationTitle == "Oostfräisk" ? markedOutput : string.Empty);
 
         await SaveFeedback(gerText, frsText, ApiSaveFeedbackUrl, BearerToken);
         try
@@ -191,7 +222,7 @@ public class TranslatorViewModel : MasterPageViewModel
                 {
                     From = new MailAddress("edufraeisk@gmail.com"),
                     Subject = subject,
-                    Body = $"{gerText}\n\nOOVERSETTEN:\n\n{frsText}",
+                    Body = $"{InputTitle}: {InputText}\n\n{TranslationTitle}:\n\n{OutputText}{addedMarker}",
                     IsBodyHtml = false,
                 };
                 mailMessage.To.Add("oostfraeisk.ooversetter@gmail.com");
@@ -246,6 +277,7 @@ public class TranslatorViewModel : MasterPageViewModel
 
     public void PrepareTranslation()
     {
+        ClearSpeechResult();
         OutputText = "";
         IsLoading = true;
         ShowTranslationFeedback = false;
@@ -253,15 +285,213 @@ public class TranslatorViewModel : MasterPageViewModel
 
     public async Task TranslateAsync()
     {
-        string sourceLanguage = TranslationText == "Übersetze" ? "Deutsch" : "Oostfräisk";
-        string targetLanguage = TranslationText == "Übersetze" ? "Oostfräisk" : "Deutsch";
+        if (!IsAllowedPair(InputTitle, TranslationTitle))
+        {
+            OutputText = "Diese Sprachkombination wird derzeit nicht unterstützt.";
+            IsLoading = false;
+            ShowTranslationFeedback = false;
+            return;
+        }
+
         // Perform translation with automatic failover
-        OutputText = await TranslateWithFallback(InputText, sourceLanguage, targetLanguage, SharedNllbEndpoints, BearerToken, MaxTextLength);
+        OutputText = await TranslateWithFallback(InputText, InputTitle, TranslationTitle, SharedNllbEndpoints, BearerToken, MaxTextLength);
         IsLoading = false;
         ShowTranslationFeedback = true;
 
         // Increment translation counter for the official translator page
         _counterService.IncrementCounter();
+    }
+
+    public void PrepareGenerateSpeech()
+    {
+        ClearSpeechResult();
+        IsTtsLoading = true;
+    }
+
+    public void ChangeLanguageSelection()
+    {
+        ClearSpeechResult();
+        NormalizeLanguageSelection();
+    }
+
+    private void ClearSpeechResult()
+    {
+        TtsAudioUrl = "";
+        TtsErrorMessage = "";
+    }
+
+    public async Task GenerateSpeechAsync()
+    {
+        if (!IsTtsLoading)
+            return;
+
+        try
+        {
+            string textToSpeak = TranslationTitle == "Oostfräisk" ? OutputText : InputText;
+            if (string.IsNullOrWhiteSpace(textToSpeak))
+                return;
+
+            if (TtsCache.TryGetValue(textToSpeak, out string cachedAudio))
+            {
+                TtsAudioUrl = cachedAudio;
+                return;
+            }
+
+            string audio = await GenerateSpeech(textToSpeak, ApiTtsUrl, BearerToken);
+            if (TtsCache.Count >= MaxTtsCacheSize)
+                TtsCache.Clear();
+            TtsCache[textToSpeak] = audio;
+            TtsAudioUrl = audio;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"TTS Error: {ex.Message}");
+            TtsErrorMessage = "Die KI-Sprachausgabe konnte nicht gestartet werden. Bitte versuchen Sie es in einigen Minuten erneut.";
+        }
+        finally
+        {
+            IsTtsLoading = false;
+        }
+    }
+
+    private static bool IsTransientTtsStatus(HttpStatusCode statusCode) =>
+        statusCode == HttpStatusCode.RequestTimeout ||
+        statusCode == HttpStatusCode.TooManyRequests ||
+        statusCode == HttpStatusCode.InternalServerError ||
+        statusCode == HttpStatusCode.BadGateway ||
+        statusCode == HttpStatusCode.ServiceUnavailable ||
+        statusCode == HttpStatusCode.GatewayTimeout;
+
+    private static async Task<HttpResponseMessage> SendTtsRequestWithRetry(
+        Func<HttpRequestMessage> requestFactory,
+        string operation,
+        CancellationToken cancellationToken)
+    {
+        for (int attempt = 1; ; attempt++)
+        {
+            try
+            {
+                using HttpRequestMessage request = requestFactory();
+                HttpResponseMessage response = await SharedHttpClient.SendAsync(
+                    request,
+                    HttpCompletionOption.ResponseHeadersRead,
+                    cancellationToken);
+
+                if (response.IsSuccessStatusCode)
+                    return response;
+
+                if (!IsTransientTtsStatus(response.StatusCode))
+                {
+                    HttpStatusCode statusCode = response.StatusCode;
+                    string body = await response.Content.ReadAsStringAsync(cancellationToken);
+                    response.Dispose();
+                    string preview = body.Length > 300 ? body[..300] : body;
+                    throw new InvalidOperationException(
+                        $"TTS {operation} failed with HTTP {(int)statusCode}: {preview}");
+                }
+
+                HttpStatusCode transientStatusCode = response.StatusCode;
+                TimeSpan retryDelay = GetTtsRetryDelay(response, attempt);
+                response.Dispose();
+                Console.WriteLine(
+                    $"TTS {operation} received HTTP {(int)transientStatusCode}; " +
+                    $"retrying in {retryDelay.TotalSeconds:0} seconds (attempt {attempt}).");
+                await Task.Delay(retryDelay, cancellationToken);
+            }
+            catch (HttpRequestException ex)
+            {
+                TimeSpan retryDelay = GetTtsRetryDelay(null, attempt);
+                Console.WriteLine(
+                    $"TTS {operation} request failed ({ex.GetType().Name}); " +
+                    $"retrying in {retryDelay.TotalSeconds:0} seconds (attempt {attempt}).");
+                await Task.Delay(retryDelay, cancellationToken);
+            }
+        }
+    }
+
+    private static TimeSpan GetTtsRetryDelay(HttpResponseMessage response, int attempt)
+    {
+        TimeSpan? retryAfter = response?.Headers.RetryAfter?.Delta;
+        if (!retryAfter.HasValue && response?.Headers.RetryAfter?.Date is DateTimeOffset retryDate)
+            retryAfter = retryDate - DateTimeOffset.UtcNow;
+
+        TimeSpan delay = retryAfter.HasValue && retryAfter.Value > TimeSpan.Zero
+            ? retryAfter.Value
+            : TimeSpan.FromSeconds(Math.Pow(2, Math.Min(attempt, 4)));
+
+        return delay > TimeSpan.FromSeconds(MaxTtsRetryDelaySeconds)
+            ? TimeSpan.FromSeconds(MaxTtsRetryDelaySeconds)
+            : delay;
+    }
+
+    public static async Task<string> GenerateSpeech(
+        string text,
+        string apiUrl,
+        string bearerToken)
+    {
+        string jsonPayload = Newtonsoft.Json.JsonConvert.SerializeObject(new
+        {
+            data = new string[] { text }
+        });
+        using var timeout = new CancellationTokenSource(TimeSpan.FromSeconds(TtsRequestTimeoutSeconds));
+
+        if (string.Equals(apiUrl, ApiTtsUrl, StringComparison.OrdinalIgnoreCase))
+            await TtsSpaceWakeup.EnsureRunningAsync(bearerToken, timeout.Token);
+
+        using HttpResponseMessage response = await SendTtsRequestWithRetry(
+            () =>
+            {
+                var request = new HttpRequestMessage(HttpMethod.Post, apiUrl);
+                request.Headers.Add("Authorization", $"Bearer {bearerToken}");
+                request.Headers.Add("Accept", "application/json");
+                request.Content = new StringContent(jsonPayload, Encoding.UTF8, "application/json");
+                return request;
+            },
+            "submission",
+            timeout.Token);
+        string responseJson = await response.Content.ReadAsStringAsync(timeout.Token);
+        string eventId = JObject.Parse(responseJson)["event_id"]?.ToString();
+        if (string.IsNullOrEmpty(eventId))
+            throw new InvalidOperationException("Failed to retrieve event_id from TTS API response.");
+
+        string resultUrl = $"{apiUrl}/{eventId}";
+        using HttpResponseMessage resultResponse = await SendTtsRequestWithRetry(
+            () =>
+            {
+                var request = new HttpRequestMessage(HttpMethod.Get, resultUrl);
+                request.Headers.Add("Authorization", $"Bearer {bearerToken}");
+                request.Headers.Add("Accept", "text/event-stream");
+                return request;
+            },
+            "result stream",
+            timeout.Token);
+        string jsonData = await resultResponse.Content.ReadAsStringAsync(timeout.Token);
+        if (jsonData.Contains("event: error"))
+            throw new InvalidOperationException("The TTS Space reported an inference error.");
+        if (!jsonData.Contains("event: complete"))
+            throw new InvalidOperationException("The TTS Space closed without a complete event.");
+
+        jsonData = ExtractJsonFromEventStream(jsonData)
+            ?? throw new InvalidOperationException("The TTS result did not contain JSON data.");
+        string fileUrl = JArray.Parse(jsonData)[0]?["url"]?.ToString();
+        if (string.IsNullOrEmpty(fileUrl))
+            throw new InvalidOperationException("The TTS result did not contain an audio URL.");
+
+        using HttpResponseMessage downloadResponse = await SendTtsRequestWithRetry(
+            () =>
+            {
+                var request = new HttpRequestMessage(HttpMethod.Get, fileUrl);
+                request.Headers.Add("Authorization", $"Bearer {bearerToken}");
+                return request;
+            },
+            "audio download",
+            timeout.Token);
+        byte[] wavBytes = await downloadResponse.Content.ReadAsByteArrayAsync(timeout.Token);
+        if (wavBytes.Length < 12 || Encoding.ASCII.GetString(wavBytes, 0, 4) != "RIFF" ||
+            Encoding.ASCII.GetString(wavBytes, 8, 4) != "WAVE")
+            throw new InvalidOperationException("The TTS download was not a WAV file.");
+
+        return $"data:audio/wav;base64,{Convert.ToBase64String(wavBytes)}";
     }
 
     /// <summary>
@@ -283,7 +513,7 @@ public class TranslatorViewModel : MasterPageViewModel
                 Console.WriteLine($"Translation failed for {currentUrl}: {ex.Message}");
                 if (!endpoints.TryAdvance(currentUrl))
                 {
-                    break; // No more fallback URLs
+                    break;
                 }
                 Console.WriteLine($"Falling back to {endpoints.CurrentUrl}");
             }
@@ -377,5 +607,41 @@ public class TranslatorViewModel : MasterPageViewModel
             lastLine = line;
         }
         return null;
+    }
+
+    private bool IsAllowedPair(string sourceLanguage, string targetLanguage)
+    {
+        if (string.Equals(sourceLanguage, targetLanguage, StringComparison.Ordinal))
+            return false;
+
+        bool germanEnglishPair =
+            (sourceLanguage == "Deutsch" && targetLanguage == "English") ||
+            (sourceLanguage == "English" && targetLanguage == "Deutsch");
+        return !germanEnglishPair;
+    }
+
+    public void NormalizeLanguageSelection()
+    {
+        if (IsAllowedPair(InputTitle, TranslationTitle))
+            return;
+
+        string allowedOutput = LanguageOptions.FirstOrDefault(
+            language => IsAllowedPair(InputTitle, language));
+        if (!string.IsNullOrEmpty(allowedOutput))
+        {
+            TranslationTitle = allowedOutput;
+            return;
+        }
+
+        string allowedInput = LanguageOptions.FirstOrDefault(
+            language => IsAllowedPair(language, TranslationTitle));
+        if (!string.IsNullOrEmpty(allowedInput))
+        {
+            InputTitle = allowedInput;
+            return;
+        }
+
+        InputTitle = "Deutsch";
+        TranslationTitle = "Oostfräisk";
     }
 }

@@ -21,7 +21,7 @@ public sealed class HuggingFaceSpaceWakeup
         hubUrl = $"https://huggingface.co/api/spaces/{spaceId}";
     }
 
-    public async Task EnsureRunningAsync(string token, CancellationToken cancellationToken, string restartToken = null)
+    public async Task EnsureRunningAsync(string token, CancellationToken cancellationToken)
     {
         string lastState = "not yet checked";
         bool entered = false;
@@ -59,7 +59,7 @@ public sealed class HuggingFaceSpaceWakeup
                             // Do not retry this POST: a lost response could still
                             // mean it was accepted, and another POST resets startup.
                             restartSent = true;
-                            using var restart = CreateRequest(HttpMethod.Post, "restart", string.IsNullOrWhiteSpace(restartToken) ? token : restartToken);
+                            using var restart = CreateRequest(HttpMethod.Post, "restart", token);
                             using var restartResponse = await client.SendAsync(restart, cancellationToken);
                             CheckResponse(restartResponse, "restart");
                             Console.WriteLine("TTS Space restart accepted; waiting for RUNNING.");

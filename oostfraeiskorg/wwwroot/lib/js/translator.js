@@ -15,6 +15,7 @@ class App {
 
         input.addEventListener('input', function () {
             charCount.textContent = input.value.length + '/' + input.maxLength;
+            dotvvm.patchState({ TtsAudioUrl: "", TtsErrorMessage: "" });
         });
 
         charCount.textContent = input.value.length + '/' + input.maxLength;

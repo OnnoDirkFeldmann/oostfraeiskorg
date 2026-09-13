@@ -1,4 +1,4 @@
-﻿@viewModel oostfraeiskorg.ViewModels.TranslatorViewModel, oostfraeiskorg
+@viewModel oostfraeiskorg.ViewModels.TranslatorViewModel, oostfraeiskorg
 @masterPage Views/MasterPage.dotmaster
 @js translator
 
@@ -11,19 +11,125 @@
                       Command="{command: _root.DeactivateFeedback()}" />
     <dot:NamedCommand Name="ClearInput"
                       Command="{command: _root.ClearInput()}" />
+    <dot:NamedCommand Name="GenerateSpeechAsync"
+                      Command="{command: _root.GenerateSpeechAsync()}" />
+    <dot:NamedCommand Name="PrepareGenerateSpeech"
+                      Command="{command: _root.PrepareGenerateSpeech()}" />
 
     <style>
 
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: scale(0.95);
+        .title-select-wrap {
+            position: relative;
+            width: fit-content;
+            margin: 0 auto 1rem auto;
+        }
+
+        .title-select {
+            width: auto;
+            min-width: 0;
+            max-width: none;
+            margin: 0;
+            padding: 0.1rem 1.5rem 0.2rem 0;
+            border: none;
+            background: transparent;
+            box-shadow: none;
+            color: #212529;
+            font-size: 1.5rem;
+            font-weight: 600;
+            line-height: 1.35;
+            min-height: calc(1.35em + 0.3rem);
+            text-align: center;
+            text-align-last: center;
+            cursor: pointer;
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+        }
+
+            .title-select:focus {
+                outline: none;
+                box-shadow: none;
             }
 
-            to {
-                opacity: 1;
-                transform: scale(1);
+        .title-select-wrap::after {
+            content: "▾";
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-45%);
+            font-size: 1rem;
+            color: #212529;
+            pointer-events: none;
+        }
+
+        .tts-button {
+            position: absolute;
+            top: 4px;
+            right: 38px;
+            background: none;
+            border: none;
+            color: #888;
+            font-size: 1.1rem;
+            cursor: pointer;
+            padding: 0;
+            line-height: 1;
+            z-index: 10;
+            transition: color 0.2s;
+        }
+
+            .tts-button:hover {
+                color: #007bff;
             }
+
+        .tts-download-button {
+            position: absolute;
+            top: 4px;
+            right: 70px;
+            background: none;
+            border: none;
+            color: #888;
+            font-size: 1.1rem;
+            cursor: pointer;
+            padding: 0;
+            line-height: 1;
+            z-index: 10;
+            transition: color 0.2s;
+        }
+
+            .tts-download-button:hover {
+                color: #007bff;
+            }
+
+        .tts-spinner {
+            position: absolute;
+            top: 4px;
+            right: 38px;
+        }
+
+            .tts-spinner .spinner {
+                width: 1.4rem;
+                height: 1.4rem;
+                border-width: 3px;
+            }
+
+        .translation-counter {
+            font-size: 0.9rem;
+            color: #666;
+            text-align: center;
+            margin-top: 0.5rem;
+            font-style: italic;
+        }
+
+        .tts-ai-notice {
+            color: #666;
+            font-size: 0.8rem;
+            margin: 0.35rem 1rem;
+        }
+
+        .tts-error {
+            color: #a12622;
+            font-size: 0.85rem;
+            margin: 0.35rem 1rem;
         }
 
         .feedback-notice {
@@ -56,8 +162,8 @@
 
         .copy-button {
             position: absolute;
-            top: 8px;
-            right: 12px;
+            top: 4px;
+            right: 8px;
             background: none;
             border: none;
             color: #888;
@@ -74,7 +180,7 @@
             }
 
         .input-wrapper .copy-button {
-            right: 12px;
+            right: 10px;
         }
 
         .ooversetter-logo {
@@ -246,6 +352,14 @@
 
         /* RESPONSIVE - stack on small screens */
         @media (max-width: 768px) {
+            .title-select-wrap {
+                margin-bottom: 0.75rem;
+            }
+
+            .title-select {
+                font-size: 1.25rem;
+            }
+
             .translation-container {
                 height: auto;
                 flex-direction: column;
@@ -317,13 +431,41 @@
                     font-weight: 600;
                     font-size: 0.85rem;
                 }
+
+            .tts-button {
+                font-size: 1.1rem;
+                top: 2px;
+                right: 38px;
+            }
+
+            .tts-download-button {
+                font-size: 1.1rem;
+                top: 2px;
+                right: 68px;
+            }
+
+            .tts-spinner {
+                top: 2px;
+                right: 38px;
+            }
+
+                .tts-spinner .spinner {
+                    width: 1.3rem;
+                    height: 1.3rem;
+                }
+
+            .translation-counter {
+                font-size: 0.75rem;
+            }
         }
     </style>
 
-    <!-- Translator Section -->
     <div class="text-center mt-3">
         <img src="~/img/ooversetter_logo.png" alt="Ooversetter Logo" class="ooversetter-logo" />
         <p class="beta-text text-center">Übersetzer für das Ostfriesische Platt (Beta-Version)</p>
+        <p class="tts-ai-notice">Die Sprachausgabe ist KI-generiert.
+            <a href="/ki-audio">Audio prüfen</a>
+        </p>
     </div>
 
     <div class="translation-container">
@@ -332,25 +474,44 @@
             <!-- Input -->
             <div class="translation-box">
                 <div class="translation-frame">
-                    <h5>
-                        <dot:Literal Text="{value: InputTitle}" />
-                    </h5>
+                    <div class="title-select-wrap">
+                        <dot:ComboBox DataSource="{value: LanguageOptions}"
+                                        SelectedValue="{value: InputTitle}"
+                                        SelectionChanged="{command: ChangeLanguageSelection()}"
+                                        class="form-select title-select" />
+                    </div>
                     <div class="input-wrapper">
-                        <dot:TextBox Text="{value: InputText}" Type="MultiLine" ID="input"
+                        <dot:TextBox Text="{value: InputText}" Type="MultiLine" id="input"
                                         class="form-control input-box"
                                         placeholder="{value: InputPlaceholderText}"
                                         maxlength="{value: MaximumTextLength}"
                                         Enabled="{value: !IsLoading}" />
                         <dot:Button Text="×" Click="{staticCommand: _js.InvokeAsync('ClearInput')}" class="clear-button" tabindex="-1" />
-                        <span ID="charCount" class="char-count-inline">
+                        <dot:Button Text="🔊"
+                                    Click="{staticCommand: _js.InvokeAsync('StartTTS')}"
+                                    class="tts-button"
+                                    Enabled="{value: InputText != '' && !IsTtsLoading}"
+                                    Visible="{value: InputTitle == 'Oostfräisk' && !IsTtsLoading}"
+                                    title="KI-Sprachausgabe abspielen"
+                                    aria-label="Text mit KI-Stimme vorlesen lassen" />
+                        <dot:Button Text="⬇"
+                                    Click="{staticCommand: _js.InvokeAsync('DownloadTTS')}"
+                                    class="tts-download-button"
+                                    Enabled="{value: TtsAudioUrl != ''}"
+                                    Visible="{value: InputTitle == 'Oostfräisk' && TtsAudioUrl != '' && !IsTtsLoading}"
+                                    title="Audio herunterladen"
+                                    aria-label="Audio-Datei herunterladen" />
+                        <div class="tts-spinner" Visible="{value: IsTtsLoading && InputTitle == 'Oostfräisk'}">
+                            <div class="spinner"></div>
+                        </div>
+                        <span id="charCount" class="char-count-inline">
                             0/
                             <dot:Literal Text="{value: MaximumTextLength}" />
                         </span>
                     </div>
-                    <!-- Buttons -->
                     <div class="button-box">
-                        <dot:Button Text="{value: TranslationText}" Click="{staticCommand: _js.InvokeAsync('StartTranslation')}" class="btn btn-primary" />
-                        <dot:Button Text="⇄" Click="{command: SwitchTranslationMode()}" style="{value: DoubleTranslationEnabled ? '' : 'display: none'}" class="btn btn-primary switch-button" />
+                        <dot:Button Text="{value: InputTitle == 'Deutsch' ? 'Übersetzen' : (InputTitle == 'English' ? 'translate' : 'ooversetten')}" Click="{staticCommand: _js.InvokeAsync('StartTranslation')}" class="btn btn-primary" />
+                        <dot:Button Text="⇄" Click="{command: SwitchTranslationMode()}" class="btn btn-primary switch-button" />
                     </div>
                 </div>
             </div>
@@ -358,19 +519,43 @@
             <!-- Output -->
             <div class="translation-box">
                 <div class="translation-frame">
-                    <h5>
-                        <dot:Literal Text="{value: TranslationTitle}" />
-                    </h5>
+                    <div class="title-select-wrap">
+                        <dot:ComboBox DataSource="{value: LanguageOptions}"
+                                        SelectedValue="{value: TranslationTitle}"
+                                        SelectionChanged="{command: ChangeLanguageSelection()}"
+                                        class="form-select title-select" />
+                    </div>
                     <div class="input-wrapper">
-                        <dot:TextBox Text="{value: OutputText}" Type="MultiLine" Enabled="false" ID="translation"
+                        <dot:TextBox Text="{value: OutputText}" Type="MultiLine" Enabled="false" id="translation"
                                         class="form-control input-box"
                                         placeholder="{value: TranslationPlaceholderText}"
                                         Visible="{value: !IsLoading}" />
                         <dot:Button Text="⧉" Click="{staticCommand: _js.InvokeAsync('CopyOutput')}" class="copy-button" tabindex="-1" />
+                        <dot:Button Text="🔊"
+                                    Click="{staticCommand: _js.InvokeAsync('StartTTS')}"
+                                    class="tts-button"
+                                    Enabled="{value: OutputText != '' && !IsTtsLoading}"
+                                    Visible="{value: TranslationTitle == 'Oostfräisk' && !IsTtsLoading}"
+                                    title="KI-Sprachausgabe abspielen"
+                                    aria-label="Übersetzung mit KI-Stimme vorlesen lassen" />
+                        <dot:Button Text="⬇"
+                                    Click="{staticCommand: _js.InvokeAsync('DownloadTTS')}"
+                                    class="tts-download-button"
+                                    Enabled="{value: TtsAudioUrl != ''}"
+                                    Visible="{value: TranslationTitle == 'Oostfräisk' && TtsAudioUrl != '' && !IsTtsLoading}"
+                                    title="Audio herunterladen"
+                                    aria-label="Audio-Datei herunterladen" />
+
+                        <div class="tts-spinner" Visible="{value: IsTtsLoading && TranslationTitle == 'Oostfräisk'}">
+                            <div class="spinner"></div>
+                        </div>
+
                         <div class="loading-spinner" Visible="{value: IsLoading}">
                             <div class="spinner"></div>
                         </div>
                     </div>
+
+                    <audio controls src="{value: TtsAudioUrl}" hidden id="ttsAudio" tabindex="0" aria-label="KI-Sprachausgabe"></audio>
 
                     <!-- Feedback -->
                     <div class="{value: ShowTranslationFeedback ? 'overlay-content text-center show' : 'overlay-content text-center'}">
@@ -388,6 +573,9 @@
             </div>
         </div>
     </div>
+        <p class="tts-error text-center" role="alert" Visible="{value: TtsErrorMessage != ''}">
+            <dot:Literal Text="{value: TtsErrorMessage}" />
+        </p>
     <p class="beta-text text-center">Der Übersetzer befindet sich noch in der Beta-Phase. Übersetzungen können fehlerhaft sein.</p>
 
 </dot:Content>
