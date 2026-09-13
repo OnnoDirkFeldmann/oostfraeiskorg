@@ -44,6 +44,12 @@
         <h3>Meilensteine:</h3>
         <p>
             <br />
+            September 2026:
+            <br />
+            Die KI-basierte Spachausgabe Oostfräisk TTS wurde in das Projekt integriert und freigeschaltet.<br />
+            <a href="https://github.com/VanModers/oostfraeisk_tts">VanModers/oostfraeisk_tts</a>
+            <br />
+            <br />
             Dezember 2025:
             <br />
             Die Suchoberfläche wurde komplett überarbeitet, sodass die zugehörigen Phrasen eines Eintrags nun ausklappbar darunter erscheinen. Zudem wurde der Suchalgorithmus optimiert, um die Ergebnisse präziser nach ihrer Relevanz zu sortieren.
@@ -116,8 +122,8 @@
             So wurden folgende Eckpunkte festgelegt.
             <ul>
                 <li>
-                    Die Orthographie basiert vor allem auf einer Kombination der Orthographiesysteme von Marron C. Fort und Holger Weigelt, vereint deren Vorteile, 
-                    bindet die Orthographievorschläge von Hermann Gils mit ein und ist zudem von den Grundsätzen der heute etablierten nordfriesischen Orthographie inspiriert. 
+                    Die Orthographie basiert vor allem auf einer Kombination der Orthographiesysteme von Marron C. Fort und Holger Weigelt, vereint deren Vorteile,
+                    bindet die Orthographievorschläge von Hermann Gils mit ein und ist zudem von den Grundsätzen der heute etablierten nordfriesischen Orthographie inspiriert.
                     Da die Reform sowie die daraus resultierende Orthographie größtenteils durch die Jungfräiske Mäinskup erarbeitet wurde, trägt sie fortan den Namen „Mäinskupsskriivwîis“.
                 </li>
                 <li>
