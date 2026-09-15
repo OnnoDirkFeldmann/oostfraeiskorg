@@ -57,7 +57,7 @@ public class DotvvmStartup : IDotvvmStartup, IDotvvmServiceConfigurator
         config.RouteTable.Add("translator_test.aspx", "translator_test.aspx", "Views/translator.dothtml");
         config.RouteTable.Add("translator_test.dothtml", "translator_test.dothtml", "Views/translator.dothtml");
 
-        config.RouteTable.Add("translator_e6a9d1b4e787207e7f83c816041028a97f22db3c", "translator_e6a9d1b4e787207e7f83c816041028a97f22db3c", "Views/translator_test.dothtml");
+        config.RouteTable.Add("translator_fa70aabeceaa44cbf78aab46b257157f10117cc6c43231b2", "translator_fa70aabeceaa44cbf78aab46b257157f10117cc6c43231b2", "Views/translator_test.dothtml");
 
         config.RouteTable.Add("keyboard", "keyboard", "Views/keyboard.dothtml");
         config.RouteTable.Add("keyboard.aspx", "keyboard.aspx", "Views/keyboard.dothtml");

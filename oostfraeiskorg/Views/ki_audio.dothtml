@@ -41,7 +41,7 @@
             <a href="/audio-check/model-info.json">Modellinformationen</a> ·
             <a href="/audio-check/LICENSE-AudioSeal.txt">AudioSeal-Lizenz</a> ·
             <a href="/audio-check/LICENSE-ONNXRuntime.txt">ONNX-Runtime-Lizenz</a></p>
-        <p><a href="/translator_e6a9d1b4e787207e7f83c816041028a97f22db3c">Zurück zum Ooversetter</a></p>
+        <p><a href="/translator">Zurück zum Ooversetter</a></p>
     </div>
     <script type="module" src="/audio-check/check.js"></script>
 </dot:Content>

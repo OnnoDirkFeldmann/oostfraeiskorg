@@ -1,4 +1,4 @@
-﻿@viewModel oostfraeiskorg.ViewModels.AboutViewModel, oostfraeiskorg
+@viewModel oostfraeiskorg.ViewModels.AboutViewModel, oostfraeiskorg
 @masterPage Views/MasterPage.dotmaster
 
 <dot:Content ContentPlaceHolderID="MainContent">
@@ -47,7 +47,7 @@
             September 2026:
             <br />
             Die KI-basierte Spachausgabe Oostfräisk TTS wurde in das Projekt integriert und freigeschaltet.<br />
-            <a href="https://github.com/VanModers/oostfraeisk_tts">VanModers/oostfraeisk_tts</a>
+            <a href="https://github.com/VanModers/oostfraeisk_text_to_speech">VanModers/oostfraeisk_text_to_speech</a>
             <br />
             <br />
             Dezember 2025:
