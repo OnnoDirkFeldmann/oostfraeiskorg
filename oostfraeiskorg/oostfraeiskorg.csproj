@@ -16,8 +16,9 @@
 	  </Content>
 	</ItemGroup>
 	<ItemGroup>
-		<PackageReference Include="DotVVM.AspNetCore" Version="4.3.17" />
-		<PackageReference Include="DotVVM.HotReload.AspNetCore" Version="4.3.17" />
+		<PackageReference Include="DotVVM.AspNetCore" Version="5.0.2" />
+		<PackageReference Include="DotVVM.HotReload.AspNetCore" Version="5.0.2" />
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
 		<PackageReference Include="SQLitePCLRaw.bundle_e_sqlite3" Version="3.0.5" />
 		<PackageReference Include="SourceGear.sqlite3" Version="3.53.4" />
 		<PackageReference Include="Microsoft.Data.Sqlite.Core" Version="10.0.2" />
