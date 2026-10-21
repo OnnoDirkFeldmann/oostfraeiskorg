@@ -32,6 +32,7 @@ public class Startup
         services.AddAuthentication();
         services.AddDotVVM<DotvvmStartup>();
         services.AddSingleton<TranslationCounterService>();
+        services.AddSingleton<SitemapService>();
         
         // Add memory cache and search cache service
         services.AddMemoryCache(options =>
