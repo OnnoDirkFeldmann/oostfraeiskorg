@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using DotVVM.Framework.ViewModel;
 
 namespace oostfraeiskorg.ViewModels;
@@ -33,6 +34,31 @@ public class MasterPageViewModel : DotvvmViewModelBase
     public string SearchBeginsButtonText { get; set; } = "Beginnt mit";
     public string SearchEndsButtonText { get; set; } = "Endet mit";
     public string SearchExactButtonText { get; set; } = "Exakte Suche";
+
+    [FromQuery("df")]
+    public string DfFromQuery { get; set; }
+
+    public override Task Init()
+    {
+        if (!Context.IsPostBack && !string.IsNullOrEmpty(DfFromQuery))
+        {
+            SelectedLanguage = NormalizeLanguage(DfFromQuery);
+            LanguageSelectionChanged();
+        }
+        return base.Init();
+    }
+
+    private static string NormalizeLanguage(string df) => df.ToLowerInvariant() switch
+    {
+        "de>frs" => "DE>FRS",
+        "frs>de" => "FRS>DE",
+        "en>frs" => "EN>FRS",
+        "frs>en" => "FRS>EN",
+        "de"     => "DE>FRS",
+        "frs"    => "FRS>DE",
+        "ofrs"   => "FRS>DE",
+        _        => "DE>FRS"
+    };
 
     #region methods
 
